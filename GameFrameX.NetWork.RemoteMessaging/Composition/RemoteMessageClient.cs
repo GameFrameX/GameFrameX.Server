@@ -76,16 +76,31 @@ internal sealed class RemoteMessageClient : IRemoteMessageClient
     }
 
     /// <summary>
-    /// 发送请求并等待响应（简化版本）。
+    /// 发送请求并等待响应（使用默认超时）。
     /// </summary>
-    /// <remarks>
-    /// Sends a request and waits for a response (simplified overload).
-    /// </remarks>
-    /// <param name="serviceName">目标服务名 / The target service name</param>
-    /// <param name="requestMessage">请求消息对象 / The request message object</param>
-    /// <param name="timeoutMs">超时毫秒数 / The timeout duration in milliseconds</param>
-    /// <param name="cancellationToken">取消令牌 / The cancellation token</param>
-    /// <returns>响应消息对象；超时或失败时返回 null / The response message object; returns null on timeout or failure</returns>
+    public Task<TResponse> CallAsync<TResponse>(
+        string serviceName,
+        MessageObject requestMessage)
+        where TResponse : class, IResponseMessage
+    {
+        return CallAsync<TResponse>(serviceName, requestMessage, RemoteCallContext.DefaultTimeoutMs);
+    }
+
+    /// <summary>
+    /// 发送请求并等待响应（使用默认超时，支持取消）。
+    /// </summary>
+    public Task<TResponse> CallAsync<TResponse>(
+        string serviceName,
+        MessageObject requestMessage,
+        CancellationToken cancellationToken)
+        where TResponse : class, IResponseMessage
+    {
+        return CallAsync<TResponse>(serviceName, requestMessage, RemoteCallContext.DefaultTimeoutMs, cancellationToken);
+    }
+
+    /// <summary>
+    /// 发送请求并等待响应（指定超时）。
+    /// </summary>
     public async Task<TResponse> CallAsync<TResponse>(
         string serviceName,
         MessageObject requestMessage,
@@ -96,6 +111,89 @@ internal sealed class RemoteMessageClient : IRemoteMessageClient
         var context = RemoteCallContext.Create(serviceName, timeoutMs, cancellationToken);
         var result = await CallWithResultAsync<TResponse>(context, requestMessage);
         return result.Response;
+    }
+
+    /// <summary>
+    /// 发送请求并返回结构化结果（使用默认超时）。
+    /// </summary>
+    public Task<RemoteCallResult<TResponse>> CallWithResultAsync<TResponse>(
+        string serviceName,
+        MessageObject requestMessage)
+        where TResponse : class, IResponseMessage
+    {
+        var context = RemoteCallContext.Create(serviceName);
+        return CallWithResultAsync<TResponse>(context, requestMessage);
+    }
+
+    /// <summary>
+    /// 发送请求并返回结构化结果（指定超时）。
+    /// </summary>
+    public Task<RemoteCallResult<TResponse>> CallWithResultAsync<TResponse>(
+        string serviceName,
+        MessageObject requestMessage,
+        int timeoutMs)
+        where TResponse : class, IResponseMessage
+    {
+        var context = RemoteCallContext.Create(serviceName, timeoutMs);
+        return CallWithResultAsync<TResponse>(context, requestMessage);
+    }
+
+    /// <summary>
+    /// 发送请求并返回结构化结果（指定超时和取消令牌）。
+    /// </summary>
+    public Task<RemoteCallResult<TResponse>> CallWithResultAsync<TResponse>(
+        string serviceName,
+        MessageObject requestMessage,
+        int timeoutMs,
+        CancellationToken cancellationToken)
+        where TResponse : class, IResponseMessage
+    {
+        var context = RemoteCallContext.Create(serviceName, timeoutMs, cancellationToken);
+        return CallWithResultAsync<TResponse>(context, requestMessage);
+    }
+
+    /// <summary>
+    /// 发送幂等请求并返回结构化结果（自动启用重试）。适用于读操作和查询接口。
+    /// </summary>
+    public Task<RemoteCallResult<TResponse>> CallWithRetryAsync<TResponse>(
+        string serviceName,
+        MessageObject requestMessage,
+        int timeoutMs = RemoteCallContext.DefaultTimeoutMs,
+        int maxRetryCount = RemoteCallContext.DefaultMaxRetryCount,
+        CancellationToken cancellationToken = default)
+        where TResponse : class, IResponseMessage
+    {
+        var context = RemoteCallContext.CreateIdempotent(serviceName, timeoutMs, maxRetryCount, cancellationToken);
+        return CallWithResultAsync<TResponse>(context, requestMessage);
+    }
+
+    /// <summary>
+    /// 发送非幂等请求并返回结构化结果（禁用重试）。适用于写操作和状态变更接口。
+    /// </summary>
+    public Task<RemoteCallResult<TResponse>> CallWithoutRetryAsync<TResponse>(
+        string serviceName,
+        MessageObject requestMessage,
+        int timeoutMs = RemoteCallContext.DefaultTimeoutMs,
+        CancellationToken cancellationToken = default)
+        where TResponse : class, IResponseMessage
+    {
+        var context = RemoteCallContext.CreateNonIdempotent(serviceName, timeoutMs, cancellationToken);
+        return CallWithResultAsync<TResponse>(context, requestMessage);
+    }
+
+    /// <summary>
+    /// 发送请求并返回结构化结果（携带环境参数）。
+    /// </summary>
+    public Task<RemoteCallResult<TResponse>> CallWithMetadataAsync<TResponse>(
+        string serviceName,
+        MessageObject requestMessage,
+        Dictionary<string, string> metadata,
+        int timeoutMs = RemoteCallContext.DefaultTimeoutMs,
+        CancellationToken cancellationToken = default)
+        where TResponse : class, IResponseMessage
+    {
+        var context = RemoteCallContext.CreateWithMetadata(serviceName, metadata, timeoutMs, cancellationToken);
+        return CallWithResultAsync<TResponse>(context, requestMessage);
     }
 
     /// <summary>
@@ -247,6 +345,119 @@ internal sealed class RemoteMessageClient : IRemoteMessageClient
                 return RemoteCallResult<TResponse>.Fail(statusCode, ex.Message, stopwatch.ElapsedMilliseconds, context.TraceId);
             }
         }
+    }
+
+    /// <summary>
+    /// 单向发送消息，不等待响应。
+    /// </summary>
+    /// <remarks>
+    /// Sends a message one-way without waiting for a response.
+    /// </remarks>
+    /// <param name="serviceName">目标服务名 / The target service name</param>
+    /// <param name="requestMessage">请求消息对象 / The request message object</param>
+    /// <param name="timeoutMs">发送超时毫秒数 / The send timeout duration in milliseconds</param>
+    /// <param name="cancellationToken">取消令牌 / The cancellation token</param>
+    public async Task SendOneWayAsync(
+        string serviceName,
+        MessageObject requestMessage,
+        int timeoutMs = RemoteCallContext.DefaultTimeoutMs,
+        CancellationToken cancellationToken = default)
+    {
+        if (!_circuitBreaker.IsAllowed(serviceName))
+        {
+            LogHelper.Warning("SendOneWayAsync: 熔断器已打开, Service: {serviceName}", serviceName);
+            return;
+        }
+
+        var healthScore = _healthEvaluator.GetHealthScore(serviceName);
+        if (healthScore <= 0)
+        {
+            LogHelper.Warning("SendOneWayAsync: 服务健康评分过低, Service: {serviceName}, Score: {healthScore}", serviceName, healthScore);
+            return;
+        }
+
+        var context = RemoteCallContext.Create(serviceName, timeoutMs, cancellationToken);
+
+        try
+        {
+            await RunBeforeInterceptorsAsync(context, requestMessage);
+
+            if (_protocolVersionNegotiator != null && !_protocolVersionNegotiator.IsCompatible(requestMessage.GetType()))
+            {
+                LogHelper.Warning("SendOneWayAsync: 协议版本不兼容, MessageType: {messageType}", requestMessage.GetType().Name);
+                return;
+            }
+
+            var endpoint = _endpointResolver.ResolveTcpEndpoint(serviceName);
+            if (!TryParseTcpEndpoint(endpoint, out var host, out var port))
+            {
+                LogHelper.Error("SendOneWayAsync: 解析服务 TCP 地址失败, Service: {serviceName}, Endpoint: {endpoint}", serviceName, endpoint);
+                return;
+            }
+
+            await _callSemaphore.WaitAsync(cancellationToken);
+            try
+            {
+                var stream = await _connectionProvider.GetOrCreateStreamAsync(host, port, cancellationToken);
+                if (stream == null)
+                {
+                    RecordFailures(serviceName, "SendOneWayAsync: Failed to create connection");
+                    return;
+                }
+
+                var requestUniqueId = _requestResponseMatcher?.RegisterPendingRequest(timeoutMs) ?? IdGenerator.GetNextUniqueIntId();
+                PrepareRequestMessage(requestMessage, requestUniqueId);
+
+                using var requestBuffer = _messageCodec.Encode(requestMessage);
+                await stream.WriteAsync(requestBuffer.Memory, cancellationToken);
+
+                RecordSuccess(serviceName);
+                await RunAfterInterceptorsAsync(context, requestMessage, null, 0);
+            }
+            finally
+            {
+                _callSemaphore.Release();
+            }
+        }
+        catch (OperationCanceledException)
+        {
+            RecordFailures(serviceName, cancellationToken.IsCancellationRequested ? "SendOneWayAsync cancelled" : "SendOneWayAsync timed out");
+        }
+        catch (Exception ex)
+        {
+            _connectionProvider.Invalidate();
+            RecordFailures(serviceName, $"SendOneWayAsync error: {ex.Message}");
+        }
+    }
+
+    /// <summary>
+    /// 检查目标服务是否可用。
+    /// </summary>
+    /// <remarks>
+    /// Checks whether the target service is available.
+    /// </remarks>
+    /// <param name="serviceName">目标服务名 / The target service name</param>
+    /// <returns>服务是否可用 / Whether the service is available</returns>
+    public Task<bool> IsServiceAvailableAsync(string serviceName)
+    {
+        if (!_circuitBreaker.IsAllowed(serviceName))
+        {
+            return Task.FromResult(false);
+        }
+
+        var healthScore = _healthEvaluator.GetHealthScore(serviceName);
+        if (healthScore <= 0)
+        {
+            return Task.FromResult(false);
+        }
+
+        var endpoint = _endpointResolver.ResolveTcpEndpoint(serviceName);
+        if (string.IsNullOrWhiteSpace(endpoint))
+        {
+            return Task.FromResult(false);
+        }
+
+        return Task.FromResult(true);
     }
 
     private void RecordSuccess(string serviceName)
