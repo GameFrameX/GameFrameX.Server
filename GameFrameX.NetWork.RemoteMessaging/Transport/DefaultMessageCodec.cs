@@ -37,11 +37,28 @@ internal sealed class DefaultMessageCodec : IMessageCodec
     private readonly byte _defaultCompressionAlgorithmId;
     private readonly IMessageCompressionRegistry _compressionRegistry;
 
+    /// <summary>
+    /// 初始化默认消息编解码器（使用默认压缩注册表、Deflate 算法和 512 字节压缩阈值）。
+    /// </summary>
+    /// <remarks>
+    /// Initializes the default message codec (using the default compression registry, Deflate algorithm, and 512-byte compression threshold).
+    /// </remarks>
     public DefaultMessageCodec()
         : this(new DefaultMessageCompressionRegistry(), DeflateMessageCompressionAlgorithm.Id, 512)
     {
     }
 
+    /// <summary>
+    /// 初始化默认消息编解码器，指定压缩注册表、默认算法 ID 和压缩阈值。
+    /// </summary>
+    /// <remarks>
+    /// Initializes the default message codec with the specified compression registry, default algorithm ID, and compression threshold.
+    /// </remarks>
+    /// <param name="compressionRegistry">压缩算法注册表 / The compression algorithm registry</param>
+    /// <param name="defaultCompressionAlgorithmId">默认压缩算法 ID（0 表示不压缩） / Default compression algorithm ID (0 means no compression)</param>
+    /// <param name="compressThreshold">压缩阈值（字节），超过此值才压缩 / Compression threshold in bytes; compression is only attempted above this value</param>
+    /// <exception cref="ArgumentNullException">当 <paramref name="compressionRegistry"/> 为 null 时抛出 / Thrown when <paramref name="compressionRegistry"/> is null</exception>
+    /// <exception cref="ArgumentOutOfRangeException">当 <paramref name="compressThreshold"/> 为负数或 <paramref name="defaultCompressionAlgorithmId"/> 未注册时抛出 / Thrown when <paramref name="compressThreshold"/> is negative or <paramref name="defaultCompressionAlgorithmId"/> is not registered</exception>
     public DefaultMessageCodec(
         IMessageCompressionRegistry compressionRegistry,
         byte defaultCompressionAlgorithmId,

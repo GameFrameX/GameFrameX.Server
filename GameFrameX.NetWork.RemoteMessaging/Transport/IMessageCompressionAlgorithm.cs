@@ -19,20 +19,37 @@ namespace GameFrameX.NetWork.RemoteMessaging.Transport;
 /// <summary>
 /// 消息压缩算法定义（算法 ID + 压缩/解压实现）。
 /// </summary>
+/// <remarks>
+/// Message compression algorithm definition (algorithm ID + compress/decompress implementation).
+/// </remarks>
 public interface IMessageCompressionAlgorithm
 {
     /// <summary>
-    /// 算法 ID。0 保留为“不压缩”，自定义算法应从 1 开始。
+    /// 获取算法唯一标识符。0 保留为"不压缩"，自定义算法应从 1 开始。
     /// </summary>
+    /// <remarks>
+    /// Gets the unique identifier of the algorithm. 0 is reserved for "no compression"; custom algorithms should start from 1.
+    /// </remarks>
+    /// <value>算法 ID / The algorithm ID</value>
     byte AlgorithmId { get; }
 
     /// <summary>
     /// 压缩数据。
     /// </summary>
+    /// <remarks>
+    /// Compresses data.
+    /// </remarks>
+    /// <param name="input">待压缩的原始字节数组 / The raw byte array to compress</param>
+    /// <returns>压缩后的字节数组 / The compressed byte array</returns>
     byte[] Compress(byte[] input);
 
     /// <summary>
     /// 解压数据。
     /// </summary>
+    /// <remarks>
+    /// Decompresses data.
+    /// </remarks>
+    /// <param name="input">待解压的压缩字节数组 / The compressed byte array to decompress</param>
+    /// <returns>解压后的原始字节数组 / The decompressed byte array</returns>
     byte[] Decompress(byte[] input);
 }

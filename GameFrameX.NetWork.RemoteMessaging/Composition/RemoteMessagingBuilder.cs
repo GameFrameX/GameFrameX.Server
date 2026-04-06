@@ -90,9 +90,12 @@ public sealed class RemoteMessagingBuilder
     /// <summary>
     /// 配置默认压缩算法与压缩阈值。
     /// </summary>
-    /// <param name="defaultAlgorithmId">默认压缩算法 ID（0 表示禁用压缩）</param>
-    /// <param name="threshold">压缩阈值（字节）</param>
-    /// <returns>构建器实例</returns>
+    /// <remarks>
+    /// Configures the default compression algorithm and compression threshold.
+    /// </remarks>
+    /// <param name="defaultAlgorithmId">默认压缩算法 ID（0 表示禁用压缩） / Default compression algorithm ID (0 to disable compression)</param>
+    /// <param name="threshold">压缩阈值（字节） / Compression threshold in bytes</param>
+    /// <returns>构建器实例 / The builder instance</returns>
     public RemoteMessagingBuilder WithCompression(byte defaultAlgorithmId, int threshold = 512)
     {
         _options.DefaultCompressionAlgorithmId = defaultAlgorithmId;
@@ -103,8 +106,11 @@ public sealed class RemoteMessagingBuilder
     /// <summary>
     /// 配置压缩算法注册表。
     /// </summary>
-    /// <param name="registry">压缩算法注册表</param>
-    /// <returns>构建器实例</returns>
+    /// <remarks>
+    /// Configures the compression algorithm registry.
+    /// </remarks>
+    /// <param name="registry">压缩算法注册表 / The compression algorithm registry</param>
+    /// <returns>构建器实例 / The builder instance</returns>
     public RemoteMessagingBuilder WithCompressionRegistry(IMessageCompressionRegistry registry)
     {
         _options.CompressionRegistry = registry;

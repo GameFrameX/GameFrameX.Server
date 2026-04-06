@@ -21,6 +21,9 @@ namespace GameFrameX.NetWork.RemoteMessaging.Transport;
 /// <summary>
 /// 池化字节缓冲区句柄。调用方在使用完成后必须释放。
 /// </summary>
+/// <remarks>
+/// Pooled byte buffer handle. The caller must dispose after use.
+/// </remarks>
 public sealed class PooledBuffer : IDisposable
 {
     private byte[]? _buffer;
@@ -28,11 +31,11 @@ public sealed class PooledBuffer : IDisposable
     /// <summary>
     /// 初始化新的池化字节缓冲区句柄。
     /// </summary>
-    /// <param name="buffer">缓冲区。</param>
-    /// <param name="length">有效数据长度。</param>
     /// <remarks>
-    /// Initializes a new pooled byte handle.
+    /// Initializes a new pooled byte buffer handle.
     /// </remarks>
+    /// <param name="buffer">从共享池租用的字节数组 / The byte array rented from the shared pool</param>
+    /// <param name="length">有效数据长度（字节） / The valid data length in bytes</param>
     public PooledBuffer(byte[] buffer, int length)
     {
         _buffer = buffer;

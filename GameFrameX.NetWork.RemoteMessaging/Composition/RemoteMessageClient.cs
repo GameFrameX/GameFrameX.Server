@@ -78,6 +78,13 @@ internal sealed class RemoteMessageClient : IRemoteMessageClient
     /// <summary>
     /// 发送请求并等待响应（使用默认超时）。
     /// </summary>
+    /// <remarks>
+    /// Sends a request and waits for a response (using default timeout).
+    /// </remarks>
+    /// <typeparam name="TResponse">响应消息类型 / The response message type</typeparam>
+    /// <param name="serviceName">目标服务名 / The target service name</param>
+    /// <param name="requestMessage">请求消息对象 / The request message object</param>
+    /// <returns>响应消息对象；超时或失败时返回 null / The response message object; returns null on timeout or failure</returns>
     public Task<TResponse> CallAsync<TResponse>(
         string serviceName,
         MessageObject requestMessage)
@@ -89,6 +96,14 @@ internal sealed class RemoteMessageClient : IRemoteMessageClient
     /// <summary>
     /// 发送请求并等待响应（使用默认超时，支持取消）。
     /// </summary>
+    /// <remarks>
+    /// Sends a request and waits for a response (using default timeout, with cancellation support).
+    /// </remarks>
+    /// <typeparam name="TResponse">响应消息类型 / The response message type</typeparam>
+    /// <param name="serviceName">目标服务名 / The target service name</param>
+    /// <param name="requestMessage">请求消息对象 / The request message object</param>
+    /// <param name="cancellationToken">取消令牌 / The cancellation token</param>
+    /// <returns>响应消息对象；超时或失败时返回 null / The response message object; returns null on timeout or failure</returns>
     public Task<TResponse> CallAsync<TResponse>(
         string serviceName,
         MessageObject requestMessage,
@@ -101,6 +116,15 @@ internal sealed class RemoteMessageClient : IRemoteMessageClient
     /// <summary>
     /// 发送请求并等待响应（指定超时）。
     /// </summary>
+    /// <remarks>
+    /// Sends a request and waits for a response (with specified timeout).
+    /// </remarks>
+    /// <typeparam name="TResponse">响应消息类型 / The response message type</typeparam>
+    /// <param name="serviceName">目标服务名 / The target service name</param>
+    /// <param name="requestMessage">请求消息对象 / The request message object</param>
+    /// <param name="timeoutMs">超时毫秒数 / The timeout duration in milliseconds</param>
+    /// <param name="cancellationToken">取消令牌 / The cancellation token</param>
+    /// <returns>响应消息对象；超时或失败时返回 null / The response message object; returns null on timeout or failure</returns>
     public async Task<TResponse> CallAsync<TResponse>(
         string serviceName,
         MessageObject requestMessage,
@@ -116,6 +140,13 @@ internal sealed class RemoteMessageClient : IRemoteMessageClient
     /// <summary>
     /// 发送请求并返回结构化结果（使用默认超时）。
     /// </summary>
+    /// <remarks>
+    /// Sends a request and returns a structured result (using default timeout).
+    /// </remarks>
+    /// <typeparam name="TResponse">响应消息类型 / The response message type</typeparam>
+    /// <param name="serviceName">目标服务名 / The target service name</param>
+    /// <param name="requestMessage">请求消息对象 / The request message object</param>
+    /// <returns>结构化调用结果 / The structured call result</returns>
     public Task<RemoteCallResult<TResponse>> CallWithResultAsync<TResponse>(
         string serviceName,
         MessageObject requestMessage)
@@ -128,6 +159,14 @@ internal sealed class RemoteMessageClient : IRemoteMessageClient
     /// <summary>
     /// 发送请求并返回结构化结果（指定超时）。
     /// </summary>
+    /// <remarks>
+    /// Sends a request and returns a structured result (with specified timeout).
+    /// </remarks>
+    /// <typeparam name="TResponse">响应消息类型 / The response message type</typeparam>
+    /// <param name="serviceName">目标服务名 / The target service name</param>
+    /// <param name="requestMessage">请求消息对象 / The request message object</param>
+    /// <param name="timeoutMs">超时毫秒数 / The timeout duration in milliseconds</param>
+    /// <returns>结构化调用结果 / The structured call result</returns>
     public Task<RemoteCallResult<TResponse>> CallWithResultAsync<TResponse>(
         string serviceName,
         MessageObject requestMessage,
@@ -141,6 +180,15 @@ internal sealed class RemoteMessageClient : IRemoteMessageClient
     /// <summary>
     /// 发送请求并返回结构化结果（指定超时和取消令牌）。
     /// </summary>
+    /// <remarks>
+    /// Sends a request and returns a structured result (with specified timeout and cancellation token).
+    /// </remarks>
+    /// <typeparam name="TResponse">响应消息类型 / The response message type</typeparam>
+    /// <param name="serviceName">目标服务名 / The target service name</param>
+    /// <param name="requestMessage">请求消息对象 / The request message object</param>
+    /// <param name="timeoutMs">超时毫秒数 / The timeout duration in milliseconds</param>
+    /// <param name="cancellationToken">取消令牌 / The cancellation token</param>
+    /// <returns>结构化调用结果 / The structured call result</returns>
     public Task<RemoteCallResult<TResponse>> CallWithResultAsync<TResponse>(
         string serviceName,
         MessageObject requestMessage,
@@ -155,6 +203,16 @@ internal sealed class RemoteMessageClient : IRemoteMessageClient
     /// <summary>
     /// 发送幂等请求并返回结构化结果（自动启用重试）。适用于读操作和查询接口。
     /// </summary>
+    /// <remarks>
+    /// Sends an idempotent request and returns a structured result (retry automatically enabled). Suitable for read operations and query interfaces.
+    /// </remarks>
+    /// <typeparam name="TResponse">响应消息类型 / The response message type</typeparam>
+    /// <param name="serviceName">目标服务名 / The target service name</param>
+    /// <param name="requestMessage">请求消息对象 / The request message object</param>
+    /// <param name="timeoutMs">超时毫秒数 / The timeout duration in milliseconds</param>
+    /// <param name="maxRetryCount">最大重试次数 / Maximum retry count</param>
+    /// <param name="cancellationToken">取消令牌 / The cancellation token</param>
+    /// <returns>结构化调用结果 / The structured call result</returns>
     public Task<RemoteCallResult<TResponse>> CallWithRetryAsync<TResponse>(
         string serviceName,
         MessageObject requestMessage,
@@ -170,6 +228,15 @@ internal sealed class RemoteMessageClient : IRemoteMessageClient
     /// <summary>
     /// 发送非幂等请求并返回结构化结果（禁用重试）。适用于写操作和状态变更接口。
     /// </summary>
+    /// <remarks>
+    /// Sends a non-idempotent request and returns a structured result (retry disabled). Suitable for write operations and state-changing interfaces.
+    /// </remarks>
+    /// <typeparam name="TResponse">响应消息类型 / The response message type</typeparam>
+    /// <param name="serviceName">目标服务名 / The target service name</param>
+    /// <param name="requestMessage">请求消息对象 / The request message object</param>
+    /// <param name="timeoutMs">超时毫秒数 / The timeout duration in milliseconds</param>
+    /// <param name="cancellationToken">取消令牌 / The cancellation token</param>
+    /// <returns>结构化调用结果 / The structured call result</returns>
     public Task<RemoteCallResult<TResponse>> CallWithoutRetryAsync<TResponse>(
         string serviceName,
         MessageObject requestMessage,
@@ -182,8 +249,18 @@ internal sealed class RemoteMessageClient : IRemoteMessageClient
     }
 
     /// <summary>
-    /// 发送请求并返回结构化结果（携带环境参数）。
+    /// 发送请求并返回结构化结果（携带环境参数）。环境参数可通过拦截器读取，用于日志记录、链路追踪等。
     /// </summary>
+    /// <remarks>
+    /// Sends a request and returns a structured result (with environment parameters). Environment parameters can be read by interceptors for logging, tracing, etc.
+    /// </remarks>
+    /// <typeparam name="TResponse">响应消息类型 / The response message type</typeparam>
+    /// <param name="serviceName">目标服务名 / The target service name</param>
+    /// <param name="requestMessage">请求消息对象 / The request message object</param>
+    /// <param name="metadata">环境参数字典（如 ServerId、PlayerId 等） / Environment parameter dictionary (e.g., ServerId, PlayerId)</param>
+    /// <param name="timeoutMs">超时毫秒数 / The timeout duration in milliseconds</param>
+    /// <param name="cancellationToken">取消令牌 / The cancellation token</param>
+    /// <returns>结构化调用结果 / The structured call result</returns>
     public Task<RemoteCallResult<TResponse>> CallWithMetadataAsync<TResponse>(
         string serviceName,
         MessageObject requestMessage,

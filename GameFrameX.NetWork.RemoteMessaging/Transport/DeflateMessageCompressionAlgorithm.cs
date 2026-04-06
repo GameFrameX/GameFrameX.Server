@@ -19,23 +19,49 @@ namespace GameFrameX.NetWork.RemoteMessaging.Transport;
 /// <summary>
 /// Deflate 消息压缩算法实现。
 /// </summary>
+/// <remarks>
+/// Deflate message compression algorithm implementation.
+/// </remarks>
 public sealed class DeflateMessageCompressionAlgorithm : IMessageCompressionAlgorithm
 {
     /// <summary>
     /// Deflate 算法 ID。
     /// </summary>
+    /// <remarks>
+    /// Deflate algorithm ID.
+    /// </remarks>
     public const byte Id = 1;
 
-    /// <inheritdoc />
+    /// <summary>
+    /// 获取算法唯一标识符。
+    /// </summary>
+    /// <remarks>
+    /// Gets the unique identifier of the algorithm.
+    /// </remarks>
+    /// <value>算法 ID / The algorithm ID</value>
     public byte AlgorithmId => Id;
 
-    /// <inheritdoc />
+    /// <summary>
+    /// 使用 Deflate 算法压缩数据。
+    /// </summary>
+    /// <remarks>
+    /// Compresses data using the Deflate algorithm.
+    /// </remarks>
+    /// <param name="input">待压缩的原始字节数组 / The raw byte array to compress</param>
+    /// <returns>压缩后的字节数组 / The compressed byte array</returns>
     public byte[] Compress(byte[] input)
     {
         return CompressionHelper.Compress(input);
     }
 
-    /// <inheritdoc />
+    /// <summary>
+    /// 使用 Deflate 算法解压数据。
+    /// </summary>
+    /// <remarks>
+    /// Decompresses data using the Deflate algorithm.
+    /// </remarks>
+    /// <param name="input">待解压的压缩字节数组 / The compressed byte array to decompress</param>
+    /// <returns>解压后的原始字节数组 / The decompressed byte array</returns>
     public byte[] Decompress(byte[] input)
     {
         return CompressionHelper.Decompress(input);

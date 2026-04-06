@@ -35,6 +35,9 @@ public static class RemoteMessageClientHolder
     /// <summary>
     /// 获取全局统一远程消息客户端实例。
     /// </summary>
+    /// <remarks>
+    /// Gets the global unified remote message client instance.
+    /// </remarks>
     /// <value>全局远程消息客户端实例 / The global remote message client instance</value>
     public static IRemoteMessageClient Client
     {

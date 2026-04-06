@@ -39,78 +39,117 @@ public sealed class RemoteMessagingOptions
     /// <summary>
     /// 是否启用统一客户端（默认 true）。设为 false 可回退到旧实现。
     /// </summary>
+    /// <remarks>
+    /// Whether the unified client is enabled (default true). Set to false to fall back to the legacy implementation.
+    /// </remarks>
     /// <value>是否启用统一客户端 / Whether the unified client is enabled</value>
     public bool EnableUnifiedClient { get; set; } = true;
 
     /// <summary>
     /// 是否启用重试（默认 true）。
     /// </summary>
+    /// <remarks>
+    /// Whether retry is enabled (default true).
+    /// </remarks>
     /// <value>是否启用重试 / Whether retry is enabled</value>
     public bool EnableRetry { get; set; } = true;
 
     /// <summary>
     /// 默认超时毫秒数（默认 5000）。
     /// </summary>
+    /// <remarks>
+    /// Default timeout in milliseconds (default 5000).
+    /// </remarks>
     /// <value>默认超时毫秒数 / The default timeout in milliseconds</value>
     public int DefaultTimeoutMs { get; set; } = 5000;
 
     /// <summary>
     /// 最大重试次数（默认 2）。
     /// </summary>
+    /// <remarks>
+    /// Maximum number of retry attempts (default 2).
+    /// </remarks>
     /// <value>最大重试次数 / The maximum number of retry attempts</value>
     public int MaxRetryCount { get; set; } = 2;
 
     /// <summary>
     /// 重试基础延迟毫秒数（默认 200）。
     /// </summary>
+    /// <remarks>
+    /// Base delay in milliseconds between retries (default 200).
+    /// </remarks>
     /// <value>重试基础延迟毫秒数 / The base delay in milliseconds between retries</value>
     public int RetryBaseDelayMs { get; set; } = 200;
 
     /// <summary>
     /// 熔断失败阈值（默认 5 次连续失败触发熔断）。
     /// </summary>
+    /// <remarks>
+    /// Circuit breaker failure threshold (default 5 consecutive failures trigger the circuit breaker).
+    /// </remarks>
     /// <value>熔断失败阈值 / The consecutive failure threshold that triggers the circuit breaker</value>
     public int CircuitBreakerFailureThreshold { get; set; } = 5;
 
     /// <summary>
     /// 熔断开启持续时间毫秒（默认 30000ms）。
     /// </summary>
+    /// <remarks>
+    /// Duration in milliseconds the circuit breaker stays open (default 30000ms).
+    /// </remarks>
     /// <value>熔断开启持续时间毫秒 / The duration in milliseconds the circuit breaker stays open</value>
     public int CircuitBreakerOpenDurationMs { get; set; } = 30000;
 
     /// <summary>
     /// 默认压缩算法 ID（默认 Deflate=1，0 表示不压缩）。
     /// </summary>
+    /// <remarks>
+    /// Default compression algorithm ID (default Deflate=1, 0 means no compression).
+    /// </remarks>
     /// <value>默认压缩算法 ID / Default compression algorithm ID</value>
     public byte DefaultCompressionAlgorithmId { get; set; } = DeflateMessageCompressionAlgorithm.Id;
 
     /// <summary>
     /// 压缩阈值（字节）。仅超过该值才尝试压缩，默认 512。
     /// </summary>
+    /// <remarks>
+    /// Compression threshold in bytes. Only attempts compression when payload exceeds this value (default 512).
+    /// </remarks>
     /// <value>压缩阈值 / Compression threshold in bytes</value>
     public int CompressionThreshold { get; set; } = 512;
 
     /// <summary>
     /// 压缩算法注册表。为空时将使用默认注册表。
     /// </summary>
+    /// <remarks>
+    /// Compression algorithm registry. When null, the default registry will be used.
+    /// </remarks>
     /// <value>压缩算法注册表 / Compression algorithm registry</value>
     public IMessageCompressionRegistry CompressionRegistry { get; set; }
 
     /// <summary>
     /// 是否启用故障注入（默认 false）。仅开发环境使用。
     /// </summary>
+    /// <remarks>
+    /// Whether fault injection is enabled (default false). For development use only.
+    /// </remarks>
     /// <value>是否启用故障注入 / Whether fault injection is enabled</value>
     public bool EnableFaultInjection { get; set; }
 
     /// <summary>
     /// 故障注入类型。
     /// </summary>
+    /// <remarks>
+    /// The fault injection type.
+    /// </remarks>
     /// <value>故障注入类型 / The fault injection type</value>
     public string FaultInjectionType { get; set; } = "None";
 
     /// <summary>
     /// 故障注入延迟毫秒数。
     /// </summary>
+    /// <remarks>
+    /// The fault injection delay in milliseconds.
+    /// </remarks>
     /// <value>故障注入延迟毫秒数 / The fault injection delay in milliseconds</value>
     public int FaultInjectionDelayMs { get; set; }
 

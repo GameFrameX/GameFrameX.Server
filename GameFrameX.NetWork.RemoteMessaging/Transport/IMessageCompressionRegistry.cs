@@ -17,21 +17,30 @@
 namespace GameFrameX.NetWork.RemoteMessaging.Transport;
 
 /// <summary>
-/// 消息压缩算法注册表。
+/// 消息压缩算法注册表。管理压缩算法的注册与查找。
 /// </summary>
+/// <remarks>
+/// Message compression algorithm registry. Manages registration and lookup of compression algorithms.
+/// </remarks>
 public interface IMessageCompressionRegistry
 {
     /// <summary>
-    /// 注册算法实现。
+    /// 注册一个压缩算法实现。
     /// </summary>
-    /// <param name="algorithm">算法实现</param>
+    /// <remarks>
+    /// Registers a compression algorithm implementation.
+    /// </remarks>
+    /// <param name="algorithm">要注册的压缩算法实现 / The compression algorithm implementation to register</param>
     void Register(IMessageCompressionAlgorithm algorithm);
 
     /// <summary>
-    /// 按算法 ID 获取算法实现。
+    /// 根据算法 ID 查找已注册的压缩算法实现。
     /// </summary>
-    /// <param name="algorithmId">算法 ID</param>
-    /// <param name="algorithm">算法实例</param>
-    /// <returns>是否找到</returns>
+    /// <remarks>
+    /// Looks up a registered compression algorithm implementation by its algorithm ID.
+    /// </remarks>
+    /// <param name="algorithmId">算法 ID / The algorithm ID</param>
+    /// <param name="algorithm">找到的算法实例；未找到时为 null / The found algorithm instance; null if not found</param>
+    /// <returns>如果找到匹配的算法则返回 <c>true</c>；否则返回 <c>false</c> / <c>true</c> if a matching algorithm is found; otherwise <c>false</c></returns>
     bool TryGet(byte algorithmId, out IMessageCompressionAlgorithm algorithm);
 }
