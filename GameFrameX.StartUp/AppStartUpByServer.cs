@@ -362,6 +362,14 @@ public abstract partial class AppStartUpBase
             else
             {
                 LogHelper.Warning(LocalizationService.GetString(Localization.Keys.StartUp.WebSocketServer.StartupFailed, ServerType, Setting.WsPort));
+                if (Setting.WsPort > 0)
+                {
+                    var occupiedProcesses = NetHelper.GetPortOccupyingProcesses(Setting.WsPort);
+                    if (occupiedProcesses.Count > 0)
+                    {
+                        LogHelper.Warning($"WebSocket端口[{Setting.WsPort}]占用详情: {string.Join(" | ", occupiedProcesses)}");
+                    }
+                }
             }
         }
         else
