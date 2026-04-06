@@ -34,7 +34,6 @@ using GameFrameX.Apps.Common.EventData;
 using GameFrameX.Core.Events;
 using GameFrameX.SuperSocket.Connection;
 using GameFrameX.SuperSocket.Server.Abstractions.Session;
-using GameFrameX.SuperSocket.WebSocket.Server;
 
 namespace GameFrameX.Hotfix.StartUp;
 
@@ -76,7 +75,7 @@ internal partial class AppStartUpHotfixGame
     protected override async ValueTask OnConnected(IAppSession appSession)
     {
         LogHelper.Info("Client connected. SessionID: {sessionId}, RemoteEndPoint: {remoteEndPoint}", appSession.SessionID, appSession.RemoteEndPoint);
-        var netChannel = new DefaultNetWorkChannel(appSession, Setting, null, appSession is WebSocketSession);
+        var netChannel = new DefaultNetWorkChannel(appSession, Setting);
         var count = SessionManager.Count();
         if (count > Setting.MaxClientCount)
         {
