@@ -52,7 +52,10 @@ public sealed class DeflateMessageCompressionAlgorithm : IMessageCompressionAlgo
     /// Gets the unique identifier of the algorithm.
     /// </remarks>
     /// <value>算法 ID / The algorithm ID</value>
-    public byte AlgorithmId => Id;
+    public byte AlgorithmId
+    {
+        get { return Id; }
+    }
 
     /// <summary>
     /// 使用 Deflate 算法压缩数据。
