@@ -3,6 +3,7 @@ using GameFrameX.DataBase.Mongo;
 using GameFrameX.DataBase.Mongo.HealthChecks;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
 using MongoDB.Driver;
+using System.Linq;
 using System.Reflection;
 using Xunit;
 
@@ -144,6 +145,40 @@ public sealed class MongoDbServiceConnectionTests
         var result = method.Invoke(null, new object[] { exception, });
         Assert.IsType<bool>(result);
         Assert.True((bool)result);
+    }
+
+    /// <summary>
+    /// 测试重试耗尽后抛出数据库不可用异常。
+    /// </summary>
+    [Fact]
+    public async Task ExecuteWithRetryAsync_WhenRetryExhausted_ShouldThrowDatabaseUnavailableException()
+    {
+        var service = new MongoDbService();
+        var method = typeof(MongoDbService).GetMethods(BindingFlags.NonPublic | BindingFlags.Instance)
+                                           .FirstOrDefault(m => m.Name == "ExecuteWithRetryAsync" && m.IsGenericMethodDefinition && m.GetParameters().Length == 5);
+        Assert.NotNull(method);
+        var genericMethod = method.MakeGenericMethod(typeof(bool));
+        Func<CancellationToken, Task<bool>> operation = _ => throw new TimeoutException("test timeout");
+        var taskObject = genericMethod.Invoke(service, new object[] { operation, CancellationToken.None, Array.Empty<int>(), "UnitTestOperation", "read", });
+        Assert.NotNull(taskObject);
+        var task = Assert.IsType<Task<bool>>(taskObject);
+        await Assert.ThrowsAsync<DatabaseUnavailableException>(async () => await task);
+    }
+
+    /// <summary>
+    /// 测试连接目标标识不会泄露用户名和密码。
+    /// </summary>
+    [Fact]
+    public void BuildConnectionTargetTag_ShouldNotContainCredentials()
+    {
+        var method = typeof(MongoDbService).GetMethod("BuildConnectionTargetTag", BindingFlags.NonPublic | BindingFlags.Static);
+        Assert.NotNull(method);
+        var connectionString = "mongodb://user_name:pass_word@127.0.0.1:27017/admin";
+        var target = method.Invoke(null, new object[] { connectionString, "gameframex", }) as string;
+        Assert.False(string.IsNullOrWhiteSpace(target));
+        Assert.DoesNotContain("user_name", target, StringComparison.Ordinal);
+        Assert.DoesNotContain("pass_word", target, StringComparison.Ordinal);
+        Assert.Contains("host=127.0.0.1", target, StringComparison.Ordinal);
     }
 
     /// <summary>

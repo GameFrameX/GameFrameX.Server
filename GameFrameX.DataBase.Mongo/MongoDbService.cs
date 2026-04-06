@@ -36,6 +36,9 @@ using GameFrameX.Foundation.Utility;
 using GameFrameX.Localization;
 using MongoDB.Bson;
 using MongoDB.Driver;
+using System.Diagnostics;
+using System.Diagnostics.Metrics;
+using System.Linq;
 
 namespace GameFrameX.DataBase.Mongo;
 
@@ -55,6 +58,11 @@ namespace GameFrameX.DataBase.Mongo;
 /// </remarks>
 public sealed partial class MongoDbService : IDatabaseService
 {
+    private static readonly Meter DbMeter = new("GameFrameX.DataBase.Mongo", "1.0.0");
+    private static readonly Counter<long> DbOpenRetryTotal = DbMeter.CreateCounter<long>("db_open_retry_total");
+    private static readonly Counter<long> DbOperationRetryTotal = DbMeter.CreateCounter<long>("db_operation_retry_total");
+    private static readonly Counter<long> DbOperationFailTotal = DbMeter.CreateCounter<long>("db_operation_fail_total");
+    private static readonly Histogram<double> DbOperationLatencyMilliseconds = DbMeter.CreateHistogram<double>("db_operation_latency_ms", unit: "ms");
     private static readonly TimeSpan ServerSelectionTimeout = TimeSpan.FromSeconds(5);
     private static readonly TimeSpan ConnectTimeout = TimeSpan.FromSeconds(5);
     private static readonly TimeSpan SocketTimeout = TimeSpan.FromSeconds(10);
@@ -119,6 +127,61 @@ public sealed partial class MongoDbService : IDatabaseService
     }
 
     /// <summary>
+    /// 构建数据库连接目标标识（脱敏）。
+    /// </summary>
+    /// <remarks>
+    /// Builds a desensitized database connection target identifier.
+    /// </remarks>
+    /// <param name="connectionString">连接字符串 / Connection string</param>
+    /// <param name="databaseName">数据库名称 / Database name</param>
+    /// <returns>脱敏后的连接目标标识 / Desensitized connection target identifier</returns>
+    private static string BuildConnectionTargetTag(string connectionString, string databaseName)
+    {
+        if (string.IsNullOrWhiteSpace(connectionString))
+        {
+            return $"db={databaseName ?? "unknown"}";
+        }
+
+        try
+        {
+            var mongoUrl = MongoUrl.Create(connectionString);
+            var hostPart = mongoUrl.Servers != null && mongoUrl.Servers.Any()
+                               ? string.Join(",", mongoUrl.Servers.Select(static server => server.Host))
+                               : "unknown-host";
+            var dbPart = string.IsNullOrWhiteSpace(mongoUrl.DatabaseName) ? databaseName : mongoUrl.DatabaseName;
+            return $"host={hostPart};db={dbPart ?? "unknown"}";
+        }
+        catch
+        {
+            return $"db={databaseName ?? "unknown"}";
+        }
+    }
+
+    /// <summary>
+    /// 获取失败原因标签。
+    /// </summary>
+    /// <remarks>
+    /// Gets a normalized failure reason tag.
+    /// </remarks>
+    /// <param name="exception">异常对象 / Exception object</param>
+    /// <returns>失败原因标签 / Failure reason tag</returns>
+    private static string GetFailureReason(Exception exception)
+    {
+        return exception switch
+        {
+            null => "unknown",
+            TimeoutException => "timeout",
+            MongoConnectionException => "connection",
+            MongoExecutionTimeoutException => "execution_timeout",
+            MongoException mongoException when mongoException.HasErrorLabel("RetryableWriteError") => "retryable_write",
+            MongoException mongoException when mongoException.HasErrorLabel("RetryableReadError") => "retryable_read",
+            MongoException => "mongo_exception",
+            DatabaseUnavailableException => "database_unavailable",
+            _ => "unknown",
+        };
+    }
+
+    /// <summary>
     /// 连接数据库。
     /// </summary>
     /// <remarks>
@@ -131,6 +194,8 @@ public sealed partial class MongoDbService : IDatabaseService
         ArgumentNullException.ThrowIfNull(dbOptions, nameof(dbOptions));
         ArgumentNullException.ThrowIfNull(dbOptions.ConnectionString, nameof(dbOptions.ConnectionString));
         ArgumentNullException.ThrowIfNull(dbOptions.Name, nameof(dbOptions.Name));
+        var connectionTarget = BuildConnectionTargetTag(dbOptions.ConnectionString, dbOptions.Name);
+        var openStopwatch = Stopwatch.StartNew();
 
         if (_mongoClient != null && CurrentDatabase != null && _mongoDbContext != null)
         {
@@ -174,7 +239,8 @@ public sealed partial class MongoDbService : IDatabaseService
                 _mongoDbContext = new MongoDbContext(CurrentDatabase);
                 await CurrentDatabase.RunCommandAsync((Command<BsonDocument>)"{ping:1}").ConfigureAwait(false);
 
-                LogHelper.Info("MongoDbService.Open {dbName} {ConnectionString} {mongoDbInitializedSuccessfully}", dbOptions.Name, dbOptions.ConnectionString, LocalizationService.GetString(Localization.Keys.Database.MongoDbInitializedSuccessfully, dbOptions.ConnectionString, dbOptions.Name));
+                DbOperationLatencyMilliseconds.Record(openStopwatch.Elapsed.TotalMilliseconds, new TagList { { "op", "open" }, { "name", nameof(Open) }, { "success", true }, });
+                LogHelper.Info("MongoDbService.Open {dbName} {target} {mongoDbInitializedSuccessfully}", dbOptions.Name, connectionTarget, LocalizationService.GetString(Localization.Keys.Database.MongoDbInitializedSuccessfully, connectionTarget, dbOptions.Name));
                 return true;
             }
             catch (Exception exception)
@@ -183,19 +249,22 @@ public sealed partial class MongoDbService : IDatabaseService
                 ResetConnectionState();
                 if (attempt < retryDelays.Length - 1)
                 {
-                    LogHelper.Warning("MongoDbService.Open Retry {attempt}/{maxRetry} {dbName} {ConnectionString} {exception}", attempt + 1, retryDelays.Length, dbOptions.Name, dbOptions.ConnectionString, exception.Message);
+                    DbOpenRetryTotal.Add(1, new TagList { { "db.target", connectionTarget }, });
+                    LogHelper.Warning("MongoDbService.Open Retry {attempt}/{maxRetry} {dbName} {target} {exception}", attempt + 1, retryDelays.Length, dbOptions.Name, connectionTarget, exception.Message);
                     var delay = retryDelays[attempt] + Random.Shared.Next(0, 200);
                     await Task.Delay(delay).ConfigureAwait(false);
                 }
             }
         }
 
-        LogHelper.Fatal("MongoDbService.Open Exception {dbName} {ConnectionString} {exception}", dbOptions.Name, dbOptions.ConnectionString, lastException);
-        var message = LocalizationService.GetString(Localization.Keys.Database.MongoDbInitializationFailed, dbOptions.ConnectionString, dbOptions.Name);
+        DbOperationFailTotal.Add(1, new TagList { { "op", "open" }, { "name", nameof(Open) }, { "reason", GetFailureReason(lastException) }, });
+        DbOperationLatencyMilliseconds.Record(openStopwatch.Elapsed.TotalMilliseconds, new TagList { { "op", "open" }, { "name", nameof(Open) }, { "success", false }, });
+        LogHelper.Fatal("MongoDbService.Open Exception {dbName} {target} {exception}", dbOptions.Name, connectionTarget, lastException);
+        var message = LocalizationService.GetString(Localization.Keys.Database.MongoDbInitializationFailed, connectionTarget, dbOptions.Name);
         Console.ForegroundColor = ConsoleColor.Red;
         Console.WriteLine(message);
         Console.ResetColor();
-        LogHelper.Error("MongoDbService.Open Exception {dbName} {ConnectionString} {message}", dbOptions.Name, dbOptions.ConnectionString, message);
+        LogHelper.Error("MongoDbService.Open Exception {dbName} {target} {message}", dbOptions.Name, connectionTarget, message);
         return false;
     }
 
@@ -238,7 +307,7 @@ public sealed partial class MongoDbService : IDatabaseService
     /// <returns>操作结果 / The operation result</returns>
     private async Task<T> ExecuteReadWithRetryAsync<T>(Func<CancellationToken, Task<T>> operation, CancellationToken cancellationToken, string operationName)
     {
-        return await ExecuteWithRetryAsync(operation, cancellationToken, ReadRetryDelaysMilliseconds, operationName).ConfigureAwait(false);
+        return await ExecuteWithRetryAsync(operation, cancellationToken, ReadRetryDelaysMilliseconds, operationName, "read").ConfigureAwait(false);
     }
 
     /// <summary>
@@ -256,7 +325,7 @@ public sealed partial class MongoDbService : IDatabaseService
         {
             await operation(token).ConfigureAwait(false);
             return true;
-        }, cancellationToken, ReadRetryDelaysMilliseconds, operationName).ConfigureAwait(false);
+        }, cancellationToken, ReadRetryDelaysMilliseconds, operationName, "read").ConfigureAwait(false);
     }
 
     /// <summary>
@@ -279,7 +348,7 @@ public sealed partial class MongoDbService : IDatabaseService
             return await operation(cancellationToken).ConfigureAwait(false);
         }
 
-        return await ExecuteWithRetryAsync(operation, cancellationToken, IdempotentWriteRetryDelaysMilliseconds, operationName).ConfigureAwait(false);
+        return await ExecuteWithRetryAsync(operation, cancellationToken, IdempotentWriteRetryDelaysMilliseconds, operationName, "write").ConfigureAwait(false);
     }
 
     /// <summary>
@@ -305,7 +374,7 @@ public sealed partial class MongoDbService : IDatabaseService
         {
             await operation(token).ConfigureAwait(false);
             return true;
-        }, cancellationToken, IdempotentWriteRetryDelaysMilliseconds, operationName).ConfigureAwait(false);
+        }, cancellationToken, IdempotentWriteRetryDelaysMilliseconds, operationName, "write").ConfigureAwait(false);
     }
 
     /// <summary>
@@ -371,31 +440,50 @@ public sealed partial class MongoDbService : IDatabaseService
     /// <param name="cancellationToken">取消令牌 / Cancellation token</param>
     /// <param name="retryDelaysMilliseconds">每次重试的延迟毫秒数列表 / List of retry delays in milliseconds</param>
     /// <param name="operationName">操作名称，用于日志记录 / Operation name for logging</param>
+    /// <param name="operationType">操作类型（read/write） / Operation type (read/write)</param>
     /// <returns>操作结果 / The operation result</returns>
-    /// <exception cref="InvalidOperationException">当所有重试都失败后抛出 / Thrown when all retry attempts fail</exception>
-    private async Task<T> ExecuteWithRetryAsync<T>(Func<CancellationToken, Task<T>> operation, CancellationToken cancellationToken, IReadOnlyList<int> retryDelaysMilliseconds, string operationName)
+    /// <exception cref="DatabaseUnavailableException">当所有重试都失败后抛出 / Thrown when all retry attempts fail</exception>
+    private async Task<T> ExecuteWithRetryAsync<T>(Func<CancellationToken, Task<T>> operation, CancellationToken cancellationToken, IReadOnlyList<int> retryDelaysMilliseconds, string operationName, string operationType)
     {
         ArgumentNullException.ThrowIfNull(operation, nameof(operation));
         cancellationToken.ThrowIfCancellationRequested();
+        var operationStopwatch = Stopwatch.StartNew();
         Exception lastException = null;
         for (var attempt = 0; attempt <= retryDelaysMilliseconds.Count; attempt++)
         {
             cancellationToken.ThrowIfCancellationRequested();
             try
             {
-                return await operation(cancellationToken).ConfigureAwait(false);
+                var result = await operation(cancellationToken).ConfigureAwait(false);
+                DbOperationLatencyMilliseconds.Record(operationStopwatch.Elapsed.TotalMilliseconds, new TagList { { "op", operationType }, { "name", operationName }, { "success", true }, });
+                return result;
             }
-            catch (Exception exception) when (IsRetryableMongoException(exception) && attempt < retryDelaysMilliseconds.Count)
+            catch (Exception exception)
             {
+                if (!IsRetryableMongoException(exception))
+                {
+                    throw;
+                }
+
                 lastException = exception;
-                var delay = retryDelaysMilliseconds[attempt] + Random.Shared.Next(0, 100);
-                LogHelper.Warning("MongoDbService.{operationName} transient error, retry {attempt}/{maxRetry}. error={error}", operationName, attempt + 1, retryDelaysMilliseconds.Count, exception.Message);
-                await Task.Delay(delay, cancellationToken).ConfigureAwait(false);
+                if (attempt < retryDelaysMilliseconds.Count)
+                {
+                    var delay = retryDelaysMilliseconds[attempt] + Random.Shared.Next(0, 100);
+                    DbOperationRetryTotal.Add(1, new TagList { { "op", operationType }, { "name", operationName }, { "reason", GetFailureReason(exception) }, });
+                    LogHelper.Warning("MongoDbService.{operationName} transient error, retry {attempt}/{maxRetry}. error={error}", operationName, attempt + 1, retryDelaysMilliseconds.Count, exception.Message);
+                    await Task.Delay(delay, cancellationToken).ConfigureAwait(false);
+                    continue;
+                }
+
+                break;
             }
         }
 
         // Localization: Database.MongoDb.OperationRetryFailed - MongoDbService.{0}重试失败，未知异常
-        throw lastException ?? new InvalidOperationException(LocalizationService.GetString(Keys.Database.MongoDbOperationRetryFailed, operationName));
+        var finalException = new DatabaseUnavailableException(LocalizationService.GetString(Keys.Database.MongoDbOperationRetryFailed, operationName), lastException ?? new InvalidOperationException(LocalizationService.GetString(Keys.Database.MongoDbOperationRetryFailed, operationName)));
+        DbOperationFailTotal.Add(1, new TagList { { "op", operationType }, { "name", operationName }, { "reason", GetFailureReason(lastException) }, });
+        DbOperationLatencyMilliseconds.Record(operationStopwatch.Elapsed.TotalMilliseconds, new TagList { { "op", operationType }, { "name", operationName }, { "success", false }, });
+        throw finalException;
     }
 
     /// <summary>

@@ -48,4 +48,16 @@ public sealed class DatabaseUnavailableException : InvalidOperationException
     public DatabaseUnavailableException(string message) : base(message)
     {
     }
+
+    /// <summary>
+    /// 使用指定错误消息和内部异常初始化 <see cref="DatabaseUnavailableException"/> 类的新实例。
+    /// </summary>
+    /// <remarks>
+    /// Initializes a new instance of the <see cref="DatabaseUnavailableException"/> class with a specified error message and a reference to the inner exception.
+    /// </remarks>
+    /// <param name="message">描述错误的消息 / The message that describes the error</param>
+    /// <param name="innerException">导致当前异常的内部异常 / The exception that is the cause of the current exception</param>
+    public DatabaseUnavailableException(string message, Exception innerException) : base(message, innerException)
+    {
+    }
 }

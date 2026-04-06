@@ -29,6 +29,7 @@
 //  Official Documentation: https://gameframex.doc.alianblank.com/
 // ==========================================================================================
 
+using GameFrameX.DataBase.Abstractions;
 using GameFrameX.Foundation.Utility;
 using GameFrameX.Foundation.Logger;
 using GameFrameX.Foundation.Localization.Core;
@@ -241,7 +242,7 @@ public sealed partial class MongoDbService
         }
 
         // Localization: Database.MongoDb.ExecuteInTransactionFailed - ExecuteInTransactionAsync重试失败，未知异常
-        throw lastException ?? new InvalidOperationException(LocalizationService.GetString(Keys.Database.MongoDbExecuteInTransactionFailed));
+        throw new DatabaseUnavailableException(LocalizationService.GetString(Keys.Database.MongoDbExecuteInTransactionFailed), lastException ?? new InvalidOperationException(LocalizationService.GetString(Keys.Database.MongoDbExecuteInTransactionFailed)));
     }
 
     /// <summary>
@@ -254,7 +255,7 @@ public sealed partial class MongoDbService
     /// <param name="session">MongoDB 客户端会话句柄 / MongoDB client session handle</param>
     /// <param name="cancellationToken">取消令牌 / Cancellation token</param>
     /// <returns>表示异步操作的任务 / Task representing asynchronous operation</returns>
-    /// <exception cref="InvalidOperationException">当所有重试都失败后抛出 / Thrown when all retry attempts fail</exception>
+    /// <exception cref="DatabaseUnavailableException">当所有重试都失败后抛出 / Thrown when all retry attempts fail</exception>
     private static async Task CommitTransactionWithRetryAsync(IClientSessionHandle session, CancellationToken cancellationToken)
     {
         Exception lastException = null;
@@ -280,6 +281,6 @@ public sealed partial class MongoDbService
         }
 
         // Localization: Database.MongoDb.CommitTransactionFailed - CommitTransaction重试失败，未知异常
-        throw lastException ?? new InvalidOperationException(LocalizationService.GetString(Keys.Database.MongoDbCommitTransactionFailed));
+        throw new DatabaseUnavailableException(LocalizationService.GetString(Keys.Database.MongoDbCommitTransactionFailed), lastException ?? new InvalidOperationException(LocalizationService.GetString(Keys.Database.MongoDbCommitTransactionFailed)));
     }
 }
