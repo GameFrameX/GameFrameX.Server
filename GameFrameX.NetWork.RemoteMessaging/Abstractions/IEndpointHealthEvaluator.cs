@@ -1,0 +1,43 @@
+// ==========================================================================================
+//   GameFrameX 组织及其衍生项目的版权、商标、专利及其他相关权利
+//   均受中华人民共和国及相关国际法律法规保护。
+//   使用本项目须严格遵守相应法律法规及开源许可证之规定。
+//   本项目采用 MIT 许可证与 Apache License 2.0 双许可证分发，
+//   完整许可证文本请参见源代码根目录下的 LICENSE 文件。
+//   禁止利用本项目实施任何危害国家安全、破坏社会秩序、
+//   侵犯他人合法权益等法律法规所禁止的行为！
+//   因基于本项目二次开发所产生的一切法律纠纷与责任，
+//   本项目组织与贡献者概不承担。
+//   GitHub 仓库：https://github.com/GameFrameX
+//   Gitee  仓库：https://gitee.com/GameFrameX
+//   CNB  仓库：https://cnb.cool/GameFrameX
+//   官方文档：https://gameframex.doc.alianblank.com/
+//  ==========================================================================================
+
+namespace GameFrameX.NetWork.RemoteMessaging.Abstractions;
+
+/// <summary>
+/// 端点健康评估器。结合 Aspire 健康状态对目标服务进行可用性评分。
+/// </summary>
+public interface IEndpointHealthEvaluator
+{
+    /// <summary>
+    /// 获取指定服务的健康评分（0-100）。
+    /// </summary>
+    /// <param name="serviceName">目标服务名</param>
+    /// <returns>健康评分：100=完全健康，0=完全不可用</returns>
+    int GetHealthScore(string serviceName);
+
+    /// <summary>
+    /// 标记指定服务为不可用。
+    /// </summary>
+    /// <param name="serviceName">服务名</param>
+    /// <param name="reason">不可用原因</param>
+    void MarkUnavailable(string serviceName, string reason);
+
+    /// <summary>
+    /// 标记指定服务为健康。
+    /// </summary>
+    /// <param name="serviceName">服务名</param>
+    void MarkHealthy(string serviceName);
+}
