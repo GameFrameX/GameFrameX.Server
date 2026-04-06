@@ -324,6 +324,14 @@ public abstract partial class AppStartUpBase
             else
             {
                 LogHelper.Warning(LocalizationService.GetString(Localization.Keys.StartUp.TcpServer.StartupFailed, ServerType, Setting.InnerHost, Setting.InnerPort));
+                if (Setting.InnerPort > 0)
+                {
+                    var occupiedProcesses = NetHelper.GetPortOccupyingProcesses(Setting.InnerPort);
+                    if (occupiedProcesses.Count > 0)
+                    {
+                        LogHelper.Warning($"TCP端口[{Setting.InnerPort}]占用详情: {string.Join(" | ", occupiedProcesses)}");
+                    }
+                }
             }
         }
         else
