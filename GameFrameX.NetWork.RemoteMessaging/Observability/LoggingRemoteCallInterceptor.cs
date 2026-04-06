@@ -24,21 +24,49 @@ namespace GameFrameX.NetWork.RemoteMessaging.Observability;
 /// </remarks>
 internal sealed class LoggingRemoteCallInterceptor : IRemoteCallInterceptor
 {
-    /// <inheritdoc />
+    /// <summary>
+    /// 记录远程调用开始日志。
+    /// </summary>
+    /// <remarks>
+    /// Logs the start of a remote call.
+    /// </remarks>
+    /// <param name="context">调用上下文 / The remote call context</param>
+    /// <param name="request">请求消息 / The request message</param>
+    /// <returns>表示异步操作的任务 / A task representing the asynchronous operation</returns>
     public Task OnBeforeCallAsync(RemoteCallContext context, MessageObject request)
     {
         LogHelper.Debug("RemoteCall 开始, Service: {serviceName}, Message: {messageType}, Timeout: {timeoutMs}ms", context.ServiceName, request.GetType().Name, context.TimeoutMs);
         return Task.CompletedTask;
     }
 
-    /// <inheritdoc />
+    /// <summary>
+    /// 记录远程调用完成日志。
+    /// </summary>
+    /// <remarks>
+    /// Logs the completion of a remote call.
+    /// </remarks>
+    /// <param name="context">调用上下文 / The remote call context</param>
+    /// <param name="request">请求消息 / The request message</param>
+    /// <param name="response">响应消息（可能为 null） / The response message (may be null)</param>
+    /// <param name="elapsedMs">耗时毫秒数 / The elapsed time in milliseconds</param>
+    /// <returns>表示异步操作的任务 / A task representing the asynchronous operation</returns>
     public Task OnAfterCallAsync(RemoteCallContext context, MessageObject request, MessageObject response, long elapsedMs)
     {
         LogHelper.Debug("RemoteCall 完成, Service: {serviceName}, Message: {messageType}, Elapsed: {elapsedMs}ms", context.ServiceName, request.GetType().Name, elapsedMs);
         return Task.CompletedTask;
     }
 
-    /// <inheritdoc />
+    /// <summary>
+    /// 记录远程调用异常日志。
+    /// </summary>
+    /// <remarks>
+    /// Logs a remote call exception.
+    /// </remarks>
+    /// <param name="context">调用上下文 / The remote call context</param>
+    /// <param name="request">请求消息 / The request message</param>
+    /// <param name="exception">异常对象 / The exception that occurred</param>
+    /// <param name="elapsedMs">耗时毫秒数 / The elapsed time in milliseconds</param>
+    /// <returns>表示异步操作的任务 / A task representing the asynchronous operation</returns>
     public Task OnExceptionAsync(RemoteCallContext context, MessageObject request, Exception exception, long elapsedMs)
     {
         LogHelper.Error(exception, "RemoteCall 异常, Service: {serviceName}, Message: {messageType}, Elapsed: {elapsedMs}ms", context.ServiceName, request.GetType().Name, elapsedMs);

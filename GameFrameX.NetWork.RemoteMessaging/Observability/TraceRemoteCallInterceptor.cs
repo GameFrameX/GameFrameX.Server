@@ -36,7 +36,15 @@ internal sealed class TraceRemoteCallInterceptor : IRemoteCallInterceptor
     public const string ActivitySourceName = "GameFrameX.RemoteMessaging";
     private static readonly ActivitySource ActivitySource = new(ActivitySourceName);
 
-    /// <inheritdoc />
+    /// <summary>
+    /// 创建分布式追踪活动并注入 TraceId。
+    /// </summary>
+    /// <remarks>
+    /// Creates a distributed tracing activity and injects TraceId.
+    /// </remarks>
+    /// <param name="context">调用上下文 / The remote call context</param>
+    /// <param name="request">请求消息 / The request message</param>
+    /// <returns>表示异步操作的任务 / A task representing the asynchronous operation</returns>
     public Task OnBeforeCallAsync(RemoteCallContext context, MessageObject request)
     {
         var activity = ActivitySource.StartActivity("RemoteMessage.Call", ActivityKind.Client);
@@ -58,7 +66,17 @@ internal sealed class TraceRemoteCallInterceptor : IRemoteCallInterceptor
         return Task.CompletedTask;
     }
 
-    /// <inheritdoc />
+    /// <summary>
+    /// 停止追踪活动并记录成功状态。
+    /// </summary>
+    /// <remarks>
+    /// Stops the tracing activity and records success status.
+    /// </remarks>
+    /// <param name="context">调用上下文 / The remote call context</param>
+    /// <param name="request">请求消息 / The request message</param>
+    /// <param name="response">响应消息（可能为 null） / The response message (may be null)</param>
+    /// <param name="elapsedMs">耗时毫秒数 / The elapsed time in milliseconds</param>
+    /// <returns>表示异步操作的任务 / A task representing the asynchronous operation</returns>
     public Task OnAfterCallAsync(RemoteCallContext context, MessageObject request, MessageObject response, long elapsedMs)
     {
         if (context.TraceActivity != null)
@@ -73,7 +91,17 @@ internal sealed class TraceRemoteCallInterceptor : IRemoteCallInterceptor
         return Task.CompletedTask;
     }
 
-    /// <inheritdoc />
+    /// <summary>
+    /// 停止追踪活动并记录错误信息。
+    /// </summary>
+    /// <remarks>
+    /// Stops the tracing activity and records error information.
+    /// </remarks>
+    /// <param name="context">调用上下文 / The remote call context</param>
+    /// <param name="request">请求消息 / The request message</param>
+    /// <param name="exception">异常对象 / The exception that occurred</param>
+    /// <param name="elapsedMs">耗时毫秒数 / The elapsed time in milliseconds</param>
+    /// <returns>表示异步操作的任务 / A task representing the asynchronous operation</returns>
     public Task OnExceptionAsync(RemoteCallContext context, MessageObject request, Exception exception, long elapsedMs)
     {
         if (context.TraceActivity != null)

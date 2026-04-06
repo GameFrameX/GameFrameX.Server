@@ -79,7 +79,16 @@ internal sealed class DiagnosticsRemoteCallMetrics : IRemoteCallMetrics
             "Duration of remote messaging calls in milliseconds");
     }
 
-    /// <inheritdoc />
+    /// <summary>
+    /// 记录一次成功的调用指标。
+    /// </summary>
+    /// <remarks>
+    /// Records a successful remote call invocation metric.
+    /// </remarks>
+    /// <param name="serviceName">目标服务名 / The target service name</param>
+    /// <param name="messageType">消息类型名 / The message type name</param>
+    /// <param name="elapsedMs">耗时毫秒数 / The elapsed time in milliseconds</param>
+    /// <param name="retryCount">重试次数 / The number of retries performed</param>
     public void RecordSuccess(string serviceName, string messageType, long elapsedMs, int retryCount = 0)
     {
         var tags = new TagList
@@ -98,7 +107,16 @@ internal sealed class DiagnosticsRemoteCallMetrics : IRemoteCallMetrics
         }
     }
 
-    /// <inheritdoc />
+    /// <summary>
+    /// 记录一次失败的调用指标。
+    /// </summary>
+    /// <remarks>
+    /// Records a failed remote call invocation metric.
+    /// </remarks>
+    /// <param name="serviceName">目标服务名 / The target service name</param>
+    /// <param name="messageType">消息类型名 / The message type name</param>
+    /// <param name="statusCode">状态码 / The status code of the failure</param>
+    /// <param name="elapsedMs">耗时毫秒数 / The elapsed time in milliseconds</param>
     public void RecordFailure(string serviceName, string messageType, RemoteStatusCode statusCode, long elapsedMs)
     {
         var tags = new TagList
@@ -118,7 +136,15 @@ internal sealed class DiagnosticsRemoteCallMetrics : IRemoteCallMetrics
         }
     }
 
-    /// <inheritdoc />
+    /// <summary>
+    /// 记录一次重试指标。
+    /// </summary>
+    /// <remarks>
+    /// Records a retry attempt metric.
+    /// </remarks>
+    /// <param name="serviceName">目标服务名 / The target service name</param>
+    /// <param name="messageType">消息类型名 / The message type name</param>
+    /// <param name="attemptCount">第几次重试 / The retry attempt number</param>
     public void RecordRetry(string serviceName, string messageType, int attemptCount)
     {
         var tags = new TagList

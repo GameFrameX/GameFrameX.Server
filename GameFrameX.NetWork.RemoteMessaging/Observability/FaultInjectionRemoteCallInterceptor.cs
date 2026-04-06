@@ -47,7 +47,15 @@ internal sealed class FaultInjectionRemoteCallInterceptor : IRemoteCallIntercept
         _delayMs = int.TryParse(delayStr, out var delay) ? delay : 0;
     }
 
-    /// <inheritdoc />
+    /// <summary>
+    /// 故障注入预处理。根据注入类型模拟超时、断连或慢响应。
+    /// </summary>
+    /// <remarks>
+    /// Fault injection pre-processing. Simulates timeout, connection drop, or slow response based on injection type.
+    /// </remarks>
+    /// <param name="context">调用上下文 / The remote call context</param>
+    /// <param name="request">请求消息 / The request message</param>
+    /// <returns>表示异步操作的任务 / A task representing the asynchronous operation</returns>
     public async Task OnBeforeCallAsync(RemoteCallContext context, MessageObject request)
     {
         switch (_injectionType)
@@ -69,13 +77,33 @@ internal sealed class FaultInjectionRemoteCallInterceptor : IRemoteCallIntercept
         }
     }
 
-    /// <inheritdoc />
+    /// <summary>
+    /// 故障注入后处理（空操作）。
+    /// </summary>
+    /// <remarks>
+    /// Fault injection post-processing (no-op).
+    /// </remarks>
+    /// <param name="context">调用上下文 / The remote call context</param>
+    /// <param name="request">请求消息 / The request message</param>
+    /// <param name="response">响应消息（可能为 null） / The response message (may be null)</param>
+    /// <param name="elapsedMs">耗时毫秒数 / The elapsed time in milliseconds</param>
+    /// <returns>表示异步操作的任务 / A task representing the asynchronous operation</returns>
     public Task OnAfterCallAsync(RemoteCallContext context, MessageObject request, MessageObject response, long elapsedMs)
     {
         return Task.CompletedTask;
     }
 
-    /// <inheritdoc />
+    /// <summary>
+    /// 故障注入异常处理（空操作）。
+    /// </summary>
+    /// <remarks>
+    /// Fault injection exception handling (no-op).
+    /// </remarks>
+    /// <param name="context">调用上下文 / The remote call context</param>
+    /// <param name="request">请求消息 / The request message</param>
+    /// <param name="exception">异常对象 / The exception that occurred</param>
+    /// <param name="elapsedMs">耗时毫秒数 / The elapsed time in milliseconds</param>
+    /// <returns>表示异步操作的任务 / A task representing the asynchronous operation</returns>
     public Task OnExceptionAsync(RemoteCallContext context, MessageObject request, Exception exception, long elapsedMs)
     {
         return Task.CompletedTask;

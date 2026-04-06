@@ -39,20 +39,48 @@ internal sealed class MetricsRemoteCallInterceptor : IRemoteCallInterceptor
         _metrics = metrics;
     }
 
-    /// <inheritdoc />
+    /// <summary>
+    /// 指标采集预处理（空操作）。
+    /// </summary>
+    /// <remarks>
+    /// Metrics collection pre-processing (no-op).
+    /// </remarks>
+    /// <param name="context">调用上下文 / The remote call context</param>
+    /// <param name="request">请求消息 / The request message</param>
+    /// <returns>表示异步操作的任务 / A task representing the asynchronous operation</returns>
     public Task OnBeforeCallAsync(RemoteCallContext context, MessageObject request)
     {
         return Task.CompletedTask;
     }
 
-    /// <inheritdoc />
+    /// <summary>
+    /// 调用成功后记录指标。
+    /// </summary>
+    /// <remarks>
+    /// Records metrics after a successful call.
+    /// </remarks>
+    /// <param name="context">调用上下文 / The remote call context</param>
+    /// <param name="request">请求消息 / The request message</param>
+    /// <param name="response">响应消息（可能为 null） / The response message (may be null)</param>
+    /// <param name="elapsedMs">耗时毫秒数 / The elapsed time in milliseconds</param>
+    /// <returns>表示异步操作的任务 / A task representing the asynchronous operation</returns>
     public Task OnAfterCallAsync(RemoteCallContext context, MessageObject request, MessageObject response, long elapsedMs)
     {
         _metrics.RecordSuccess(context.ServiceName, request.GetType().Name, elapsedMs);
         return Task.CompletedTask;
     }
 
-    /// <inheritdoc />
+    /// <summary>
+    /// 调用异常时记录失败指标。
+    /// </summary>
+    /// <remarks>
+    /// Records failure metrics when a call encounters an exception.
+    /// </remarks>
+    /// <param name="context">调用上下文 / The remote call context</param>
+    /// <param name="request">请求消息 / The request message</param>
+    /// <param name="exception">异常对象 / The exception that occurred</param>
+    /// <param name="elapsedMs">耗时毫秒数 / The elapsed time in milliseconds</param>
+    /// <returns>表示异步操作的任务 / A task representing the asynchronous operation</returns>
     public Task OnExceptionAsync(RemoteCallContext context, MessageObject request, Exception exception, long elapsedMs)
     {
         var statusCode = IsTimeoutException(exception) ? RemoteStatusCode.Timeout : RemoteStatusCode.ConnectionFailed;
