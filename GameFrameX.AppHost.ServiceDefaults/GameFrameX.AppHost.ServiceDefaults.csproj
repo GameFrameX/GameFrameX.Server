@@ -18,6 +18,7 @@
 
         <PackageReference Include="Microsoft.Extensions.Http.Resilience" Version="10.1.0"/>
         <PackageReference Include="Microsoft.Extensions.ServiceDiscovery" Version="10.1.0"/>
+        <PackageReference Include="MongoDB.Driver" Version="3.7.1" />
         <PackageReference Include="OpenTelemetry.Exporter.Console" Version="1.14.0" />
         <PackageReference Include="OpenTelemetry.Exporter.OpenTelemetryProtocol" Version="1.14.0"/>
         <PackageReference Include="OpenTelemetry.Exporter.Prometheus.AspNetCore" Version="1.14.0-beta.1" />

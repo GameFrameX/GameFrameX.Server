@@ -6,6 +6,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using MongoDB.Driver;
 using OpenTelemetry;
 using OpenTelemetry.Exporter;
 using OpenTelemetry.Metrics;
@@ -30,6 +31,10 @@ public static class Extensions
     /// 存活性检查端点路径
     /// </summary>
     private const string AlivenessEndpointPath = "/alive";
+    private static readonly object MongoHealthClientLock = new();
+    private static readonly TimeSpan MongoHealthCheckTimeout = TimeSpan.FromSeconds(3);
+    private static MongoClient _mongoHealthClient;
+    private static string _mongoHealthConnectionString;
 
     /// <summary>
     /// 为应用程序构建器添加默认服务，包括服务发现、弹性、健康检查和OpenTelemetry
@@ -184,6 +189,7 @@ public static class Extensions
                                                         // Metrics provided by System.Net libraries
                                                         metrics.AddMeter("System.Net.Http");
                                                         metrics.AddMeter("System.Net.NameResolution");
+                                                        metrics.AddMeter("GameFrameX.DataBase.Mongo");
                                                     })
                                                     // 配置追踪
                                                     .WithTracing(tracing =>
@@ -254,9 +260,10 @@ public static class Extensions
     public static IServiceCollection AddDefaultHealthChecks(this IServiceCollection builder)
     {
         // 添加健康检查服务并配置默认存活性检查
-        builder.AddHealthChecks()
-               // 添加一个默认的存活性检查以确保应用程序响应正常
-               .AddCheck("self", () => HealthCheckResult.Healthy(), new[] { "live", });
+        var healthChecksBuilder = builder.AddHealthChecks()
+                                         // 添加一个默认的存活性检查以确保应用程序响应正常
+                                         .AddCheck("self", () => HealthCheckResult.Healthy(), new[] { "live", });
+        AddMongoDbHealthCheckIfConfigured(healthChecksBuilder);
 
         return builder;
     }
@@ -270,11 +277,78 @@ public static class Extensions
     public static TBuilder AddDefaultHealthChecks<TBuilder>(this TBuilder builder) where TBuilder : IHostApplicationBuilder
     {
         // 添加健康检查服务并配置默认存活性检查
-        builder.Services.AddHealthChecks()
-               // 添加一个默认的存活性检查以确保应用程序响应正常
-               .AddCheck("self", () => HealthCheckResult.Healthy(), new[] { "live", });
+        var healthChecksBuilder = builder.Services.AddHealthChecks()
+                                         // 添加一个默认的存活性检查以确保应用程序响应正常
+                                         .AddCheck("self", () => HealthCheckResult.Healthy(), new[] { "live", });
+        AddMongoDbHealthCheckIfConfigured(healthChecksBuilder);
 
         return builder;
+    }
+
+    /// <summary>
+    /// 在配置了 MongoDB 连接串时添加数据库健康检查。
+    /// </summary>
+    /// <remarks>
+    /// Adds MongoDB health check when the MongoDB connection string is configured.
+    /// </remarks>
+    /// <param name="healthChecksBuilder">健康检查构建器 / Health checks builder</param>
+    private static void AddMongoDbHealthCheckIfConfigured(IHealthChecksBuilder healthChecksBuilder)
+    {
+        ArgumentNullException.ThrowIfNull(healthChecksBuilder, nameof(healthChecksBuilder));
+        var connectionString = Environment.GetEnvironmentVariable("ConnectionStrings__mongodb");
+        if (string.IsNullOrWhiteSpace(connectionString))
+        {
+            return;
+        }
+
+        healthChecksBuilder.AddCheck("mongodb", cancellationToken =>
+        {
+            using var timeoutCancellationSource = CancellationTokenSource.CreateLinkedTokenSource(cancellationToken);
+            timeoutCancellationSource.CancelAfter(MongoHealthCheckTimeout);
+            try
+            {
+                var mongoClient = GetOrCreateMongoHealthClient(connectionString);
+                using var databases = mongoClient.ListDatabaseNamesAsync(timeoutCancellationSource.Token).GetAwaiter().GetResult();
+                if (databases.AnyAsync(timeoutCancellationSource.Token).GetAwaiter().GetResult())
+                {
+                    return HealthCheckResult.Healthy("MongoDB connection is healthy");
+                }
+
+                return HealthCheckResult.Degraded("MongoDB connection is degraded: no databases found");
+            }
+            catch (Exception ex)
+            {
+                return HealthCheckResult.Degraded("MongoDB connection is temporarily unavailable", ex);
+            }
+        }, tags: new[] { "db", "ready", });
+    }
+
+    /// <summary>
+    /// 获取或创建用于健康检查的 MongoClient 实例。
+    /// </summary>
+    /// <remarks>
+    /// Gets or creates the MongoClient instance used by health checks.
+    /// </remarks>
+    /// <param name="connectionString">MongoDB 连接字符串 / MongoDB connection string</param>
+    /// <returns>MongoDB 客户端实例 / MongoDB client instance</returns>
+    private static MongoClient GetOrCreateMongoHealthClient(string connectionString)
+    {
+        if (_mongoHealthClient != null && string.Equals(_mongoHealthConnectionString, connectionString, StringComparison.Ordinal))
+        {
+            return _mongoHealthClient;
+        }
+
+        lock (MongoHealthClientLock)
+        {
+            if (_mongoHealthClient != null && string.Equals(_mongoHealthConnectionString, connectionString, StringComparison.Ordinal))
+            {
+                return _mongoHealthClient;
+            }
+
+            _mongoHealthClient = new MongoClient(connectionString);
+            _mongoHealthConnectionString = connectionString;
+            return _mongoHealthClient;
+        }
     }
 
     /// <summary>
