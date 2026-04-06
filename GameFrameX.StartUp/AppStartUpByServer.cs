@@ -406,6 +406,14 @@ public abstract partial class AppStartUpBase
             else
             {
                 LogHelper.Warning(LocalizationService.GetString(Localization.Keys.StartUp.KcpServer.StartupFailed, ServerType, Setting.InnerHost, kcpPort));
+                if (kcpPort > 0)
+                {
+                    var occupiedProcesses = NetHelper.GetPortOccupyingProcesses(kcpPort);
+                    if (occupiedProcesses.Count > 0)
+                    {
+                        LogHelper.Warning($"KCP端口[{kcpPort}]占用详情: {string.Join(" | ", occupiedProcesses)}");
+                    }
+                }
             }
         }
         else
