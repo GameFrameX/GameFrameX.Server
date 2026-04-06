@@ -41,7 +41,7 @@ public interface IRemoteMessageClient
         MessageObject requestMessage,
         int timeoutMs,
         CancellationToken cancellationToken = default)
-        where TResponse : MessageObject;
+        where TResponse : class, IResponseMessage;
 
     /// <summary>
     /// 发送请求并返回结构化结果（包含状态码、耗时、重试信息）。
@@ -56,4 +56,5 @@ public interface IRemoteMessageClient
     Task<RemoteCallResult<TResponse>> CallWithResultAsync<TResponse>(
         RemoteCallContext context,
         MessageObject requestMessage)
+        where TResponse : class, IResponseMessage;
 }

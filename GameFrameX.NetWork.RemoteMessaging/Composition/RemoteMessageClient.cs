@@ -66,7 +66,7 @@ internal sealed class RemoteMessageClient : IRemoteMessageClient
         MessageObject requestMessage,
         int timeoutMs,
         CancellationToken cancellationToken = default)
-        where TResponse : MessageObject
+        where TResponse : class, IResponseMessage
     {
         var context = RemoteCallContext.Create(serviceName, timeoutMs, cancellationToken);
         var result = await CallWithResultAsync<TResponse>(context, requestMessage);
@@ -77,7 +77,7 @@ internal sealed class RemoteMessageClient : IRemoteMessageClient
     public async Task<RemoteCallResult<TResponse>> CallWithResultAsync<TResponse>(
         RemoteCallContext context,
         MessageObject requestMessage)
-        where TResponse : class
+        where TResponse : class, IResponseMessage
     {
         var stopwatch = Stopwatch.StartNew();
         var attemptCount = 0;
