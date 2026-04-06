@@ -43,17 +43,8 @@ namespace GameFrameX.DataBase;
 /// <remarks>
 /// Cache data object base class.
 /// </remarks>
-public abstract class BaseCacheState : ICacheState
+public abstract class BaseCacheState : EntityBase<long>, ICacheState
 {
-    /// <summary>
-    /// 唯一ID。
-    /// </summary>
-    /// <remarks>
-    /// Unique identifier.
-    /// </remarks>
-    /// <value>唯一ID / Unique ID</value>
-    public virtual long Id { get; set; }
-
     /// <summary>
     /// 获取数据对象是否修改。
     /// </summary>
@@ -65,105 +56,6 @@ public abstract class BaseCacheState : ICacheState
     {
         return IsChanged().isChanged;
     }
-
-    /// <summary>
-    /// 是否删除。
-    /// </summary>
-    /// <remarks>
-    /// Whether the record is deleted.
-    /// </remarks>
-    /// <value>是否删除 / Whether deleted</value>
-    public virtual bool? IsDeleted { get; set; }
-
-    /// <summary>
-    /// 删除时间。
-    /// </summary>
-    /// <remarks>
-    /// Deletion time.
-    /// </remarks>
-    /// <value>删除时间, Unix时间戳毫秒 / Deletion time, Unix timestamp in milliseconds</value>
-    public virtual long? DeleteTime { get; set; }
-
-    /// <summary>
-    /// 删除人ID。
-    /// </summary>
-    /// <remarks>
-    /// ID of the user who deleted the record.
-    /// </remarks>
-    /// <value>删除人ID / Deleter ID</value>
-    public long? DeletedId { get; set; }
-
-    /// <summary>
-    /// 删除人的用户名。
-    /// </summary>
-    /// <remarks>
-    /// Username of the user who deleted the record.
-    /// </remarks>
-    /// <value>删除人的用户名 / Deleter username</value>
-    public string DeletedName { get; set; } = "";
-
-    /// <summary>
-    /// 创建人ID, 通常是用户ID，用于记录创建该数据对象的用户，默认值为0。
-    /// </summary>
-    /// <remarks>
-    /// Creator ID, typically the user ID, used to record the user who created this data object, default value is 0.
-    /// </remarks>
-    /// <value>创建人ID / Creator ID</value>
-    public virtual long? CreatedId { get; set; }
-
-    /// <summary>
-    /// 创建时间, Unix时间戳毫秒。
-    /// </summary>
-    /// <remarks>
-    /// Creation time, Unix timestamp in milliseconds.
-    /// </remarks>
-    /// <value>创建时间 / Creation time</value>
-    public virtual long CreatedTime { get; set; }
-
-    /// <summary>
-    /// 创建人的名称。
-    /// </summary>
-    /// <remarks>
-    /// Name of the creator.
-    /// </remarks>
-    /// <value>创建人的名称 / Creator name</value>
-    public string CreatedName { get; set; } = "";
-
-    /// <summary>
-    /// 更新次数。
-    /// </summary>
-    /// <remarks>
-    /// Number of updates.
-    /// </remarks>
-    /// <value>更新次数 / Update count</value>
-    public virtual int? UpdateCount { get; set; }
-
-    /// <summary>
-    /// 更新时间, Unix时间戳毫秒。
-    /// </summary>
-    /// <remarks>
-    /// Update time, Unix timestamp in milliseconds.
-    /// </remarks>
-    /// <value>更新时间 / Update time</value>
-    public virtual long? UpdateTime { get; set; }
-
-    /// <summary>
-    /// 更新人ID。
-    /// </summary>
-    /// <remarks>
-    /// ID of the user who last updated the record.
-    /// </remarks>
-    /// <value>更新人ID / Updater ID</value>
-    public long? UpdatedId { get; set; }
-
-    /// <summary>
-    /// 更新人名称。
-    /// </summary>
-    /// <remarks>
-    /// Name of the user who last updated the record.
-    /// </remarks>
-    /// <value>更新人名称 / Updater name</value>
-    public string UpdatedName { get; set; } = "";
 
     /// <summary>
     /// 转换为字符串, 包含所有属性。
