@@ -21,22 +21,47 @@ using GameFrameX.ProtoBuf.Net;
 namespace GameFrameX.NetWork.RemoteMessaging.Transport;
 
 /// <summary>
-/// 默认消息编解码器。复用自定义包头结构：4字节总长 + 1字节操作类型 + 1字节压缩标记 + 4字节唯一ID + 4字节消息ID + ProtoBuf 载荷。
+/// 默认消息编解码器。复用自定义包头结构：4字节总长 + 1字节操作类型 + 1字节算法ID + 4字节唯一ID + 4字节消息ID + ProtoBuf 载荷。
 /// </summary>
 /// <remarks>
-/// Default message codec. Reuses the custom packet header structure: 4-byte total length + 1-byte operation type + 1-byte compression flag + 4-byte unique ID + 4-byte message ID + ProtoBuf payload.
+/// Default message codec. Reuses the custom packet header structure: 4-byte total length + 1-byte operation type + 1-byte algorithm ID + 4-byte unique ID + 4-byte message ID + ProtoBuf payload.
 /// </remarks>
 internal sealed class DefaultMessageCodec : IMessageCodec
 {
     /// <summary>
-    /// 包头长度（不含自身4字节）：1(operationType) + 1(zipFlag) + 4(uniqueId) + 4(messageId) = 10
+    /// 包头长度（不含自身4字节）：1(operationType) + 1(algorithmId) + 4(uniqueId) + 4(messageId) = 10
     /// 总包头含长度字段：4 + 10 = 14
     /// </summary>
     private const int InnerPackageHeaderLength = 14;
+    private readonly int _compressThreshold;
+    private readonly byte _defaultCompressionAlgorithmId;
+    private readonly IMessageCompressionRegistry _compressionRegistry;
 
-    private const int CompressThreshold = 512;
-    private static readonly DefaultMessageCompressHandler CompressHandler = new();
-    private static readonly DefaultMessageDecompressHandler DecompressHandler = new();
+    public DefaultMessageCodec()
+        : this(new DefaultMessageCompressionRegistry(), DeflateMessageCompressionAlgorithm.Id, 512)
+    {
+    }
+
+    public DefaultMessageCodec(
+        IMessageCompressionRegistry compressionRegistry,
+        byte defaultCompressionAlgorithmId,
+        int compressThreshold = 512)
+    {
+        ArgumentNullException.ThrowIfNull(compressionRegistry);
+        if (compressThreshold < 0)
+        {
+            throw new ArgumentOutOfRangeException(nameof(compressThreshold), "Compression threshold must be greater than or equal to 0.");
+        }
+
+        if (defaultCompressionAlgorithmId > 0 && !compressionRegistry.TryGet(defaultCompressionAlgorithmId, out _))
+        {
+            throw new ArgumentException($"Compression algorithm '{defaultCompressionAlgorithmId}' is not registered.", nameof(defaultCompressionAlgorithmId));
+        }
+
+        _compressionRegistry = compressionRegistry;
+        _defaultCompressionAlgorithmId = defaultCompressionAlgorithmId;
+        _compressThreshold = compressThreshold;
+    }
 
     /// <summary>
     /// 将消息对象编码为二进制包。
@@ -49,18 +74,24 @@ internal sealed class DefaultMessageCodec : IMessageCodec
     public PooledBuffer Encode(MessageObject message)
     {
         var messageData = ProtoBufSerializerHelper.Serialize(message);
-        var zipFlag = (byte)0;
-        if (messageData.Length > CompressThreshold)
+        var algorithmId = (byte)0;
+        if (_defaultCompressionAlgorithmId > 0 &&
+            messageData.Length > _compressThreshold &&
+            _compressionRegistry.TryGet(_defaultCompressionAlgorithmId, out var compressionAlgorithm))
         {
-            messageData = CompressHandler.Handler(messageData);
-            zipFlag = 1;
+            var compressedData = compressionAlgorithm.Compress(messageData);
+            if (compressedData.Length < messageData.Length)
+            {
+                messageData = compressedData;
+                algorithmId = _defaultCompressionAlgorithmId;
+            }
         }
 
         var totalLength = messageData.Length + InnerPackageHeaderLength;
         var buffer = ArrayPool<byte>.Shared.Rent(totalLength);
         BinaryPrimitives.WriteInt32BigEndian(buffer.AsSpan(0, 4), totalLength);
         buffer[4] = message.OperationType;
-        buffer[5] = zipFlag;
+        buffer[5] = algorithmId;
         BinaryPrimitives.WriteInt32BigEndian(buffer.AsSpan(6, 4), message.UniqueId);
         BinaryPrimitives.WriteInt32BigEndian(buffer.AsSpan(10, 4), message.MessageId);
         Buffer.BlockCopy(messageData, 0, buffer, InnerPackageHeaderLength, messageData.Length);
@@ -94,15 +125,20 @@ internal sealed class DefaultMessageCodec : IMessageCodec
             {
                 await ReadExactAsync(stream, bodyBuffer.AsMemory(0, bodyLength), cancellationToken);
                 var operationType = bodyBuffer[0];
-                var zipFlag = bodyBuffer[1];
+                var algorithmId = bodyBuffer[1];
                 var uniqueId = BinaryPrimitives.ReadInt32BigEndian(bodyBuffer.AsSpan(2, 4));
                 var messageId = BinaryPrimitives.ReadInt32BigEndian(bodyBuffer.AsSpan(6, 4));
                 var payloadLength = totalLength - InnerPackageHeaderLength;
                 var messageData = new byte[payloadLength];
                 Buffer.BlockCopy(bodyBuffer, 10, messageData, 0, payloadLength);
-                if (zipFlag > 0)
+                if (algorithmId > 0)
                 {
-                    messageData = DecompressHandler.Handler(messageData);
+                    if (!_compressionRegistry.TryGet(algorithmId, out var compressionAlgorithm))
+                    {
+                        throw new NotSupportedException($"Compression algorithm '{algorithmId}' is not registered.");
+                    }
+
+                    messageData = compressionAlgorithm.Decompress(messageData);
                 }
 
                 var messageType = MessageProtoHelper.GetMessageTypeById(messageId);
