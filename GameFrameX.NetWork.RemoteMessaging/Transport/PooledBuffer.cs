@@ -23,14 +23,16 @@ namespace GameFrameX.NetWork.RemoteMessaging.Transport;
 /// </summary>
 public sealed class PooledBuffer : IDisposable
 {
-    private byte[] _buffer;
-    private bool _disposed;
+    private byte[]? _buffer;
 
     /// <summary>
-    /// 创建池化缓冲区句柄。
+    /// 初始化新的池化字节缓冲区句柄。
     /// </summary>
-    /// <param name="buffer">池化字节数组</param>
-    /// <param name="length">有效数据长度</param>
+    /// <param name="buffer">缓冲区。</param>
+    /// <param name="length">有效数据长度。</param>
+    /// <remarks>
+    /// Initializes a new pooled byte handle.
+    /// </remarks>
     public PooledBuffer(byte[] buffer, int length)
     {
         _buffer = buffer;
@@ -40,25 +42,33 @@ public sealed class PooledBuffer : IDisposable
     /// <summary>
     /// 有效数据长度。
     /// </summary>
+    /// <remarks>
+    /// Returns the valid data length of the buffer.
+    /// </remarks>
     public int Length { get; }
 
     /// <summary>
     /// 有效数据视图。
     /// </summary>
-    public ReadOnlyMemory<byte> Memory => _disposed ? ReadOnlyMemory<byte>.Empty : _buffer.AsMemory(0, Length);
+    /// <remarks>
+    /// Returns the valid data view of the buffer.
+    /// </remarks>
+    public ReadOnlyMemory<byte> Memory => _buffer?.AsMemory(0, Length) ?? ReadOnlyMemory<byte>.Empty;
 
     /// <summary>
-    /// 归还池化缓冲区。
+    /// 释放缓冲区。
     /// </summary>
+    /// <remarks>
+    /// Returns the buffer to the pool.
+    /// </remarks>
     public void Dispose()
     {
-        if (_disposed)
+        if (_buffer == null)
         {
             return;
         }
 
         ArrayPool<byte>.Shared.Return(_buffer);
-        _buffer = Array.Empty<byte>();
-        _disposed = true;
+        _buffer = null;
     }
 }
