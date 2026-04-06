@@ -175,8 +175,8 @@ internal sealed class RemoteMessageClient : IRemoteMessageClient
                     var requestUniqueId = _requestResponseMatcher?.RegisterPendingRequest(context.TimeoutMs) ?? IdGenerator.GetNextUniqueIntId();
                     PrepareRequestMessage(requestMessage, requestUniqueId);
 
-                    var requestBuffer = _messageCodec.Encode(requestMessage);
-                    await stream.WriteAsync(requestBuffer, 0, requestBuffer.Length, context.CancellationToken);
+                    using var requestBuffer = _messageCodec.Encode(requestMessage);
+                    await stream.WriteAsync(requestBuffer.Memory, context.CancellationToken);
 
                     using var timeoutCts = CancellationTokenSource.CreateLinkedTokenSource(context.CancellationToken);
                     timeoutCts.CancelAfter(context.TimeoutMs);

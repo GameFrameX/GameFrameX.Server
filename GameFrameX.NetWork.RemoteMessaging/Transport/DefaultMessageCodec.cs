@@ -38,8 +38,6 @@ internal sealed class DefaultMessageCodec : IMessageCodec
     private static readonly DefaultMessageCompressHandler CompressHandler = new();
     private static readonly DefaultMessageDecompressHandler DecompressHandler = new();
 
-    /// <inheritdoc />
-    public byte[] Encode(MessageObject message)
     /// <summary>
     /// 将消息对象编码为二进制包。
     /// </summary>
@@ -48,6 +46,7 @@ internal sealed class DefaultMessageCodec : IMessageCodec
     /// </remarks>
     /// <param name="message">消息对象 / The message object to encode</param>
     /// <returns>编码后的二进制数据 / The encoded binary data</returns>
+    public PooledBuffer Encode(MessageObject message)
     {
         var messageData = ProtoBufSerializerHelper.Serialize(message);
         var zipFlag = (byte)0;
@@ -58,17 +57,16 @@ internal sealed class DefaultMessageCodec : IMessageCodec
         }
 
         var totalLength = messageData.Length + InnerPackageHeaderLength;
-        var buffer = new byte[totalLength];
+        var buffer = ArrayPool<byte>.Shared.Rent(totalLength);
         BinaryPrimitives.WriteInt32BigEndian(buffer.AsSpan(0, 4), totalLength);
         buffer[4] = message.OperationType;
         buffer[5] = zipFlag;
         BinaryPrimitives.WriteInt32BigEndian(buffer.AsSpan(6, 4), message.UniqueId);
         BinaryPrimitives.WriteInt32BigEndian(buffer.AsSpan(10, 4), message.MessageId);
         Buffer.BlockCopy(messageData, 0, buffer, InnerPackageHeaderLength, messageData.Length);
-        return buffer;
+        return new PooledBuffer(buffer, totalLength);
     }
 
-    /// <inheritdoc />
     /// <summary>
     /// 从网络流中读取并解码一条消息。
     /// </summary>
@@ -80,39 +78,54 @@ internal sealed class DefaultMessageCodec : IMessageCodec
     /// <returns>解码后的消息对象；连接关闭时返回 null / The decoded message object, or null if the connection was closed</returns>
     public async Task<MessageObject> DecodeAsync(Stream stream, CancellationToken cancellationToken)
     {
-        var lengthBuffer = new byte[4];
-        await ReadExactAsync(stream, lengthBuffer, cancellationToken);
-        var totalLength = BinaryPrimitives.ReadInt32BigEndian(lengthBuffer);
-        if (totalLength < InnerPackageHeaderLength)
+        var lengthBuffer = ArrayPool<byte>.Shared.Rent(4);
+        try
         {
-            return null;
-        }
+            await ReadExactAsync(stream, lengthBuffer.AsMemory(0, 4), cancellationToken);
+            var totalLength = BinaryPrimitives.ReadInt32BigEndian(lengthBuffer.AsSpan(0, 4));
+            if (totalLength < InnerPackageHeaderLength)
+            {
+                return null;
+            }
 
-        var bodyBuffer = new byte[totalLength - 4];
-        await ReadExactAsync(stream, bodyBuffer, cancellationToken);
-        var operationType = bodyBuffer[0];
-        var zipFlag = bodyBuffer[1];
-        var uniqueId = BinaryPrimitives.ReadInt32BigEndian(bodyBuffer.AsSpan(2, 4));
-        var messageId = BinaryPrimitives.ReadInt32BigEndian(bodyBuffer.AsSpan(6, 4));
-        var payloadLength = totalLength - InnerPackageHeaderLength;
-        var messageData = new byte[payloadLength];
-        Buffer.BlockCopy(bodyBuffer, 10, messageData, 0, payloadLength);
-        if (zipFlag > 0)
+            var bodyLength = totalLength - 4;
+            var bodyBuffer = ArrayPool<byte>.Shared.Rent(bodyLength);
+            try
+            {
+                await ReadExactAsync(stream, bodyBuffer.AsMemory(0, bodyLength), cancellationToken);
+                var operationType = bodyBuffer[0];
+                var zipFlag = bodyBuffer[1];
+                var uniqueId = BinaryPrimitives.ReadInt32BigEndian(bodyBuffer.AsSpan(2, 4));
+                var messageId = BinaryPrimitives.ReadInt32BigEndian(bodyBuffer.AsSpan(6, 4));
+                var payloadLength = totalLength - InnerPackageHeaderLength;
+                var messageData = new byte[payloadLength];
+                Buffer.BlockCopy(bodyBuffer, 10, messageData, 0, payloadLength);
+                if (zipFlag > 0)
+                {
+                    messageData = DecompressHandler.Handler(messageData);
+                }
+
+                var messageType = MessageProtoHelper.GetMessageTypeById(messageId);
+                if (messageType == null)
+                {
+                    return null;
+                }
+
+                var message = (MessageObject)ProtoBufSerializerHelper.Deserialize(messageData, messageType);
+                message.SetOperationType(operationType);
+                message.SetUniqueId(uniqueId);
+                message.SetMessageId(messageId);
+                return message;
+            }
+            finally
+            {
+                ArrayPool<byte>.Shared.Return(bodyBuffer);
+            }
+        }
+        finally
         {
-            messageData = DecompressHandler.Handler(messageData);
+            ArrayPool<byte>.Shared.Return(lengthBuffer);
         }
-
-        var messageType = MessageProtoHelper.GetMessageTypeById(messageId);
-        if (messageType == null)
-        {
-            return null;
-        }
-
-        var message = (MessageObject)ProtoBufSerializerHelper.Deserialize(messageData, messageType);
-        message.SetOperationType(operationType);
-        message.SetUniqueId(uniqueId);
-        message.SetMessageId(messageId);
-        return message;
     }
 
     /// <summary>
@@ -121,12 +134,12 @@ internal sealed class DefaultMessageCodec : IMessageCodec
     /// <remarks>
     /// Reads exactly the specified number of bytes from the stream.
     /// </remarks>
-    private static async Task ReadExactAsync(Stream stream, byte[] buffer, CancellationToken cancellationToken)
+    private static async Task ReadExactAsync(Stream stream, Memory<byte> buffer, CancellationToken cancellationToken)
     {
         var offset = 0;
         while (offset < buffer.Length)
         {
-            var readLength = await stream.ReadAsync(buffer, offset, buffer.Length - offset, cancellationToken);
+            var readLength = await stream.ReadAsync(buffer[offset..], cancellationToken);
             if (readLength == 0)
             {
                 throw new IOException("Remote connection closed.");

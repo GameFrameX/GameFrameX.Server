@@ -14,34 +14,51 @@
 //   官方文档：https://gameframex.doc.alianblank.com/
 //  ==========================================================================================
 
+using System.Buffers;
+
 namespace GameFrameX.NetWork.RemoteMessaging.Transport;
 
 /// <summary>
-/// 消息编解码器。复用当前自定义包头结构（14 字节包头 + ProtoBuf 载荷）。
+/// 池化字节缓冲区句柄。调用方在使用完成后必须释放。
 /// </summary>
-/// <remarks>
-/// Message codec. Reuses the current custom packet header structure (14-byte header + ProtoBuf payload).
-/// </remarks>
-public interface IMessageCodec
+public sealed class PooledBuffer : IDisposable
 {
-    /// <summary>
-    /// 将消息对象编码为二进制包。
-    /// </summary>
-    /// <remarks>
-    /// Encodes a message object into a binary packet.
-    /// </remarks>
-    /// <param name="message">消息对象 / The message object to encode</param>
-    /// <returns>池化编码结果，使用完成后必须释放 / Pooled encoded payload that must be disposed by caller</returns>
-    PooledBuffer Encode(MessageObject message);
+    private byte[] _buffer;
+    private bool _disposed;
 
     /// <summary>
-    /// 从网络流中读取并解码一条消息。
+    /// 创建池化缓冲区句柄。
     /// </summary>
-    /// <remarks>
-    /// Reads and decodes a message from the network stream.
-    /// </remarks>
-    /// <param name="stream">网络流 / The network stream to read from</param>
-    /// <param name="cancellationToken">取消令牌 / Cancellation token</param>
-    /// <returns>解码后的消息对象；连接关闭时返回 null / The decoded message object, or null if the connection was closed</returns>
-    Task<MessageObject> DecodeAsync(Stream stream, CancellationToken cancellationToken);
+    /// <param name="buffer">池化字节数组</param>
+    /// <param name="length">有效数据长度</param>
+    public PooledBuffer(byte[] buffer, int length)
+    {
+        _buffer = buffer;
+        Length = length;
+    }
+
+    /// <summary>
+    /// 有效数据长度。
+    /// </summary>
+    public int Length { get; }
+
+    /// <summary>
+    /// 有效数据视图。
+    /// </summary>
+    public ReadOnlyMemory<byte> Memory => _disposed ? ReadOnlyMemory<byte>.Empty : _buffer.AsMemory(0, Length);
+
+    /// <summary>
+    /// 归还池化缓冲区。
+    /// </summary>
+    public void Dispose()
+    {
+        if (_disposed)
+        {
+            return;
+        }
+
+        ArrayPool<byte>.Shared.Return(_buffer);
+        _buffer = Array.Empty<byte>();
+        _disposed = true;
+    }
 }
