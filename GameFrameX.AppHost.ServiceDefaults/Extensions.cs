@@ -221,12 +221,14 @@ public static class Extensions
                                                         metrics.AddMeter("System.Net.Http");
                                                         metrics.AddMeter("System.Net.NameResolution");
                                                         metrics.AddMeter("GameFrameX.DataBase.Mongo");
+                                                        metrics.AddMeter("GameFrameX.RemoteMessaging");
                                                     })
                                                     // 配置追踪
                                                     .WithTracing(tracing =>
                                                     {
                                                         // 添加追踪源并配置ASP.NET Core追踪
                                                         tracing.AddSource(serviceName)
+                                                               .AddSource("GameFrameX.RemoteMessaging")
                                                                .AddAspNetCoreInstrumentation(aspNetCoreTraceInstrumentationOptions =>
                                                                                                  // 排除健康检查请求的追踪
                                                                                              {
