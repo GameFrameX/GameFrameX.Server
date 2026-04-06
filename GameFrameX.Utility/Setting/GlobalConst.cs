@@ -123,9 +123,9 @@ public static class GlobalConst
     /// 最大全局ID
     /// </summary>
     /// <remarks>
-    /// Maximum global ID, calculated as MaxServerId * 1000.
+    /// Maximum global ID, calculated as MaxServerId * 1000 + ActorTypeMax.
     /// </remarks>
-    public const int MaxGlobalId = MaxServerId * 1000;
+    public const int MaxGlobalId = MaxServerId * 1000 + ActorTypeMax;
 
     /// <summary>
     /// 最小服务器ID

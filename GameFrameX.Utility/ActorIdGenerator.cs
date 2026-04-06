@@ -1,4 +1,4 @@
-﻿// ==========================================================================================
+// ==========================================================================================
 //  GameFrameX 组织及其衍生项目的版权、商标、专利及其他相关权利
 //  GameFrameX organization and its derivative projects' copyrights, trademarks, patents, and related rights
 //  均受中华人民共和国及相关国际法律法规保护。
@@ -46,6 +46,9 @@ namespace GameFrameX.Utility;
 /// </remarks>
 public static class ActorIdGenerator
 {
+    private const int GlobalActorIdMultiplier = 1000;
+    private const int MultiActorTypeBitMask = 0x7F;
+
     private static long _genSecond;
     private static long _incrNum;
 
@@ -68,9 +71,9 @@ public static class ActorIdGenerator
             throw new ArgumentOutOfRangeException(nameof(actorId), LocalizationService.GetString(Localization.Keys.Utility.ActorIdLessThanMinServerId, GlobalConst.MinServerId));
         }
 
-        if (actorId < GlobalConst.MaxGlobalId)
+        if (actorId <= GlobalConst.MaxGlobalId)
         {
-            return (int)(actorId / 1000);
+            return (int)(actorId / GlobalActorIdMultiplier);
         }
 
         return (int)(actorId >> GlobalConst.ServerIdOrModuleIdMask);
@@ -92,13 +95,13 @@ public static class ActorIdGenerator
             throw new ArgumentOutOfRangeException(nameof(actorId), LocalizationService.GetString(Localization.Keys.Utility.ActorIdLessThanMinServerIdDetail, actorId, GlobalConst.MinServerId));
         }
 
-        if (actorId < GlobalConst.MaxGlobalId)
+        if (actorId <= GlobalConst.MaxGlobalId)
         {
             // 全局actor
-            return (ushort)(actorId % 1000);
+            return (ushort)(actorId % GlobalActorIdMultiplier);
         }
 
-        return (ushort)((actorId >> GlobalConst.ActorTypeMask) & 0xF);
+        return (ushort)((actorId >> GlobalConst.ActorTypeMask) & MultiActorTypeBitMask);
     }
 
 
@@ -159,7 +162,7 @@ public static class ActorIdGenerator
             throw new ArgumentOutOfRangeException(nameof(actorType), LocalizationService.GetString(Localization.Keys.Utility.ActorTypeInvalid));
         }
 
-        return serverId * 1000 + actorType;
+        return serverId * GlobalActorIdMultiplier + actorType;
     }
 
     private static long GetMultiActorId(ushort type, int serverId)
