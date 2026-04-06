@@ -145,23 +145,24 @@ public sealed partial class MongoDbService : IDatabaseService
     /// <summary>
     /// 应用数据库运行时配置并执行默认值/边界归一化。
     /// </summary>
-    /// <param name="options">数据库选项。</param>
-    private void ApplyRuntimeOptions(DbOptions options)
+    /// <param name="runtimeOptions">运行时配置。</param>
+    private void ApplyRuntimeOptions(DatabaseRuntimeOptions runtimeOptions)
     {
-        _serverSelectionTimeout = TimeSpan.FromMilliseconds(NormalizeMilliseconds(options.ServerSelectionTimeoutMilliseconds, 5000, 100));
-        _connectTimeout = TimeSpan.FromMilliseconds(NormalizeMilliseconds(options.ConnectTimeoutMilliseconds, 5000, 100));
-        _socketTimeout = TimeSpan.FromMilliseconds(NormalizeMilliseconds(options.SocketTimeoutMilliseconds, 10000, 100));
-        _recoveryProbeBaseDelay = TimeSpan.FromMilliseconds(NormalizeMilliseconds(options.RecoveryProbeBaseDelayMilliseconds, 3000, 100));
-        _recoveryProbeJitterDelay = TimeSpan.FromMilliseconds(NormalizeMilliseconds(options.RecoveryProbeJitterDelayMilliseconds, 2000, 0));
-        _recoveringProbeWindow = TimeSpan.FromMilliseconds(NormalizeMilliseconds(options.RecoveringProbeWindowMilliseconds, 1000, 100));
-        _readRetryDelaysMilliseconds = NormalizeRetryDelays(options.ReadRetryDelaysMilliseconds, DefaultReadRetryDelaysMilliseconds);
-        _idempotentWriteRetryDelaysMilliseconds = NormalizeRetryDelays(options.IdempotentWriteRetryDelaysMilliseconds, DefaultIdempotentWriteRetryDelaysMilliseconds);
-        _transactionRetryDelaysMilliseconds = NormalizeRetryDelays(options.TransactionRetryDelaysMilliseconds, DefaultTransactionRetryDelaysMilliseconds);
-        _healthyToDegradedFailureThreshold = NormalizeThreshold(options.HealthyToDegradedFailureThreshold, 3);
-        _degradedToUnhealthyFailureThreshold = NormalizeThreshold(options.DegradedToUnhealthyFailureThreshold, 5);
-        _recoveringToHealthySuccessThreshold = NormalizeThreshold(options.RecoveringToHealthySuccessThreshold, 3);
-        _degradedToHealthySuccessThreshold = NormalizeThreshold(options.DegradedToHealthySuccessThreshold, 3);
-        _recoveringMaxProbePerSecond = NormalizeThreshold(options.RecoveringMaxProbePerSecond, 5);
+        runtimeOptions ??= new DatabaseRuntimeOptions();
+        _serverSelectionTimeout = TimeSpan.FromMilliseconds(NormalizeMilliseconds(runtimeOptions.ServerSelectionTimeoutMs, 5000, 100));
+        _connectTimeout = TimeSpan.FromMilliseconds(NormalizeMilliseconds(runtimeOptions.ConnectTimeoutMs, 5000, 100));
+        _socketTimeout = TimeSpan.FromMilliseconds(NormalizeMilliseconds(runtimeOptions.SocketTimeoutMs, 10000, 100));
+        _recoveryProbeBaseDelay = TimeSpan.FromMilliseconds(NormalizeMilliseconds(runtimeOptions.RecoveryProbeBaseDelayMs, 3000, 100));
+        _recoveryProbeJitterDelay = TimeSpan.FromMilliseconds(NormalizeMilliseconds(runtimeOptions.RecoveryProbeJitterDelayMs, 2000, 0));
+        _recoveringProbeWindow = TimeSpan.FromMilliseconds(NormalizeMilliseconds(runtimeOptions.RecoveringProbeWindowMs, 1000, 100));
+        _readRetryDelaysMilliseconds = NormalizeRetryDelays(runtimeOptions.ReadRetryDelaysMs, DefaultReadRetryDelaysMilliseconds);
+        _idempotentWriteRetryDelaysMilliseconds = NormalizeRetryDelays(runtimeOptions.WriteRetryDelaysMs, DefaultIdempotentWriteRetryDelaysMilliseconds);
+        _transactionRetryDelaysMilliseconds = NormalizeRetryDelays(runtimeOptions.TransactionRetryDelaysMs, DefaultTransactionRetryDelaysMilliseconds);
+        _healthyToDegradedFailureThreshold = NormalizeThreshold(runtimeOptions.HealthyToDegradedFailureThreshold, 3);
+        _degradedToUnhealthyFailureThreshold = NormalizeThreshold(runtimeOptions.DegradedToUnhealthyFailureThreshold, 5);
+        _recoveringToHealthySuccessThreshold = NormalizeThreshold(runtimeOptions.RecoveringToHealthySuccessThreshold, 3);
+        _degradedToHealthySuccessThreshold = NormalizeThreshold(runtimeOptions.DegradedToHealthySuccessThreshold, 3);
+        _recoveringMaxProbePerSecond = NormalizeThreshold(runtimeOptions.RecoveringMaxProbePerSecond, 5);
     }
 
     /// <summary>

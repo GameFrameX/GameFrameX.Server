@@ -36,7 +36,7 @@ public sealed partial class MongoDbService
                 {
                     await CurrentDatabase.RunCommandAsync((Command<BsonDocument>)"{ping:1}").ConfigureAwait(false);
                     Options = dbOptions;
-                    ApplyRuntimeOptions(dbOptions);
+                    ApplyRuntimeOptions(dbOptions.RuntimeOptions);
                     return true;
                 }
                 catch
@@ -51,7 +51,7 @@ public sealed partial class MongoDbService
         }
 
         Options = dbOptions;
-        ApplyRuntimeOptions(dbOptions);
+        ApplyRuntimeOptions(dbOptions.RuntimeOptions);
         Exception lastException = null;
         var retryDelays = new[] { 300, 700, 1500 };
         for (var attempt = 0; attempt < retryDelays.Length; attempt++)

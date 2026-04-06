@@ -40,10 +40,6 @@ namespace GameFrameX.DataBase.Abstractions;
 /// </remarks>
 public sealed record DbOptions
 {
-    private static readonly int[] DefaultReadRetryDelaysMilliseconds = { 120, 300, 700 };
-    private static readonly int[] DefaultIdempotentWriteRetryDelaysMilliseconds = { 150, 400, 900 };
-    private static readonly int[] DefaultTransactionRetryDelaysMilliseconds = { 200, 500, 1000 };
-
     /// <summary>
     /// 数据库类型。
     /// </summary>
@@ -81,86 +77,8 @@ public sealed record DbOptions
     public bool IsUseTimeZone { get; init; } = false;
 
     /// <summary>
-    /// MongoDB ServerSelection 超时（毫秒）。
+    /// 运行时配置选项。
     /// </summary>
-    /// <value>默认 5000 毫秒。</value>
-    public int ServerSelectionTimeoutMilliseconds { get; init; } = 5000;
-
-    /// <summary>
-    /// MongoDB Connect 超时（毫秒）。
-    /// </summary>
-    /// <value>默认 5000 毫秒。</value>
-    public int ConnectTimeoutMilliseconds { get; init; } = 5000;
-
-    /// <summary>
-    /// MongoDB Socket 超时（毫秒）。
-    /// </summary>
-    /// <value>默认 10000 毫秒。</value>
-    public int SocketTimeoutMilliseconds { get; init; } = 10000;
-
-    /// <summary>
-    /// 读操作重试延迟（毫秒）。
-    /// </summary>
-    /// <value>默认 [120, 300, 700]。</value>
-    public int[] ReadRetryDelaysMilliseconds { get; init; } = (int[])DefaultReadRetryDelaysMilliseconds.Clone();
-
-    /// <summary>
-    /// 幂等写重试延迟（毫秒）。
-    /// </summary>
-    /// <value>默认 [150, 400, 900]。</value>
-    public int[] IdempotentWriteRetryDelaysMilliseconds { get; init; } = (int[])DefaultIdempotentWriteRetryDelaysMilliseconds.Clone();
-
-    /// <summary>
-    /// 事务重试延迟（毫秒）。
-    /// </summary>
-    /// <value>默认 [200, 500, 1000]。</value>
-    public int[] TransactionRetryDelaysMilliseconds { get; init; } = (int[])DefaultTransactionRetryDelaysMilliseconds.Clone();
-
-    /// <summary>
-    /// 后台恢复探活基础延迟（毫秒）。
-    /// </summary>
-    /// <value>默认 3000 毫秒。</value>
-    public int RecoveryProbeBaseDelayMilliseconds { get; init; } = 3000;
-
-    /// <summary>
-    /// 后台恢复探活随机抖动上限（毫秒）。
-    /// </summary>
-    /// <value>默认 2000 毫秒。</value>
-    public int RecoveryProbeJitterDelayMilliseconds { get; init; } = 2000;
-
-    /// <summary>
-    /// Recovering 半开探测窗口（毫秒）。
-    /// </summary>
-    /// <value>默认 1000 毫秒。</value>
-    public int RecoveringProbeWindowMilliseconds { get; init; } = 1000;
-
-    /// <summary>
-    /// Healthy 进入 Degraded 的连续失败阈值。
-    /// </summary>
-    /// <value>默认 3。</value>
-    public int HealthyToDegradedFailureThreshold { get; init; } = 3;
-
-    /// <summary>
-    /// Degraded 进入 Unhealthy 的连续失败阈值。
-    /// </summary>
-    /// <value>默认 5。</value>
-    public int DegradedToUnhealthyFailureThreshold { get; init; } = 5;
-
-    /// <summary>
-    /// Recovering 恢复到 Healthy 的连续成功阈值。
-    /// </summary>
-    /// <value>默认 3。</value>
-    public int RecoveringToHealthySuccessThreshold { get; init; } = 3;
-
-    /// <summary>
-    /// Degraded 恢复到 Healthy 的连续成功阈值。
-    /// </summary>
-    /// <value>默认 3。</value>
-    public int DegradedToHealthySuccessThreshold { get; init; } = 3;
-
-    /// <summary>
-    /// Recovering 状态下每秒允许的最大探测数。
-    /// </summary>
-    /// <value>默认 5。</value>
-    public int RecoveringMaxProbePerSecond { get; init; } = 5;
+    /// <value>默认值由 <see cref="DatabaseRuntimeOptions"/> 提供。</value>
+    public DatabaseRuntimeOptions RuntimeOptions { get; init; } = new();
 }
