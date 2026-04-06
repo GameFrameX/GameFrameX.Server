@@ -31,6 +31,8 @@
 
 using GameFrameX.Foundation.Utility;
 using GameFrameX.Foundation.Logger;
+using GameFrameX.Foundation.Localization.Core;
+using GameFrameX.Localization;
 using MongoDB.Driver;
 using System.Threading;
 
@@ -238,7 +240,8 @@ public sealed partial class MongoDbService
             }
         }
 
-        throw lastException ?? new InvalidOperationException("MongoDbService.ExecuteInTransactionAsync failed with unknown retry exception.");
+        // Localization: Database.MongoDb.ExecuteInTransactionFailed - ExecuteInTransactionAsync重试失败，未知异常
+        throw lastException ?? new InvalidOperationException(LocalizationService.GetString(Keys.Database.MongoDbExecuteInTransactionFailed));
     }
 
     /// <summary>
@@ -276,6 +279,7 @@ public sealed partial class MongoDbService
             }
         }
 
-        throw lastException ?? new InvalidOperationException("MongoDbService.CommitTransaction failed with unknown retry exception.");
+        // Localization: Database.MongoDb.CommitTransactionFailed - CommitTransaction重试失败，未知异常
+        throw lastException ?? new InvalidOperationException(LocalizationService.GetString(Keys.Database.MongoDbCommitTransactionFailed));
     }
 }

@@ -33,6 +33,7 @@ using GameFrameX.DataBase.Abstractions;
 using GameFrameX.Foundation.Logger;
 using GameFrameX.Foundation.Localization.Core;
 using GameFrameX.Foundation.Utility;
+using GameFrameX.Localization;
 using MongoDB.Bson;
 using MongoDB.Driver;
 
@@ -91,7 +92,8 @@ public sealed partial class MongoDbService : IDatabaseService
     {
         if (_mongoDbContext == null)
         {
-            throw new DatabaseUnavailableException("MongoDbService is unavailable. Open() has not completed successfully.");
+            // Localization: Database.MongoDb.ServiceUnavailable - MongoDbService不可用，Open()尚未成功完成
+            throw new DatabaseUnavailableException(LocalizationService.GetString(Keys.Database.MongoDbServiceUnavailable));
         }
     }
 
@@ -392,7 +394,8 @@ public sealed partial class MongoDbService : IDatabaseService
             }
         }
 
-        throw lastException ?? new InvalidOperationException($"MongoDbService.{operationName} failed with unknown retry exception.");
+        // Localization: Database.MongoDb.OperationRetryFailed - MongoDbService.{0}重试失败，未知异常
+        throw lastException ?? new InvalidOperationException(LocalizationService.GetString(Keys.Database.MongoDbOperationRetryFailed, operationName));
     }
 
     /// <summary>

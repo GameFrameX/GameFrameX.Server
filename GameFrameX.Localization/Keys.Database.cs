@@ -60,5 +60,42 @@ public static partial class Keys
         /// 参数: {0} - 连接字符串, {1} - 数据库名称
         /// </remarks>
         public const string MongoDbInitializationFailed = "Database.MongoDb.InitializationFailed";
+
+        /// <summary>
+        /// MongoDbService 未初始化，Open() 未成功完成。
+        /// </summary>
+        /// <remarks>
+        /// 键名: Database.MongoDb.ServiceUnavailable
+        /// 用途: 当 MongoDbService 尚未初始化就执行数据库操作时抛出
+        /// </remarks>
+        public const string MongoDbServiceUnavailable = "Database.MongoDb.ServiceUnavailable";
+
+        /// <summary>
+        /// ExecuteInTransactionAsync 所有重试均失败，异常未知。
+        /// </summary>
+        /// <remarks>
+        /// 键名: Database.MongoDb.ExecuteInTransactionFailed
+        /// 用途: 事务执行重试全部失败后抛出
+        /// </remarks>
+        public const string MongoDbExecuteInTransactionFailed = "Database.MongoDb.ExecuteInTransactionFailed";
+
+        /// <summary>
+        /// CommitTransaction 所有重试均失败，异常未知。
+        /// </summary>
+        /// <remarks>
+        /// 键名: Database.MongoDb.CommitTransactionFailed
+        /// 用途: 事务提交重试全部失败后抛出
+        /// </remarks>
+        public const string MongoDbCommitTransactionFailed = "Database.MongoDb.CommitTransactionFailed";
+
+        /// <summary>
+        /// MongoDbService.{0} 所有重试均失败，异常未知。
+        /// </summary>
+        /// <remarks>
+        /// 键名: Database.MongoDb.OperationRetryFailed
+        /// 用途: 通用操作重试全部失败后抛出
+        /// 参数: {0} - 操作名称
+        /// </remarks>
+        public const string MongoDbOperationRetryFailed = "Database.MongoDb.OperationRetryFailed";
     }
 }

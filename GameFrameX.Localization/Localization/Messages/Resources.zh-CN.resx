@@ -205,6 +205,18 @@
     <data name="Database.MongoDb.InitializationFailed" xml:space="preserve">
     <value>MongoDB服务初始化失败，连接字符串：{0}，数据库名称：{1}</value>
   </data>
+    <data name="Database.MongoDb.ServiceUnavailable" xml:space="preserve">
+    <value>MongoDbService不可用，Open()尚未成功完成。</value>
+  </data>
+    <data name="Database.MongoDb.ExecuteInTransactionFailed" xml:space="preserve">
+    <value>MongoDbService.ExecuteInTransactionAsync重试失败，未知异常。</value>
+  </data>
+    <data name="Database.MongoDb.CommitTransactionFailed" xml:space="preserve">
+    <value>MongoDbService.CommitTransaction重试失败，未知异常。</value>
+  </data>
+    <data name="Database.MongoDb.OperationRetryFailed" xml:space="preserve">
+    <value>MongoDbService.{0}重试失败，未知异常。</value>
+  </data>
 
     <!-- LNumber模块日志和错误键名 -->
     <data name="Utility.LNumber.CreateFailed" xml:space="preserve">

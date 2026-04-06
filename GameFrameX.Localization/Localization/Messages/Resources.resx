@@ -176,6 +176,18 @@
     <data name="Database.MongoDb.InitializationFailed" xml:space="preserve">
     <value>MongoDB service initialization failed, ConnectionString: {0}, DatabaseName: {1}</value>
   </data>
+    <data name="Database.MongoDb.ServiceUnavailable" xml:space="preserve">
+    <value>MongoDbService is unavailable. Open() has not completed successfully.</value>
+  </data>
+    <data name="Database.MongoDb.ExecuteInTransactionFailed" xml:space="preserve">
+    <value>MongoDbService.ExecuteInTransactionAsync failed with unknown retry exception.</value>
+  </data>
+    <data name="Database.MongoDb.CommitTransactionFailed" xml:space="preserve">
+    <value>MongoDbService.CommitTransaction failed with unknown retry exception.</value>
+  </data>
+    <data name="Database.MongoDb.OperationRetryFailed" xml:space="preserve">
+    <value>MongoDbService.{0} failed with unknown retry exception.</value>
+  </data>
 
     <!-- LNumber module log and error keys -->
     <data name="Utility.LNumber.CreateFailed" xml:space="preserve">
