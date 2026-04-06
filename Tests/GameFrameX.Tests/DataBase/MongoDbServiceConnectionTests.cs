@@ -3,6 +3,7 @@ using GameFrameX.DataBase.Mongo;
 using GameFrameX.DataBase.Mongo.HealthChecks;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
 using MongoDB.Driver;
+using System.Reflection;
 using Xunit;
 
 namespace GameFrameX.Tests.DataBase;
@@ -85,6 +86,64 @@ public sealed class MongoDbServiceConnectionTests
         Assert.True(hasFirstStatus);
         Assert.Equal(HealthStatus.Degraded, firstStatus);
         Assert.Equal(HealthStatus.Unhealthy, lastStatus);
+    }
+
+    /// <summary>
+    /// 测试重试判定方法对超时异常返回可重试。
+    /// </summary>
+    [Fact]
+    public void RetryClassifier_WhenTimeoutException_ShouldBeRetryable()
+    {
+        var method = typeof(MongoDbService).GetMethod("IsRetryableMongoException", BindingFlags.NonPublic | BindingFlags.Static);
+        Assert.NotNull(method);
+        var result = method.Invoke(null, new object[] { new TimeoutException("timeout"), });
+        Assert.IsType<bool>(result);
+        Assert.True((bool)result);
+    }
+
+    /// <summary>
+    /// 测试重试判定方法对带重试标签的异常返回可重试。
+    /// </summary>
+    [Fact]
+    public void RetryClassifier_WhenMongoExceptionHasRetryableReadLabel_ShouldBeRetryable()
+    {
+        var method = typeof(MongoDbService).GetMethod("IsRetryableMongoException", BindingFlags.NonPublic | BindingFlags.Static);
+        Assert.NotNull(method);
+        var exception = new MongoException("retryable");
+        exception.AddErrorLabel("RetryableReadError");
+        var result = method.Invoke(null, new object[] { exception, });
+        Assert.IsType<bool>(result);
+        Assert.True((bool)result);
+    }
+
+    /// <summary>
+    /// 测试事务重试判定方法识别瞬态事务错误标签。
+    /// </summary>
+    [Fact]
+    public void TransactionRetryClassifier_WhenTransientTransactionLabel_ShouldBeRetryable()
+    {
+        var method = typeof(MongoDbService).GetMethod("ShouldRetryTransactionException", BindingFlags.NonPublic | BindingFlags.Static);
+        Assert.NotNull(method);
+        var exception = new MongoException("tx transient");
+        exception.AddErrorLabel("TransientTransactionError");
+        var result = method.Invoke(null, new object[] { exception, });
+        Assert.IsType<bool>(result);
+        Assert.True((bool)result);
+    }
+
+    /// <summary>
+    /// 测试提交重试判定方法识别未知提交结果标签。
+    /// </summary>
+    [Fact]
+    public void CommitRetryClassifier_WhenUnknownCommitResultLabel_ShouldBeRetryable()
+    {
+        var method = typeof(MongoDbService).GetMethod("ShouldRetryTransactionCommit", BindingFlags.NonPublic | BindingFlags.Static);
+        Assert.NotNull(method);
+        var exception = new MongoException("commit transient");
+        exception.AddErrorLabel("UnknownTransactionCommitResult");
+        var result = method.Invoke(null, new object[] { exception, });
+        Assert.IsType<bool>(result);
+        Assert.True((bool)result);
     }
 
     /// <summary>
