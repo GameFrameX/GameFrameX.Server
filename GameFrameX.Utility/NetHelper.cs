@@ -32,6 +32,7 @@
 using System.Net;
 using System.Net.NetworkInformation;
 using System.Net.Sockets;
+using System.Diagnostics;
 using GameFrameX.Foundation.Localization.Core;
 
 namespace GameFrameX.Utility;
@@ -55,6 +56,178 @@ namespace GameFrameX.Utility;
 /// </remarks>
 public static class NetHelper
 {
+    /// <summary>
+    /// 获取指定端口的占用进程信息（仅监听中的 TCP）。
+    /// </summary>
+    /// <param name="port">端口号</param>
+    /// <param name="maxCount">最大返回条数，默认5</param>
+    /// <returns>占用进程文本列表，获取失败或无结果时返回空列表</returns>
+    /// <exception cref="ArgumentOutOfRangeException">当端口不在合法范围时抛出</exception>
+    public static List<string> GetPortOccupyingProcesses(int port, int maxCount = 5)
+    {
+        ArgumentOutOfRangeException.ThrowIfLessThan(port, 1, nameof(port));
+        ArgumentOutOfRangeException.ThrowIfGreaterThan(port, 65535, nameof(port));
+        ArgumentOutOfRangeException.ThrowIfLessThan(maxCount, 1, nameof(maxCount));
+
+        if (OperatingSystem.IsWindows())
+        {
+            return GetPortOccupyingProcessesByNetstat(port, maxCount);
+        }
+
+        if (OperatingSystem.IsMacOS() || OperatingSystem.IsLinux())
+        {
+            return GetPortOccupyingProcessesByLsof(port, maxCount);
+        }
+
+        return new List<string>();
+    }
+
+    /// <summary>
+    /// 在 macOS/Linux 下通过 lsof 获取端口占用进程信息。
+    /// </summary>
+    /// <param name="port">端口号</param>
+    /// <param name="maxCount">最大返回条数</param>
+    /// <returns>占用进程文本列表</returns>
+    private static List<string> GetPortOccupyingProcessesByLsof(int port, int maxCount)
+    {
+        try
+        {
+            var startInfo = new ProcessStartInfo
+            {
+                FileName = "lsof",
+                Arguments = $"-nP -iTCP:{port} -sTCP:LISTEN",
+                RedirectStandardOutput = true,
+                RedirectStandardError = true,
+                UseShellExecute = false,
+                CreateNoWindow = true,
+            };
+
+            using var process = Process.Start(startInfo);
+            if (process == null)
+            {
+                return new List<string>();
+            }
+
+            var output = process.StandardOutput.ReadToEnd();
+            process.WaitForExit(1500);
+
+            if (string.IsNullOrWhiteSpace(output))
+            {
+                return new List<string>();
+            }
+
+            return output
+                   .Split('\n', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries)
+                   .Where(line => !line.StartsWith("COMMAND", StringComparison.OrdinalIgnoreCase))
+                   .Take(maxCount)
+                   .ToList();
+        }
+        catch
+        {
+            return new List<string>();
+        }
+    }
+
+    /// <summary>
+    /// 在 Windows 下通过 netstat 获取端口占用进程信息。
+    /// </summary>
+    /// <param name="port">端口号</param>
+    /// <param name="maxCount">最大返回条数</param>
+    /// <returns>占用进程文本列表</returns>
+    private static List<string> GetPortOccupyingProcessesByNetstat(int port, int maxCount)
+    {
+        try
+        {
+            var startInfo = new ProcessStartInfo
+            {
+                FileName = "netstat",
+                Arguments = "-ano -p tcp",
+                RedirectStandardOutput = true,
+                RedirectStandardError = true,
+                UseShellExecute = false,
+                CreateNoWindow = true,
+            };
+
+            using var process = Process.Start(startInfo);
+            if (process == null)
+            {
+                return new List<string>();
+            }
+
+            var output = process.StandardOutput.ReadToEnd();
+            process.WaitForExit(1500);
+            if (string.IsNullOrWhiteSpace(output))
+            {
+                return new List<string>();
+            }
+
+            var result = new List<string>();
+            var deDuplicate = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+            var lines = output.Split('\n', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
+            foreach (var line in lines)
+            {
+                if (!line.StartsWith("TCP", StringComparison.OrdinalIgnoreCase))
+                {
+                    continue;
+                }
+
+                var columns = line.Split((char[])null, StringSplitOptions.RemoveEmptyEntries);
+                // 典型格式：TCP LocalAddress ForeignAddress State PID
+                if (columns.Length < 5)
+                {
+                    continue;
+                }
+
+                var localAddress = columns[1];
+                var state = columns[3];
+                var pidRaw = columns[4];
+                if (!string.Equals(state, "LISTENING", StringComparison.OrdinalIgnoreCase))
+                {
+                    continue;
+                }
+
+                if (!(localAddress.EndsWith($":{port}", StringComparison.OrdinalIgnoreCase) ||
+                      localAddress.EndsWith($"]:{port}", StringComparison.OrdinalIgnoreCase)))
+                {
+                    continue;
+                }
+
+                if (!int.TryParse(pidRaw, out var pid))
+                {
+                    continue;
+                }
+
+                var processName = "Unknown";
+                try
+                {
+                    processName = Process.GetProcessById(pid).ProcessName;
+                }
+                catch
+                {
+                    // 在部分系统权限下可能无法读取进程名，此时使用 Unknown
+                }
+
+                var item = $"{processName} {pid} {localAddress} (LISTENING)";
+                if (!deDuplicate.Add(item))
+                {
+                    continue;
+                }
+
+                result.Add(item);
+                if (result.Count >= maxCount)
+                {
+                    break;
+                }
+            }
+
+            return result;
+        }
+        catch
+        {
+            return new List<string>();
+        }
+    }
+
     /// <summary>
     /// 解析主机名或IP地址和端口号为EndPoint对象
     /// </summary>
