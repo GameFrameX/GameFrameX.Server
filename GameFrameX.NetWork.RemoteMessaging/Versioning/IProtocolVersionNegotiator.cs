@@ -19,19 +19,28 @@ namespace GameFrameX.NetWork.RemoteMessaging.Versioning;
 /// <summary>
 /// 协议版本协商器。在客户端与服务端建立连接时协商协议版本，确保兼容性。
 /// </summary>
+/// <remarks>
+/// Protocol version negotiator. Negotiates protocol versions when a client establishes a connection with a server to ensure compatibility.
+/// </remarks>
 public interface IProtocolVersionNegotiator
 {
     /// <summary>
     /// 检查指定消息类型的本地版本是否与远端兼容。
     /// </summary>
-    /// <param name="messageType">消息类型</param>
-    /// <returns>true 兼容；false 不兼容</returns>
+    /// <remarks>
+    /// Checks whether the local version of the specified message type is compatible with the remote side.
+    /// </remarks>
+    /// <param name="messageType">消息类型 / The message type to check</param>
+    /// <returns>true 兼容；false 不兼容 / true if compatible; false if incompatible</returns>
     bool IsCompatible(Type messageType);
 
     /// <summary>
     /// 获取指定消息类型的协议版本信息。
     /// </summary>
-    /// <param name="messageType">消息类型</param>
-    /// <returns>版本字符串；未标注特性时返回 "0.0"</returns>
+    /// <remarks>
+    /// Gets the protocol version information for the specified message type.
+    /// </remarks>
+    /// <param name="messageType">消息类型 / The message type to query</param>
+    /// <returns>版本字符串；未标注特性时返回 "0.0" / The version string; returns "0.0" when no attribute is present</returns>
     string GetVersion(Type messageType);
 }

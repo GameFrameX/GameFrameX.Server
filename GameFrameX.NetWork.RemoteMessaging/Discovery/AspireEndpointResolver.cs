@@ -21,6 +21,9 @@ namespace GameFrameX.NetWork.RemoteMessaging.Discovery;
 /// <summary>
 /// 基于 Aspire 环境变量的服务端点解析器。扫描环境变量中 services__{ServiceName}__tcp 格式的键值。
 /// </summary>
+/// <remarks>
+/// Aspire environment variable-based service endpoint resolver. Scans environment variables for keys in the format services__{ServiceName}__tcp.
+/// </remarks>
 internal sealed class AspireEndpointResolver : IServiceEndpointResolver
 {
     /// <inheritdoc />

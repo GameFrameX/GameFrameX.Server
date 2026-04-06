@@ -20,6 +20,10 @@ namespace GameFrameX.NetWork.RemoteMessaging.Versioning;
 /// 默认协议版本协商器。基于 ProtocolVersionAttribute 检查兼容性。
 /// 规则：Major 版本一致即为兼容。
 /// </summary>
+/// <remarks>
+/// Default protocol version negotiator. Checks compatibility based on ProtocolVersionAttribute.
+/// Rule: matching Major version is considered compatible.
+/// </remarks>
 internal sealed class DefaultProtocolVersionNegotiator : IProtocolVersionNegotiator
 {
     /// <inheritdoc />

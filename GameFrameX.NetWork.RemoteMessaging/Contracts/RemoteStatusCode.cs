@@ -19,65 +19,104 @@ namespace GameFrameX.NetWork.RemoteMessaging.Contracts;
 /// <summary>
 /// 远程调用状态码。统一技术层错误分类，与业务错误码分离。
 /// </summary>
+/// <remarks>
+/// Remote call status codes that provide unified technical-level error classification, separate from business error codes.
+/// </remarks>
 public enum RemoteStatusCode
 {
     /// <summary>
     /// 调用成功
     /// </summary>
+    /// <remarks>
+    /// The call succeeded.
+    /// </remarks>
     Success = 0,
 
     /// <summary>
     /// 超时
     /// </summary>
+    /// <remarks>
+    /// The call timed out.
+    /// </remarks>
     Timeout = 1,
 
     /// <summary>
     /// 连接失败（目标服务不可达）
     /// </summary>
+    /// <remarks>
+    /// Connection failed (target service unreachable).
+    /// </remarks>
     ConnectionFailed = 2,
 
     /// <summary>
     /// 端点解析失败（服务发现未找到目标）
     /// </summary>
+    /// <remarks>
+    /// Endpoint resolution failed (service discovery did not find the target).
+    /// </remarks>
     EndpointNotFound = 3,
 
     /// <summary>
     /// 响应类型不匹配
     /// </summary>
+    /// <remarks>
+    /// Response type mismatch.
+    /// </remarks>
     ResponseTypeMismatch = 4,
 
     /// <summary>
     /// 调用被取消
     /// </summary>
+    /// <remarks>
+    /// The call was cancelled.
+    /// </remarks>
     Cancelled = 5,
 
     /// <summary>
     /// 重试次数耗尽
     /// </summary>
+    /// <remarks>
+    /// Retry attempts exhausted.
+    /// </remarks>
     RetryExhausted = 6,
 
     /// <summary>
     /// 连接已关闭
     /// </summary>
+    /// <remarks>
+    /// The connection has been closed.
+    /// </remarks>
     ConnectionClosed = 7,
 
     /// <summary>
     /// 意外的响应（类型不匹配或协议错误）
     /// </summary>
+    /// <remarks>
+    /// Unexpected response (type mismatch or protocol error).
+    /// </remarks>
     UnexpectedResponse = 8,
 
     /// <summary>
     /// 熔断器已打开（请求被拒绝）
     /// </summary>
+    /// <remarks>
+    /// Circuit breaker is open (request rejected).
+    /// </remarks>
     CircuitOpen = 10,
 
     /// <summary>
     /// 服务不可用（健康评分过低）
     /// </summary>
+    /// <remarks>
+    /// Service unavailable (health score too low).
+    /// </remarks>
     ServiceUnavailable = 11,
 
     /// <summary>
     /// 未知错误
     /// </summary>
+    /// <remarks>
+    /// Unknown error.
+    /// </remarks>
     UnknownError = 99,
 }

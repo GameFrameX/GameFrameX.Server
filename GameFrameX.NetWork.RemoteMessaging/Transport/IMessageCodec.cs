@@ -19,20 +19,29 @@ namespace GameFrameX.NetWork.RemoteMessaging.Transport;
 /// <summary>
 /// 消息编解码器。复用当前自定义包头结构（14 字节包头 + ProtoBuf 载荷）。
 /// </summary>
+/// <remarks>
+/// Message codec. Reuses the current custom packet header structure (14-byte header + ProtoBuf payload).
+/// </remarks>
 public interface IMessageCodec
 {
     /// <summary>
     /// 将消息对象编码为二进制包。
     /// </summary>
-    /// <param name="message">消息对象</param>
-    /// <returns>编码后的二进制数据</returns>
+    /// <remarks>
+    /// Encodes a message object into a binary packet.
+    /// </remarks>
+    /// <param name="message">消息对象 / The message object to encode</param>
+    /// <returns>编码后的二进制数据 / The encoded binary data</returns>
     byte[] Encode(MessageObject message);
 
     /// <summary>
     /// 从网络流中读取并解码一条消息。
     /// </summary>
-    /// <param name="stream">网络流</param>
-    /// <param name="cancellationToken">取消令牌</param>
-    /// <returns>解码后的消息对象；连接关闭时返回 null</returns>
+    /// <remarks>
+    /// Reads and decodes a message from the network stream.
+    /// </remarks>
+    /// <param name="stream">网络流 / The network stream to read from</param>
+    /// <param name="cancellationToken">取消令牌 / Cancellation token</param>
+    /// <returns>解码后的消息对象；连接关闭时返回 null / The decoded message object, or null if the connection was closed</returns>
     Task<MessageObject> DecodeAsync(Stream stream, CancellationToken cancellationToken);
 }

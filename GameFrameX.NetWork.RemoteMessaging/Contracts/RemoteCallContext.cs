@@ -21,41 +21,65 @@ namespace GameFrameX.NetWork.RemoteMessaging.Contracts;
 /// <summary>
 /// 远程调用上下文。携带超时、重试策略、追踪信息等元数据。
 /// </summary>
+/// <remarks>
+/// Remote call context that carries metadata such as timeout, retry policy, and tracing information.
+/// </remarks>
 public sealed class RemoteCallContext
 {
     /// <summary>
     /// 默认超时毫秒数
     /// </summary>
+    /// <remarks>
+    /// Default timeout in milliseconds.
+    /// </remarks>
     public const int DefaultTimeoutMs = 5000;
 
     /// <summary>
     /// 目标服务名
     /// </summary>
+    /// <remarks>
+    /// Target service name.
+    /// </remarks>
     public string ServiceName { get; init; }
 
     /// <summary>
     /// 超时毫秒数
     /// </summary>
+    /// <remarks>
+    /// Timeout duration in milliseconds.
+    /// </remarks>
     public int TimeoutMs { get; init; } = DefaultTimeoutMs;
 
     /// <summary>
     /// 取消令牌
     /// </summary>
+    /// <remarks>
+    /// Cancellation token for cancelling the remote call.
+    /// </remarks>
     public CancellationToken CancellationToken { get; init; } = CancellationToken.None;
 
     /// <summary>
     /// 是否允许重试（仅幂等接口应设为 true）
     /// </summary>
+    /// <remarks>
+    /// Whether retry is allowed (should only be set to true for idempotent interfaces).
+    /// </remarks>
     public bool AllowRetry { get; init; }
 
     /// <summary>
     /// 最大重试次数（当 AllowRetry 为 true 时生效）
     /// </summary>
+    /// <remarks>
+    /// Maximum retry count (effective when AllowRetry is true).
+    /// </remarks>
     public int MaxRetryCount { get; init; } = 2;
 
     /// <summary>
     /// 追踪 ID（跨服务链路追踪用）
     /// </summary>
+    /// <remarks>
+    /// Trace ID used for cross-service distributed tracing.
+    /// </remarks>
     public string TraceId { get; set; }
 
     /// <summary>
@@ -66,10 +90,13 @@ public sealed class RemoteCallContext
     /// <summary>
     /// 从基础参数快速创建上下文
     /// </summary>
-    /// <param name="serviceName">服务名</param>
-    /// <param name="timeoutMs">超时毫秒</param>
-    /// <param name="cancellationToken">取消令牌</param>
-    /// <returns>调用上下文</returns>
+    /// <remarks>
+    /// Creates a call context from basic parameters.
+    /// </remarks>
+    /// <param name="serviceName">服务名 / Service name</param>
+    /// <param name="timeoutMs">超时毫秒 / Timeout in milliseconds</param>
+    /// <param name="cancellationToken">取消令牌 / Cancellation token</param>
+    /// <returns>调用上下文 / The created call context</returns>
     public static RemoteCallContext Create(string serviceName, int timeoutMs = DefaultTimeoutMs, CancellationToken cancellationToken = default)
     {
         return new RemoteCallContext

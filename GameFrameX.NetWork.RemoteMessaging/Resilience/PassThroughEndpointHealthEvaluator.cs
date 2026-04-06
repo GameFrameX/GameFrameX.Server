@@ -19,6 +19,10 @@ namespace GameFrameX.NetWork.RemoteMessaging.Resilience;
 /// <summary>
 /// 透传健康评估器。用于关闭统一能力时保持老行为：健康分始终满分。
 /// </summary>
+/// <remarks>
+/// Pass-through health evaluator. Used when the unified resilience capability is disabled to preserve legacy behavior:
+/// always returns a perfect health score.
+/// </remarks>
 internal sealed class PassThroughEndpointHealthEvaluator : IEndpointHealthEvaluator
 {
     /// <inheritdoc />

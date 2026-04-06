@@ -20,6 +20,10 @@ namespace GameFrameX.NetWork.RemoteMessaging;
 /// 远程消息客户端持有者。提供全局静态访问入口，供业务层（如 ComponentAgent）使用。
 /// 在启动时初始化一次，后续通过 <see cref="Client" /> 属性访问。
 /// </summary>
+/// <remarks>
+/// Remote message client holder. Provides a global static access point for the business layer (e.g. ComponentAgent).
+/// Initialized once at startup, then accessed via the <see cref="Client" /> property.
+/// </remarks>
 public static class RemoteMessageClientHolder
 {
     private static readonly Lazy<IRemoteMessageClient> LazyClient = new(() =>
@@ -31,6 +35,7 @@ public static class RemoteMessageClientHolder
     /// <summary>
     /// 获取全局统一远程消息客户端实例。
     /// </summary>
+    /// <value>全局远程消息客户端实例 / The global remote message client instance</value>
     public static IRemoteMessageClient Client
     {
         get { return LazyClient.Value; }

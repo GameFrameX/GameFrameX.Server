@@ -23,6 +23,11 @@ namespace GameFrameX.NetWork.RemoteMessaging.Observability;
 /// 基于 System.Diagnostics.Metrics 的远程调用指标采集器。
 /// 对接 OpenTelemetry，提供 QPS、成功率、超时率、重试率、P95/P99 耗时分布。
 /// </summary>
+/// <remarks>
+/// Remote call metrics collector based on System.Diagnostics.Metrics.
+/// Integrates with OpenTelemetry to provide QPS, success rate, timeout rate, retry rate,
+/// and P95/P99 latency distribution.
+/// </remarks>
 internal sealed class DiagnosticsRemoteCallMetrics : IRemoteCallMetrics
 {
     private const string MeterName = "GameFrameX.RemoteMessaging";

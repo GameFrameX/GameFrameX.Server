@@ -19,21 +19,30 @@ namespace GameFrameX.NetWork.RemoteMessaging.Resilience;
 /// <summary>
 /// 重试策略接口。仅对幂等接口进行有限重试。
 /// </summary>
+/// <remarks>
+/// Retry policy interface. Only performs limited retries for idempotent operations.
+/// </remarks>
 public interface IRetryPolicy
 {
     /// <summary>
     /// 判断指定调用是否允许重试。
     /// </summary>
-    /// <param name="context">调用上下文</param>
-    /// <param name="statusCode">上一次调用的状态码</param>
-    /// <param name="attemptCount">已重试次数</param>
-    /// <returns>true 允许重试；false 不允许</returns>
+    /// <remarks>
+    /// Determines whether the specified call is allowed to retry.
+    /// </remarks>
+    /// <param name="context">调用上下文 / Call context</param>
+    /// <param name="statusCode">上一次调用的状态码 / Status code from the last invocation</param>
+    /// <param name="attemptCount">已重试次数 / Number of retry attempts already made</param>
+    /// <returns>true 允许重试；false 不允许 / true if retry is allowed; false otherwise</returns>
     bool ShouldRetry(RemoteCallContext context, RemoteStatusCode statusCode, int attemptCount);
 
     /// <summary>
     /// 计算下一次重试前的等待时间（毫秒）。
     /// </summary>
-    /// <param name="attemptCount">已重试次数（从 1 开始）</param>
-    /// <returns>等待毫秒数</returns>
+    /// <remarks>
+    /// Computes the delay in milliseconds before the next retry attempt.
+    /// </remarks>
+    /// <param name="attemptCount">已重试次数（从 1 开始） / Number of retry attempts (starting from 1)</param>
+    /// <returns>等待毫秒数 / Delay in milliseconds</returns>
     int GetRetryDelayMs(int attemptCount);
 }

@@ -20,31 +20,47 @@ namespace GameFrameX.NetWork.RemoteMessaging.Resilience;
 /// 熔断器接口。按服务维度管理熔断状态，防止故障雪崩。
 /// 三态模型：Closed（正常放行）→ Open（拒绝请求）→ HalfOpen（允许探测）。
 /// </summary>
+/// <remarks>
+/// Circuit breaker interface. Manages circuit state per service to prevent cascading failures.
+/// Three-state model: Closed (pass-through) → Open (reject requests) → HalfOpen (allow probing).
+/// </remarks>
 public interface ICircuitBreaker
 {
     /// <summary>
     /// 检查指定服务是否允许请求通过。
     /// </summary>
-    /// <param name="serviceName">服务名</param>
-    /// <returns>true 允许通过；false 被熔断拒绝</returns>
+    /// <remarks>
+    /// Checks whether the specified service is allowed to pass a request.
+    /// </remarks>
+    /// <param name="serviceName">服务名 / Service name</param>
+    /// <returns>true 允许通过；false 被熔断拒绝 / true if allowed; false if rejected by circuit breaker</returns>
     bool IsAllowed(string serviceName);
 
     /// <summary>
     /// 记录一次成功调用。在 HalfOpen 状态下成功会关闭熔断器。
     /// </summary>
-    /// <param name="serviceName">服务名</param>
+    /// <remarks>
+    /// Records a successful invocation. A success in HalfOpen state closes the circuit breaker.
+    /// </remarks>
+    /// <param name="serviceName">服务名 / Service name</param>
     void RecordSuccess(string serviceName);
 
     /// <summary>
     /// 记录一次失败调用。连续失败达到阈值会触发熔断。
     /// </summary>
-    /// <param name="serviceName">服务名</param>
+    /// <remarks>
+    /// Records a failed invocation. Consecutive failures reaching the threshold trigger the circuit breaker.
+    /// </remarks>
+    /// <param name="serviceName">服务名 / Service name</param>
     void RecordFailure(string serviceName);
 
     /// <summary>
     /// 获取指定服务的熔断器状态。
     /// </summary>
-    /// <param name="serviceName">服务名</param>
-    /// <returns>当前熔断状态</returns>
+    /// <remarks>
+    /// Gets the circuit breaker state for the specified service.
+    /// </remarks>
+    /// <param name="serviceName">服务名 / Service name</param>
+    /// <returns>当前熔断状态 / Current circuit state</returns>
     CircuitState GetState(string serviceName);
 }

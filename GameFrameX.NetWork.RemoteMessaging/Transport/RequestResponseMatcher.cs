@@ -21,6 +21,9 @@ namespace GameFrameX.NetWork.RemoteMessaging.Transport;
 /// <summary>
 /// 请求-响应匹配器。基于 UniqueId 管理请求表，支持超时清理和完成回调。
 /// </summary>
+/// <remarks>
+/// Request-response matcher. Manages a request table based on UniqueId, with support for timeout cleanup and completion callbacks.
+/// </remarks>
 internal sealed class RequestResponseMatcher : IRequestResponseMatcher
 {
     private readonly ConcurrentDictionary<int, PendingEntry> _pendingRequests = new();

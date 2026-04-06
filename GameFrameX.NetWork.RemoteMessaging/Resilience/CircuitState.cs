@@ -19,20 +19,32 @@ namespace GameFrameX.NetWork.RemoteMessaging.Resilience;
 /// <summary>
 /// 熔断器状态
 /// </summary>
+/// <remarks>
+/// Circuit breaker states.
+/// </remarks>
 public enum CircuitState
 {
     /// <summary>
     /// 关闭（正常放行）
     /// </summary>
+    /// <remarks>
+    /// Closed (requests pass through normally).
+    /// </remarks>
     Closed,
 
     /// <summary>
     /// 打开（拒绝请求）
     /// </summary>
+    /// <remarks>
+    /// Open (requests are rejected).
+    /// </remarks>
     Open,
 
     /// <summary>
     /// 半开（允许少量探测请求）
     /// </summary>
+    /// <remarks>
+    /// Half-open (a small number of probing requests are allowed).
+    /// </remarks>
     HalfOpen,
 }

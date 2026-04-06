@@ -19,6 +19,10 @@ namespace GameFrameX.NetWork.RemoteMessaging.Observability;
 /// <summary>
 /// 指标采集拦截器。在调用完成后自动记录 QPS、成功率、耗时等指标。
 /// </summary>
+/// <remarks>
+/// Metrics collection interceptor. Automatically records QPS, success rate, latency,
+/// and other metrics after a call completes.
+/// </remarks>
 internal sealed class MetricsRemoteCallInterceptor : IRemoteCallInterceptor
 {
     private readonly IRemoteCallMetrics _metrics;

@@ -19,25 +19,38 @@ namespace GameFrameX.NetWork.RemoteMessaging.Resilience;
 /// <summary>
 /// 端点健康评估器。结合 Aspire 健康状态对目标服务进行可用性评分。
 /// </summary>
+/// <remarks>
+/// Endpoint health evaluator. Computes an availability score for target services
+/// based on Aspire health status.
+/// </remarks>
 public interface IEndpointHealthEvaluator
 {
     /// <summary>
     /// 获取指定服务的健康评分（0-100）。
     /// </summary>
-    /// <param name="serviceName">目标服务名</param>
-    /// <returns>健康评分：100=完全健康，0=完全不可用</returns>
+    /// <remarks>
+    /// Gets the health score (0-100) for the specified service.
+    /// </remarks>
+    /// <param name="serviceName">目标服务名 / Target service name</param>
+    /// <returns>健康评分：100=完全健康，0=完全不可用 / Health score: 100 = fully healthy, 0 = completely unavailable</returns>
     int GetHealthScore(string serviceName);
 
     /// <summary>
     /// 标记指定服务为不可用。
     /// </summary>
-    /// <param name="serviceName">服务名</param>
-    /// <param name="reason">不可用原因</param>
+    /// <remarks>
+    /// Marks the specified service as unavailable.
+    /// </remarks>
+    /// <param name="serviceName">服务名 / Service name</param>
+    /// <param name="reason">不可用原因 / Reason for unavailability</param>
     void MarkUnavailable(string serviceName, string reason);
 
     /// <summary>
     /// 标记指定服务为健康。
     /// </summary>
-    /// <param name="serviceName">服务名</param>
+    /// <remarks>
+    /// Marks the specified service as healthy.
+    /// </remarks>
+    /// <param name="serviceName">服务名 / Service name</param>
     void MarkHealthy(string serviceName);
 }

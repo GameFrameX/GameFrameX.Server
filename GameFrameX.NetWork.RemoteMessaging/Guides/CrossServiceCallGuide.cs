@@ -134,6 +134,9 @@ namespace GameFrameX.NetWork.RemoteMessaging.Guides;
 /// <summary>
 /// 跨服务调用代码准入规则标记。在 Code Review 时检查此规则的遵守情况。
 /// </summary>
+/// <remarks>
+/// Cross-service call code admission rule marker. Checked during code review for compliance.
+/// </remarks>
 internal static class CrossServiceCallRules
 {
     // 本文件作为代码规范的声明点，实际规则见上方注释。

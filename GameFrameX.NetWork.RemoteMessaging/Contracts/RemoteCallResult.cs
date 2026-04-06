@@ -19,42 +19,66 @@ namespace GameFrameX.NetWork.RemoteMessaging.Contracts;
 /// <summary>
 /// 远程调用结果。统一包装响应数据和状态码，替代裸 null 返回。
 /// </summary>
-/// <typeparam name="T">响应消息类型</typeparam>
-public sealed class RemoteCallResult<T> where T : class
+/// <remarks>
+/// Remote call result that uniformly wraps response data and status code, replacing raw null returns.
+/// </remarks>
+/// <typeparam name="T">响应消息类型 / Response message type</typeparam>
+public sealed class RemoteCallResult<T> where T : class, IResponseMessage
 {
     /// <summary>
     /// 调用状态码
     /// </summary>
+    /// <remarks>
+    /// The status code of the remote call.
+    /// </remarks>
     public RemoteStatusCode StatusCode { get; init; }
 
     /// <summary>
     /// 响应对象（仅在 StatusCode == Success 时非 null）
     /// </summary>
+    /// <remarks>
+    /// The response object (non-null only when StatusCode equals Success).
+    /// </remarks>
     public T Response { get; init; }
 
     /// <summary>
     /// 错误描述
     /// </summary>
+    /// <remarks>
+    /// Error description.
+    /// </remarks>
     public string ErrorMessage { get; init; }
 
     /// <summary>
     /// 调用耗时毫秒数
     /// </summary>
+    /// <remarks>
+    /// Elapsed time of the call in milliseconds.
+    /// </remarks>
     public long ElapsedMs { get; init; }
 
     /// <summary>
     /// 重试次数
     /// </summary>
+    /// <remarks>
+    /// Number of retries attempted.
+    /// </remarks>
     public int RetryCount { get; init; }
 
     /// <summary>
     /// 追踪 ID
     /// </summary>
+    /// <remarks>
+    /// Trace ID for distributed tracing.
+    /// </remarks>
     public string TraceId { get; init; }
 
     /// <summary>
     /// 是否调用成功
     /// </summary>
+    /// <remarks>
+    /// Indicates whether the call was successful.
+    /// </remarks>
     public bool IsSuccess
     {
         get { return StatusCode == RemoteStatusCode.Success; }
@@ -63,6 +87,14 @@ public sealed class RemoteCallResult<T> where T : class
     /// <summary>
     /// 创建成功结果
     /// </summary>
+    /// <remarks>
+    /// Creates a successful result.
+    /// </remarks>
+    /// <param name="response">响应对象 / The response object</param>
+    /// <param name="elapsedMs">调用耗时毫秒数 / Elapsed time in milliseconds</param>
+    /// <param name="traceId">追踪 ID / Trace ID for distributed tracing</param>
+    /// <param name="retryCount">重试次数 / Number of retries attempted</param>
+    /// <returns>成功的远程调用结果 / A successful remote call result</returns>
     public static RemoteCallResult<T> Ok(T response, long elapsedMs, string traceId = null, int retryCount = 0)
     {
         return new RemoteCallResult<T>
@@ -78,6 +110,14 @@ public sealed class RemoteCallResult<T> where T : class
     /// <summary>
     /// 创建失败结果
     /// </summary>
+    /// <remarks>
+    /// Creates a failure result.
+    /// </remarks>
+    /// <param name="statusCode">失败状态码 / The failure status code</param>
+    /// <param name="errorMessage">错误描述 / Error description</param>
+    /// <param name="elapsedMs">调用耗时毫秒数 / Elapsed time in milliseconds</param>
+    /// <param name="traceId">追踪 ID / Trace ID for distributed tracing</param>
+    /// <returns>失败的远程调用结果 / A failed remote call result</returns>
     public static RemoteCallResult<T> Fail(RemoteStatusCode statusCode, string errorMessage, long elapsedMs = 0, string traceId = null)
     {
         return new RemoteCallResult<T>

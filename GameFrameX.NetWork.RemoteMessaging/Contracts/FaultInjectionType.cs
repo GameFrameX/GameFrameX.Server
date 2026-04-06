@@ -19,25 +19,40 @@ namespace GameFrameX.NetWork.RemoteMessaging.Contracts;
 /// <summary>
 /// 故障注入类型
 /// </summary>
+/// <remarks>
+/// Fault injection types used for resilience testing.
+/// </remarks>
 public enum FaultInjectionType
 {
     /// <summary>
     /// 无故障
     /// </summary>
+    /// <remarks>
+    /// No fault injection.
+    /// </remarks>
     None,
 
     /// <summary>
     /// 超时（延迟响应）
     /// </summary>
+    /// <remarks>
+    /// Timeout (delayed response).
+    /// </remarks>
     Timeout,
 
     /// <summary>
     /// 连接断开
     /// </summary>
+    /// <remarks>
+    /// Connection drop.
+    /// </remarks>
     ConnectionDrop,
 
     /// <summary>
     /// 慢响应（增加延迟但不超时）
     /// </summary>
+    /// <remarks>
+    /// Slow response (added latency without timeout).
+    /// </remarks>
     SlowResponse,
 }

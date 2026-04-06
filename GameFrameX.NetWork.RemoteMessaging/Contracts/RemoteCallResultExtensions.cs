@@ -23,13 +23,23 @@ namespace GameFrameX.NetWork.RemoteMessaging.Contracts;
 /// - 不可重试（NonRetryable）：端点未找到、取消、响应不匹配、熔断已打开 → 立即失败
 /// - 条件重试（Conditional）：未知错误 → 根据异常类型决定
 /// </summary>
+/// <remarks>
+/// Remote call error semantics catalog. Defines unified mapping rules for technical errors, business errors, and retry semantics.
+/// Retry semantics:
+/// - Retryable: timeout, connection failure, circuit-breaker half-open probe -> allow limited retries
+/// - NonRetryable: endpoint not found, cancelled, response mismatch, circuit open -> fail immediately
+/// - Conditional: unknown error -> decide based on exception type
+/// </remarks>
 public static class RemoteErrorCatalog
 {
     /// <summary>
     /// 判断指定状态码是否允许重试。
     /// </summary>
-    /// <param name="statusCode">技术状态码</param>
-    /// <returns>重试语义</returns>
+    /// <remarks>
+    /// Determines the retry semantics for the specified status code.
+    /// </remarks>
+    /// <param name="statusCode">技术状态码 / Technical status code</param>
+    /// <returns>重试语义 / The retry semantics</returns>
     public static RetrySemantics GetRetrySemantics(this RemoteStatusCode statusCode)
     {
         switch (statusCode)
@@ -58,8 +68,11 @@ public static class RemoteErrorCatalog
     /// <summary>
     /// 获取状态码的可读描述。
     /// </summary>
-    /// <param name="statusCode">技术状态码</param>
-    /// <returns>可读描述</returns>
+    /// <remarks>
+    /// Gets a human-readable description for the status code.
+    /// </remarks>
+    /// <param name="statusCode">技术状态码 / Technical status code</param>
+    /// <returns>可读描述 / Human-readable description</returns>
     public static string GetDescription(this RemoteStatusCode statusCode)
     {
         switch (statusCode)
@@ -96,6 +109,9 @@ public static class RemoteErrorCatalog
     /// <summary>
     /// 判断状态码是否表示调用成功。
     /// </summary>
+    /// <remarks>
+    /// Determines whether the status code indicates a successful call.
+    /// </remarks>
     public static bool IsSuccess(this RemoteStatusCode statusCode)
     {
         return statusCode == RemoteStatusCode.Success;
@@ -104,6 +120,9 @@ public static class RemoteErrorCatalog
     /// <summary>
     /// 判断状态码是否为可恢复的临时错误（允许重试）。
     /// </summary>
+    /// <remarks>
+    /// Determines whether the status code represents a recoverable transient error (eligible for retry).
+    /// </remarks>
     public static bool IsTransient(this RemoteStatusCode statusCode)
     {
         return statusCode.GetRetrySemantics() == RetrySemantics.Retryable;

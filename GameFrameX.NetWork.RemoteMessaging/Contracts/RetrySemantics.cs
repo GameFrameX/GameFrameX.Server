@@ -32,25 +32,40 @@ namespace GameFrameX.NetWork.RemoteMessaging.Contracts;
 /// <summary>
 /// 重试语义
 /// </summary>
+/// <remarks>
+/// Retry semantics that classify whether a failed remote call can be retried.
+/// </remarks>
 public enum RetrySemantics
 {
     /// <summary>
     /// 无需重试（成功状态）
     /// </summary>
+    /// <remarks>
+    /// No retry needed (success state).
+    /// </remarks>
     None,
 
     /// <summary>
     /// 可重试（临时性故障）
     /// </summary>
+    /// <remarks>
+    /// Retryable (transient failure).
+    /// </remarks>
     Retryable,
 
     /// <summary>
     /// 不可重试（永久性故障）
     /// </summary>
+    /// <remarks>
+    /// Non-retryable (permanent failure).
+    /// </remarks>
     NonRetryable,
 
     /// <summary>
     /// 条件重试（需要根据上下文判断）
     /// </summary>
+    /// <remarks>
+    /// Conditional retry (decision depends on context).
+    /// </remarks>
     Conditional,
 }

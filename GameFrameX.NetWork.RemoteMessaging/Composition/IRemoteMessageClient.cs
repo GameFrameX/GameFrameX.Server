@@ -19,17 +19,23 @@ namespace GameFrameX.NetWork.RemoteMessaging.Contracts;
 /// <summary>
 /// 统一远程消息调用客户端。屏蔽底层连接、编解码与请求匹配细节。
 /// </summary>
+/// <remarks>
+/// Unified remote message call client. Abstracts away underlying connection management, encoding/decoding, and request-response matching details.
+/// </remarks>
 public interface IRemoteMessageClient
 {
     /// <summary>
     /// 发送请求并等待响应（简化版本）。
     /// </summary>
-    /// <typeparam name="TResponse">响应消息类型</typeparam>
-    /// <param name="serviceName">目标服务名</param>
-    /// <param name="requestMessage">请求消息对象</param>
-    /// <param name="timeoutMs">超时毫秒数</param>
-    /// <param name="cancellationToken">取消令牌</param>
-    /// <returns>响应消息对象；超时或失败时返回 null</returns>
+    /// <remarks>
+    /// Sends a request and waits for a response (simplified overload).
+    /// </remarks>
+    /// <typeparam name="TResponse">响应消息类型 / The response message type</typeparam>
+    /// <param name="serviceName">目标服务名 / The target service name</param>
+    /// <param name="requestMessage">请求消息对象 / The request message object</param>
+    /// <param name="timeoutMs">超时毫秒数 / The timeout duration in milliseconds</param>
+    /// <param name="cancellationToken">取消令牌 / The cancellation token</param>
+    /// <returns>响应消息对象；超时或失败时返回 null / The response message object; returns null on timeout or failure</returns>
     Task<TResponse> CallAsync<TResponse>(
         string serviceName,
         MessageObject requestMessage,
@@ -40,12 +46,14 @@ public interface IRemoteMessageClient
     /// <summary>
     /// 发送请求并返回结构化结果（包含状态码、耗时、重试信息）。
     /// </summary>
-    /// <typeparam name="TResponse">响应消息类型</typeparam>
-    /// <param name="context">调用上下文（含超时、重试策略、追踪信息）</param>
-    /// <param name="requestMessage">请求消息对象</param>
-    /// <returns>结构化调用结果</returns>
+    /// <remarks>
+    /// Sends a request and returns a structured result containing status code, elapsed time, and retry information.
+    /// </remarks>
+    /// <typeparam name="TResponse">响应消息类型 / The response message type</typeparam>
+    /// <param name="context">调用上下文（含超时、重试策略、追踪信息） / The call context (including timeout, retry strategy, and tracing info)</param>
+    /// <param name="requestMessage">请求消息对象 / The request message object</param>
+    /// <returns>结构化调用结果 / The structured call result</returns>
     Task<RemoteCallResult<TResponse>> CallWithResultAsync<TResponse>(
         RemoteCallContext context,
         MessageObject requestMessage)
-        where TResponse : class;
 }

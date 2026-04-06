@@ -19,6 +19,10 @@ namespace GameFrameX.NetWork.RemoteMessaging.Resilience;
 /// <summary>
 /// 透传熔断器。用于关闭统一能力时保持老行为：始终放行，不参与状态管理。
 /// </summary>
+/// <remarks>
+/// Pass-through circuit breaker. Used when the unified resilience capability is disabled to preserve legacy behavior:
+/// always allows requests through without participating in state management.
+/// </remarks>
 internal sealed class PassThroughCircuitBreaker : ICircuitBreaker
 {
     /// <inheritdoc />

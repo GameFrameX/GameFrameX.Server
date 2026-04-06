@@ -21,6 +21,12 @@ namespace GameFrameX.NetWork.RemoteMessaging.Observability;
 /// 通过环境变量 RemoteMessaging__FaultInjection__Type 和 RemoteMessaging__FaultInjection__DelayMs 控制。
 /// 仅在开发环境生效。
 /// </summary>
+/// <remarks>
+/// Fault injection interceptor. Used for drills and testing to simulate timeout, connection drop,
+/// slow response, and other faults. Controlled via environment variables
+/// RemoteMessaging__FaultInjection__Type and RemoteMessaging__FaultInjection__DelayMs.
+/// Only effective in development environments.
+/// </remarks>
 internal sealed class FaultInjectionRemoteCallInterceptor : IRemoteCallInterceptor
 {
     private readonly int _delayMs;

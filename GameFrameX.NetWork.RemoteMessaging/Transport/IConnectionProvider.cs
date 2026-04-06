@@ -19,19 +19,28 @@ namespace GameFrameX.NetWork.RemoteMessaging.Transport;
 /// <summary>
 /// 连接提供器。负责 TCP 长连接的创建、复用、重连和释放。
 /// </summary>
+/// <remarks>
+/// Connection provider. Responsible for creating, reusing, reconnecting, and releasing TCP persistent connections.
+/// </remarks>
 public interface IConnectionProvider : IDisposable
 {
     /// <summary>
     /// 获取或创建到指定目标的可用网络流。
     /// </summary>
-    /// <param name="host">目标主机</param>
-    /// <param name="port">目标端口</param>
-    /// <param name="cancellationToken">取消令牌</param>
-    /// <returns>可用的网络流</returns>
+    /// <remarks>
+    /// Gets an existing or creates a new usable network stream to the specified target.
+    /// </remarks>
+    /// <param name="host">目标主机 / Target host</param>
+    /// <param name="port">目标端口 / Target port</param>
+    /// <param name="cancellationToken">取消令牌 / Cancellation token</param>
+    /// <returns>可用的网络流 / An available network stream</returns>
     Task<Stream> GetOrCreateStreamAsync(string host, int port, CancellationToken cancellationToken = default);
 
     /// <summary>
     /// 标记当前连接为失效，下次调用时重建。
     /// </summary>
+    /// <remarks>
+    /// Marks the current connection as invalid so it will be re-established on the next call.
+    /// </remarks>
     void Invalidate();
 }

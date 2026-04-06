@@ -22,6 +22,9 @@ namespace GameFrameX.NetWork.RemoteMessaging.Transport;
 /// <summary>
 /// 默认消息编解码器。复用自定义包头结构：4字节总长 + 1字节操作类型 + 1字节压缩标记 + 4字节唯一ID + 4字节消息ID + ProtoBuf 载荷。
 /// </summary>
+/// <remarks>
+/// Default message codec. Reuses the custom packet header structure: 4-byte total length + 1-byte operation type + 1-byte compression flag + 4-byte unique ID + 4-byte message ID + ProtoBuf payload.
+/// </remarks>
 internal sealed class DefaultMessageCodec : IMessageCodec
 {
     /// <summary>
@@ -97,6 +100,9 @@ internal sealed class DefaultMessageCodec : IMessageCodec
     /// <summary>
     /// 精确读取指定长度的数据。
     /// </summary>
+    /// <remarks>
+    /// Reads exactly the specified number of bytes from the stream.
+    /// </remarks>
     private static async Task ReadExactAsync(Stream stream, byte[] buffer, CancellationToken cancellationToken)
     {
         var offset = 0;

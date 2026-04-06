@@ -19,6 +19,9 @@ namespace GameFrameX.NetWork.RemoteMessaging.Resilience;
 /// <summary>
 /// 默认重试策略。仅对标记为幂等的调用进行有限指数退避重试。
 /// </summary>
+/// <remarks>
+/// Default retry policy. Only performs limited exponential backoff retries for calls marked as idempotent.
+/// </remarks>
 internal sealed class DefaultRetryPolicy : IRetryPolicy
 {
     private readonly int _baseDelayMs;
@@ -27,8 +30,11 @@ internal sealed class DefaultRetryPolicy : IRetryPolicy
     /// <summary>
     /// 初始化默认重试策略。
     /// </summary>
-    /// <param name="maxRetryCount">最大重试次数（默认 2）</param>
-    /// <param name="baseDelayMs">基础延迟毫秒数（默认 200）</param>
+    /// <remarks>
+    /// Initializes the default retry policy.
+    /// </remarks>
+    /// <param name="maxRetryCount">最大重试次数（默认 2） / Maximum retry count (default 2)</param>
+    /// <param name="baseDelayMs">基础延迟毫秒数（默认 200） / Base delay in milliseconds (default 200)</param>
     public DefaultRetryPolicy(int maxRetryCount = 2, int baseDelayMs = 200)
     {
         _maxRetryCount = maxRetryCount;

@@ -21,6 +21,9 @@ namespace GameFrameX.NetWork.RemoteMessaging.Resilience;
 /// <summary>
 /// 默认端点健康评估器。基于连续失败次数和恢复时间计算健康评分。
 /// </summary>
+/// <remarks>
+/// Default endpoint health evaluator. Computes health scores based on consecutive failure count and recovery time.
+/// </remarks>
 internal sealed class DefaultEndpointHealthEvaluator : IEndpointHealthEvaluator
 {
     private readonly ConcurrentDictionary<string, HealthTracker> _trackers = new();

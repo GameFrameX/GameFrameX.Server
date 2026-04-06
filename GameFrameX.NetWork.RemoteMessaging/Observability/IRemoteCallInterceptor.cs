@@ -19,30 +19,42 @@ namespace GameFrameX.NetWork.RemoteMessaging.Observability;
 /// <summary>
 /// 远程调用拦截器。支持请求前后和异常时的统一处理。
 /// </summary>
+/// <remarks>
+/// Remote call interceptor. Provides unified handling for pre-request, post-response, and exception scenarios.
+/// </remarks>
 public interface IRemoteCallInterceptor
 {
     /// <summary>
     /// 请求发送前调用。
     /// </summary>
-    /// <param name="context">调用上下文</param>
-    /// <param name="request">请求消息</param>
+    /// <remarks>
+    /// Called before the request is sent.
+    /// </remarks>
+    /// <param name="context">调用上下文 / The remote call context</param>
+    /// <param name="request">请求消息 / The request message</param>
     Task OnBeforeCallAsync(RemoteCallContext context, MessageObject request);
 
     /// <summary>
     /// 请求成功后调用。
     /// </summary>
-    /// <param name="context">调用上下文</param>
-    /// <param name="request">请求消息</param>
-    /// <param name="response">响应消息（可能为 null）</param>
-    /// <param name="elapsedMs">耗时毫秒数</param>
+    /// <remarks>
+    /// Called after the request completes successfully.
+    /// </remarks>
+    /// <param name="context">调用上下文 / The remote call context</param>
+    /// <param name="request">请求消息 / The request message</param>
+    /// <param name="response">响应消息（可能为 null） / The response message (may be null)</param>
+    /// <param name="elapsedMs">耗时毫秒数 / The elapsed time in milliseconds</param>
     Task OnAfterCallAsync(RemoteCallContext context, MessageObject request, MessageObject response, long elapsedMs);
 
     /// <summary>
     /// 请求异常时调用。
     /// </summary>
-    /// <param name="context">调用上下文</param>
-    /// <param name="request">请求消息</param>
-    /// <param name="exception">异常对象</param>
-    /// <param name="elapsedMs">耗时毫秒数</param>
+    /// <remarks>
+    /// Called when the request encounters an exception.
+    /// </remarks>
+    /// <param name="context">调用上下文 / The remote call context</param>
+    /// <param name="request">请求消息 / The request message</param>
+    /// <param name="exception">异常对象 / The exception that occurred</param>
+    /// <param name="elapsedMs">耗时毫秒数 / The elapsed time in milliseconds</param>
     Task OnExceptionAsync(RemoteCallContext context, MessageObject request, Exception exception, long elapsedMs);
 }

@@ -19,33 +19,48 @@ namespace GameFrameX.NetWork.RemoteMessaging.Transport;
 /// <summary>
 /// 请求-响应匹配器。统一管理 UniqueId 生命周期与响应匹配。
 /// </summary>
+/// <remarks>
+/// Request-response matcher. Manages UniqueId lifecycle and response matching in a unified manner.
+/// </remarks>
 public interface IRequestResponseMatcher
 {
     /// <summary>
     /// 注册一个待处理请求，返回分配的唯一 ID。
     /// </summary>
-    /// <param name="timeoutMs">请求超时毫秒数</param>
-    /// <returns>请求唯一 ID</returns>
+    /// <remarks>
+    /// Registers a pending request and returns the assigned unique ID.
+    /// </remarks>
+    /// <param name="timeoutMs">请求超时毫秒数 / Request timeout in milliseconds</param>
+    /// <returns>请求唯一 ID / The unique ID assigned to the request</returns>
     int RegisterPendingRequest(int timeoutMs);
 
     /// <summary>
     /// 等待指定请求的响应。
     /// </summary>
-    /// <param name="uniqueId">请求唯一 ID</param>
-    /// <param name="cancellationToken">取消令牌</param>
-    /// <returns>响应消息对象</returns>
+    /// <remarks>
+    /// Asynchronously waits for the response of the specified request.
+    /// </remarks>
+    /// <param name="uniqueId">请求唯一 ID / The unique ID of the request</param>
+    /// <param name="cancellationToken">取消令牌 / Cancellation token</param>
+    /// <returns>响应消息对象 / The response message object</returns>
     Task<MessageObject> WaitResponseAsync(int uniqueId, CancellationToken cancellationToken);
 
     /// <summary>
     /// 收到响应时完成对应请求。
     /// </summary>
-    /// <param name="uniqueId">请求唯一 ID</param>
-    /// <param name="response">响应消息</param>
-    /// <returns>是否成功匹配到等待中的请求</returns>
+    /// <remarks>
+    /// Completes the corresponding pending request when a response is received.
+    /// </remarks>
+    /// <param name="uniqueId">请求唯一 ID / The unique ID of the request</param>
+    /// <param name="response">响应消息 / The response message</param>
+    /// <returns>是否成功匹配到等待中的请求 / Whether a pending request was successfully matched</returns>
     bool TryComplete(int uniqueId, MessageObject response);
 
     /// <summary>
     /// 清理已超时的待处理请求。
     /// </summary>
+    /// <remarks>
+    /// Removes expired pending requests that have exceeded their timeout.
+    /// </remarks>
     void CleanupExpired();
 }

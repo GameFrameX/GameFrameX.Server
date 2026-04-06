@@ -19,6 +19,9 @@ namespace GameFrameX.NetWork.RemoteMessaging.Observability;
 /// <summary>
 /// 日志拦截器。记录远程调用的请求前、响应后和异常信息。
 /// </summary>
+/// <remarks>
+/// Logging interceptor. Records remote call information before requests, after responses, and on exceptions.
+/// </remarks>
 internal sealed class LoggingRemoteCallInterceptor : IRemoteCallInterceptor
 {
     /// <inheritdoc />

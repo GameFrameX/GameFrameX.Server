@@ -21,8 +21,18 @@ namespace GameFrameX.NetWork.RemoteMessaging.Observability;
 /// <summary>
 /// TraceId 透传拦截器。自动在请求上下文中注入 TraceId，支持跨服务链路追踪。
 /// </summary>
+/// <remarks>
+/// TraceId propagation interceptor. Automatically injects TraceId into the request context
+/// to support cross-service distributed tracing.
+/// </remarks>
 internal sealed class TraceRemoteCallInterceptor : IRemoteCallInterceptor
 {
+    /// <summary>
+    /// ActivitySource 名称常量，用于创建分布式追踪活动。
+    /// </summary>
+    /// <remarks>
+    /// The ActivitySource name constant used for creating distributed tracing activities.
+    /// </remarks>
     public const string ActivitySourceName = "GameFrameX.RemoteMessaging";
     private static readonly ActivitySource ActivitySource = new(ActivitySourceName);
 

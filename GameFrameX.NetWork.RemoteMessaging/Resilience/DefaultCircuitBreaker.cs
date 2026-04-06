@@ -22,6 +22,10 @@ namespace GameFrameX.NetWork.RemoteMessaging.Resilience;
 /// 默认熔断器实现。按服务维度管理三态（Closed/Open/HalfOpen）。
 /// 连续失败达到阈值后熔断，冷却期后进入半开状态允许探测。
 /// </summary>
+/// <remarks>
+/// Default circuit breaker implementation. Manages the three states (Closed/Open/HalfOpen) per service.
+/// Trips when consecutive failures reach the threshold; enters half-open state after the cooldown period to allow probing.
+/// </remarks>
 internal sealed class DefaultCircuitBreaker : ICircuitBreaker
 {
     private readonly int _failureThreshold;
@@ -32,9 +36,12 @@ internal sealed class DefaultCircuitBreaker : ICircuitBreaker
     /// <summary>
     /// 初始化默认熔断器。
     /// </summary>
-    /// <param name="failureThreshold">连续失败阈值（默认 5 次）</param>
-    /// <param name="openDurationMs">熔断开启持续时间毫秒（默认 30000ms）</param>
-    /// <param name="halfOpenMaxAttempts">半开状态最大探测次数（默认 3 次）</param>
+    /// <remarks>
+    /// Initializes the default circuit breaker.
+    /// </remarks>
+    /// <param name="failureThreshold">连续失败阈值（默认 5 次） / Consecutive failure threshold (default 5)</param>
+    /// <param name="openDurationMs">熔断开启持续时间毫秒（默认 30000ms） / Open duration in milliseconds (default 30000ms)</param>
+    /// <param name="halfOpenMaxAttempts">半开状态最大探测次数（默认 3 次） / Maximum probing attempts in half-open state (default 3)</param>
     public DefaultCircuitBreaker(int failureThreshold = 5, int openDurationMs = 30000, int halfOpenMaxAttempts = 3)
     {
         _failureThreshold = failureThreshold;

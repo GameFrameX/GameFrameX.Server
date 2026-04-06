@@ -19,11 +19,14 @@ namespace GameFrameX.NetWork.RemoteMessaging;
 /// <summary>
 /// 远程消息通信 SDK 构建器。业务侧只需调用 <c>RemoteMessagingBuilder.Build()</c> 即可获得完整功能的客户端。
 /// </summary>
+/// <remarks>
+/// Remote messaging SDK builder. Business code only needs to call <c>RemoteMessagingBuilder.Build()</c> to obtain a fully functional client.
+/// </remarks>
 /// <example>
 ///     <code>
 /// // 最简用法
 /// var client = RemoteMessagingBuilder.Build();
-/// 
+///
 /// // 自定义配置
 /// var client = new RemoteMessagingBuilder()
 ///     .WithTimeoutMs(10000)
@@ -38,8 +41,11 @@ public sealed class RemoteMessagingBuilder
     /// <summary>
     /// 设置默认超时时间。
     /// </summary>
-    /// <param name="timeoutMs">超时毫秒数</param>
-    /// <returns>构建器实例</returns>
+    /// <remarks>
+    /// Sets the default timeout duration.
+    /// </remarks>
+    /// <param name="timeoutMs">超时毫秒数 / The timeout duration in milliseconds</param>
+    /// <returns>构建器实例 / The builder instance</returns>
     public RemoteMessagingBuilder WithTimeoutMs(int timeoutMs)
     {
         _options.DefaultTimeoutMs = timeoutMs;
@@ -49,9 +55,12 @@ public sealed class RemoteMessagingBuilder
     /// <summary>
     /// 设置重试策略。
     /// </summary>
-    /// <param name="maxRetryCount">最大重试次数</param>
-    /// <param name="baseDelayMs">基础延迟毫秒</param>
-    /// <returns>构建器实例</returns>
+    /// <remarks>
+    /// Configures the retry policy.
+    /// </remarks>
+    /// <param name="maxRetryCount">最大重试次数 / The maximum number of retry attempts</param>
+    /// <param name="baseDelayMs">基础延迟毫秒 / The base delay in milliseconds between retries</param>
+    /// <returns>构建器实例 / The builder instance</returns>
     public RemoteMessagingBuilder WithRetry(int maxRetryCount, int baseDelayMs = 200)
     {
         _options.MaxRetryCount = maxRetryCount;
@@ -63,9 +72,12 @@ public sealed class RemoteMessagingBuilder
     /// <summary>
     /// 设置熔断器参数。
     /// </summary>
-    /// <param name="failureThreshold">连续失败阈值</param>
-    /// <param name="openDurationMs">熔断开启持续时间毫秒</param>
-    /// <returns>构建器实例</returns>
+    /// <remarks>
+    /// Configures the circuit breaker parameters.
+    /// </remarks>
+    /// <param name="failureThreshold">连续失败阈值 / The consecutive failure threshold that triggers the circuit breaker</param>
+    /// <param name="openDurationMs">熔断开启持续时间毫秒 / The duration in milliseconds the circuit breaker stays open</param>
+    /// <returns>构建器实例 / The builder instance</returns>
     public RemoteMessagingBuilder WithCircuitBreaker(int failureThreshold = 5, int openDurationMs = 30000)
     {
         _options.CircuitBreakerFailureThreshold = failureThreshold;
@@ -76,7 +88,10 @@ public sealed class RemoteMessagingBuilder
     /// <summary>
     /// 从环境变量加载配置（覆盖之前的设置）。
     /// </summary>
-    /// <returns>构建器实例</returns>
+    /// <remarks>
+    /// Loads configuration from environment variables, overriding any previous settings.
+    /// </remarks>
+    /// <returns>构建器实例 / The builder instance</returns>
     public RemoteMessagingBuilder LoadFromEnvironment()
     {
         _options = RemoteMessagingOptions.LoadFromEnvironment();
@@ -86,7 +101,10 @@ public sealed class RemoteMessagingBuilder
     /// <summary>
     /// 构建并返回配置好的远程消息客户端。
     /// </summary>
-    /// <returns>远程消息客户端实例</returns>
+    /// <remarks>
+    /// Builds and returns a configured remote message client.
+    /// </remarks>
+    /// <returns>远程消息客户端实例 / The configured remote message client instance</returns>
     public IRemoteMessageClient Build()
     {
         var endpointResolver = new AspireEndpointResolver();
@@ -144,7 +162,10 @@ public sealed class RemoteMessagingBuilder
     /// <summary>
     /// 快捷方法：使用默认配置构建客户端。
     /// </summary>
-    /// <returns>远程消息客户端实例</returns>
+    /// <remarks>
+    /// Convenience method: builds a client using default configuration.
+    /// </remarks>
+    /// <returns>远程消息客户端实例 / The remote message client instance</returns>
     public static IRemoteMessageClient BuildDefault()
     {
         return new RemoteMessagingBuilder().Build();
@@ -153,7 +174,10 @@ public sealed class RemoteMessagingBuilder
     /// <summary>
     /// 快捷方法：从环境变量加载配置并构建客户端。
     /// </summary>
-    /// <returns>远程消息客户端实例</returns>
+    /// <remarks>
+    /// Convenience method: loads configuration from environment variables and builds a client.
+    /// </remarks>
+    /// <returns>远程消息客户端实例 / The remote message client instance</returns>
     public static IRemoteMessageClient BuildFromEnvironment()
     {
         return new RemoteMessagingBuilder().LoadFromEnvironment().Build();

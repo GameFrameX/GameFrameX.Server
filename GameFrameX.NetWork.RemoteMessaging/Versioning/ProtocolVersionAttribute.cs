@@ -23,14 +23,24 @@ namespace GameFrameX.NetWork.RemoteMessaging.Versioning;
 /// 2. 废弃字段：保留编号但不使用，不得删除或复用编号。
 /// 3. 版本升级：Minor 版本递增表示向后兼容，Major 版本递增表示不兼容变更。
 /// </summary>
+/// <remarks>
+/// Protocol version attribute. Annotate on message types for version negotiation and compatibility checking during protocol evolution.
+/// Evolution rules:
+/// 1. Adding fields: Use new ProtoMember numbers; do not modify existing numbers.
+/// 2. Deprecating fields: Keep the number but stop using it; never delete or reuse numbers.
+/// 3. Version upgrades: Increment Minor for backward-compatible changes; increment Major for breaking changes.
+/// </remarks>
 [AttributeUsage(AttributeTargets.Class, Inherited = false)]
 public sealed class ProtocolVersionAttribute : Attribute
 {
     /// <summary>
     /// 初始化协议版本特性。
     /// </summary>
-    /// <param name="major">主版本号</param>
-    /// <param name="minor">次版本号</param>
+    /// <remarks>
+    /// Initializes a new instance of the protocol version attribute.
+    /// </remarks>
+    /// <param name="major">主版本号 / The major version number</param>
+    /// <param name="minor">次版本号 / The minor version number</param>
     public ProtocolVersionAttribute(int major, int minor)
     {
         Major = major;
@@ -40,21 +50,25 @@ public sealed class ProtocolVersionAttribute : Attribute
     /// <summary>
     /// 主版本号。不兼容变更时递增。
     /// </summary>
+    /// <value>主版本号 / The major version number</value>
     public int Major { get; }
 
     /// <summary>
     /// 次版本号。向后兼容新增时递增。
     /// </summary>
+    /// <value>次版本号 / The minor version number</value>
     public int Minor { get; }
 
     /// <summary>
     /// 协议描述。
     /// </summary>
+    /// <value>协议描述 / The protocol description</value>
     public string Description { get; set; }
 
     /// <summary>
     /// 版本字符串。
     /// </summary>
+    /// <value>版本字符串（格式 "Major.Minor"） / The version string (format "Major.Minor")</value>
     public string VersionString
     {
         get { return $"{Major}.{Minor}"; }

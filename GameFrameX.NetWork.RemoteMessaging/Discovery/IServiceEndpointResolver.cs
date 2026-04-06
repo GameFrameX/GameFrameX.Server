@@ -19,12 +19,18 @@ namespace GameFrameX.NetWork.RemoteMessaging.Discovery;
 /// <summary>
 /// 服务端点解析器。统一从 Aspire 或环境变量中解析目标服务的 TCP 地址。
 /// </summary>
+/// <remarks>
+/// Service endpoint resolver. Uniformly resolves target service TCP addresses from Aspire or environment variables.
+/// </remarks>
 public interface IServiceEndpointResolver
 {
     /// <summary>
     /// 解析指定服务的 TCP 端点地址。
     /// </summary>
-    /// <param name="serviceName">目标服务名</param>
-    /// <returns>端点地址字符串（如 "tcp://host:port"）；未找到时返回空字符串</returns>
+    /// <remarks>
+    /// Resolves the TCP endpoint address for the specified service.
+    /// </remarks>
+    /// <param name="serviceName">目标服务名 / The target service name</param>
+    /// <returns>端点地址字符串（如 "tcp://host:port"）；未找到时返回空字符串 / The endpoint address string (e.g. "tcp://host:port"); returns an empty string when not found</returns>
     string ResolveTcpEndpoint(string serviceName);
 }

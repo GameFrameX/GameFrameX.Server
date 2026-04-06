@@ -20,31 +20,44 @@ namespace GameFrameX.NetWork.RemoteMessaging.Observability;
 /// 远程调用指标采集器。采集 QPS、成功率、超时率、重试率、耗时分布等指标。
 /// 通过 System.Diagnostics.Metrics 对接 OpenTelemetry。
 /// </summary>
+/// <remarks>
+/// Remote call metrics collector. Collects QPS, success rate, timeout rate, retry rate,
+/// and latency distribution metrics. Integrates with OpenTelemetry via System.Diagnostics.Metrics.
+/// </remarks>
 public interface IRemoteCallMetrics
 {
     /// <summary>
     /// 记录一次成功的调用。
     /// </summary>
-    /// <param name="serviceName">目标服务名</param>
-    /// <param name="messageType">消息类型名</param>
-    /// <param name="elapsedMs">耗时毫秒数</param>
-    /// <param name="retryCount">重试次数</param>
+    /// <remarks>
+    /// Records a successful remote call invocation.
+    /// </remarks>
+    /// <param name="serviceName">目标服务名 / The target service name</param>
+    /// <param name="messageType">消息类型名 / The message type name</param>
+    /// <param name="elapsedMs">耗时毫秒数 / The elapsed time in milliseconds</param>
+    /// <param name="retryCount">重试次数 / The number of retries performed</param>
     void RecordSuccess(string serviceName, string messageType, long elapsedMs, int retryCount = 0);
 
     /// <summary>
     /// 记录一次失败的调用。
     /// </summary>
-    /// <param name="serviceName">目标服务名</param>
-    /// <param name="messageType">消息类型名</param>
-    /// <param name="statusCode">状态码</param>
-    /// <param name="elapsedMs">耗时毫秒数</param>
+    /// <remarks>
+    /// Records a failed remote call invocation.
+    /// </remarks>
+    /// <param name="serviceName">目标服务名 / The target service name</param>
+    /// <param name="messageType">消息类型名 / The message type name</param>
+    /// <param name="statusCode">状态码 / The status code of the failure</param>
+    /// <param name="elapsedMs">耗时毫秒数 / The elapsed time in milliseconds</param>
     void RecordFailure(string serviceName, string messageType, RemoteStatusCode statusCode, long elapsedMs);
 
     /// <summary>
     /// 记录一次重试。
     /// </summary>
-    /// <param name="serviceName">目标服务名</param>
-    /// <param name="messageType">消息类型名</param>
-    /// <param name="attemptCount">第几次重试</param>
+    /// <remarks>
+    /// Records a retry attempt for a remote call.
+    /// </remarks>
+    /// <param name="serviceName">目标服务名 / The target service name</param>
+    /// <param name="messageType">消息类型名 / The message type name</param>
+    /// <param name="attemptCount">第几次重试 / The retry attempt number</param>
     void RecordRetry(string serviceName, string messageType, int attemptCount);
 }

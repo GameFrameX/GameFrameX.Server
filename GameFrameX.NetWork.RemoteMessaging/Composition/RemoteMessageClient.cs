@@ -22,6 +22,9 @@ namespace GameFrameX.NetWork.RemoteMessaging.Composition;
 /// <summary>
 /// 统一远程消息调用客户端。串联服务解析、连接管理、编解码、请求匹配、拦截器、重试、熔断和健康探测。
 /// </summary>
+/// <remarks>
+/// Unified remote message call client. Orchestrates service resolution, connection management, encoding/decoding, request-response matching, interceptors, retry, circuit breaking, and health probing.
+/// </remarks>
 internal sealed class RemoteMessageClient : IRemoteMessageClient
 {
     private readonly SemaphoreSlim _callSemaphore = new(1, 1);
@@ -269,6 +272,9 @@ internal sealed class RemoteMessageClient : IRemoteMessageClient
     /// <summary>
     /// 准备请求消息的元数据（消息ID、操作类型、唯一ID）。
     /// </summary>
+    /// <remarks>
+    /// Prepares request message metadata (message ID, operation type, unique ID).
+    /// </remarks>
     private static void PrepareRequestMessage(MessageObject message, int uniqueId)
     {
         MessageProtoHelper.SetMessageId(message);
@@ -279,6 +285,9 @@ internal sealed class RemoteMessageClient : IRemoteMessageClient
     /// <summary>
     /// 尝试将服务地址解析为主机和端口。
     /// </summary>
+    /// <remarks>
+    /// Attempts to parse a service address into host and port components.
+    /// </remarks>
     private static bool TryParseTcpEndpoint(string endpoint, out string host, out int port)
     {
         host = string.Empty;

@@ -21,6 +21,9 @@ namespace GameFrameX.NetWork.RemoteMessaging.Transport;
 /// <summary>
 /// TCP 长连接提供器。管理单条 TCP 连接的创建、复用和释放。
 /// </summary>
+/// <remarks>
+/// TCP persistent connection provider. Manages the creation, reuse, and disposal of a single TCP connection.
+/// </remarks>
 internal sealed class TcpConnectionProvider : IConnectionProvider
 {
     private const int DefaultTimeoutMs = 5000;
