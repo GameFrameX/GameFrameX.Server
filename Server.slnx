@@ -1,0 +1,38 @@
+<Solution>
+  <Folder Name="/Solution Items/">
+    <File Path=".github/workflows/publish-release.yml" />
+    <File Path="docker-compose.yml" />
+    <File Path="Dockerfile" />
+    <File Path="gameframex.key.snk" />
+    <File Path="logo.png" />
+    <File Path="README.md" />
+    <File Path="Version.props" />
+  </Folder>
+  <Folder Name="/Tests/">
+    <Project Path="Tests/GameFrameX.Tests/GameFrameX.Tests.csproj" />
+  </Folder>
+  <Project Path="GameFrameX.AppHost.ServiceDefaults/GameFrameX.AppHost.ServiceDefaults.csproj" />
+  <Project Path="GameFrameX.AppHost/GameFrameX.AppHost.csproj" />
+  <Project Path="GameFrameX.Apps/GameFrameX.Apps.csproj" />
+  <Project Path="GameFrameX.Client/GameFrameX.Client.csproj" />
+  <Project Path="GameFrameX.CodeGenerator/GameFrameX.CodeGenerator.csproj" />
+  <Project Path="GameFrameX.Config/GameFrameX.Config.csproj" />
+  <Project Path="GameFrameX.Core.Config/GameFrameX.Core.Config.csproj" />
+  <Project Path="GameFrameX.Core/GameFrameX.Core.csproj" />
+  <Project Path="GameFrameX.DataBase.Mongo/GameFrameX.DataBase.Mongo.csproj" />
+  <Project Path="GameFrameX.DataBase/GameFrameX.DataBase.csproj" />
+  <Project Path="GameFrameX.Hotfix/GameFrameX.Hotfix.csproj" />
+  <Project Path="GameFrameX.Launcher/GameFrameX.Launcher.csproj" />
+  <Project Path="GameFrameX.Localization/GameFrameX.Localization.csproj" />
+  <Project Path="GameFrameX.Monitor/GameFrameX.Monitor.csproj" />
+  <Project Path="GameFrameX.NetWork.Abstractions/GameFrameX.NetWork.Abstractions.csproj" />
+  <Project Path="GameFrameX.NetWork.HTTP/GameFrameX.NetWork.HTTP.csproj" />
+  <Project Path="GameFrameX.NetWork.Kcp/GameFrameX.NetWork.Kcp.csproj" />
+  <Project Path="GameFrameX.NetWork.Message/GameFrameX.NetWork.Message.csproj" />
+  <Project Path="GameFrameX.NetWork.RemoteMessaging/GameFrameX.NetWork.RemoteMessaging.csproj" />
+  <Project Path="GameFrameX.NetWork/GameFrameX.NetWork.csproj" />
+  <Project Path="GameFrameX.Proto/GameFrameX.Proto.csproj" />
+  <Project Path="GameFrameX.ProtoBuf.Net/GameFrameX.ProtoBuf.Net.csproj" />
+  <Project Path="GameFrameX.StartUp/GameFrameX.StartUp.csproj" />
+  <Project Path="GameFrameX.Utility/GameFrameX.Utility.csproj" />
+</Solution>
