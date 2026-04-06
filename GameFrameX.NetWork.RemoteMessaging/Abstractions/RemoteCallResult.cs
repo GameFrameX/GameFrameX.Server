@@ -55,7 +55,10 @@ public sealed class RemoteCallResult<T> where T : class
     /// <summary>
     /// 是否调用成功
     /// </summary>
-    public bool IsSuccess => StatusCode == RemoteStatusCode.Success;
+    public bool IsSuccess
+    {
+        get { return StatusCode == RemoteStatusCode.Success; }
+    }
 
     /// <summary>
     /// 创建成功结果

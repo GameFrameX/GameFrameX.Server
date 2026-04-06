@@ -34,5 +34,8 @@ public static class RemoteMessageClientHolder
     /// <summary>
     /// 获取全局统一远程消息客户端实例。
     /// </summary>
-    public static IRemoteMessageClient Client => LazyClient.Value;
+    public static IRemoteMessageClient Client
+    {
+        get { return LazyClient.Value; }
+    }
 }

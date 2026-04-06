@@ -33,22 +33,27 @@ public static class RemoteErrorCatalog
     /// <returns>重试语义</returns>
     public static RetrySemantics GetRetrySemantics(this RemoteStatusCode statusCode)
     {
-        return statusCode switch
+        switch (statusCode)
         {
-            RemoteStatusCode.Success => RetrySemantics.None,
-            RemoteStatusCode.Timeout => RetrySemantics.Retryable,
-            RemoteStatusCode.ConnectionFailed => RetrySemantics.Retryable,
-            RemoteStatusCode.ConnectionClosed => RetrySemantics.Retryable,
-            RemoteStatusCode.EndpointNotFound => RetrySemantics.NonRetryable,
-            RemoteStatusCode.ResponseTypeMismatch => RetrySemantics.NonRetryable,
-            RemoteStatusCode.UnexpectedResponse => RetrySemantics.NonRetryable,
-            RemoteStatusCode.Cancelled => RetrySemantics.NonRetryable,
-            RemoteStatusCode.RetryExhausted => RetrySemantics.NonRetryable,
-            RemoteStatusCode.CircuitOpen => RetrySemantics.NonRetryable,
-            RemoteStatusCode.ServiceUnavailable => RetrySemantics.NonRetryable,
-            RemoteStatusCode.UnknownError => RetrySemantics.Conditional,
-            _ => RetrySemantics.NonRetryable,
-        };
+            case RemoteStatusCode.Success:
+                return RetrySemantics.None;
+            case RemoteStatusCode.Timeout:
+            case RemoteStatusCode.ConnectionFailed:
+            case RemoteStatusCode.ConnectionClosed:
+                return RetrySemantics.Retryable;
+            case RemoteStatusCode.EndpointNotFound:
+            case RemoteStatusCode.ResponseTypeMismatch:
+            case RemoteStatusCode.UnexpectedResponse:
+            case RemoteStatusCode.Cancelled:
+            case RemoteStatusCode.RetryExhausted:
+            case RemoteStatusCode.CircuitOpen:
+            case RemoteStatusCode.ServiceUnavailable:
+                return RetrySemantics.NonRetryable;
+            case RemoteStatusCode.UnknownError:
+                return RetrySemantics.Conditional;
+            default:
+                return RetrySemantics.NonRetryable;
+        }
     }
 
     /// <summary>
@@ -58,22 +63,35 @@ public static class RemoteErrorCatalog
     /// <returns>可读描述</returns>
     public static string GetDescription(this RemoteStatusCode statusCode)
     {
-        return statusCode switch
+        switch (statusCode)
         {
-            RemoteStatusCode.Success => "调用成功",
-            RemoteStatusCode.Timeout => "调用超时，对端未在指定时间内响应",
-            RemoteStatusCode.ConnectionFailed => "连接失败，对端服务不可达",
-            RemoteStatusCode.ConnectionClosed => "连接已关闭，对端主动断开",
-            RemoteStatusCode.EndpointNotFound => "端点未找到，服务发现未解析到目标地址",
-            RemoteStatusCode.ResponseTypeMismatch => "响应类型不匹配",
-            RemoteStatusCode.UnexpectedResponse => "意外的响应",
-            RemoteStatusCode.Cancelled => "调用被取消",
-            RemoteStatusCode.RetryExhausted => "重试次数耗尽",
-            RemoteStatusCode.CircuitOpen => "熔断器已打开，请求被拒绝",
-            RemoteStatusCode.ServiceUnavailable => "服务不可用，健康评分过低",
-            RemoteStatusCode.UnknownError => "未知错误",
-            _ => $"未知状态码: {statusCode}",
-        };
+            case RemoteStatusCode.Success:
+                return "调用成功";
+            case RemoteStatusCode.Timeout:
+                return "调用超时，对端未在指定时间内响应";
+            case RemoteStatusCode.ConnectionFailed:
+                return "连接失败，对端服务不可达";
+            case RemoteStatusCode.ConnectionClosed:
+                return "连接已关闭，对端主动断开";
+            case RemoteStatusCode.EndpointNotFound:
+                return "端点未找到，服务发现未解析到目标地址";
+            case RemoteStatusCode.ResponseTypeMismatch:
+                return "响应类型不匹配";
+            case RemoteStatusCode.UnexpectedResponse:
+                return "意外的响应";
+            case RemoteStatusCode.Cancelled:
+                return "调用被取消";
+            case RemoteStatusCode.RetryExhausted:
+                return "重试次数耗尽";
+            case RemoteStatusCode.CircuitOpen:
+                return "熔断器已打开，请求被拒绝";
+            case RemoteStatusCode.ServiceUnavailable:
+                return "服务不可用，健康评分过低";
+            case RemoteStatusCode.UnknownError:
+                return "未知错误";
+            default:
+                return $"未知状态码: {statusCode}";
+        }
     }
 
     /// <summary>
@@ -91,30 +109,4 @@ public static class RemoteErrorCatalog
     {
         return statusCode.GetRetrySemantics() == RetrySemantics.Retryable;
     }
-}
-
-/// <summary>
-/// 重试语义
-/// </summary>
-public enum RetrySemantics
-{
-    /// <summary>
-    /// 无需重试（成功状态）
-    /// </summary>
-    None,
-
-    /// <summary>
-    /// 可重试（临时性故障）
-    /// </summary>
-    Retryable,
-
-    /// <summary>
-    /// 不可重试（永久性故障）
-    /// </summary>
-    NonRetryable,
-
-    /// <summary>
-    /// 条件重试（需要根据上下文判断）
-    /// </summary>
-    Conditional,
 }
