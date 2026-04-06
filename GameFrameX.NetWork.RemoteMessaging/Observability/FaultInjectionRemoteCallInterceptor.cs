@@ -32,6 +32,12 @@ internal sealed class FaultInjectionRemoteCallInterceptor : IRemoteCallIntercept
     private readonly int _delayMs;
     private readonly FaultInjectionType _injectionType;
 
+    /// <summary>
+    /// 初始化故障注入拦截器。从环境变量读取注入类型和延迟配置。
+    /// </summary>
+    /// <remarks>
+    /// Initializes the fault injection interceptor. Reads injection type and delay configuration from environment variables.
+    /// </remarks>
     public FaultInjectionRemoteCallInterceptor()
     {
         var typeStr = Environment.GetEnvironmentVariable("RemoteMessaging__FaultInjection__Type");
@@ -41,7 +47,7 @@ internal sealed class FaultInjectionRemoteCallInterceptor : IRemoteCallIntercept
         _delayMs = int.TryParse(delayStr, out var delay) ? delay : 0;
     }
 
-    
+    /// <inheritdoc />
     public async Task OnBeforeCallAsync(RemoteCallContext context, MessageObject request)
     {
         switch (_injectionType)
@@ -63,13 +69,13 @@ internal sealed class FaultInjectionRemoteCallInterceptor : IRemoteCallIntercept
         }
     }
 
-    
+    /// <inheritdoc />
     public Task OnAfterCallAsync(RemoteCallContext context, MessageObject request, MessageObject response, long elapsedMs)
     {
         return Task.CompletedTask;
     }
 
-    
+    /// <inheritdoc />
     public Task OnExceptionAsync(RemoteCallContext context, MessageObject request, Exception exception, long elapsedMs)
     {
         return Task.CompletedTask;

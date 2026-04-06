@@ -29,7 +29,14 @@ internal sealed class RequestResponseMatcher : IRequestResponseMatcher
     private readonly ConcurrentDictionary<int, PendingEntry> _pendingRequests = new();
     private int _uniqueId;
 
-    
+    /// <summary>
+    /// 注册一个待处理请求，返回分配的唯一 ID。
+    /// </summary>
+    /// <remarks>
+    /// Registers a pending request and returns the assigned unique ID.
+    /// </remarks>
+    /// <param name="timeoutMs">请求超时毫秒数 / Request timeout in milliseconds</param>
+    /// <returns>请求唯一 ID / The unique ID assigned to the request</returns>
     public int RegisterPendingRequest(int timeoutMs)
     {
         var uniqueId = Interlocked.Increment(ref _uniqueId);
@@ -41,7 +48,15 @@ internal sealed class RequestResponseMatcher : IRequestResponseMatcher
         return uniqueId;
     }
 
-    
+    /// <summary>
+    /// 等待指定请求的响应。
+    /// </summary>
+    /// <remarks>
+    /// Asynchronously waits for the response of the specified request.
+    /// </remarks>
+    /// <param name="uniqueId">请求唯一 ID / The unique ID of the request</param>
+    /// <param name="cancellationToken">取消令牌 / Cancellation token</param>
+    /// <returns>响应消息对象 / The response message object</returns>
     public Task<MessageObject> WaitResponseAsync(int uniqueId, CancellationToken cancellationToken)
     {
         if (_pendingRequests.TryGetValue(uniqueId, out var entry))
@@ -57,7 +72,15 @@ internal sealed class RequestResponseMatcher : IRequestResponseMatcher
         return Task.FromResult<MessageObject>(null);
     }
 
-    
+    /// <summary>
+    /// 收到响应时完成对应请求。
+    /// </summary>
+    /// <remarks>
+    /// Completes the corresponding pending request when a response is received.
+    /// </remarks>
+    /// <param name="uniqueId">请求唯一 ID / The unique ID of the request</param>
+    /// <param name="response">响应消息 / The response message</param>
+    /// <returns>是否成功匹配到等待中的请求 / Whether a pending request was successfully matched</returns>
     public bool TryComplete(int uniqueId, MessageObject response)
     {
         if (!_pendingRequests.TryRemove(uniqueId, out var entry))
@@ -69,7 +92,12 @@ internal sealed class RequestResponseMatcher : IRequestResponseMatcher
         return true;
     }
 
-    
+    /// <summary>
+    /// 清理已超时的待处理请求。
+    /// </summary>
+    /// <remarks>
+    /// Removes expired pending requests that have exceeded their timeout.
+    /// </remarks>
     public void CleanupExpired()
     {
         var now = Environment.TickCount;

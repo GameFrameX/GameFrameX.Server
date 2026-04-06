@@ -38,6 +38,21 @@ internal sealed class RemoteMessageClient : IRemoteMessageClient
     private readonly IRequestResponseMatcher _requestResponseMatcher;
     private readonly IRetryPolicy _retryPolicy;
 
+    /// <summary>
+    /// 初始化统一远程消息调用客户端。
+    /// </summary>
+    /// <remarks>
+    /// Initializes the unified remote message call client.
+    /// </remarks>
+    /// <param name="endpointResolver">服务端点解析器 / Service endpoint resolver</param>
+    /// <param name="connectionProvider">连接提供器 / Connection provider</param>
+    /// <param name="messageCodec">消息编解码器 / Message codec</param>
+    /// <param name="requestResponseMatcher">请求-响应匹配器 / Request-response matcher</param>
+    /// <param name="protocolVersionNegotiator">协议版本协商器 / Protocol version negotiator</param>
+    /// <param name="interceptors">远程调用拦截器数组 / Array of remote call interceptors</param>
+    /// <param name="retryPolicy">重试策略（可为 null） / Retry policy (can be null)</param>
+    /// <param name="circuitBreaker">熔断器 / Circuit breaker</param>
+    /// <param name="healthEvaluator">端点健康评估器 / Endpoint health evaluator</param>
     public RemoteMessageClient(
         IServiceEndpointResolver endpointResolver,
         IConnectionProvider connectionProvider,
@@ -60,7 +75,7 @@ internal sealed class RemoteMessageClient : IRemoteMessageClient
         _healthEvaluator = healthEvaluator;
     }
 
-    
+    /// <inheritdoc />
     public async Task<TResponse> CallAsync<TResponse>(
         string serviceName,
         MessageObject requestMessage,
@@ -73,7 +88,7 @@ internal sealed class RemoteMessageClient : IRemoteMessageClient
         return result.Response;
     }
 
-    
+    /// <inheritdoc />
     public async Task<RemoteCallResult<TResponse>> CallWithResultAsync<TResponse>(
         RemoteCallContext context,
         MessageObject requestMessage)

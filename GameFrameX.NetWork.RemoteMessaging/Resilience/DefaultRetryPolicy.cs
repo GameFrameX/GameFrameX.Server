@@ -41,7 +41,16 @@ internal sealed class DefaultRetryPolicy : IRetryPolicy
         _baseDelayMs = baseDelayMs;
     }
 
-    
+    /// <summary>
+    /// 判断指定调用是否允许重试。
+    /// </summary>
+    /// <remarks>
+    /// Determines whether the specified call is allowed to retry.
+    /// </remarks>
+    /// <param name="context">调用上下文 / Call context</param>
+    /// <param name="statusCode">上一次调用的状态码 / Status code from the last invocation</param>
+    /// <param name="attemptCount">已重试次数 / Number of retry attempts already made</param>
+    /// <returns>true 允许重试；false 不允许 / true if retry is allowed; false otherwise</returns>
     public bool ShouldRetry(RemoteCallContext context, RemoteStatusCode statusCode, int attemptCount)
     {
         if (!context.AllowRetry)
@@ -57,7 +66,14 @@ internal sealed class DefaultRetryPolicy : IRetryPolicy
         return statusCode == RemoteStatusCode.Timeout || statusCode == RemoteStatusCode.ConnectionFailed;
     }
 
-    
+    /// <summary>
+    /// 计算下一次重试前的等待时间（毫秒）。
+    /// </summary>
+    /// <remarks>
+    /// Computes the delay in milliseconds before the next retry attempt.
+    /// </remarks>
+    /// <param name="attemptCount">已重试次数（从 1 开始） / Number of retry attempts (starting from 1)</param>
+    /// <returns>等待毫秒数 / Delay in milliseconds</returns>
     public int GetRetryDelayMs(int attemptCount)
     {
         return _baseDelayMs * (1 << Math.Min(attemptCount, 4));

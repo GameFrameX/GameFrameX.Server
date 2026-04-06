@@ -49,7 +49,14 @@ internal sealed class DefaultCircuitBreaker : ICircuitBreaker
         _halfOpenMaxAttempts = halfOpenMaxAttempts;
     }
 
-    
+    /// <summary>
+    /// 检查指定服务是否允许请求通过。
+    /// </summary>
+    /// <remarks>
+    /// Checks whether the specified service is allowed to pass a request.
+    /// </remarks>
+    /// <param name="serviceName">服务名 / Service name</param>
+    /// <returns>true 允许通过；false 被熔断拒绝 / true if allowed; false if rejected by circuit breaker</returns>
     public bool IsAllowed(string serviceName)
     {
         var tracker = _trackers.GetOrAdd(serviceName, _ => new CircuitStateTracker());
@@ -77,7 +84,13 @@ internal sealed class DefaultCircuitBreaker : ICircuitBreaker
         }
     }
 
-    
+    /// <summary>
+    /// 记录一次成功调用。在 HalfOpen 状态下成功会关闭熔断器。
+    /// </summary>
+    /// <remarks>
+    /// Records a successful invocation. A success in HalfOpen state closes the circuit breaker.
+    /// </remarks>
+    /// <param name="serviceName">服务名 / Service name</param>
     public void RecordSuccess(string serviceName)
     {
         var tracker = _trackers.GetOrAdd(serviceName, _ => new CircuitStateTracker());
@@ -92,7 +105,13 @@ internal sealed class DefaultCircuitBreaker : ICircuitBreaker
         }
     }
 
-    
+    /// <summary>
+    /// 记录一次失败调用。连续失败达到阈值会触发熔断。
+    /// </summary>
+    /// <remarks>
+    /// Records a failed invocation. Consecutive failures reaching the threshold trigger the circuit breaker.
+    /// </remarks>
+    /// <param name="serviceName">服务名 / Service name</param>
     public void RecordFailure(string serviceName)
     {
         var tracker = _trackers.GetOrAdd(serviceName, _ => new CircuitStateTracker());
@@ -124,7 +143,14 @@ internal sealed class DefaultCircuitBreaker : ICircuitBreaker
         }
     }
 
-    
+    /// <summary>
+    /// 获取指定服务的熔断器状态。
+    /// </summary>
+    /// <remarks>
+    /// Gets the circuit breaker state for the specified service.
+    /// </remarks>
+    /// <param name="serviceName">服务名 / Service name</param>
+    /// <returns>当前熔断状态 / Current circuit state</returns>
     public CircuitState GetState(string serviceName)
     {
         if (_trackers.TryGetValue(serviceName, out var tracker))

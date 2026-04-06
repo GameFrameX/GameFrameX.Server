@@ -14,6 +14,7 @@
 //   官方文档：https://gameframex.doc.alianblank.com/
 //  ==========================================================================================
 
+using System.Buffers;
 using System.Buffers.Binary;
 using GameFrameX.ProtoBuf.Net;
 
@@ -37,8 +38,16 @@ internal sealed class DefaultMessageCodec : IMessageCodec
     private static readonly DefaultMessageCompressHandler CompressHandler = new();
     private static readonly DefaultMessageDecompressHandler DecompressHandler = new();
 
-    
+    /// <inheritdoc />
     public byte[] Encode(MessageObject message)
+    /// <summary>
+    /// 将消息对象编码为二进制包。
+    /// </summary>
+    /// <remarks>
+    /// Encodes a message object into a binary packet.
+    /// </remarks>
+    /// <param name="message">消息对象 / The message object to encode</param>
+    /// <returns>编码后的二进制数据 / The encoded binary data</returns>
     {
         var messageData = ProtoBufSerializerHelper.Serialize(message);
         var zipFlag = (byte)0;
@@ -59,7 +68,16 @@ internal sealed class DefaultMessageCodec : IMessageCodec
         return buffer;
     }
 
-    
+    /// <inheritdoc />
+    /// <summary>
+    /// 从网络流中读取并解码一条消息。
+    /// </summary>
+    /// <remarks>
+    /// Reads and decodes a message from the network stream.
+    /// </remarks>
+    /// <param name="stream">网络流 / The network stream to read from</param>
+    /// <param name="cancellationToken">取消令牌 / Cancellation token</param>
+    /// <returns>解码后的消息对象；连接关闭时返回 null / The decoded message object, or null if the connection was closed</returns>
     public async Task<MessageObject> DecodeAsync(Stream stream, CancellationToken cancellationToken)
     {
         var lengthBuffer = new byte[4];

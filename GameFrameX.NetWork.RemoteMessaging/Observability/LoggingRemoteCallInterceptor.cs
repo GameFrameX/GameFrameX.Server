@@ -24,21 +24,21 @@ namespace GameFrameX.NetWork.RemoteMessaging.Observability;
 /// </remarks>
 internal sealed class LoggingRemoteCallInterceptor : IRemoteCallInterceptor
 {
-    
+    /// <inheritdoc />
     public Task OnBeforeCallAsync(RemoteCallContext context, MessageObject request)
     {
         LogHelper.Debug("RemoteCall 开始, Service: {serviceName}, Message: {messageType}, Timeout: {timeoutMs}ms", context.ServiceName, request.GetType().Name, context.TimeoutMs);
         return Task.CompletedTask;
     }
 
-    
+    /// <inheritdoc />
     public Task OnAfterCallAsync(RemoteCallContext context, MessageObject request, MessageObject response, long elapsedMs)
     {
         LogHelper.Debug("RemoteCall 完成, Service: {serviceName}, Message: {messageType}, Elapsed: {elapsedMs}ms", context.ServiceName, request.GetType().Name, elapsedMs);
         return Task.CompletedTask;
     }
 
-    
+    /// <inheritdoc />
     public Task OnExceptionAsync(RemoteCallContext context, MessageObject request, Exception exception, long elapsedMs)
     {
         LogHelper.Error(exception, "RemoteCall 异常, Service: {serviceName}, Message: {messageType}, Elapsed: {elapsedMs}ms", context.ServiceName, request.GetType().Name, elapsedMs);

@@ -34,7 +34,7 @@ internal sealed class TcpConnectionProvider : IConnectionProvider
     private NetworkStream _networkStream;
     private TcpClient _tcpClient;
 
-    
+    /// <inheritdoc />
     public async Task<Stream> GetOrCreateStreamAsync(string host, int port, CancellationToken cancellationToken = default)
     {
         await _semaphore.WaitAsync(cancellationToken);
@@ -70,13 +70,13 @@ internal sealed class TcpConnectionProvider : IConnectionProvider
         }
     }
 
-    
+    /// <inheritdoc />
     public void Invalidate()
     {
         DisposeCore();
     }
 
-    
+    /// <inheritdoc />
     public void Dispose()
     {
         if (_disposed)

@@ -41,6 +41,14 @@ internal sealed class DiagnosticsRemoteCallMetrics : IRemoteCallMetrics
 
     private readonly Meter _meter;
 
+    /// <summary>
+    /// 初始化 <see cref="DiagnosticsRemoteCallMetrics"/> 的新实例。
+    /// 创建 Meter 对象并注册所有计数器和直方图指标。
+    /// </summary>
+    /// <remarks>
+    /// Initializes a new instance of <see cref="DiagnosticsRemoteCallMetrics"/>.
+    /// Creates the Meter object and registers all counter and histogram instruments.
+    /// </remarks>
     public DiagnosticsRemoteCallMetrics()
     {
         _meter = new Meter(MeterName, MeterVersion);
@@ -71,7 +79,7 @@ internal sealed class DiagnosticsRemoteCallMetrics : IRemoteCallMetrics
             "Duration of remote messaging calls in milliseconds");
     }
 
-    
+    /// <inheritdoc />
     public void RecordSuccess(string serviceName, string messageType, long elapsedMs, int retryCount = 0)
     {
         var tags = new TagList
@@ -90,7 +98,7 @@ internal sealed class DiagnosticsRemoteCallMetrics : IRemoteCallMetrics
         }
     }
 
-    
+    /// <inheritdoc />
     public void RecordFailure(string serviceName, string messageType, RemoteStatusCode statusCode, long elapsedMs)
     {
         var tags = new TagList
@@ -110,7 +118,7 @@ internal sealed class DiagnosticsRemoteCallMetrics : IRemoteCallMetrics
         }
     }
 
-    
+    /// <inheritdoc />
     public void RecordRetry(string serviceName, string messageType, int attemptCount)
     {
         var tags = new TagList

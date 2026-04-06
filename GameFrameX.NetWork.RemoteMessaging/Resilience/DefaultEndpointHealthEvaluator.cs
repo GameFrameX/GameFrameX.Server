@@ -28,7 +28,7 @@ internal sealed class DefaultEndpointHealthEvaluator : IEndpointHealthEvaluator
 {
     private readonly ConcurrentDictionary<string, HealthTracker> _trackers = new();
 
-    
+    /// <inheritdoc />
     public int GetHealthScore(string serviceName)
     {
         if (!_trackers.TryGetValue(serviceName, out var tracker))
@@ -56,7 +56,7 @@ internal sealed class DefaultEndpointHealthEvaluator : IEndpointHealthEvaluator
         }
     }
 
-    
+    /// <inheritdoc />
     public void MarkUnavailable(string serviceName, string reason)
     {
         var tracker = _trackers.GetOrAdd(serviceName, _ => new HealthTracker());
@@ -68,7 +68,7 @@ internal sealed class DefaultEndpointHealthEvaluator : IEndpointHealthEvaluator
         }
     }
 
-    
+    /// <inheritdoc />
     public void MarkHealthy(string serviceName)
     {
         var tracker = _trackers.GetOrAdd(serviceName, _ => new HealthTracker());

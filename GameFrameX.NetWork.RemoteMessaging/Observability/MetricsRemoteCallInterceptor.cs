@@ -27,25 +27,32 @@ internal sealed class MetricsRemoteCallInterceptor : IRemoteCallInterceptor
 {
     private readonly IRemoteCallMetrics _metrics;
 
+    /// <summary>
+    /// 初始化指标采集拦截器。
+    /// </summary>
+    /// <remarks>
+    /// Initializes the metrics collection interceptor.
+    /// </remarks>
+    /// <param name="metrics">远程调用指标采集器 / The remote call metrics collector</param>
     public MetricsRemoteCallInterceptor(IRemoteCallMetrics metrics)
     {
         _metrics = metrics;
     }
 
-    
+    /// <inheritdoc />
     public Task OnBeforeCallAsync(RemoteCallContext context, MessageObject request)
     {
         return Task.CompletedTask;
     }
 
-    
+    /// <inheritdoc />
     public Task OnAfterCallAsync(RemoteCallContext context, MessageObject request, MessageObject response, long elapsedMs)
     {
         _metrics.RecordSuccess(context.ServiceName, request.GetType().Name, elapsedMs);
         return Task.CompletedTask;
     }
 
-    
+    /// <inheritdoc />
     public Task OnExceptionAsync(RemoteCallContext context, MessageObject request, Exception exception, long elapsedMs)
     {
         var statusCode = IsTimeoutException(exception) ? RemoteStatusCode.Timeout : RemoteStatusCode.ConnectionFailed;

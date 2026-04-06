@@ -36,7 +36,7 @@ internal sealed class TraceRemoteCallInterceptor : IRemoteCallInterceptor
     public const string ActivitySourceName = "GameFrameX.RemoteMessaging";
     private static readonly ActivitySource ActivitySource = new(ActivitySourceName);
 
-    
+    /// <inheritdoc />
     public Task OnBeforeCallAsync(RemoteCallContext context, MessageObject request)
     {
         var activity = ActivitySource.StartActivity("RemoteMessage.Call", ActivityKind.Client);
@@ -58,7 +58,7 @@ internal sealed class TraceRemoteCallInterceptor : IRemoteCallInterceptor
         return Task.CompletedTask;
     }
 
-    
+    /// <inheritdoc />
     public Task OnAfterCallAsync(RemoteCallContext context, MessageObject request, MessageObject response, long elapsedMs)
     {
         if (context.TraceActivity != null)
@@ -73,7 +73,7 @@ internal sealed class TraceRemoteCallInterceptor : IRemoteCallInterceptor
         return Task.CompletedTask;
     }
 
-    
+    /// <inheritdoc />
     public Task OnExceptionAsync(RemoteCallContext context, MessageObject request, Exception exception, long elapsedMs)
     {
         if (context.TraceActivity != null)

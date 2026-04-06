@@ -26,7 +26,7 @@ namespace GameFrameX.NetWork.RemoteMessaging.Versioning;
 /// </remarks>
 internal sealed class DefaultProtocolVersionNegotiator : IProtocolVersionNegotiator
 {
-    
+    /// <inheritdoc />
     public bool IsCompatible(Type messageType)
     {
         // 无 ProtocolVersionAttribute 标注的消息默认为兼容
@@ -41,7 +41,7 @@ internal sealed class DefaultProtocolVersionNegotiator : IProtocolVersionNegotia
         return true;
     }
 
-    
+    /// <inheritdoc />
     public string GetVersion(Type messageType)
     {
         var attr = (ProtocolVersionAttribute?)messageType.GetCustomAttributes(typeof(ProtocolVersionAttribute), false).FirstOrDefault();
