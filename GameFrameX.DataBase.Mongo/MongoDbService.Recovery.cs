@@ -64,8 +64,8 @@ public sealed partial class MongoDbService
                 continue;
             }
 
-            var jitterMilliseconds = Random.Shared.Next(0, (int)RecoveryProbeJitterDelay.TotalMilliseconds);
-            await Task.Delay(RecoveryProbeBaseDelay + TimeSpan.FromMilliseconds(jitterMilliseconds), cancellationToken).ConfigureAwait(false);
+            var jitterMilliseconds = Random.Shared.Next(0, (int)_recoveryProbeJitterDelay.TotalMilliseconds);
+            await Task.Delay(_recoveryProbeBaseDelay + TimeSpan.FromMilliseconds(jitterMilliseconds), cancellationToken).ConfigureAwait(false);
 
             var pingSucceeded = await TryReconnectAndPingAsync(cancellationToken).ConfigureAwait(false);
             if (!pingSucceeded)
@@ -99,9 +99,9 @@ public sealed partial class MongoDbService
         try
         {
             var settings = MongoClientSettings.FromConnectionString(options.ConnectionString);
-            settings.ServerSelectionTimeout = ServerSelectionTimeout;
-            settings.ConnectTimeout = ConnectTimeout;
-            settings.SocketTimeout = SocketTimeout;
+            settings.ServerSelectionTimeout = _serverSelectionTimeout;
+            settings.ConnectTimeout = _connectTimeout;
+            settings.SocketTimeout = _socketTimeout;
             settings.RetryReads = true;
             settings.RetryWrites = true;
             var newClient = new MongoClient(settings);

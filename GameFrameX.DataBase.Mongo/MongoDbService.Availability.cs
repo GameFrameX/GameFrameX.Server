@@ -29,7 +29,7 @@ public sealed partial class MongoDbService
             if (AvailabilityState == DatabaseAvailabilityState.Recovering)
             {
                 _recoveringProbeSuccessCount++;
-                if (_recoveringProbeSuccessCount >= RecoveringToHealthySuccessThreshold)
+                if (_recoveringProbeSuccessCount >= _recoveringToHealthySuccessThreshold)
                 {
                     var unhealthySinceTicks = Interlocked.Read(ref _unhealthySinceTicks);
                     if (unhealthySinceTicks > 0)
@@ -41,7 +41,7 @@ public sealed partial class MongoDbService
                     ChangeAvailabilityState(DatabaseAvailabilityState.Healthy, "recovering_probe_success");
                 }
             }
-            else if (AvailabilityState == DatabaseAvailabilityState.Degraded && _consecutiveSuccesses >= DegradedToHealthySuccessThreshold)
+            else if (AvailabilityState == DatabaseAvailabilityState.Degraded && _consecutiveSuccesses >= _degradedToHealthySuccessThreshold)
             {
                 ChangeAvailabilityState(DatabaseAvailabilityState.Healthy, "degraded_success_recovered");
             }
@@ -68,12 +68,12 @@ public sealed partial class MongoDbService
                 return;
             }
 
-            if (AvailabilityState == DatabaseAvailabilityState.Healthy && _consecutiveFailures >= HealthyToDegradedFailureThreshold)
+            if (AvailabilityState == DatabaseAvailabilityState.Healthy && _consecutiveFailures >= _healthyToDegradedFailureThreshold)
             {
                 ChangeAvailabilityState(DatabaseAvailabilityState.Degraded, $"consecutive_failures={_consecutiveFailures}");
             }
 
-            if (_consecutiveFailures >= DegradedToUnhealthyFailureThreshold)
+            if (_consecutiveFailures >= _degradedToUnhealthyFailureThreshold)
             {
                 ChangeAvailabilityState(DatabaseAvailabilityState.Unhealthy, $"consecutive_failures={_consecutiveFailures};reason={GetFailureReason(exception)}");
                 EnsureRecoveryTaskStarted();
@@ -122,12 +122,12 @@ public sealed partial class MongoDbService
     {
         var nowTicks = DateTime.UtcNow.Ticks;
         var windowStartTicks = Interlocked.Read(ref _recoveringProbeWindowStartTicks);
-        if (windowStartTicks == 0 || nowTicks - windowStartTicks >= RecoveringProbeWindow.Ticks)
+        if (windowStartTicks == 0 || nowTicks - windowStartTicks >= _recoveringProbeWindow.Ticks)
         {
             lock (_availabilityLock)
             {
                 windowStartTicks = Interlocked.Read(ref _recoveringProbeWindowStartTicks);
-                if (windowStartTicks == 0 || nowTicks - windowStartTicks >= RecoveringProbeWindow.Ticks)
+                if (windowStartTicks == 0 || nowTicks - windowStartTicks >= _recoveringProbeWindow.Ticks)
                 {
                     Interlocked.Exchange(ref _recoveringProbeWindowStartTicks, nowTicks);
                     Interlocked.Exchange(ref _recoveringProbeWindowCount, 0);
@@ -136,7 +136,7 @@ public sealed partial class MongoDbService
         }
 
         var currentCount = Interlocked.Increment(ref _recoveringProbeWindowCount);
-        return currentCount <= RecoveringMaxProbePerSecond;
+        return currentCount <= _recoveringMaxProbePerSecond;
     }
 
     /// <summary>

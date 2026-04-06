@@ -41,7 +41,7 @@ public sealed partial class MongoDbService
             return degradedValue;
         }
 
-        return await ExecuteWithRetryAsync(operation, cancellationToken, ReadRetryDelaysMilliseconds, operationName, "read").ConfigureAwait(false);
+        return await ExecuteWithRetryAsync(operation, cancellationToken, _readRetryDelaysMilliseconds, operationName, "read").ConfigureAwait(false);
     }
 
     /// <summary>
@@ -59,7 +59,7 @@ public sealed partial class MongoDbService
         {
             await operation(token).ConfigureAwait(false);
             return true;
-        }, cancellationToken, ReadRetryDelaysMilliseconds, operationName, "read").ConfigureAwait(false);
+        }, cancellationToken, _readRetryDelaysMilliseconds, operationName, "read").ConfigureAwait(false);
     }
 
     /// <summary>
@@ -87,7 +87,7 @@ public sealed partial class MongoDbService
             return await ExecuteWithRetryAsync(operation, cancellationToken, Array.Empty<int>(), operationName, "write").ConfigureAwait(false);
         }
 
-        return await ExecuteWithRetryAsync(operation, cancellationToken, IdempotentWriteRetryDelaysMilliseconds, operationName, "write").ConfigureAwait(false);
+        return await ExecuteWithRetryAsync(operation, cancellationToken, _idempotentWriteRetryDelaysMilliseconds, operationName, "write").ConfigureAwait(false);
     }
 
     /// <summary>
@@ -108,7 +108,7 @@ public sealed partial class MongoDbService
             throw new DatabaseUnavailableException(LocalizationService.GetString(Keys.Database.MongoDbServiceUnavailable));
         }
 
-        var retryDelays = isIdempotent ? IdempotentWriteRetryDelaysMilliseconds : Array.Empty<int>();
+        var retryDelays = isIdempotent ? _idempotentWriteRetryDelaysMilliseconds : Array.Empty<int>();
         await ExecuteWithRetryAsync(async token =>
         {
             await operation(token).ConfigureAwait(false);

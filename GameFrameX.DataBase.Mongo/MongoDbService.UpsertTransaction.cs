@@ -30,12 +30,10 @@
 // ==========================================================================================
 
 using GameFrameX.DataBase.Abstractions;
-using GameFrameX.Foundation.Utility;
 using GameFrameX.Foundation.Logger;
 using GameFrameX.Foundation.Localization.Core;
 using GameFrameX.Localization;
 using MongoDB.Driver;
-using System.Threading;
 
 namespace GameFrameX.DataBase.Mongo;
 
@@ -209,7 +207,7 @@ public sealed partial class MongoDbService
         EnsureInitialized();
         ArgumentNullException.ThrowIfNull(action, nameof(action));
         Exception lastException = null;
-        for (var attempt = 0; attempt <= TransactionRetryDelaysMilliseconds.Length; attempt++)
+        for (var attempt = 0; attempt <= _transactionRetryDelaysMilliseconds.Length; attempt++)
         {
             cancellationToken.ThrowIfCancellationRequested();
             try
@@ -227,11 +225,11 @@ public sealed partial class MongoDbService
                 await action().ConfigureAwait(false);
                 return;
             }
-            catch (Exception exception) when (ShouldRetryTransactionException(exception) && attempt < TransactionRetryDelaysMilliseconds.Length)
+            catch (Exception exception) when (ShouldRetryTransactionException(exception) && attempt < _transactionRetryDelaysMilliseconds.Length)
             {
                 lastException = exception;
-                var delay = TransactionRetryDelaysMilliseconds[attempt] + Random.Shared.Next(0, 120);
-                LogHelper.Warning("MongoDbService.ExecuteInTransactionAsync transient error, retry {attempt}/{maxRetry}. error={error}", attempt + 1, TransactionRetryDelaysMilliseconds.Length, exception.Message);
+                var delay = _transactionRetryDelaysMilliseconds[attempt] + Random.Shared.Next(0, 120);
+                LogHelper.Warning("MongoDbService.ExecuteInTransactionAsync transient error, retry {attempt}/{maxRetry}. error={error}", attempt + 1, _transactionRetryDelaysMilliseconds.Length, exception.Message);
                 await Task.Delay(delay, cancellationToken).ConfigureAwait(false);
             }
             catch (Exception exception)
@@ -256,10 +254,10 @@ public sealed partial class MongoDbService
     /// <param name="cancellationToken">取消令牌 / Cancellation token</param>
     /// <returns>表示异步操作的任务 / Task representing asynchronous operation</returns>
     /// <exception cref="DatabaseUnavailableException">当所有重试都失败后抛出 / Thrown when all retry attempts fail</exception>
-    private static async Task CommitTransactionWithRetryAsync(IClientSessionHandle session, CancellationToken cancellationToken)
+    private async Task CommitTransactionWithRetryAsync(IClientSessionHandle session, CancellationToken cancellationToken)
     {
         Exception lastException = null;
-        for (var attempt = 0; attempt <= TransactionRetryDelaysMilliseconds.Length; attempt++)
+        for (var attempt = 0; attempt <= _transactionRetryDelaysMilliseconds.Length; attempt++)
         {
             cancellationToken.ThrowIfCancellationRequested();
             try
@@ -267,10 +265,10 @@ public sealed partial class MongoDbService
                 await session.CommitTransactionAsync(cancellationToken).ConfigureAwait(false);
                 return;
             }
-            catch (Exception exception) when (ShouldRetryTransactionCommit(exception) && attempt < TransactionRetryDelaysMilliseconds.Length)
+            catch (Exception exception) when (ShouldRetryTransactionCommit(exception) && attempt < _transactionRetryDelaysMilliseconds.Length)
             {
                 lastException = exception;
-                var delay = TransactionRetryDelaysMilliseconds[attempt] + Random.Shared.Next(0, 120);
+                var delay = _transactionRetryDelaysMilliseconds[attempt] + Random.Shared.Next(0, 120);
                 await Task.Delay(delay, cancellationToken).ConfigureAwait(false);
             }
             catch (Exception exception)

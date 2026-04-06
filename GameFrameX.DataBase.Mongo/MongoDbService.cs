@@ -61,20 +61,9 @@ public sealed partial class MongoDbService : IDatabaseService
     private static readonly ObservableGauge<int> DbHealthStatus = DbMeter.CreateObservableGauge("db_health_status", () => Volatile.Read(ref _healthStatusValue));
     private static readonly Histogram<double> DbOperationLatencyMilliseconds = DbMeter.CreateHistogram<double>("db_operation_latency_ms", unit: "ms");
     private static readonly Histogram<double> DbRecoveryDurationMilliseconds = DbMeter.CreateHistogram<double>("db_recovery_duration_ms", unit: "ms");
-    private static readonly TimeSpan ServerSelectionTimeout = TimeSpan.FromSeconds(5);
-    private static readonly TimeSpan ConnectTimeout = TimeSpan.FromSeconds(5);
-    private static readonly TimeSpan SocketTimeout = TimeSpan.FromSeconds(10);
-    private static readonly int[] ReadRetryDelaysMilliseconds = { 120, 300, 700 };
-    private static readonly int[] IdempotentWriteRetryDelaysMilliseconds = { 150, 400, 900 };
-    private static readonly int[] TransactionRetryDelaysMilliseconds = { 200, 500, 1000 };
-    private static readonly TimeSpan RecoveryProbeBaseDelay = TimeSpan.FromSeconds(3);
-    private static readonly TimeSpan RecoveryProbeJitterDelay = TimeSpan.FromSeconds(2);
-    private static readonly TimeSpan RecoveringProbeWindow = TimeSpan.FromSeconds(1);
-    private static readonly int HealthyToDegradedFailureThreshold = 3;
-    private static readonly int DegradedToUnhealthyFailureThreshold = 5;
-    private static readonly int RecoveringToHealthySuccessThreshold = 3;
-    private static readonly int DegradedToHealthySuccessThreshold = 3;
-    private static readonly int RecoveringMaxProbePerSecond = 5;
+    private static readonly int[] DefaultReadRetryDelaysMilliseconds = { 120, 300, 700 };
+    private static readonly int[] DefaultIdempotentWriteRetryDelaysMilliseconds = { 150, 400, 900 };
+    private static readonly int[] DefaultTransactionRetryDelaysMilliseconds = { 200, 500, 1000 };
     private static readonly HashSet<string> NonCriticalReadOperationWhiteList = new(StringComparer.Ordinal)
     {
         nameof(FindListAsync),
@@ -137,4 +126,88 @@ public sealed partial class MongoDbService : IDatabaseService
     private CancellationTokenSource _recoveryTaskCancellationTokenSource;
     private Task _recoveryTask;
     private int _recoveryTaskStartedFlag;
+
+    private TimeSpan _serverSelectionTimeout = TimeSpan.FromSeconds(5);
+    private TimeSpan _connectTimeout = TimeSpan.FromSeconds(5);
+    private TimeSpan _socketTimeout = TimeSpan.FromSeconds(10);
+    private TimeSpan _recoveryProbeBaseDelay = TimeSpan.FromSeconds(3);
+    private TimeSpan _recoveryProbeJitterDelay = TimeSpan.FromSeconds(2);
+    private TimeSpan _recoveringProbeWindow = TimeSpan.FromSeconds(1);
+    private int[] _readRetryDelaysMilliseconds = (int[])DefaultReadRetryDelaysMilliseconds.Clone();
+    private int[] _idempotentWriteRetryDelaysMilliseconds = (int[])DefaultIdempotentWriteRetryDelaysMilliseconds.Clone();
+    private int[] _transactionRetryDelaysMilliseconds = (int[])DefaultTransactionRetryDelaysMilliseconds.Clone();
+    private int _healthyToDegradedFailureThreshold = 3;
+    private int _degradedToUnhealthyFailureThreshold = 5;
+    private int _recoveringToHealthySuccessThreshold = 3;
+    private int _degradedToHealthySuccessThreshold = 3;
+    private int _recoveringMaxProbePerSecond = 5;
+
+    /// <summary>
+    /// 应用数据库运行时配置并执行默认值/边界归一化。
+    /// </summary>
+    /// <param name="options">数据库选项。</param>
+    private void ApplyRuntimeOptions(DbOptions options)
+    {
+        _serverSelectionTimeout = TimeSpan.FromMilliseconds(NormalizeMilliseconds(options.ServerSelectionTimeoutMilliseconds, 5000, 100));
+        _connectTimeout = TimeSpan.FromMilliseconds(NormalizeMilliseconds(options.ConnectTimeoutMilliseconds, 5000, 100));
+        _socketTimeout = TimeSpan.FromMilliseconds(NormalizeMilliseconds(options.SocketTimeoutMilliseconds, 10000, 100));
+        _recoveryProbeBaseDelay = TimeSpan.FromMilliseconds(NormalizeMilliseconds(options.RecoveryProbeBaseDelayMilliseconds, 3000, 100));
+        _recoveryProbeJitterDelay = TimeSpan.FromMilliseconds(NormalizeMilliseconds(options.RecoveryProbeJitterDelayMilliseconds, 2000, 0));
+        _recoveringProbeWindow = TimeSpan.FromMilliseconds(NormalizeMilliseconds(options.RecoveringProbeWindowMilliseconds, 1000, 100));
+        _readRetryDelaysMilliseconds = NormalizeRetryDelays(options.ReadRetryDelaysMilliseconds, DefaultReadRetryDelaysMilliseconds);
+        _idempotentWriteRetryDelaysMilliseconds = NormalizeRetryDelays(options.IdempotentWriteRetryDelaysMilliseconds, DefaultIdempotentWriteRetryDelaysMilliseconds);
+        _transactionRetryDelaysMilliseconds = NormalizeRetryDelays(options.TransactionRetryDelaysMilliseconds, DefaultTransactionRetryDelaysMilliseconds);
+        _healthyToDegradedFailureThreshold = NormalizeThreshold(options.HealthyToDegradedFailureThreshold, 3);
+        _degradedToUnhealthyFailureThreshold = NormalizeThreshold(options.DegradedToUnhealthyFailureThreshold, 5);
+        _recoveringToHealthySuccessThreshold = NormalizeThreshold(options.RecoveringToHealthySuccessThreshold, 3);
+        _degradedToHealthySuccessThreshold = NormalizeThreshold(options.DegradedToHealthySuccessThreshold, 3);
+        _recoveringMaxProbePerSecond = NormalizeThreshold(options.RecoveringMaxProbePerSecond, 5);
+    }
+
+    /// <summary>
+    /// 归一化毫秒配置。
+    /// </summary>
+    /// <param name="configuredValue">配置值。</param>
+    /// <param name="defaultValue">默认值。</param>
+    /// <param name="minValue">最小值。</param>
+    /// <returns>归一化后的值。</returns>
+    private static int NormalizeMilliseconds(int configuredValue, int defaultValue, int minValue)
+    {
+        var value = configuredValue > 0 ? configuredValue : defaultValue;
+        return Math.Max(value, minValue);
+    }
+
+    /// <summary>
+    /// 归一化阈值配置。
+    /// </summary>
+    /// <param name="configuredValue">配置值。</param>
+    /// <param name="defaultValue">默认值。</param>
+    /// <returns>归一化后的阈值。</returns>
+    private static int NormalizeThreshold(int configuredValue, int defaultValue)
+    {
+        var value = configuredValue > 0 ? configuredValue : defaultValue;
+        return Math.Max(value, 1);
+    }
+
+    /// <summary>
+    /// 归一化重试延迟配置。
+    /// </summary>
+    /// <param name="configuredValue">配置值。</param>
+    /// <param name="defaultValue">默认值。</param>
+    /// <returns>归一化后的重试延迟数组。</returns>
+    private static int[] NormalizeRetryDelays(int[] configuredValue, int[] defaultValue)
+    {
+        if (configuredValue == null || configuredValue.Length == 0)
+        {
+            return (int[])defaultValue.Clone();
+        }
+
+        var normalized = configuredValue.Where(static delay => delay >= 0).Distinct().OrderBy(static delay => delay).ToArray();
+        if (normalized.Length == 0)
+        {
+            return (int[])defaultValue.Clone();
+        }
+
+        return normalized;
+    }
 }

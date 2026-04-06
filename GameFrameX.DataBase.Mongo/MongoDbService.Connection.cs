@@ -36,6 +36,7 @@ public sealed partial class MongoDbService
                 {
                     await CurrentDatabase.RunCommandAsync((Command<BsonDocument>)"{ping:1}").ConfigureAwait(false);
                     Options = dbOptions;
+                    ApplyRuntimeOptions(dbOptions);
                     return true;
                 }
                 catch
@@ -50,6 +51,7 @@ public sealed partial class MongoDbService
         }
 
         Options = dbOptions;
+        ApplyRuntimeOptions(dbOptions);
         Exception lastException = null;
         var retryDelays = new[] { 300, 700, 1500 };
         for (var attempt = 0; attempt < retryDelays.Length; attempt++)
@@ -57,9 +59,9 @@ public sealed partial class MongoDbService
             try
             {
                 var settings = MongoClientSettings.FromConnectionString(Options.ConnectionString);
-                settings.ServerSelectionTimeout = ServerSelectionTimeout;
-                settings.ConnectTimeout = ConnectTimeout;
-                settings.SocketTimeout = SocketTimeout;
+                settings.ServerSelectionTimeout = _serverSelectionTimeout;
+                settings.ConnectTimeout = _connectTimeout;
+                settings.SocketTimeout = _socketTimeout;
                 settings.RetryReads = true;
                 settings.RetryWrites = true;
 
