@@ -28,7 +28,6 @@
 //  ==========================================================================================
 
 
-using GameFrameX.NetWork.Abstractions;
 using GameFrameX.SuperSocket.Server.Abstractions.Session;
 using GameFrameX.Utility.Setting;
 
@@ -50,9 +49,8 @@ public sealed class DefaultNetWorkChannel : BaseNetWorkChannel
     /// </remarks>
     /// <param name="session">游戏应用会话对象 / The game application session object</param>
     /// <param name="setting">应用配置 / The application settings</param>
-    /// <param name="rpcSession">RPC会话对象 / The RPC session object</param>
     /// <param name="isWebSocket">是否为WebSocket连接 / Whether the connection is WebSocket</param>
-    public DefaultNetWorkChannel(IGameAppSession session, AppSetting setting, IRpcSession rpcSession = null, bool isWebSocket = false) : base(session, setting, rpcSession, isWebSocket)
+    public DefaultNetWorkChannel(IGameAppSession session, AppSetting setting, bool isWebSocket = false) : base(session, setting, isWebSocket)
     {
     }
 }

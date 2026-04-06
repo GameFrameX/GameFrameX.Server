@@ -79,15 +79,13 @@ public abstract class BaseNetWorkChannel : INetWorkChannel
     /// </remarks>
     /// <param name="session">游戏应用会话对象 / The game application session object</param>
     /// <param name="setting">应用配置 / The application settings</param>
-    /// <param name="rpcSession">RPC会话对象 / The RPC session object</param>
     /// <param name="isWebSocket">是否为WebSocket连接 / Whether the connection is WebSocket</param>
-    public BaseNetWorkChannel(IGameAppSession session, AppSetting setting, IRpcSession rpcSession, bool isWebSocket)
+    public BaseNetWorkChannel(IGameAppSession session, AppSetting setting, bool isWebSocket)
     {
         ArgumentNullException.ThrowIfNull(setting, nameof(setting));
         GameAppSession = session;
         IsWebSocket = isWebSocket;
         Setting = setting;
-        RpcSession = rpcSession;
         SendPacketLength = default;
         SendBytesLength = default;
         ReceivePacketLength = default;
@@ -174,15 +172,6 @@ public abstract class BaseNetWorkChannel : INetWorkChannel
     /// </remarks>
     /// <value>游戏应用会话 / The game application session</value>
     public IGameAppSession GameAppSession { get; }
-
-    /// <summary>
-    /// 获取RPC会话。
-    /// </summary>
-    /// <remarks>
-    /// Gets the RPC session for managing request-response communication.
-    /// </remarks>
-    /// <value>RPC会话 / The RPC session</value>
-    public IRpcSession RpcSession { get; }
 
     /// <summary>
     /// 异步写入消息。

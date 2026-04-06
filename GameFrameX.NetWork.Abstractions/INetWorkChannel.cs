@@ -94,15 +94,6 @@ public interface INetWorkChannel
     IGameAppSession GameAppSession { get; }
 
     /// <summary>
-    /// 获取 RPC 会话。
-    /// </summary>
-    /// <remarks>
-    /// Gets the RPC session.
-    /// </remarks>
-    /// <value>RPC 会话 / RPC session</value>
-    IRpcSession RpcSession { get; }
-
-    /// <summary>
     /// 异步写入消息到网络通道。
     /// </summary>
     /// <remarks>

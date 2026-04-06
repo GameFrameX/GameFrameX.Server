@@ -48,7 +48,6 @@ public sealed class KcpNetWorkChannel : INetWorkChannel
     private readonly ConcurrentDictionary<string, object> _userDataKv = new();
     private readonly CancellationTokenSource _cancellationTokenSource = new();
     private long _lastReceiveMessageTime;
-    private readonly IRpcSession _rpcSession;
     private bool _disposed;
 
     /// <summary>
@@ -80,14 +79,6 @@ public sealed class KcpNetWorkChannel : INetWorkChannel
     }
 
     /// <summary>
-    /// Gets the RPC session / 获取 RPC 会话
-    /// </summary>
-    public IRpcSession RpcSession
-    {
-        get { return _rpcSession; }
-    }
-
-    /// <summary>
     /// Gets the KCP session / 获取 KCP 会话
     /// </summary>
     public IKcpSession KcpSession
@@ -110,7 +101,6 @@ public sealed class KcpNetWorkChannel : INetWorkChannel
         _kcpSession = kcpSession ?? throw new ArgumentNullException(nameof(kcpSession));
         _gameAppSession = new KcpGameAppSession(kcpSession);
         Setting = setting ?? throw new ArgumentNullException(nameof(setting));
-        _rpcSession = new RpcSession();
         _lastReceiveMessageTime = DateTime.UtcNow.Ticks;
     }
 
