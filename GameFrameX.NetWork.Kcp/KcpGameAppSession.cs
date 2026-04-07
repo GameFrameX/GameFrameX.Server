@@ -39,40 +39,7 @@ namespace GameFrameX.NetWork.Kcp;
 /// </summary>
 public sealed class KcpGameAppSession : IGameAppSession
 {
-    private readonly IKcpSession _kcpSession;
     private bool _disposed;
-
-    /// <summary>
-    /// Session unique ID / 会话唯一 ID
-    /// </summary>
-    public string SessionID
-    {
-        get { return _kcpSession.ConversationId.ToString(); }
-    }
-
-    /// <summary>
-    /// Session is connected / 会话是否已连接
-    /// </summary>
-    public bool IsConnected
-    {
-        get { return _kcpSession.IsConnected && !_disposed; }
-    }
-
-    /// <summary>
-    /// Remote endpoint / 远程端点
-    /// </summary>
-    public EndPoint RemoteEndPoint
-    {
-        get { return _kcpSession.RemoteEndPoint; }
-    }
-
-    /// <summary>
-    /// KCP session / KCP 会话
-    /// </summary>
-    public IKcpSession KcpSession
-    {
-        get { return _kcpSession; }
-    }
 
     /// <summary>
     /// Creates a new KCP game app session / 创建新的 KCP 游戏应用会话
@@ -80,7 +47,36 @@ public sealed class KcpGameAppSession : IGameAppSession
     /// <param name="kcpSession">KCP session / KCP 会话</param>
     public KcpGameAppSession(IKcpSession kcpSession)
     {
-        _kcpSession = kcpSession ?? throw new ArgumentNullException(nameof(kcpSession));
+        KcpSession = kcpSession ?? throw new ArgumentNullException(nameof(kcpSession));
+    }
+
+    /// <summary>
+    /// Remote endpoint / 远程端点
+    /// </summary>
+    public EndPoint RemoteEndPoint
+    {
+        get { return KcpSession.RemoteEndPoint; }
+    }
+
+    /// <summary>
+    /// KCP session / KCP 会话
+    /// </summary>
+    public IKcpSession KcpSession { get; }
+
+    /// <summary>
+    /// Session unique ID / 会话唯一 ID
+    /// </summary>
+    public string SessionID
+    {
+        get { return KcpSession.ConversationId.ToString(); }
+    }
+
+    /// <summary>
+    /// Session is connected / 会话是否已连接
+    /// </summary>
+    public bool IsConnected
+    {
+        get { return KcpSession.IsConnected && !_disposed; }
     }
 
     /// <summary>
@@ -90,12 +86,12 @@ public sealed class KcpGameAppSession : IGameAppSession
     /// <param name="cancellationToken">Cancellation token / 取消令牌</param>
     public async ValueTask SendAsync(byte[] data, CancellationToken cancellationToken = default)
     {
-        if (_disposed || !_kcpSession.IsConnected)
+        if (_disposed || !KcpSession.IsConnected)
         {
             return;
         }
 
-        await _kcpSession.SendAsync(data, cancellationToken);
+        await KcpSession.SendAsync(data, cancellationToken);
     }
 
     /// <summary>
@@ -105,12 +101,12 @@ public sealed class KcpGameAppSession : IGameAppSession
     /// <param name="cancellationToken">Cancellation token / 取消令牌</param>
     public async ValueTask SendAsync(ReadOnlyMemory<byte> data, CancellationToken cancellationToken = default)
     {
-        if (_disposed || !_kcpSession.IsConnected)
+        if (_disposed || !KcpSession.IsConnected)
         {
             return;
         }
 
-        await _kcpSession.SendAsync(data, cancellationToken);
+        await KcpSession.SendAsync(data, cancellationToken);
     }
 
     /// <summary>
@@ -124,7 +120,7 @@ public sealed class KcpGameAppSession : IGameAppSession
         }
 
         _disposed = true;
-        _kcpSession.Close();
+        KcpSession.Close();
     }
 
     /// <summary>

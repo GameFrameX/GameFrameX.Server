@@ -30,144 +30,55 @@
 
 using System.Buffers;
 using System.Net;
-using GameFrameX.SuperSocket.Server.Abstractions.Session;
+using System.Net.Sockets.Kcp;
 
 namespace GameFrameX.NetWork.Kcp;
 
 /// <summary>
 /// KCP session implementation / KCP 会话实现
 /// </summary>
-public sealed class KcpSession : IKcpSession, System.Net.Sockets.Kcp.IKcpCallback, IDisposable
+public sealed class KcpSession : IKcpSession, IKcpCallback, IDisposable
 {
-    private readonly System.Net.Sockets.Kcp.PoolSegManager.Kcp _kcp;
-    private readonly EndPoint _remoteEndPoint;
+    private readonly PoolSegManager.Kcp _kcp;
     private readonly KcpOptions _options;
     private readonly Action<ReadOnlyMemory<byte>, EndPoint> _sendOutput;
     private readonly object _updateLock = new();
     private readonly Timer _updateTimer;
     private bool _disposed;
     private bool _isConnected = true;
-    private DateTime _lastActiveTime;
-    private readonly uint _conversationId;
-
-    /// <summary>
-    /// Conversation ID / 会话 ID
-    /// </summary>
-    public uint ConversationId
-    {
-        get { return _conversationId; }
-    }
-
-
-    /// <summary>
-    /// Remote endpoint / 远程端点
-    /// </summary>
-    public EndPoint RemoteEndPoint
-    {
-        get { return _remoteEndPoint; }
-    }
-
-    public ValueTask SendAsync(byte[] data, CancellationToken cancellationToken = new CancellationToken())
-    {
-        ArgumentNullException.ThrowIfNull(data);
-        if (cancellationToken.IsCancellationRequested)
-        {
-            return ValueTask.FromCanceled(cancellationToken);
-        }
-
-        return SendAsync((ReadOnlyMemory<byte>)data, cancellationToken);
-    }
-
-    public ValueTask SendAsync(ReadOnlyMemory<byte> data, CancellationToken cancellationToken = new CancellationToken())
-    {
-        if (cancellationToken.IsCancellationRequested)
-        {
-            return ValueTask.FromCanceled(cancellationToken);
-        }
-
-        Send(data.Span);
-        return ValueTask.CompletedTask;
-    }
-
-    public int Send(byte[] data)
-    {
-        ArgumentNullException.ThrowIfNull(data);
-        return Send((ReadOnlySpan<byte>)data);
-    }
-
-    public int Send(ReadOnlySpan<byte> data)
-    {
-        if (_disposed || !_isConnected)
-        {
-            return -1;
-        }
-
-        lock (_updateLock)
-        {
-            var sendResult = _kcp.Send(data, null);
-            if (sendResult > 0)
-            {
-                _sendOutput?.Invoke(data.ToArray(), _remoteEndPoint);
-            }
-
-            return sendResult;
-        }
-    }
-
-    public string SessionID { get; }
-
-    /// <summary>
-    /// Is connection active / 连接是否活跃
-    /// </summary>
-    public bool IsConnected
-    {
-        get { return _isConnected && !_disposed; }
-    }
-
-    /// <summary>
-    /// Last active time / 最后活跃时间
-    /// </summary>
-    public DateTime LastActiveTime
-    {
-        get { return _lastActiveTime; }
-    }
 
     /// <summary>
     /// Creates a new KCP session / 创建新的 KCP 会话
     /// </summary>
     public KcpSession(EndPoint remoteEndPoint, KcpOptions options, Action<ReadOnlyMemory<byte>, EndPoint> sendOutput, uint conversationId = 0)
     {
-        _remoteEndPoint = remoteEndPoint;
+        RemoteEndPoint = remoteEndPoint;
         _options = options;
         _sendOutput = sendOutput;
-        _conversationId = conversationId == 0 ? (uint)Random.Shared.Next() : conversationId;
-        _lastActiveTime = DateTime.UtcNow;
+        ConversationId = conversationId == 0 ? (uint)Random.Shared.Next() : conversationId;
+        LastActiveTime = DateTime.UtcNow;
 
         // Create KCP instance using PoolSegManager.Kcp with IKcpCallback
-        _kcp = new System.Net.Sockets.Kcp.PoolSegManager.Kcp(_conversationId, this, null);
+        _kcp = new PoolSegManager.Kcp(ConversationId, this);
         ConfigureKcp();
 
         // Start update timer
         _updateTimer = new Timer(OnUpdate, null, _options.UpdatePeriod, _options.UpdatePeriod);
     }
 
-    private void ConfigureKcp()
+    /// <summary>
+    /// Dispose resources / 释放资源
+    /// </summary>
+    public void Dispose()
     {
-        // Configure NoDelay mode
-        lock (_updateLock)
+        if (_disposed)
         {
-            _kcp.NoDelay(
-                nodelay_: _options.NoDelay ? 1 : 0,
-                interval_: _options.Interval,
-                resend_: _options.Resend,
-                nc_: _options.EnableFlowControl ? 0 : 1
-            );
-            // Configure window size
-            _kcp.WndSize(_options.SendWindow, _options.ReceiveWindow);
-
-            // Configure MTU
-            _kcp.SetMtu(_options.Mtu);
+            return;
         }
+
+        _disposed = true;
+        Close();
+        _kcp.Dispose();
     }
 
     /// <summary>
@@ -184,7 +95,7 @@ public sealed class KcpSession : IKcpSession, System.Net.Sockets.Kcp.IKcpCallbac
         try
         {
             var memory = buffer.Memory.Slice(0, avalidLength);
-            _sendOutput?.Invoke(memory, _remoteEndPoint);
+            _sendOutput?.Invoke(memory, RemoteEndPoint);
         }
         finally
         {
@@ -192,27 +103,53 @@ public sealed class KcpSession : IKcpSession, System.Net.Sockets.Kcp.IKcpCallbac
         }
     }
 
-    private void OnUpdate(object state)
+    /// <summary>
+    /// Conversation ID / 会话 ID
+    /// </summary>
+    public uint ConversationId { get; }
+
+
+    /// <summary>
+    /// Remote endpoint / 远程端点
+    /// </summary>
+    public EndPoint RemoteEndPoint { get; }
+
+    public ValueTask SendAsync(byte[] data, CancellationToken cancellationToken = new())
     {
-        if (_disposed || !_isConnected)
+        ArgumentNullException.ThrowIfNull(data);
+        if (cancellationToken.IsCancellationRequested)
         {
-            return;
+            return ValueTask.FromCanceled(cancellationToken);
         }
 
-        // Check timeout
-        var inactiveTime = (DateTime.UtcNow - _lastActiveTime).TotalMilliseconds;
-        if (inactiveTime > _options.ConnectionTimeout)
-        {
-            _isConnected = false;
-            return;
-        }
-
-        // Update must be called in single thread
-        lock (_updateLock)
-        {
-            _kcp.Update(DateTimeOffset.UtcNow);
-        }
+        return SendAsync((ReadOnlyMemory<byte>)data, cancellationToken);
     }
+
+    public ValueTask SendAsync(ReadOnlyMemory<byte> data, CancellationToken cancellationToken = new())
+    {
+        if (cancellationToken.IsCancellationRequested)
+        {
+            return ValueTask.FromCanceled(cancellationToken);
+        }
+
+        Send(data.Span);
+        return ValueTask.CompletedTask;
+    }
+
+    public string SessionID { get; }
+
+    /// <summary>
+    /// Is connection active / 连接是否活跃
+    /// </summary>
+    public bool IsConnected
+    {
+        get { return _isConnected && !_disposed; }
+    }
+
+    /// <summary>
+    /// Last active time / 最后活跃时间
+    /// </summary>
+    public DateTime LastActiveTime { get; private set; }
 
     /// <summary>
     /// Input data received from UDP / 输入从 UDP 接收的数据
@@ -224,7 +161,7 @@ public sealed class KcpSession : IKcpSession, System.Net.Sockets.Kcp.IKcpCallbac
             return;
         }
 
-        _lastActiveTime = DateTime.UtcNow;
+        LastActiveTime = DateTime.UtcNow;
         lock (_updateLock)
         {
             _kcp.Input(data);
@@ -268,18 +205,69 @@ public sealed class KcpSession : IKcpSession, System.Net.Sockets.Kcp.IKcpCallbac
         _updateTimer?.Dispose();
     }
 
-    /// <summary>
-    /// Dispose resources / 释放资源
-    /// </summary>
-    public void Dispose()
+    public int Send(byte[] data)
     {
-        if (_disposed)
+        ArgumentNullException.ThrowIfNull(data);
+        return Send((ReadOnlySpan<byte>)data);
+    }
+
+    public int Send(ReadOnlySpan<byte> data)
+    {
+        if (_disposed || !_isConnected)
+        {
+            return -1;
+        }
+
+        lock (_updateLock)
+        {
+            var sendResult = _kcp.Send(data);
+            if (sendResult > 0)
+            {
+                _sendOutput?.Invoke(data.ToArray(), RemoteEndPoint);
+            }
+
+            return sendResult;
+        }
+    }
+
+    private void ConfigureKcp()
+    {
+        // Configure NoDelay mode
+        lock (_updateLock)
+        {
+            _kcp.NoDelay(
+                _options.NoDelay ? 1 : 0,
+                _options.Interval,
+                _options.Resend,
+                _options.EnableFlowControl ? 0 : 1
+            );
+            // Configure window size
+            _kcp.WndSize(_options.SendWindow, _options.ReceiveWindow);
+
+            // Configure MTU
+            _kcp.SetMtu(_options.Mtu);
+        }
+    }
+
+    private void OnUpdate(object state)
+    {
+        if (_disposed || !_isConnected)
         {
             return;
         }
 
-        _disposed = true;
-        Close();
-        _kcp.Dispose();
+        // Check timeout
+        var inactiveTime = (DateTime.UtcNow - LastActiveTime).TotalMilliseconds;
+        if (inactiveTime > _options.ConnectionTimeout)
+        {
+            _isConnected = false;
+            return;
+        }
+
+        // Update must be called in single thread
+        lock (_updateLock)
+        {
+            _kcp.Update(DateTimeOffset.UtcNow);
+        }
     }
 }

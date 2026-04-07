@@ -31,12 +31,12 @@
 using System.Collections.Concurrent;
 using System.Net;
 using System.Net.Sockets;
-using GameFrameX.Foundation.Logger;
 using GameFrameX.Foundation.Localization.Core;
+using GameFrameX.Foundation.Logger;
+using GameFrameX.Localization;
 using GameFrameX.NetWork.Abstractions;
 using GameFrameX.SuperSocket.Server.Abstractions.Session;
 using GameFrameX.Utility.Setting;
-using GameFrameX.NetWork;
 
 namespace GameFrameX.NetWork.Kcp;
 
@@ -45,44 +45,17 @@ namespace GameFrameX.NetWork.Kcp;
 /// </summary>
 public sealed class KcpServer : IDisposable
 {
-    private readonly KcpOptions _options;
-    private readonly AppSetting _setting;
-    private readonly KcpSessionManager _sessionManager;
-    private readonly KcpMessagePipelineFilter _messageFilter;
-    private readonly Socket _udpSocket;
-    private readonly byte[] _receiveBuffer;
-    private readonly int _port;
     private readonly CancellationTokenSource _cancellationTokenSource = new();
-    private readonly Action<IGameAppSession, IMessage> _packageHandler;
+    private readonly ConcurrentDictionary<uint, KcpNetWorkChannel> _channels = new();
+    private readonly KcpMessagePipelineFilter _messageFilter;
     private readonly Func<EndPoint, ValueTask> _onConnected;
     private readonly Func<EndPoint, ValueTask> _onDisconnected;
-    private readonly ConcurrentDictionary<uint, KcpNetWorkChannel> _channels = new();
+    private readonly KcpOptions _options;
+    private readonly Action<IGameAppSession, IMessage> _packageHandler;
+    private readonly byte[] _receiveBuffer;
+    private readonly AppSetting _setting;
+    private readonly Socket _udpSocket;
     private bool _disposed;
-    private bool _isRunning;
-
-    /// <summary>
-    /// Gets the session manager / 获取会话管理器
-    /// </summary>
-    public KcpSessionManager SessionManager
-    {
-        get { return _sessionManager; }
-    }
-
-    /// <summary>
-    /// Gets whether the server is running / 获取服务器是否正在运行
-    /// </summary>
-    public bool IsRunning
-    {
-        get { return _isRunning; }
-    }
-
-    /// <summary>
-    /// Gets the listening port / 获取监听端口
-    /// </summary>
-    public int Port
-    {
-        get { return _port; }
-    }
 
     /// <summary>
     /// Creates a new KCP server / 创建新的 KCP 服务器
@@ -101,7 +74,7 @@ public sealed class KcpServer : IDisposable
         Func<EndPoint, ValueTask> onConnected,
         Func<EndPoint, ValueTask> onDisconnected)
     {
-        _port = port;
+        Port = port;
         _options = options ?? throw new ArgumentNullException(nameof(options));
         _setting = setting ?? throw new ArgumentNullException(nameof(setting));
         _packageHandler = packageHandler ?? throw new ArgumentNullException(nameof(packageHandler));
@@ -113,10 +86,40 @@ public sealed class KcpServer : IDisposable
         _udpSocket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp)
         {
             ReceiveBufferSize = 1024 * 1024,
-            SendBufferSize = 1024 * 1024
+            SendBufferSize = 1024 * 1024,
         };
 
-        _sessionManager = new KcpSessionManager(_options, SendOutput);
+        SessionManager = new KcpSessionManager(_options, SendOutput);
+    }
+
+    /// <summary>
+    /// Gets the session manager / 获取会话管理器
+    /// </summary>
+    public KcpSessionManager SessionManager { get; }
+
+    /// <summary>
+    /// Gets whether the server is running / 获取服务器是否正在运行
+    /// </summary>
+    public bool IsRunning { get; private set; }
+
+    /// <summary>
+    /// Gets the listening port / 获取监听端口
+    /// </summary>
+    public int Port { get; }
+
+    /// <summary>
+    /// Dispose resources / 释放资源
+    /// </summary>
+    public void Dispose()
+    {
+        if (_disposed)
+        {
+            return;
+        }
+
+        _disposed = true;
+        Stop();
+        _cancellationTokenSource.Dispose();
     }
 
     /// <summary>
@@ -124,15 +127,15 @@ public sealed class KcpServer : IDisposable
     /// </summary>
     public async Task StartAsync()
     {
-        if (_isRunning)
+        if (IsRunning)
         {
             return;
         }
 
-        _udpSocket.Bind(new IPEndPoint(IPAddress.Any, _port));
-        _isRunning = true;
+        _udpSocket.Bind(new IPEndPoint(IPAddress.Any, Port));
+        IsRunning = true;
 
-        LogHelper.Info(LocalizationService.GetString(Localization.Keys.StartUp.KcpServer.StartupComplete, "KCP", "0.0.0.0", _port));
+        LogHelper.Info(LocalizationService.GetString(Keys.StartUp.KcpServer.StartupComplete, "KCP", "0.0.0.0", Port));
 
         _ = Task.Run(ReceiveLoop, _cancellationTokenSource.Token);
     }
@@ -142,12 +145,12 @@ public sealed class KcpServer : IDisposable
     /// </summary>
     public void Stop()
     {
-        if (!_isRunning)
+        if (!IsRunning)
         {
             return;
         }
 
-        _isRunning = false;
+        IsRunning = false;
         _cancellationTokenSource.Cancel();
         _udpSocket.Close();
 
@@ -157,16 +160,16 @@ public sealed class KcpServer : IDisposable
         }
 
         _channels.Clear();
-        _sessionManager.Dispose();
+        SessionManager.Dispose();
 
-        LogHelper.Info(LocalizationService.GetString(Localization.Keys.StartUp.KcpServer.ClientDisconnected, "Server stopped"));
+        LogHelper.Info(LocalizationService.GetString(Keys.StartUp.KcpServer.ClientDisconnected, "Server stopped"));
     }
 
     private async Task ReceiveLoop()
     {
         var endpoint = new IPEndPoint(IPAddress.Any, 0) as EndPoint;
 
-        while (!_cancellationTokenSource.Token.IsCancellationRequested && _isRunning)
+        while (!_cancellationTokenSource.Token.IsCancellationRequested && IsRunning)
         {
             try
             {
@@ -208,14 +211,14 @@ public sealed class KcpServer : IDisposable
         }
 
         IKcpSession session;
-        bool isNewSession = false;
-        if (_sessionManager.TryGetSession(conversationId, out var existingSession))
+        var isNewSession = false;
+        if (SessionManager.TryGetSession(conversationId, out var existingSession))
         {
             session = existingSession;
         }
         else
         {
-            session = _sessionManager.GetOrCreateSession(remoteEndPoint, conversationId);
+            session = SessionManager.GetOrCreateSession(remoteEndPoint, conversationId);
             isNewSession = true;
         }
 
@@ -248,7 +251,7 @@ public sealed class KcpServer : IDisposable
 
     private void SendOutput(ReadOnlyMemory<byte> data, EndPoint remoteEndPoint)
     {
-        if (!_isRunning || _disposed)
+        if (!IsRunning || _disposed)
         {
             return;
         }
@@ -270,7 +273,7 @@ public sealed class KcpServer : IDisposable
     /// <param name="data">Data to send / 要发送的数据</param>
     public async ValueTask SendAsync(uint conversationId, ReadOnlyMemory<byte> data)
     {
-        if (_sessionManager.TryGetSession(conversationId, out var session))
+        if (SessionManager.TryGetSession(conversationId, out var session))
         {
             await session.SendAsync(data, CancellationToken.None);
         }
@@ -283,7 +286,7 @@ public sealed class KcpServer : IDisposable
     /// <param name="data">Data to send / 要发送的数据</param>
     public async ValueTask SendAsync(EndPoint endPoint, ReadOnlyMemory<byte> data)
     {
-        if (_sessionManager.TryGetSession(endPoint, out var session))
+        if (SessionManager.TryGetSession(endPoint, out var session))
         {
             await session.SendAsync(data, CancellationToken.None);
         }
@@ -298,20 +301,5 @@ public sealed class KcpServer : IDisposable
     public bool TryGetChannel(uint conversationId, out KcpNetWorkChannel channel)
     {
         return _channels.TryGetValue(conversationId, out channel);
-    }
-
-    /// <summary>
-    /// Dispose resources / 释放资源
-    /// </summary>
-    public void Dispose()
-    {
-        if (_disposed)
-        {
-            return;
-        }
-
-        _disposed = true;
-        Stop();
-        _cancellationTokenSource.Dispose();
     }
 }

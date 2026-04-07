@@ -38,20 +38,12 @@ namespace GameFrameX.NetWork.Kcp;
 /// </summary>
 public sealed class KcpSessionManager : IDisposable
 {
-    private readonly ConcurrentDictionary<uint, IKcpSession> _sessions = new();
+    private readonly Timer _cleanupTimer;
     private readonly ConcurrentDictionary<EndPoint, IKcpSession> _endpointToSession = new();
     private readonly KcpOptions _options;
     private readonly Action<ReadOnlyMemory<byte>, EndPoint> _sendOutput;
-    private readonly Timer _cleanupTimer;
+    private readonly ConcurrentDictionary<uint, IKcpSession> _sessions = new();
     private bool _disposed;
-
-    /// <summary>
-    /// Gets the number of active sessions / 获取活跃会话数量
-    /// </summary>
-    public int SessionCount
-    {
-        get { return _sessions.Count; }
-    }
 
     /// <summary>
     /// Creates a new KCP session manager / 创建新的 KCP 会话管理器
@@ -63,6 +55,38 @@ public sealed class KcpSessionManager : IDisposable
         _options = options;
         _sendOutput = sendOutput;
         _cleanupTimer = new Timer(OnCleanup, null, TimeSpan.FromSeconds(_options.SessionTimeout / 2), TimeSpan.FromSeconds(_options.SessionTimeout / 2));
+    }
+
+    /// <summary>
+    /// Gets the number of active sessions / 获取活跃会话数量
+    /// </summary>
+    public int SessionCount
+    {
+        get { return _sessions.Count; }
+    }
+
+    /// <summary>
+    /// Dispose resources / 释放资源
+    /// </summary>
+    public void Dispose()
+    {
+        if (_disposed)
+        {
+            return;
+        }
+
+        _disposed = true;
+
+        _cleanupTimer?.Dispose();
+
+        foreach (var session in _sessions.Values)
+        {
+            session.Close();
+            (session as IDisposable)?.Dispose();
+        }
+
+        _sessions.Clear();
+        _endpointToSession.Clear();
     }
 
     /// <summary>
@@ -186,34 +210,10 @@ public sealed class KcpSessionManager : IDisposable
 
         foreach (var session in _sessions.Values)
         {
-            if (!session.IsConnected || (now - session.LastActiveTime) > timeout)
+            if (!session.IsConnected || now - session.LastActiveTime > timeout)
             {
                 RemoveSession(session.ConversationId);
             }
         }
-    }
-
-    /// <summary>
-    /// Dispose resources / 释放资源
-    /// </summary>
-    public void Dispose()
-    {
-        if (_disposed)
-        {
-            return;
-        }
-
-        _disposed = true;
-
-        _cleanupTimer?.Dispose();
-
-        foreach (var session in _sessions.Values)
-        {
-            session.Close();
-            (session as IDisposable)?.Dispose();
-        }
-
-        _sessions.Clear();
-        _endpointToSession.Clear();
     }
 }

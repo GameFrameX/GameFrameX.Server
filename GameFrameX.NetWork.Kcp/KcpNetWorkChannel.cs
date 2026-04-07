@@ -29,8 +29,9 @@
 
 
 using System.Collections.Concurrent;
-using GameFrameX.Foundation.Logger;
 using GameFrameX.Foundation.Localization.Core;
+using GameFrameX.Foundation.Logger;
+using GameFrameX.Localization;
 using GameFrameX.NetWork.Abstractions;
 using GameFrameX.SuperSocket.Server.Abstractions.Session;
 using GameFrameX.Utility.Setting;
@@ -43,12 +44,34 @@ namespace GameFrameX.NetWork.Kcp;
 /// </summary>
 public sealed class KcpNetWorkChannel : INetWorkChannel
 {
-    private readonly IKcpSession _kcpSession;
+    private readonly CancellationTokenSource _cancellationTokenSource = new();
     private readonly KcpGameAppSession _gameAppSession;
     private readonly ConcurrentDictionary<string, object> _userDataKv = new();
-    private readonly CancellationTokenSource _cancellationTokenSource = new();
-    private long _lastReceiveMessageTime;
     private bool _disposed;
+    private long _lastReceiveMessageTime;
+
+    /// <summary>
+    /// Creates a new KCP network channel / 创建新的 KCP 网络通道
+    /// </summary>
+    /// <param name="kcpSession">KCP session / KCP 会话</param>
+    /// <param name="setting">Application settings / 应用配置</param>
+    public KcpNetWorkChannel(IKcpSession kcpSession, AppSetting setting)
+    {
+        KcpSession = kcpSession ?? throw new ArgumentNullException(nameof(kcpSession));
+        _gameAppSession = new KcpGameAppSession(kcpSession);
+        Setting = setting ?? throw new ArgumentNullException(nameof(setting));
+        _lastReceiveMessageTime = DateTime.UtcNow.Ticks;
+    }
+
+    /// <summary>
+    /// Gets the KCP session / 获取 KCP 会话
+    /// </summary>
+    public IKcpSession KcpSession { get; }
+
+    /// <summary>
+    /// Gets the application settings / 获取应用配置
+    /// </summary>
+    public AppSetting Setting { get; }
 
     /// <summary>
     /// Gets the sending bytes length / 获取发送字节长度
@@ -79,32 +102,6 @@ public sealed class KcpNetWorkChannel : INetWorkChannel
     }
 
     /// <summary>
-    /// Gets the KCP session / 获取 KCP 会话
-    /// </summary>
-    public IKcpSession KcpSession
-    {
-        get { return _kcpSession; }
-    }
-
-    /// <summary>
-    /// Gets the application settings / 获取应用配置
-    /// </summary>
-    public AppSetting Setting { get; }
-
-    /// <summary>
-    /// Creates a new KCP network channel / 创建新的 KCP 网络通道
-    /// </summary>
-    /// <param name="kcpSession">KCP session / KCP 会话</param>
-    /// <param name="setting">Application settings / 应用配置</param>
-    public KcpNetWorkChannel(IKcpSession kcpSession, AppSetting setting)
-    {
-        _kcpSession = kcpSession ?? throw new ArgumentNullException(nameof(kcpSession));
-        _gameAppSession = new KcpGameAppSession(kcpSession);
-        Setting = setting ?? throw new ArgumentNullException(nameof(setting));
-        _lastReceiveMessageTime = DateTime.UtcNow.Ticks;
-    }
-
-    /// <summary>
     /// Update the receiving packet bytes length / 更新接收数据包字节长度
     /// </summary>
     /// <param name="bufferLength">Buffer length / 缓冲区长度</param>
@@ -126,7 +123,7 @@ public sealed class KcpNetWorkChannel : INetWorkChannel
             return;
         }
 
-        ArgumentNullException.ThrowIfNull(msg, nameof(msg));
+        ArgumentNullException.ThrowIfNull(msg);
 
         if (msg is IResponseMessage respMsg)
         {
@@ -145,17 +142,17 @@ public sealed class KcpNetWorkChannel : INetWorkChannel
             {
                 if (Setting.IsDebugSendHeartBeat)
                 {
-                    LogHelper.Debug("Send HeartBeat Message:{actorId} {message}", actorId, LocalizationService.GetString(Localization.Keys.NetWork.MessageSent, msg.ToFormatMessageString(actorId)));
+                    LogHelper.Debug("Send HeartBeat Message:{actorId} {message}", actorId, LocalizationService.GetString(Keys.NetWork.MessageSent, msg.ToFormatMessageString(actorId)));
                 }
             }
             else
             {
                 var responseErrorCode = msg is IResponseMessage respMsg2 ? respMsg2.ErrorCode : 0;
-                LogHelper.Debug("Send Message:{actorId} {errorCode} {message}", actorId, responseErrorCode, LocalizationService.GetString(Localization.Keys.NetWork.MessageSent, msg.ToFormatMessageString(actorId)));
+                LogHelper.Debug("Send Message:{actorId} {errorCode} {message}", actorId, responseErrorCode, LocalizationService.GetString(Keys.NetWork.MessageSent, msg.ToFormatMessageString(actorId)));
             }
         }
 
-        if (!_kcpSession.IsConnected)
+        if (!KcpSession.IsConnected)
         {
             return;
         }
@@ -167,7 +164,7 @@ public sealed class KcpNetWorkChannel : INetWorkChannel
         {
             try
             {
-                await _kcpSession.SendAsync(messageData, cts.Token);
+                await KcpSession.SendAsync(messageData, cts.Token);
             }
             catch (Exception ex)
             {
@@ -188,7 +185,7 @@ public sealed class KcpNetWorkChannel : INetWorkChannel
 
         _disposed = true;
         _cancellationTokenSource.Cancel();
-        _kcpSession.Close();
+        KcpSession.Close();
         ClearData();
     }
 
