@@ -37,6 +37,8 @@ namespace GameFrameX.Utility.Setting;
 /// </remarks>
 public static class GameServerConst
 {
+    #region 核心服务
+
     /// <summary>
     /// 玩家主服务
     /// </summary>
@@ -52,6 +54,10 @@ public static class GameServerConst
         /// </summary>
         public const int Id = 1000;
     }
+
+    #endregion
+
+    #region 5000-5999 接入与社交通信
 
     /// <summary>
     /// 网关服务
@@ -212,6 +218,10 @@ public static class GameServerConst
         /// </summary>
         public const int Id = 5590;
     }
+
+    #endregion
+
+    #region 6000-6499 玩法成长
 
     /// <summary>
     /// 排行榜服务
@@ -469,6 +479,10 @@ public static class GameServerConst
         public const int Id = 6040;
     }
 
+    #endregion
+
+    #region 6500-6999 经济交易
+
     /// <summary>
     /// 支付服务
     /// </summary>
@@ -517,6 +531,10 @@ public static class GameServerConst
         public const int Id = 6540;
     }
 
+    #endregion
+
+    #region 8000-8499 运营治理
+
     /// <summary>
     /// 反作弊服务
     /// </summary>
@@ -552,18 +570,22 @@ public static class GameServerConst
     /// <summary>
     /// GM 服务
     /// </summary>
-    public static class GM
+    public static class Gm
     {
         /// <summary>
         /// 服务名称
         /// </summary>
-        public const string Name = "GM";
+        public const string Name = "Gm";
 
         /// <summary>
         /// 服务ID
         /// </summary>
         public const int Id = 8000;
     }
+
+    #endregion
+
+    #region 5500-5999 社交通信
 
     /// <summary>
     /// 公告服务
@@ -596,6 +618,10 @@ public static class GameServerConst
         /// </summary>
         public const int Id = 5610;
     }
+
+    #endregion
+
+    #region 8500-8999 数据观测
 
     /// <summary>
     /// 分析服务
@@ -677,6 +703,10 @@ public static class GameServerConst
         public const int Id = 8540;
     }
 
+    #endregion
+
+    #region 5000-5499 接入基础
+
     /// <summary>
     /// 配置服务
     /// </summary>
@@ -709,15 +739,19 @@ public static class GameServerConst
         public const int Id = 5080;
     }
 
+    #endregion
+
+    #region 7000-7499 战斗世界
+
     /// <summary>
     /// AI 网关服务
     /// </summary>
-    public static class AIGateway
+    public static class AiGateway
     {
         /// <summary>
         /// 服务名称
         /// </summary>
-        public const string Name = "AIGateway";
+        public const string Name = "AiGateway";
 
         /// <summary>
         /// 服务ID
@@ -728,12 +762,12 @@ public static class GameServerConst
     /// <summary>
     /// AI 匹配服务
     /// </summary>
-    public static class AIMatch
+    public static class AiMatch
     {
         /// <summary>
         /// 服务名称
         /// </summary>
-        public const string Name = "AIMatch";
+        public const string Name = "AiMatch";
 
         /// <summary>
         /// 服务ID
@@ -805,6 +839,10 @@ public static class GameServerConst
         public const int Id = 7080;
     }
 
+    #endregion
+
+    #region 5000-5499 接入基础
+
     /// <summary>
     /// 代理服务
     /// </summary>
@@ -837,6 +875,10 @@ public static class GameServerConst
         public const int Id = 5020;
     }
 
+    #endregion
+
+    #region 5500-5999 社交通信
+
     /// <summary>
     /// 语音服务
     /// </summary>
@@ -853,6 +895,10 @@ public static class GameServerConst
         public const int Id = 5520;
     }
 
+    #endregion
+
+    #region 8000-8499 运营治理
+
     /// <summary>
     /// 运营工具服务
     /// </summary>
@@ -868,6 +914,10 @@ public static class GameServerConst
         /// </summary>
         public const int Id = 8010;
     }
+
+    #endregion
+
+    #region 6500-6999 经济交易
 
     /// <summary>
     /// 热更补丁服务
@@ -901,6 +951,10 @@ public static class GameServerConst
         public const int Id = 6550;
     }
 
+    #endregion
+
+    #region 8500-8999 数据观测
+
     /// <summary>
     /// 本地化服务
     /// </summary>
@@ -916,6 +970,10 @@ public static class GameServerConst
         /// </summary>
         public const int Id = 8550;
     }
+
+    #endregion
+
+    #region 5000-5499 接入基础
 
     /// <summary>
     /// SDK 聚合服务
@@ -949,6 +1007,10 @@ public static class GameServerConst
         public const int Id = 5050;
     }
 
+    #endregion
+
+    #region 5500-5999 社交通信
+
     /// <summary>
     /// 角色服务
     /// </summary>
@@ -964,4 +1026,6 @@ public static class GameServerConst
         /// </summary>
         public const int Id = 5620;
     }
+
+    #endregion
 }
