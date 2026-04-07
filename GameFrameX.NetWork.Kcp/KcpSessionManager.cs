@@ -40,6 +40,8 @@ public sealed class KcpSessionManager : IDisposable
 {
     private readonly Timer _cleanupTimer;
     private readonly ConcurrentDictionary<EndPoint, IKcpSession> _endpointToSession = new();
+    private readonly Func<EndPoint, ValueTask> _onSessionConnected;
+    private readonly Func<EndPoint, ValueTask> _onSessionDisconnected;
     private readonly KcpOptions _options;
     private readonly Action<ReadOnlyMemory<byte>, EndPoint> _sendOutput;
     private readonly ConcurrentDictionary<uint, IKcpSession> _sessions = new();
@@ -50,10 +52,16 @@ public sealed class KcpSessionManager : IDisposable
     /// </summary>
     /// <param name="options">KCP options / KCP 配置选项</param>
     /// <param name="sendOutput">Send output callback / 发送输出回调</param>
-    public KcpSessionManager(KcpOptions options, Action<ReadOnlyMemory<byte>, EndPoint> sendOutput)
+    public KcpSessionManager(
+        KcpOptions options,
+        Action<ReadOnlyMemory<byte>, EndPoint> sendOutput,
+        Func<EndPoint, ValueTask> onSessionConnected = null,
+        Func<EndPoint, ValueTask> onSessionDisconnected = null)
     {
         _options = options;
         _sendOutput = sendOutput;
+        _onSessionConnected = onSessionConnected;
+        _onSessionDisconnected = onSessionDisconnected;
         _cleanupTimer = new Timer(OnCleanup, null, TimeSpan.FromSeconds(_options.SessionTimeout / 2), TimeSpan.FromSeconds(_options.SessionTimeout / 2));
     }
 
@@ -83,6 +91,7 @@ public sealed class KcpSessionManager : IDisposable
         {
             session.Close();
             (session as IDisposable)?.Dispose();
+            NotifySessionDisconnected(session.RemoteEndPoint);
         }
 
         _sessions.Clear();
@@ -108,6 +117,7 @@ public sealed class KcpSessionManager : IDisposable
         if (addedSession == session)
         {
             _sessions[session.ConversationId] = session;
+            NotifySessionConnected(endPoint);
         }
 
         return addedSession;
@@ -132,6 +142,7 @@ public sealed class KcpSessionManager : IDisposable
         if (addedSession == session)
         {
             _endpointToSession[endPoint] = session;
+            NotifySessionConnected(endPoint);
         }
 
         return addedSession;
@@ -173,6 +184,7 @@ public sealed class KcpSessionManager : IDisposable
         _endpointToSession.TryRemove(session.RemoteEndPoint, out _);
         session.Close();
         (session as IDisposable)?.Dispose();
+        NotifySessionDisconnected(session.RemoteEndPoint);
     }
 
     /// <summary>
@@ -186,6 +198,7 @@ public sealed class KcpSessionManager : IDisposable
             _sessions.TryRemove(session.ConversationId, out _);
             session.Close();
             (session as IDisposable)?.Dispose();
+            NotifySessionDisconnected(endPoint);
         }
     }
 
@@ -214,6 +227,38 @@ public sealed class KcpSessionManager : IDisposable
             {
                 RemoveSession(session.ConversationId);
             }
+        }
+    }
+
+    private void NotifySessionConnected(EndPoint endPoint)
+    {
+        if (_onSessionConnected == null || endPoint == null)
+        {
+            return;
+        }
+
+        _ = SafeInvokeAsync(_onSessionConnected, endPoint);
+    }
+
+    private void NotifySessionDisconnected(EndPoint endPoint)
+    {
+        if (_onSessionDisconnected == null || endPoint == null)
+        {
+            return;
+        }
+
+        _ = SafeInvokeAsync(_onSessionDisconnected, endPoint);
+    }
+
+    private static async Task SafeInvokeAsync(Func<EndPoint, ValueTask> callback, EndPoint endPoint)
+    {
+        try
+        {
+            await callback(endPoint);
+        }
+        catch
+        {
+            // Ignore callback failures to avoid impacting network pipeline.
         }
     }
 }

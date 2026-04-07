@@ -33,8 +33,8 @@ using GameFrameX.AppHost.ServiceDefaults;
 using GameFrameX.Foundation.Logger;
 using GameFrameX.Foundation.Localization.Core;
 using GameFrameX.NetWork.Abstractions;
-using GameFrameX.NetWork.HTTP;
 using GameFrameX.NetWork.Kcp;
+using GameFrameX.NetWork.HTTP;
 using GameFrameX.NetWork.Message;
 using GameFrameX.SuperSocket.Connection;
 using GameFrameX.SuperSocket.Primitives;
@@ -153,7 +153,7 @@ public abstract partial class AppStartUpBase
     /// <returns></returns>
     protected virtual ValueTask OnKcpConnected(EndPoint remoteEndPoint)
     {
-        LogHelper.Info(LocalizationService.GetString(Localization.Keys.StartUp.KcpServer.NewClientConnection, remoteEndPoint));
+        LogHelper.Info("KCP 客户端连接成功，RemoteEndPoint:{remoteEndPoint}", remoteEndPoint);
         return ValueTask.CompletedTask;
     }
 
@@ -177,7 +177,7 @@ public abstract partial class AppStartUpBase
     /// <returns></returns>
     protected virtual ValueTask OnKcpDisconnected(EndPoint remoteEndPoint)
     {
-        LogHelper.Info(LocalizationService.GetString(Localization.Keys.StartUp.KcpServer.ClientDisconnected, remoteEndPoint));
+        LogHelper.Info("KCP 客户端断开连接，RemoteEndPoint:{remoteEndPoint}", remoteEndPoint);
         return ValueTask.CompletedTask;
     }
 
@@ -283,18 +283,37 @@ public abstract partial class AppStartUpBase
             if (Setting.InnerPort > 0 && NetHelper.PortIsAvailable(Setting.InnerPort))
             {
                 LogHelper.Info(LocalizationService.GetString(Localization.Keys.StartUp.TcpServer.StartingServer, ServerType, Setting.InnerHost, Setting.InnerPort));
-                multipleServerHostBuilder.AddServer<IMessage, MessageObjectPipelineFilter>(builder =>
+                multipleServerHostBuilder.AddServer<IMessage>(builder =>
                 {
                     var serverBuilder = builder
                                         .UseClearIdleSession()
+                                        .UsePipelineFilter<MessageObjectPipelineFilter>()
                                         .UseSessionHandler(OnConnected, OnDisconnected)
-                                        .UsePackageHandler(PackageHandler, PackageErrorHandler)
-                                        .UseInProcSessionContainer();
+                                        .UsePackageHandler(PackageHandler, PackageErrorHandler);
+
+                    serverBuilder.UseInProcSessionContainer();
 
                     // 启用UDP 检查是否可用
                     if (Setting.IsEnableUdp)
                     {
                         serverBuilder.UseUdp();
+
+                        if (Setting.IsEnableKcp)
+                        {
+                            serverBuilder
+                                .UsePipelineFilterFactory<KcpUdpMessagePipelineFilterFactory>()
+                                .ConfigureServices((_, serviceCollection) =>
+                                {
+                                    serviceCollection.AddSingleton(new KcpUdpMessagePipelineOptions
+                                    {
+                                        EnableKcp = true,
+                                        KcpOptionsFactory = () => new KcpOptions(),
+                                        OnKcpConnected = OnKcpConnected,
+                                        OnKcpPackage = KcpPackageHandler,
+                                        OnKcpDisconnected = OnKcpDisconnected
+                                    });
+                                });
+                        }
                     }
 
                     serverBuilder.ConfigureServices((context, serviceCollection) =>
@@ -384,40 +403,25 @@ public abstract partial class AppStartUpBase
             LogHelper.Info(LocalizationService.GetString(Localization.Keys.StartUp.WebSocketServer.ServiceNotEnabled, ServerType, Setting.WsPort));
         }
 
-        // 启动KCP服务器
+        // KCP 走 SuperSocket UDP（UseUdp）通道，不再创建独立 KcpServer
         if (Setting.IsEnableKcp)
         {
             var kcpPort = Setting.KcpPort > 0 ? Setting.KcpPort : Setting.InnerPort;
-            if (kcpPort > 0 && NetHelper.PortIsAvailable(kcpPort))
+            if (kcpPort > 0)
             {
-                LogHelper.Info(LocalizationService.GetString(Localization.Keys.StartUp.KcpServer.StartingServer, ServerType, Setting.InnerHost, kcpPort));
-                var kcpServer = new KcpServer(
-                    kcpPort,
-                    new KcpOptions { Enable = true },
-                    Setting,
-                    KcpPackageHandler,
-                    OnKcpConnected,
-                    OnKcpDisconnected
-                );
-                _ = kcpServer.StartAsync();
-                LogHelper.Info(LocalizationService.GetString(Localization.Keys.StartUp.KcpServer.StartupComplete, ServerType, Setting.InnerHost, kcpPort));
+                LogHelper.Info("KCP 已启用，UDP 数据将通过 UseUdp 通道处理。ServerType:{serverType} Host:{host} Port:{port}",
+                               ServerType, Setting.InnerHost, kcpPort);
             }
             else
             {
-                LogHelper.Warning(LocalizationService.GetString(Localization.Keys.StartUp.KcpServer.StartupFailed, ServerType, Setting.InnerHost, kcpPort));
-                if (kcpPort > 0)
-                {
-                    var occupiedProcesses = NetHelper.GetPortOccupyingProcesses(kcpPort);
-                    if (occupiedProcesses.Count > 0)
-                    {
-                        LogHelper.Warning($"KCP端口[{kcpPort}]占用详情: {string.Join(" | ", occupiedProcesses)}");
-                    }
-                }
+                LogHelper.Warning("KCP 已启用但端口无效，无法绑定 UseUdp 通道。ServerType:{serverType} Host:{host} Port:{port}",
+                                  ServerType, Setting.InnerHost, kcpPort);
             }
         }
         else
         {
-            LogHelper.Info(LocalizationService.GetString(Localization.Keys.StartUp.KcpServer.ServerDisabled, ServerType, Setting.InnerHost, Setting.KcpPort));
+            LogHelper.Info("KCP 未启用，跳过 KCP UDP 处理。ServerType:{serverType} Host:{host} Port:{port}",
+                           ServerType, Setting.InnerHost, Setting.KcpPort);
         }
 
         // await StartHttpServerAsync(hostBuilder,baseHandler, httpFactory, aopHandlerTypes, minimumLevelLogLevel);
