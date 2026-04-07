@@ -42,14 +42,13 @@ internal sealed class RemoteMessageClient : IRemoteMessageClient
 {
     private readonly SemaphoreSlim _callSemaphore = new(1, 1);
     private readonly ICircuitBreaker _circuitBreaker;
-    private readonly IConnectionProvider _connectionProvider;
-    private readonly IServiceEndpointResolver _endpointResolver;
     private readonly IEndpointHealthEvaluator _healthEvaluator;
     private readonly IRemoteCallInterceptor[] _interceptors;
     private readonly IMessageCodec _messageCodec;
     private readonly IProtocolVersionNegotiator _protocolVersionNegotiator;
     private readonly IRequestResponseMatcher _requestResponseMatcher;
     private readonly IRetryPolicy _retryPolicy;
+    private readonly ITransportProtocolAdapter _transportProtocolAdapter;
 
     /// <summary>
     /// 初始化统一远程消息调用客户端。
@@ -57,8 +56,7 @@ internal sealed class RemoteMessageClient : IRemoteMessageClient
     /// <remarks>
     /// Initializes the unified remote message call client.
     /// </remarks>
-    /// <param name="endpointResolver">服务端点解析器 / Service endpoint resolver</param>
-    /// <param name="connectionProvider">连接提供器 / Connection provider</param>
+    /// <param name="transportProtocolAdapter">传输协议适配器 / Transport protocol adapter</param>
     /// <param name="messageCodec">消息编解码器 / Message codec</param>
     /// <param name="requestResponseMatcher">请求-响应匹配器 / Request-response matcher</param>
     /// <param name="protocolVersionNegotiator">协议版本协商器 / Protocol version negotiator</param>
@@ -67,8 +65,7 @@ internal sealed class RemoteMessageClient : IRemoteMessageClient
     /// <param name="circuitBreaker">熔断器 / Circuit breaker</param>
     /// <param name="healthEvaluator">端点健康评估器 / Endpoint health evaluator</param>
     public RemoteMessageClient(
-        IServiceEndpointResolver endpointResolver,
-        IConnectionProvider connectionProvider,
+        ITransportProtocolAdapter transportProtocolAdapter,
         IMessageCodec messageCodec,
         IRequestResponseMatcher requestResponseMatcher,
         IProtocolVersionNegotiator protocolVersionNegotiator,
@@ -77,8 +74,7 @@ internal sealed class RemoteMessageClient : IRemoteMessageClient
         ICircuitBreaker circuitBreaker,
         IEndpointHealthEvaluator healthEvaluator)
     {
-        _endpointResolver = endpointResolver;
-        _connectionProvider = connectionProvider;
+        _transportProtocolAdapter = transportProtocolAdapter;
         _messageCodec = messageCodec;
         _requestResponseMatcher = requestResponseMatcher;
         _protocolVersionNegotiator = protocolVersionNegotiator;
@@ -343,17 +339,10 @@ internal sealed class RemoteMessageClient : IRemoteMessageClient
                         context.TraceId);
                 }
 
-                var endpoint = _endpointResolver.ResolveTcpEndpoint(context.ServiceName);
-                if (!TryParseTcpEndpoint(endpoint, out var host, out var port))
-                {
-                    LogHelper.Error("RemoteMessageClient.CallWithResultAsync 解析服务 TCP 地址失败, Service: {serviceName}, Endpoint: {endpoint}", context.ServiceName, endpoint);
-                    return RemoteCallResult<TResponse>.Fail(RemoteStatusCode.EndpointNotFound, "Failed to resolve service endpoint", stopwatch.ElapsedMilliseconds, context.TraceId);
-                }
-
                 await _callSemaphore.WaitAsync(context.CancellationToken);
                 try
                 {
-                    var stream = await _connectionProvider.GetOrCreateStreamAsync(host, port, context.CancellationToken);
+                    var stream = await _transportProtocolAdapter.GetOrCreateStreamAsync(context.ServiceName, context.CancellationToken);
                     if (stream == null)
                     {
                         RecordFailures(context.ServiceName, "Failed to create connection");
@@ -400,6 +389,13 @@ internal sealed class RemoteMessageClient : IRemoteMessageClient
                     _callSemaphore.Release();
                 }
             }
+            catch (RemoteEndpointNotFoundException endpointNotFoundException)
+            {
+                stopwatch.Stop();
+                RecordFailures(context.ServiceName, endpointNotFoundException.Message);
+                await RunExceptionInterceptorsAsync(context, requestMessage, endpointNotFoundException, stopwatch.ElapsedMilliseconds);
+                return RemoteCallResult<TResponse>.Fail(RemoteStatusCode.EndpointNotFound, "Failed to resolve service endpoint", stopwatch.ElapsedMilliseconds, context.TraceId);
+            }
             catch (OperationCanceledException)
             {
                 stopwatch.Stop();
@@ -420,7 +416,7 @@ internal sealed class RemoteMessageClient : IRemoteMessageClient
             catch (Exception ex)
             {
                 stopwatch.Stop();
-                _connectionProvider.Invalidate();
+                _transportProtocolAdapter.Invalidate();
 
                 RecordFailures(context.ServiceName, ex.Message);
                 await RunExceptionInterceptorsAsync(context, requestMessage, ex, stopwatch.ElapsedMilliseconds);
@@ -478,17 +474,10 @@ internal sealed class RemoteMessageClient : IRemoteMessageClient
                 return;
             }
 
-            var endpoint = _endpointResolver.ResolveTcpEndpoint(serviceName);
-            if (!TryParseTcpEndpoint(endpoint, out var host, out var port))
-            {
-                LogHelper.Error("SendOneWayAsync: 解析服务 TCP 地址失败, Service: {serviceName}, Endpoint: {endpoint}", serviceName, endpoint);
-                return;
-            }
-
             await _callSemaphore.WaitAsync(cancellationToken);
             try
             {
-                var stream = await _connectionProvider.GetOrCreateStreamAsync(host, port, cancellationToken);
+                var stream = await _transportProtocolAdapter.GetOrCreateStreamAsync(serviceName, cancellationToken);
                 if (stream == null)
                 {
                     RecordFailures(serviceName, "SendOneWayAsync: Failed to create connection");
@@ -513,9 +502,13 @@ internal sealed class RemoteMessageClient : IRemoteMessageClient
         {
             RecordFailures(serviceName, cancellationToken.IsCancellationRequested ? "SendOneWayAsync cancelled" : "SendOneWayAsync timed out");
         }
+        catch (RemoteEndpointNotFoundException endpointNotFoundException)
+        {
+            RecordFailures(serviceName, $"SendOneWayAsync endpoint not found: {endpointNotFoundException.Message}");
+        }
         catch (Exception ex)
         {
-            _connectionProvider.Invalidate();
+            _transportProtocolAdapter.Invalidate();
             RecordFailures(serviceName, $"SendOneWayAsync error: {ex.Message}");
         }
     }
@@ -541,13 +534,7 @@ internal sealed class RemoteMessageClient : IRemoteMessageClient
             return Task.FromResult(false);
         }
 
-        var endpoint = _endpointResolver.ResolveTcpEndpoint(serviceName);
-        if (string.IsNullOrWhiteSpace(endpoint))
-        {
-            return Task.FromResult(false);
-        }
-
-        return Task.FromResult(true);
+        return Task.FromResult(_transportProtocolAdapter.IsServiceAvailable(serviceName));
     }
 
     private void RecordSuccess(string serviceName)
@@ -616,41 +603,4 @@ internal sealed class RemoteMessageClient : IRemoteMessageClient
         message.SetUniqueId(uniqueId);
     }
 
-    /// <summary>
-    /// 尝试将服务地址解析为主机和端口。
-    /// </summary>
-    /// <remarks>
-    /// Attempts to parse a service address into host and port components.
-    /// </remarks>
-    private static bool TryParseTcpEndpoint(string endpoint, out string host, out int port)
-    {
-        host = string.Empty;
-        port = 0;
-        if (string.IsNullOrWhiteSpace(endpoint))
-        {
-            return false;
-        }
-
-        var normalized = endpoint.Trim();
-        if (!normalized.Contains("://", StringComparison.Ordinal))
-        {
-            normalized = $"tcp://{normalized}";
-        }
-
-        if (Uri.TryCreate(normalized, UriKind.Absolute, out var uri))
-        {
-            host = uri.Host;
-            port = uri.Port;
-            return !string.IsNullOrWhiteSpace(host) && port > 0;
-        }
-
-        var lastSeparatorIndex = endpoint.LastIndexOf(':');
-        if (lastSeparatorIndex <= 0 || lastSeparatorIndex >= endpoint.Length - 1)
-        {
-            return false;
-        }
-
-        host = endpoint[..lastSeparatorIndex];
-        return int.TryParse(endpoint[(lastSeparatorIndex + 1)..], out port) && port > 0;
-    }
 }

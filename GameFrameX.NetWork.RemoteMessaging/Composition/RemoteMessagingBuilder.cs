@@ -27,8 +27,6 @@
 //   Official Documentation: https://gameframex.doc.alianblank.com/
 //  ==========================================================================================
 
-using GameFrameX.NetWork.RemoteMessaging.Transport;
-
 namespace GameFrameX.NetWork.RemoteMessaging;
 
 /// <summary>
@@ -52,6 +50,7 @@ namespace GameFrameX.NetWork.RemoteMessaging;
 public sealed class RemoteMessagingBuilder
 {
     private RemoteMessagingOptions _options = new();
+    private Func<IServiceEndpointResolver, IConnectionProvider, ITransportProtocolAdapter> _transportAdapterFactory;
 
     /// <summary>
     /// 设置默认超时时间。
@@ -131,6 +130,46 @@ public sealed class RemoteMessagingBuilder
     }
 
     /// <summary>
+    /// 配置传输协议适配器工厂。可用于切换 TCP/KCP/QUIC 等不同协议实现。
+    /// </summary>
+    /// <remarks>
+    /// Configures the transport protocol adapter factory. Can be used to switch protocol implementations like TCP/KCP/QUIC.
+    /// </remarks>
+    /// <param name="factory">适配器工厂 / Adapter factory</param>
+    /// <returns>构建器实例 / The builder instance</returns>
+    public RemoteMessagingBuilder WithTransportAdapterFactory(Func<IServiceEndpointResolver, IConnectionProvider, ITransportProtocolAdapter> factory)
+    {
+        _transportAdapterFactory = factory;
+        return this;
+    }
+
+    /// <summary>
+    /// 显式使用默认 TCP 适配器。
+    /// </summary>
+    /// <remarks>
+    /// Explicitly uses the default TCP adapter.
+    /// </remarks>
+    /// <returns>构建器实例 / The builder instance</returns>
+    public RemoteMessagingBuilder UseTcpTransportAdapter()
+    {
+        _transportAdapterFactory = static (resolver, provider) => new TcpTransportProtocolAdapter(resolver, provider);
+        return this;
+    }
+
+    /// <summary>
+    /// 使用 KCP 适配器占位实现（当前仅用于接线验证，不可用于生产流量）。
+    /// </summary>
+    /// <remarks>
+    /// Uses the placeholder KCP adapter (for wiring verification only, not for production traffic).
+    /// </remarks>
+    /// <returns>构建器实例 / The builder instance</returns>
+    public RemoteMessagingBuilder UseKcpTransportAdapterPlaceholder()
+    {
+        _transportAdapterFactory = static (resolver, _) => new KcpTransportProtocolAdapter(resolver);
+        return this;
+    }
+
+    /// <summary>
     /// 从环境变量加载配置（覆盖之前的设置）。
     /// </summary>
     /// <remarks>
@@ -154,6 +193,8 @@ public sealed class RemoteMessagingBuilder
     {
         var endpointResolver = new AspireEndpointResolver();
         var connectionProvider = new TcpConnectionProvider();
+        var transportProtocolAdapter = _transportAdapterFactory?.Invoke(endpointResolver, connectionProvider)
+                                     ?? new TcpTransportProtocolAdapter(endpointResolver, connectionProvider);
         var compressionRegistry = _options.CompressionRegistry ?? new DefaultMessageCompressionRegistry();
         var messageCodec = new DefaultMessageCodec(
             compressionRegistry,
@@ -197,8 +238,7 @@ public sealed class RemoteMessagingBuilder
                               : null;
 
         return new RemoteMessageClient(
-            endpointResolver,
-            connectionProvider,
+            transportProtocolAdapter,
             messageCodec,
             requestResponseMatcher,
             protocolVersionNegotiator,
