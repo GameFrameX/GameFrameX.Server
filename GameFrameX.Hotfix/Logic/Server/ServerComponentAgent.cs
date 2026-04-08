@@ -48,7 +48,7 @@ public class ServerComponentAgent : StateComponentAgent<ServerComponent, ServerS
 {
     private readonly Dictionary<string, HashSet<long>> _topologySnapshot = new(StringComparer.OrdinalIgnoreCase);
     private readonly Dictionary<string, int> _offlineConfirmCounter = new(StringComparer.OrdinalIgnoreCase);
-    private static readonly string[] TopologyServiceNames = { GlobalConst.GameServiceName, GlobalConst.SocialServiceName, GlobalConst.GatewayServiceName };
+    private static readonly string[] TopologyServiceNames = { GameServerConst.Game.Name, GameServerConst.Social.Name, GameServerConst.Gateway.Name };
 
     public override async Task<bool> Active()
     {

@@ -37,7 +37,7 @@ namespace GameFrameX.Launcher.StartUp;
 /// <summary>
 /// 游戏服务器
 /// </summary>
-[StartUpTag(GlobalConst.GameServiceName)]
+[StartUpTag(GameServerConst.Game.Name)]
 internal sealed class AppStartUpGame : AppStartUpBase
 {
     public override async Task StartAsync()
@@ -96,8 +96,8 @@ internal sealed class AppStartUpGame : AppStartUpBase
         {
             Setting = new AppSetting
             {
-                ServerId = GlobalConst.GameServiceServerId,
-                ServerType = GlobalConst.GameServiceName,
+                ServerId = GameServerConst.Game.Id,
+                ServerType = GameServerConst.Game.Name,
                 InnerPort = 29100,
                 MetricsPort = 29090,
                 HttpPort = 28080,

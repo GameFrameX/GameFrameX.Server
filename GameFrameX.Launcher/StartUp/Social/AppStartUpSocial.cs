@@ -43,7 +43,7 @@ namespace GameFrameX.Launcher.StartUp.Social;
 /// <summary>
 /// 游戏服务器
 /// </summary>
-[StartUpTag(GlobalConst.SocialServiceName)]
+[StartUpTag(GameServerConst.Social.Name)]
 internal sealed partial class AppStartUpSocial : AppStartUpBase
 {
     public override async Task StartAsync()
@@ -110,8 +110,8 @@ internal sealed partial class AppStartUpSocial : AppStartUpBase
         {
             Setting = new AppSetting
             {
-                ServerType = GlobalConst.SocialServiceName,
-                ServerId = GlobalConst.SocialServiceServerId,
+                ServerType = GameServerConst.Social.Name,
+                ServerId = GameServerConst.Social.Id,
                 InnerPort = 29400,
                 HttpIsDevelopment = true,
                 IsDebug = true,
