@@ -31,13 +31,102 @@
 using GameFrameX.Apps.Account.Login.Component;
 using GameFrameX.Apps.Account.Login.Entity;
 using GameFrameX.Apps.Common.Session;
+using GameFrameX.Apps.Player.Player.Entity;
+using GameFrameX.DataBase;
 using GameFrameX.Hotfix.Logic.Server;
+using GameFrameX.Monitor.Account;
+using GameFrameX.Monitor.Player;
 using GameFrameX.Proto.BuiltIn;
 
 namespace GameFrameX.Hotfix.Logic.Player.Login;
 
 public class LoginComponentAgent : StateComponentAgent<LoginComponent, LoginState>
 {
+    public async Task OnLoginAsync(ReqLogin request, RespLogin response)
+    {
+        if (request.UserName.IsNullOrEmpty() || request.Password.IsNullOrEmpty())
+        {
+            response.ErrorCode = (int)OperationStatusCode.AccountCannotBeNull;
+            return;
+        }
+
+        MetricsAccountHelper.LoginCounterOptions.Inc();
+        var loginState = await GameDb.FindAsync<LoginState>(m => m.UserName == request.UserName && m.Password == request.Password, false);
+        if (loginState == null)
+        {
+            MetricsAccountHelper.RegisterCounterOptions.Inc();
+            var accountId = ActorIdGenerator.GetUniqueId();
+            loginState = new LoginState
+            {
+                Id = accountId,
+                UserName = request.UserName,
+                Password = request.Password,
+            };
+            await GameDb.AddOrUpdateAsync(loginState);
+        }
+
+        response.UniqueId = request.UniqueId;
+        response.Code = loginState.State;
+        response.CreateTime = loginState.CreatedTime;
+        response.Level = loginState.Level;
+        response.Id = loginState.Id;
+        response.RoleName = loginState.NickName;
+    }
+
+    public async Task OnGetPlayerListAsync(ReqPlayerList request, RespPlayerList response)
+    {
+        response.UniqueId = request.UniqueId;
+        response.PlayerList = new List<PlayerInfo>();
+        if (request.Id == default)
+        {
+            return;
+        }
+
+        MetricsPlayerHelper.GetPlayerListCounterOptions.Inc();
+        var playerList = await GameDb.FindListAsync<PlayerState>(m => m.AccountId == request.Id);
+        if (playerList == null)
+        {
+            return;
+        }
+
+        foreach (var playerState in playerList)
+        {
+            response.PlayerList.Add(new PlayerInfo
+            {
+                Id = playerState.Id,
+                Name = playerState.Name,
+                Level = playerState.Level,
+                State = playerState.State,
+                Avatar = playerState.Avatar,
+            });
+        }
+    }
+
+    public async Task OnPlayerCreateAsync(ReqPlayerCreate request, RespPlayerCreate response)
+    {
+        var playerState = new PlayerState
+        {
+            Id = ActorIdGenerator.GetActorId(GlobalConst.ActorTypePlayer),
+            AccountId = request.Id,
+            Name = request.Name,
+            Level = (uint)Utility.RandomHelper.Next(1, 50),
+            State = 0,
+            Avatar = (uint)Utility.RandomHelper.Next(1, 50),
+        };
+        MetricsPlayerHelper.CreateCounterOptions.Inc();
+        await GameDb.SaveOneAsync(playerState);
+
+        response.UniqueId = request.UniqueId;
+        response.PlayerInfo = new PlayerInfo
+        {
+            Id = playerState.Id,
+            Name = playerState.Name,
+            Level = playerState.Level,
+            State = playerState.State,
+            Avatar = playerState.Avatar,
+        };
+    }
+
     /// <summary>
     /// 使用角色ID登录
     /// </summary>

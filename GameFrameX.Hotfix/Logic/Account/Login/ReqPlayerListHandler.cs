@@ -27,17 +27,15 @@
 //   Official Documentation: https://gameframex.doc.alianblank.com/
 //  ==========================================================================================
 
-/*using GameFrameX.Core.BaseHandler;
-using GameFrameX.NetWork.Abstractions;
-
 namespace GameFrameX.Hotfix.Logic.Account.Login;
 
-[MessageMapping(typeof(ReqPlayerList))]
-internal class ReqPlayerListHandler : GlobalComponentHandler<LoginComponentAgent>
-{
-    protected override async Task ActionAsync()
-    {
-        await ComponentAgent.OnGetPlayerList(NetWorkChannel, Message as ReqPlayerList);
-    }
-}*/
+using PlayerLoginComponentAgent = GameFrameX.Hotfix.Logic.Player.Login.LoginComponentAgent;
 
+[MessageMapping(typeof(ReqPlayerList))]
+internal sealed class ReqPlayerListHandler : GlobalRpcComponentHandler<PlayerLoginComponentAgent, ReqPlayerList, RespPlayerList>
+{
+    protected override async Task ActionAsync(ReqPlayerList request, RespPlayerList response)
+    {
+        await ComponentAgent.OnGetPlayerListAsync(request, response);
+    }
+}
