@@ -30,31 +30,64 @@
 using GameFrameX.Client.Bot;
 using GameFrameX.NetWork.Abstractions;
 using GameFrameX.Proto.Proto;
+using GameFrameX.ProtoBuf.Net;
 using GameFrameX.Foundation.Logger;
 
 internal static class Program
 {
-    private const int m_BotCount = 100;
-
     static async Task Main(string[] args)
     {
+        var options = BotRunOptions.Parse(args);
         var logOption = LogOptions.Default;
+        logOption.LogType = "ClientBot";
         logOption.IsConsole = true;
         logOption.LogEventLevel = Serilog.Events.LogEventLevel.Information;
         LogHandler.Create(logOption);
 
         MessageProtoHelper.Init(typeof(ReqLogin).Assembly);
+        WarmUpProtoSerializer();
 
-        for (int k = 0; k < m_BotCount; k++)
+        LogHelper.Info(
+            "Bot options: bot-count={botCount}, tcp={tcpHost}:{tcpPort}, disconnect-loop={disconnectLoop}, disconnect-after-login-seconds={disconnectAfterLoginSeconds}, run-seconds={runSeconds}",
+            options.BotCount, options.TcpHost, options.TcpPort, options.EnableDisconnectLoop, options.DisconnectAfterLoginSeconds, options.RunSeconds);
+
+        var cts = new CancellationTokenSource();
+        var botTasks = new List<Task>(options.BotCount);
+        for (int k = 0; k < options.BotCount; k++)
         {
-            string botName = $"BotClient_{k + 1}";
-            await Task.Run(() =>
+            string botName = $"{options.BotNamePrefix}_{k + 1}";
+            var client = new BotClient(botName, options);
+            botTasks.Add(client.EntryAsync(cts.Token));
+            if (options.ConnectStaggerMilliseconds > 0)
             {
-                var client = new BotClient(botName);
-                _ = client.EntryAsync();
-            });
+                await Task.Delay(options.ConnectStaggerMilliseconds, cts.Token);
+            }
         }
 
-        Console.ReadKey();
+        if (options.RunSeconds > 0)
+        {
+            await Task.Delay(TimeSpan.FromSeconds(options.RunSeconds), cts.Token);
+            cts.Cancel();
+            await Task.WhenAll(botTasks);
+            return;
+        }
+
+        Console.WriteLine("机器人运行中，按回车结束...");
+        Console.ReadLine();
+        cts.Cancel();
+        await Task.WhenAll(botTasks);
+    }
+
+    private static void WarmUpProtoSerializer()
+    {
+        // 预热常用消息，避免并发首次序列化时的元数据锁竞争。
+        _ = ProtoBufSerializerHelper.Serialize(new ReqLogin());
+        _ = ProtoBufSerializerHelper.Serialize(new ReqPlayerList());
+        _ = ProtoBufSerializerHelper.Serialize(new ReqPlayerCreate());
+        _ = ProtoBufSerializerHelper.Serialize(new ReqPlayerLogin());
+        _ = ProtoBufSerializerHelper.Serialize(new RespLogin());
+        _ = ProtoBufSerializerHelper.Serialize(new RespPlayerList());
+        _ = ProtoBufSerializerHelper.Serialize(new RespPlayerCreate());
+        _ = ProtoBufSerializerHelper.Serialize(new RespPlayerLogin());
     }
 }

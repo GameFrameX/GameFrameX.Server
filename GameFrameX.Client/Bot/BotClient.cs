@@ -30,7 +30,6 @@
 using GameFrameX.NetWork.Messages;
 using GameFrameX.Proto.Proto;
 using GameFrameX.Foundation.Logger;
-using GameFrameX.Foundation.Extensions;
 using ErrorEventArgs = GameFrameX.SuperSocket.ClientEngine.ErrorEventArgs;
 
 namespace GameFrameX.Client.Bot;
@@ -41,35 +40,36 @@ namespace GameFrameX.Client.Bot;
 public sealed class BotClient
 {
     private readonly BotTcpClient m_TcpClient;
-    private readonly BotHttpClient m_HttpClient;
     private readonly string m_BotName;
     private readonly BotTcpClientEvent m_BotTcpClientEvent;
-    private const string m_LoginUrl = "http://127.0.0.1:28080/game/api/";
+    private readonly BotRunOptions _options;
+    private int _disconnectScheduled;
+    private long _accountId;
 
     /// <summary>
     /// 初始化机器人客户端
     /// </summary>
     /// <param name="botName">机器人名称</param>
-    public BotClient(string botName)
+    public BotClient(string botName, BotRunOptions options)
     {
         m_BotName = botName;
+        _options = options;
         m_BotTcpClientEvent.OnConnectedCallback += ClientConnectedCallback;
         m_BotTcpClientEvent.OnClosedCallback += ClientClosedCallback;
         m_BotTcpClientEvent.OnErrorCallback += ClientErrorCallback;
         m_BotTcpClientEvent.OnReceiveMsgCallback += ClientReceiveCallback;
-        m_TcpClient = new BotTcpClient(m_BotTcpClientEvent);
-        m_HttpClient = new BotHttpClient();
+        m_TcpClient = new BotTcpClient(m_BotTcpClientEvent, options.TcpHost, options.TcpPort);
     }
 
     /// <summary>
     /// 启动机器人客户端
     /// </summary>
     /// <returns>异步任务</returns>
-    public async Task EntryAsync()
+    public async Task EntryAsync(CancellationToken cancellationToken = default)
     {
         try
         {
-            await m_TcpClient.EntryAsync();
+            await m_TcpClient.EntryAsync(cancellationToken);
         }
         catch (Exception e)
         {
@@ -85,6 +85,15 @@ public sealed class BotClient
     {
         switch (messageObject)
         {
+            case RespLogin msg:
+                OnAccountLoginSuccess(msg);
+                break;
+            case RespPlayerList msg:
+                OnPlayerListSuccess(msg);
+                break;
+            case RespPlayerCreate msg:
+                OnPlayerCreateSuccess(msg);
+                break;
             case RespPlayerLogin msg:
                 OnPlayerLoginSuccess(msg);
                 break;
@@ -98,7 +107,7 @@ public sealed class BotClient
     /// </summary>
     private void ClientConnectedCallback()
     {
-        SendLoginMessage();
+        SendAccountLoginMessage();
     }
 
     /// <summary>
@@ -132,75 +141,21 @@ public sealed class BotClient
     /// <summary>
     /// 发送登录消息并处理登录流程
     /// </summary>
-    private async void SendLoginMessage()
+    private void SendAccountLoginMessage()
     {
         try
         {
-            //请求登录验证
             var reqLogin = new ReqLogin
             {
                 UserName = m_BotName,
                 Password = "12312",
                 Platform = "LoginPlatform.Custom",
             };
-
-            string respLoginUrl = $"{m_LoginUrl}{nameof(ReqLogin).ConvertToSnakeCase()}";
-            var respLogin = await m_HttpClient.Post<RespLogin>(respLoginUrl, reqLogin);
-            if (respLogin.ErrorCode != 0)
-            {
-                LogHelper.Error("请求登录验证，错误信息:" + respLogin.ErrorCode);
-                return;
-            }
-
-            LogHelper.Info($"机器人-{m_BotName}账号验证成功,id:{respLogin.Id}");
-
-            //请求角色列表
-            var reqPlayerList = new ReqPlayerList();
-            reqPlayerList.Id = respLogin.Id;
-            string reqPlayerListUrl = $"{m_LoginUrl}{nameof(ReqPlayerList).ConvertToSnakeCase()}";
-            var respPlayerList = await m_HttpClient.Post<RespPlayerList>(reqPlayerListUrl, reqPlayerList);
-
-            if (respPlayerList.ErrorCode != 0)
-            {
-                LogHelper.Error("请求角色列表，错误信息:" + respPlayerList.ErrorCode);
-                return;
-            }
-
-            PlayerInfo player;
-            if (respPlayerList.PlayerList.Count == 0)
-            {
-                LogHelper.Info("角色列表为空");
-
-                //请求创建角色
-                var reqCreatePlayer = new ReqPlayerCreate();
-                reqCreatePlayer.Id = respLogin.Id;
-
-                string reqCreatePlayerUrl = $"{m_LoginUrl}{nameof(ReqPlayerCreate).ConvertToSnakeCase()}";
-                var respPlayerCreator = await m_HttpClient.Post<RespPlayerCreate>(reqCreatePlayerUrl,
-                                                                                  reqCreatePlayer);
-                if (respPlayerCreator.ErrorCode != 0)
-                {
-                    LogHelper.Error("请求创建角色，错误信息:" + respPlayerCreator.ErrorCode);
-                    return;
-                }
-
-                player = respPlayerCreator.PlayerInfo;
-                LogHelper.Info($"创建角色 Id:{player.Id}-昵称:{player.Name}-等级:{player.Level}-角色状态:{player.State}");
-            }
-            else
-            {
-                player = respPlayerList.PlayerList[0];
-                LogHelper.Info($"角色列表 Id:{player.Id}-昵称:{player.Name}-等级:{player.Level}-角色状态:{player.State}");
-            }
-
-            var reqPlayerLogin = new ReqPlayerLogin();
-            reqPlayerLogin.Id = player.Id;
-            // reqPlayerLogin.Name = m_BotName;
-            m_TcpClient.SendToServer(reqPlayerLogin);
+            m_TcpClient.SendToServer(reqLogin);
         }
         catch (Exception e)
         {
-            LogHelper.Error($"SendLoginMessage Error: {e.Message}| Thread ID:{Thread.CurrentThread.ManagedThreadId} ");
+            LogHelper.Error($"SendAccountLoginMessage Error: {e.Message}| Thread ID:{Thread.CurrentThread.ManagedThreadId} ");
         }
     }
 
@@ -209,6 +164,56 @@ public sealed class BotClient
 
     #region 消息接收
 
+    private void OnAccountLoginSuccess(RespLogin msg)
+    {
+        if (msg.ErrorCode != 0)
+        {
+            LogHelper.Error($"机器人-{m_BotName}账号登录失败，错误码:{msg.ErrorCode}");
+            return;
+        }
+
+        _accountId = msg.Id;
+        LogHelper.Info($"机器人-{m_BotName}账号验证成功,id:{msg.Id}");
+        m_TcpClient.SendToServer(new ReqPlayerList { Id = _accountId });
+    }
+
+    private void OnPlayerListSuccess(RespPlayerList msg)
+    {
+        if (msg.ErrorCode != 0)
+        {
+            LogHelper.Error($"机器人-{m_BotName}请求角色列表失败，错误码:{msg.ErrorCode}");
+            return;
+        }
+
+        if (msg.PlayerList.Count <= 0)
+        {
+            LogHelper.Info($"机器人-{m_BotName}角色列表为空，开始创建角色。");
+            m_TcpClient.SendToServer(new ReqPlayerCreate
+            {
+                Id = _accountId,
+                Name = m_BotName,
+            });
+            return;
+        }
+
+        var player = msg.PlayerList[0];
+        LogHelper.Info($"角色列表 Id:{player.Id}-昵称:{player.Name}-等级:{player.Level}-角色状态:{player.State}");
+        m_TcpClient.SendToServer(new ReqPlayerLogin { Id = player.Id });
+    }
+
+    private void OnPlayerCreateSuccess(RespPlayerCreate msg)
+    {
+        if (msg.ErrorCode != 0)
+        {
+            LogHelper.Error($"机器人-{m_BotName}创建角色失败，错误码:{msg.ErrorCode}");
+            return;
+        }
+
+        var player = msg.PlayerInfo;
+        LogHelper.Info($"创建角色 Id:{player.Id}-昵称:{player.Name}-等级:{player.Level}-角色状态:{player.State}");
+        m_TcpClient.SendToServer(new ReqPlayerLogin { Id = player.Id });
+    }
+
     /// <summary>
     /// 处理玩家登录成功的响应
     /// </summary>
@@ -216,6 +221,34 @@ public sealed class BotClient
     private void OnPlayerLoginSuccess(RespPlayerLogin msg)
     {
         LogHelper.Info($"机器人-{m_BotName}登录成功,id:{msg.PlayerInfo.Id}");
+        ScheduleDisconnectIfNeeded();
+    }
+
+    private void ScheduleDisconnectIfNeeded()
+    {
+        if (!_options.EnableDisconnectLoop || _options.DisconnectAfterLoginSeconds <= 0)
+        {
+            return;
+        }
+
+        if (Interlocked.CompareExchange(ref _disconnectScheduled, 1, 0) != 0)
+        {
+            return;
+        }
+
+        _ = Task.Run(async () =>
+        {
+            try
+            {
+                await Task.Delay(TimeSpan.FromSeconds(_options.DisconnectAfterLoginSeconds));
+                LogHelper.Info($"机器人-{m_BotName}主动断开连接，模拟离线。");
+                m_TcpClient.Disconnect();
+            }
+            finally
+            {
+                Interlocked.Exchange(ref _disconnectScheduled, 0);
+            }
+        });
     }
 
     #endregion
