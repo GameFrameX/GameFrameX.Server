@@ -31,7 +31,9 @@
 using GameFrameX.StartUp;
 using GameFrameX.Apps.Common.Event;
 using GameFrameX.Apps.Common.EventData;
-using GameFrameX.Core.Events;
+using GameFrameX.NetWork.RemoteMessaging;
+using GameFrameX.Hotfix.Logic.Server.Unified;
+using GameFrameX.NetWork.RemoteMessaging.Unified;
 
 namespace GameFrameX.Hotfix.StartUp;
 
@@ -46,6 +48,16 @@ internal partial class AppStartUpHotfixGame : AppStartUpBase, IHotfixBridge
         }
 
         Init(setting.ServerType, setting);
+        // 初始化统一消息发送器（仅依赖 SessionManager 的内存态路由）
+        if (!UnifiedMessageSenderHolder.IsInitialized)
+        {
+            var remoteClient = RemoteMessagingBuilder.BuildFromEnvironment();
+            UnifiedMessageSenderHolder.InitializeWithDefaults(
+                new DefaultPlayerRouteResolver(),
+                new DefaultPlayerLocalSender(),
+                remoteClient);
+        }
+
         await RunServer();
         // 启动定时器
         GlobalTimer.Start();

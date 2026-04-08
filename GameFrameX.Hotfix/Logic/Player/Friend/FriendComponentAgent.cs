@@ -16,8 +16,8 @@
 
 
 using GameFrameX.Apps.Player.Friend;
-using GameFrameX.NetWork.RemoteMessaging;
 using GameFrameX.NetWork.RemoteMessaging.Contracts;
+using GameFrameX.NetWork.RemoteMessaging.Unified;
 
 namespace GameFrameX.Hotfix.Logic.Player.Friend;
 
@@ -26,7 +26,7 @@ public class FriendComponentAgent : StateComponentAgent<FriendComponent, FriendS
     private const int RpcTimeoutMilliseconds = 5000;
 
     /// <summary>
-    /// 获取好友列表（通过统一客户端 RPC 调用 Social 服务）。
+    /// 获取好友列表（通过统一消息发送器调用 Social 服务）。
     /// 好友列表查询为幂等操作，允许重试。
     /// </summary>
     /// <param name="netWorkChannel">网络通道</param>
@@ -34,7 +34,7 @@ public class FriendComponentAgent : StateComponentAgent<FriendComponent, FriendS
     /// <param name="response">响应</param>
     public async Task OnFriendList(INetWorkChannel netWorkChannel, ReqFriendList request, RespFriendList response)
     {
-        if (string.Equals(GlobalSettings.CurrentSetting?.ServerType, GlobalConst.SocialServiceName, StringComparison.OrdinalIgnoreCase))
+        if (string.Equals(GlobalSettings.CurrentSetting?.ServerType, GameServerConst.Social.Name, StringComparison.OrdinalIgnoreCase))
         {
             var innerResponse = new RespInnerFriendList();
             await OnInnerFriendList(netWorkChannel, new ReqInnerFriendList { PlayerId = ActorId, }, innerResponse);
@@ -47,15 +47,9 @@ public class FriendComponentAgent : StateComponentAgent<FriendComponent, FriendS
         reqInnerFriendList.PlayerId = ActorId;
         try
         {
-            var context = new RemoteCallContext
-            {
-                ServiceName = GlobalConst.SocialServiceName,
-                TimeoutMs = RpcTimeoutMilliseconds,
-                AllowRetry = true,
-            };
-
-            var result = await RemoteMessageClientHolder.Client.CallWithResultAsync<RespInnerFriendList>(
-                context, reqInnerFriendList);
+            var options = ServerSendOptions.Query(RpcTimeoutMilliseconds);
+            var result = await UnifiedMessageSenderHolder.Sender.SendToServerAsync<RespInnerFriendList>(
+                GameServerConst.Social.Name, reqInnerFriendList, options);
 
             if (result.IsSuccess && result.Response != null)
             {
@@ -66,13 +60,14 @@ public class FriendComponentAgent : StateComponentAgent<FriendComponent, FriendS
 
             response.Friends = new List<FriendInfo>();
             response.ErrorCode = MapToBusinessErrorCode(result.StatusCode);
-            LogHelper.Error("FriendComponentAgent.OnFriendList 跨进程调用失败, StatusCode: {statusCode}, Error: {errorMessage}, TraceId: {traceId}", result.StatusCode, result.ErrorMessage, result.TraceId);
+            LogHelper.Error("FriendComponentAgent.OnFriendList 统一消息发送失败, StatusCode: {statusCode}, Error: {errorMessage}, TraceId: {traceId}",
+                result.StatusCode, result.ErrorMessage, result.TraceId);
         }
         catch (Exception exception)
         {
             response.Friends = new List<FriendInfo>();
             response.ErrorCode = -2;
-            LogHelper.Error(exception, "FriendComponentAgent.OnFriendList 跨进程调用异常");
+            LogHelper.Error(exception, "FriendComponentAgent.OnFriendList 统一消息发送异常");
         }
         finally
         {
@@ -81,7 +76,7 @@ public class FriendComponentAgent : StateComponentAgent<FriendComponent, FriendS
     }
 
     /// <summary>
-    /// 添加好友（通过统一客户端 RPC 调用 Social 服务）。
+    /// 添加好友（通过统一消息发送器调用 Social 服务）。
     /// 添加好友为非幂等操作，不允许重试。
     /// </summary>
     /// <param name="netWorkChannel">网络通道</param>
@@ -93,15 +88,9 @@ public class FriendComponentAgent : StateComponentAgent<FriendComponent, FriendS
         reqInnerAddFriend.PlayerId = request.PlayerId;
         try
         {
-            var context = new RemoteCallContext
-            {
-                ServiceName = GlobalConst.SocialServiceName,
-                TimeoutMs = RpcTimeoutMilliseconds,
-                AllowRetry = false,
-            };
-
-            var result = await RemoteMessageClientHolder.Client.CallWithResultAsync<RespInnerFriendByAdd>(
-                context, reqInnerAddFriend);
+            var options = ServerSendOptions.Command(RpcTimeoutMilliseconds);
+            var result = await UnifiedMessageSenderHolder.Sender.SendToServerAsync<RespInnerFriendByAdd>(
+                GameServerConst.Social.Name, reqInnerAddFriend, options);
 
             if (result.IsSuccess && result.Response != null)
             {
@@ -110,13 +99,13 @@ public class FriendComponentAgent : StateComponentAgent<FriendComponent, FriendS
             }
 
             response.Success = false;
-            LogHelper.Error("FriendComponentAgent.OnAddFriend 跨进程调用失败, StatusCode: {statusCode}, Error: {errorMessage}, TraceId: {traceId}",
+            LogHelper.Error("FriendComponentAgent.OnAddFriend 统一消息发送失败, StatusCode: {statusCode}, Error: {errorMessage}, TraceId: {traceId}",
                 result.StatusCode, result.ErrorMessage, result.TraceId);
         }
         catch (Exception exception)
         {
             response.Success = false;
-            LogHelper.Error(exception, "FriendComponentAgent.OnAddFriend 跨进程调用异常");
+            LogHelper.Error(exception, "FriendComponentAgent.OnAddFriend 统一消息发送异常");
         }
         finally
         {
@@ -151,17 +140,26 @@ public class FriendComponentAgent : StateComponentAgent<FriendComponent, FriendS
     /// <returns>业务错误码</returns>
     private static int MapToBusinessErrorCode(RemoteStatusCode statusCode)
     {
-        return statusCode switch
+        switch (statusCode)
         {
-            RemoteStatusCode.Success => 0,
-            RemoteStatusCode.Timeout => -1,
-            RemoteStatusCode.ConnectionFailed => -2,
-            RemoteStatusCode.EndpointNotFound => -3,
-            RemoteStatusCode.Cancelled => -4,
-            RemoteStatusCode.RetryExhausted => -5,
-            RemoteStatusCode.ConnectionClosed => -6,
-            RemoteStatusCode.UnexpectedResponse => -7,
-            _ => -99,
-        };
+            case RemoteStatusCode.Success:
+                return 0;
+            case RemoteStatusCode.Timeout:
+                return -1;
+            case RemoteStatusCode.ConnectionFailed:
+                return -2;
+            case RemoteStatusCode.EndpointNotFound:
+                return -3;
+            case RemoteStatusCode.Cancelled:
+                return -4;
+            case RemoteStatusCode.RetryExhausted:
+                return -5;
+            case RemoteStatusCode.ConnectionClosed:
+                return -6;
+            case RemoteStatusCode.UnexpectedResponse:
+                return -7;
+            default:
+                return -99;
+        }
     }
 }

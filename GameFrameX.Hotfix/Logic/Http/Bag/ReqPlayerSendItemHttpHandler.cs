@@ -33,6 +33,7 @@ using GameFrameX.Apps.Common.EventData;
 using GameFrameX.Apps.Common.Session;
 using GameFrameX.Apps.Player.Bag.Entity;
 using GameFrameX.Hotfix.Logic.Player.Bag;
+using GameFrameX.NetWork.RemoteMessaging.Unified;
 
 namespace GameFrameX.Hotfix.Logic.Http.Bag;
 
@@ -101,6 +102,34 @@ public sealed class ReqPlayerSendItemHttpHandler : BaseHttpHandler
             }
 
             await GameDb.SaveOneAsync(bagState);
+
+            // 离线落库后尝试统一通知（若玩家刚上线可立即收到；仍离线则按策略丢弃）
+            var notifyBagInfoChanged = new NotifyBagInfoChanged();
+            foreach (var item in itemDic)
+            {
+                notifyBagInfoChanged.ItemDic[item.Key] = new NotifyBagItem
+                {
+                    ItemId = item.Key,
+                    Count = bagState.List.TryGetValue(item.Key, out var bagItemState) ? bagItemState.Count : 0,
+                    Value = item.Value,
+                };
+            }
+
+            var notifyOptions = PlayerSendOptions.Notification();
+            notifyOptions.OfflineStrategy = PlayerOfflineStrategy.Discard;
+            var notifyResult = await UnifiedMessageSenderHolder.Sender.SendToPlayerAsync(
+                request.RoleId,
+                notifyBagInfoChanged,
+                notifyOptions);
+            if (!notifyResult.IsSuccess && notifyResult.Status != PlayerDeliverStatus.Offline)
+            {
+                LogHelper.Warning(
+                    "ReqPlayerSendItemHttpHandler 离线通知发送失败, roleId: {roleId}, status: {status}, error: {error}, traceId: {traceId}",
+                    request.RoleId,
+                    notifyResult.Status,
+                    notifyResult.ErrorMessage,
+                    notifyResult.TraceId);
+            }
         }
 
         return HttpJsonResult.SuccessString(new ReqPlayerSendItemResponse { Items = itemDic, });

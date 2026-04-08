@@ -32,6 +32,7 @@ using GameFrameX.Apps.Player.Bag.Component;
 using GameFrameX.Apps.Player.Bag.Entity;
 using GameFrameX.Config;
 using GameFrameX.Config.Tables;
+using GameFrameX.NetWork.RemoteMessaging.Unified;
 
 namespace GameFrameX.Hotfix.Logic.Player.Bag;
 
@@ -96,7 +97,16 @@ public class BagComponentAgent : StateComponentAgent<BagComponent, BagState>
         }
 
 
-        await netWorkChannel.WriteAsync(notifyBagInfoChanged);
+        var notifyResult = await UnifiedMessageSenderHolder.Sender.SendToPlayerAsync(
+            ActorId,
+            notifyBagInfoChanged,
+            PlayerSendOptions.Notification());
+        if (!notifyResult.IsSuccess)
+        {
+            throw new InvalidOperationException(
+                $"NotifyBagInfoChanged delivery failed, PlayerId={ActorId}, Status={notifyResult.Status}, Error={notifyResult.ErrorMessage}");
+        }
+
         await OwnerComponent.WriteStateAsync();
         return bagState;
     }
@@ -183,7 +193,15 @@ public class BagComponentAgent : StateComponentAgent<BagComponent, BagState>
                     [message.ItemId] = new NotifyBagItem() { Count = value.Count, ItemId = message.ItemId, Value = message.Count },
                 },
             };
-            await netWorkChannel.WriteAsync(notifyBagInfoChanged);
+            var notifyResult = await UnifiedMessageSenderHolder.Sender.SendToPlayerAsync(
+                ActorId,
+                notifyBagInfoChanged,
+                PlayerSendOptions.Notification());
+            if (!notifyResult.IsSuccess)
+            {
+                throw new InvalidOperationException(
+                    $"NotifyBagInfoChanged delivery failed, PlayerId={ActorId}, Status={notifyResult.Status}, Error={notifyResult.ErrorMessage}");
+            }
         }
         else
         {
