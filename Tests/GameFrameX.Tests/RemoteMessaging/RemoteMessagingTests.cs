@@ -22,29 +22,29 @@ using GameFrameX.NetWork.Messages;
 namespace GameFrameX.Tests.RemoteMessaging;
 
 /// <summary>
-/// RemoteMessageClientHolder 单元测试
+/// RemoteMessagingBuilder 单元测试
 /// </summary>
-public class RemoteMessageClientHolderTests
+public class RemoteMessagingBuilderTests
 {
     [Fact]
-    public void Client_ShouldReturnNonNullInstance()
+    public void BuildFromEnvironment_ShouldReturnNonNullInstance()
     {
-        var client = RemoteMessageClientHolder.Client;
+        var client = RemoteMessagingBuilder.BuildFromEnvironment();
         Assert.NotNull(client);
     }
 
     [Fact]
-    public void Client_ShouldReturnSameInstance()
+    public void BuildFromEnvironment_ShouldReturnDifferentInstances()
     {
-        var client1 = RemoteMessageClientHolder.Client;
-        var client2 = RemoteMessageClientHolder.Client;
-        Assert.Same(client1, client2);
+        var client1 = RemoteMessagingBuilder.BuildFromEnvironment();
+        var client2 = RemoteMessagingBuilder.BuildFromEnvironment();
+        Assert.NotSame(client1, client2);
     }
 
     [Fact]
-    public void Client_ShouldImplementIRemoteMessageClient()
+    public void BuildFromEnvironment_ShouldImplementIRemoteMessageClient()
     {
-        var client = RemoteMessageClientHolder.Client;
+        var client = RemoteMessagingBuilder.BuildFromEnvironment();
         Assert.IsAssignableFrom<IRemoteMessageClient>(client);
     }
 }
@@ -57,7 +57,7 @@ public class RemoteMessageClientCallTests
     [Fact]
     public async Task CallAsync_ShouldReturnNull_WhenEndpointNotResolved()
     {
-        var client = RemoteMessageClientHolder.Client;
+        var client = RemoteMessagingBuilder.BuildFromEnvironment();
         var result = await client.CallAsync<TestResponseMessage>(
             "NonExistentService_12345",
             new TestMessageObject(),
@@ -68,7 +68,7 @@ public class RemoteMessageClientCallTests
     [Fact]
     public async Task CallWithResultAsync_ShouldReturnEndpointNotFound_WhenServiceNotResolved()
     {
-        var client = RemoteMessageClientHolder.Client;
+        var client = RemoteMessagingBuilder.BuildFromEnvironment();
         var context = RemoteCallContext.Create("NonExistentService_12345", 1000);
         var result = await client.CallWithResultAsync<TestResponseMessage>(context, new TestMessageObject());
         Assert.False(result.IsSuccess);

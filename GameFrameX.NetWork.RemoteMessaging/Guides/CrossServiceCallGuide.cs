@@ -61,7 +61,8 @@
 //             AllowRetry = true,  // 幂等查询允许重试
 //         };
 //
-//         var result = await RemoteMessageClientHolder.Client.CallWithResultAsync<RespInnerQuery>(context, req);
+//         var remoteClient = RemoteMessagingBuilder.BuildFromEnvironment();
+//         var result = await remoteClient.CallWithResultAsync<RespInnerQuery>(context, req);
 //
 //         if (result.IsSuccess && result.Response != null)
 //         {
@@ -102,7 +103,8 @@
 //             AllowRetry = false,  // 非幂等操作禁止重试
 //         };
 //
-//         var result = await RemoteMessageClientHolder.Client.CallWithResultAsync<RespInnerWrite>(context, req);
+//         var remoteClient = RemoteMessagingBuilder.BuildFromEnvironment();
+//         var result = await remoteClient.CallWithResultAsync<RespInnerWrite>(context, req);
 //
 //         if (result.IsSuccess && result.Response != null)
 //         {
