@@ -328,5 +328,34 @@ public static partial class Keys
         /// 参数: {0} - 警告消息内容
         /// </remarks>
         public const string Warning_Console_Message = "Logs.Warning.ConsoleMessage";
+
+        /// <summary>
+        /// 统一消息发送器初始化完成
+        /// </summary>
+        /// <remarks>
+        /// 键名: Logs.UnifiedMessaging.Initialized
+        /// 用途: 统一消息发送器初始化完成时记录
+        /// </remarks>
+        public const string UnifiedMessaging_Initialized = "Logs.UnifiedMessaging.Initialized";
+
+        /// <summary>
+        /// 统一消息发送器玩家消息投递结果: targetType:{0} playerId:{1} status:{2} elapsedMs:{3} traceId:{4}
+        /// </summary>
+        /// <remarks>
+        /// 键名: Logs.UnifiedMessaging.PlayerSendResult
+        /// 用途: 玩家消息投递完成后记录
+        /// 参数: {0} - 目标类型, {1} - 玩家ID, {2} - 状态, {3} - 耗时, {4} - 追踪ID
+        /// </remarks>
+        public const string UnifiedMessaging_PlayerSendResult = "Logs.UnifiedMessaging.PlayerSendResult";
+
+        /// <summary>
+        /// 统一消息发送器系统消息发送结果: serviceName:{0} statusCode:{1} elapsedMs:{2} traceId:{3} instance:{4}
+        /// </summary>
+        /// <remarks>
+        /// 键名: Logs.UnifiedMessaging.ServerSendResult
+        /// 用途: 系统消息发送完成后记录
+        /// 参数: {0} - 服务名, {1} - 状态码, {2} - 耗时, {3} - 追踪ID, {4} - 实例
+        /// </remarks>
+        public const string UnifiedMessaging_ServerSendResult = "Logs.UnifiedMessaging.ServerSendResult";
     }
 }

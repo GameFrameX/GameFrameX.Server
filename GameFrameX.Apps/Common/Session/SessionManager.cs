@@ -45,6 +45,7 @@ namespace GameFrameX.Apps.Common.Session;
 public static class SessionManager
 {
     private static readonly ConcurrentDictionary<string, Session> SessionMap = new();
+    private static readonly ConcurrentDictionary<long, SessionRouteSnapshot> PlayerRouteMap = new();
 
     /// <summary>
     /// 获取当前在线玩家的数量。
@@ -84,6 +85,8 @@ public static class SessionManager
             {
                 EventDispatcher.Dispatch(roleSession.PlayerId, (int)EventId.SessionRemove);
             }
+
+            SetPlayerRouteOffline(roleSession.PlayerId);
         }
     }
 
@@ -147,6 +150,11 @@ public static class SessionManager
             EventDispatcher.Dispatch(value.PlayerId, (int)EventId.SessionRemove);
         }
 
+        if (value != null && value.PlayerId > 0)
+        {
+            SetPlayerRouteOffline(value.PlayerId);
+        }
+
         return value;
     }
 
@@ -161,6 +169,11 @@ public static class SessionManager
             if (ActorManager.HasActor(session.PlayerId))
             {
                 EventDispatcher.Dispatch(session.PlayerId, (int)EventId.SessionRemove);
+            }
+
+            if (session.PlayerId > 0)
+            {
+                SetPlayerRouteOffline(session.PlayerId);
             }
         }
 
@@ -187,6 +200,10 @@ public static class SessionManager
     {
         session.WorkChannel.SetData(GlobalConst.SessionIdKey, session.SessionId);
         SessionMap[session.SessionId] = session;
+        if (session.PlayerId > 0)
+        {
+            SetPlayerRouteOnline(session.PlayerId);
+        }
     }
 
     /// <summary>
@@ -226,5 +243,125 @@ public static class SessionManager
 
         session.SetPlayerId(roleId);
         session.SetSign(sign);
+        SetPlayerRouteOnline(roleId);
+    }
+
+    /// <summary>
+    /// 获取玩家路由快照（内存态）。
+    /// </summary>
+    /// <param name="playerId">玩家ID。</param>
+    /// <param name="snapshot">路由快照。</param>
+    /// <returns>是否命中。</returns>
+    public static bool TryGetPlayerRoute(long playerId, out SessionRouteSnapshot snapshot)
+    {
+        return PlayerRouteMap.TryGetValue(playerId, out snapshot);
+    }
+
+    /// <summary>
+    /// 将玩家标记为在线并更新路由信息（内存态）。
+    /// </summary>
+    /// <param name="playerId">玩家ID。</param>
+    /// <param name="serverType">服务器类型，默认当前服务。</param>
+    /// <param name="serverId">服务器ID，默认当前服务。</param>
+    public static void SetPlayerRouteOnline(long playerId, string serverType = null, int? serverId = null)
+    {
+        if (playerId <= 0)
+        {
+            return;
+        }
+
+        var resolvedServerType = string.IsNullOrWhiteSpace(serverType)
+                                     ? (GlobalSettings.CurrentSetting?.ServerType ?? GameServerConst.Game.Name)
+                                     : serverType;
+        var resolvedServerId = serverId ?? (GlobalSettings.CurrentSetting?.ServerId ?? GameServerConst.Game.Id);
+
+        PlayerRouteMap.AddOrUpdate(
+            playerId,
+            _ => SessionRouteSnapshot.Online(playerId, resolvedServerType, resolvedServerId, 1),
+            (_, old) => SessionRouteSnapshot.Online(playerId, resolvedServerType, resolvedServerId, old.Version + 1));
+    }
+
+    /// <summary>
+    /// 将玩家标记为离线（内存态）。
+    /// </summary>
+    /// <param name="playerId">玩家ID。</param>
+    public static void SetPlayerRouteOffline(long playerId)
+    {
+        if (playerId <= 0)
+        {
+            return;
+        }
+
+        PlayerRouteMap.AddOrUpdate(
+            playerId,
+            _ => SessionRouteSnapshot.Offline(playerId, 1),
+            (_, old) => SessionRouteSnapshot.Offline(playerId, old.Version + 1));
+    }
+}
+
+/// <summary>
+/// SessionManager 内存路由快照。
+/// </summary>
+public sealed class SessionRouteSnapshot
+{
+    /// <summary>
+    /// 玩家ID。
+    /// </summary>
+    public long PlayerId { get; init; }
+
+    /// <summary>
+    /// 服务类型。
+    /// </summary>
+    public string ServerType { get; init; }
+
+    /// <summary>
+    /// 服务ID。
+    /// </summary>
+    public int ServerId { get; init; }
+
+    /// <summary>
+    /// 在线状态。
+    /// </summary>
+    public bool IsOnline { get; init; }
+
+    /// <summary>
+    /// 版本号（每次状态变化递增）。
+    /// </summary>
+    public long Version { get; init; }
+
+    /// <summary>
+    /// 创建在线态路由快照。
+    /// </summary>
+    /// <param name="playerId">玩家ID。</param>
+    /// <param name="serverType">服务类型。</param>
+    /// <param name="serverId">服务ID。</param>
+    /// <param name="version">版本号。</param>
+    /// <returns>在线态路由快照。</returns>
+    public static SessionRouteSnapshot Online(long playerId, string serverType, int serverId, long version)
+    {
+        return new SessionRouteSnapshot
+        {
+            PlayerId = playerId,
+            ServerType = serverType,
+            ServerId = serverId,
+            IsOnline = true,
+            Version = version,
+        };
+    }
+
+    /// <summary>
+    /// 创建离线态路由快照。
+    /// </summary>
+    /// <param name="playerId">玩家ID。</param>
+    /// <param name="version">版本号。</param>
+    /// <returns>离线态路由快照。</returns>
+    public static SessionRouteSnapshot Offline(long playerId, long version)
+    {
+        return new SessionRouteSnapshot
+        {
+            PlayerId = playerId,
+            IsOnline = false,
+            Version = version,
+        };
     }
 }
