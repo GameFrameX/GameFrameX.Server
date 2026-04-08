@@ -1,0 +1,155 @@
+name: gfx-multi
+
+services:
+  mongo:
+    image: mongo:8.2
+    restart: unless-stopped
+    ports:
+      - "47017:27017"
+    healthcheck:
+      test: [ "CMD", "mongosh", "--quiet", "--eval", "db.runCommand({ ping: 1 }).ok" ]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+    volumes:
+      - "./running-multi/mongo:/data/db"
+    networks:
+      - gameframex-multi
+
+  social-1:
+    build:
+      context: .
+    image: gameframex/server.launcher:local
+    depends_on:
+      mongo:
+        condition: service_healthy
+    command:
+      - "--ServerType=Social"
+      - "--ServerId=5531"
+      - "--ServerInstanceId=2001"
+      - "--InnerHost=0.0.0.0"
+      - "--InnerPort=29400"
+      - "--OuterHost=0.0.0.0"
+      - "--OuterPort=29400"
+      - "--HttpPort=28081"
+      - "--IsEnableHttp=true"
+      - "--DataBaseUrl=mongodb://mongo:27017/?authSource=admin"
+      - "--DataBaseName=gameframex_multi"
+    environment:
+      services__game__tcp__0: "tcp://game-1:29100"
+      services__game__tcp__1: "tcp://game-2:29101"
+      services__game__http__0: "http://game-1:28080"
+      services__game__http__1: "http://game-2:28082"
+    ports:
+      - "49400:29400"
+      - "48081:28081"
+    volumes:
+      - "./running-multi/social-1/logs:/app/data/logs"
+      - "./GameFrameX.Config/json:/app/Configs:ro"
+    networks:
+      - gameframex-multi
+
+  social-2:
+    image: gameframex/server.launcher:local
+    depends_on:
+      mongo:
+        condition: service_healthy
+    command:
+      - "--ServerType=Social"
+      - "--ServerId=5532"
+      - "--ServerInstanceId=2002"
+      - "--InnerHost=0.0.0.0"
+      - "--InnerPort=29401"
+      - "--OuterHost=0.0.0.0"
+      - "--OuterPort=29401"
+      - "--HttpPort=28083"
+      - "--IsEnableHttp=true"
+      - "--DataBaseUrl=mongodb://mongo:27017/?authSource=admin"
+      - "--DataBaseName=gameframex_multi"
+    environment:
+      services__game__tcp__0: "tcp://game-1:29100"
+      services__game__tcp__1: "tcp://game-2:29101"
+      services__game__http__0: "http://game-1:28080"
+      services__game__http__1: "http://game-2:28082"
+    ports:
+      - "49401:29401"
+      - "48083:28083"
+    volumes:
+      - "./running-multi/social-2/logs:/app/data/logs"
+      - "./GameFrameX.Config/json:/app/Configs:ro"
+    networks:
+      - gameframex-multi
+
+  game-1:
+    image: gameframex/server.launcher:local
+    depends_on:
+      mongo:
+        condition: service_healthy
+      social-1:
+        condition: service_started
+      social-2:
+        condition: service_started
+    command:
+      - "--ServerType=Game"
+      - "--ServerId=1001"
+      - "--ServerInstanceId=1001"
+      - "--InnerHost=0.0.0.0"
+      - "--InnerPort=29100"
+      - "--OuterHost=0.0.0.0"
+      - "--OuterPort=29100"
+      - "--HttpPort=28080"
+      - "--IsEnableHttp=true"
+      - "--DataBaseUrl=mongodb://mongo:27017/?authSource=admin"
+      - "--DataBaseName=gameframex_multi"
+    environment:
+      services__social__tcp__0: "tcp://social-1:29400"
+      services__social__tcp__1: "tcp://social-2:29401"
+      services__social__http__0: "http://social-1:28081"
+      services__social__http__1: "http://social-2:28083"
+    ports:
+      - "49100:29100"
+      - "48080:28080"
+    volumes:
+      - "./running-multi/game-1/logs:/app/data/logs"
+      - "./GameFrameX.Config/json:/app/Configs:ro"
+    networks:
+      - gameframex-multi
+
+  game-2:
+    image: gameframex/server.launcher:local
+    depends_on:
+      mongo:
+        condition: service_healthy
+      social-1:
+        condition: service_started
+      social-2:
+        condition: service_started
+    command:
+      - "--ServerType=Game"
+      - "--ServerId=1002"
+      - "--ServerInstanceId=1002"
+      - "--InnerHost=0.0.0.0"
+      - "--InnerPort=29101"
+      - "--OuterHost=0.0.0.0"
+      - "--OuterPort=29101"
+      - "--HttpPort=28082"
+      - "--IsEnableHttp=true"
+      - "--DataBaseUrl=mongodb://mongo:27017/?authSource=admin"
+      - "--DataBaseName=gameframex_multi"
+    environment:
+      services__social__tcp__0: "tcp://social-1:29400"
+      services__social__tcp__1: "tcp://social-2:29401"
+      services__social__http__0: "http://social-1:28081"
+      services__social__http__1: "http://social-2:28083"
+    ports:
+      - "49101:29101"
+      - "48082:28082"
+    volumes:
+      - "./running-multi/game-2/logs:/app/data/logs"
+      - "./GameFrameX.Config/json:/app/Configs:ro"
+    networks:
+      - gameframex-multi
+
+networks:
+  gameframex-multi:
+    driver: bridge

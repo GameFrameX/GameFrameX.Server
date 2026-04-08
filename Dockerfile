@@ -28,9 +28,11 @@ COPY --from=publish /app/publish .
 # 复制json配置文件
 COPY GameFrameX.Config/json ./json
 
-# 复制Hotfix编译结果到发布目录
+# 复制Hotfix编译结果到发布目录（包含所有依赖）
 RUN mkdir -p /app/hotfix
-COPY --from=publish /app/build/hotfix/GameFrameX.Hotfix.dll /app/hotfix/
+COPY --from=publish /app/build/hotfix/ /app/hotfix/
+# 热更依赖加载逻辑默认从 /app 根目录查找引用程序集，这里同步 DLL 到根目录
+RUN cp -f /app/hotfix/*.dll /app/ || true
 
 # 切换到root用户创建数据目录并设置权限
 USER root
