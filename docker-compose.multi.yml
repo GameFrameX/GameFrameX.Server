@@ -35,11 +35,6 @@ services:
       - "--IsEnableHttp=true"
       - "--DataBaseUrl=mongodb://mongo:27017/?authSource=admin"
       - "--DataBaseName=gameframex_multi"
-    environment:
-      services__game__tcp__0: "tcp://game-1:29100"
-      services__game__tcp__1: "tcp://game-2:29101"
-      services__game__http__0: "http://game-1:28080"
-      services__game__http__1: "http://game-2:28082"
     ports:
       - "49400:29400"
       - "48081:28081"
@@ -66,11 +61,6 @@ services:
       - "--IsEnableHttp=true"
       - "--DataBaseUrl=mongodb://mongo:27017/?authSource=admin"
       - "--DataBaseName=gameframex_multi"
-    environment:
-      services__game__tcp__0: "tcp://game-1:29100"
-      services__game__tcp__1: "tcp://game-2:29101"
-      services__game__http__0: "http://game-1:28080"
-      services__game__http__1: "http://game-2:28082"
     ports:
       - "49401:29401"
       - "48083:28083"
@@ -101,11 +91,6 @@ services:
       - "--IsEnableHttp=true"
       - "--DataBaseUrl=mongodb://mongo:27017/?authSource=admin"
       - "--DataBaseName=gameframex_multi"
-    environment:
-      services__social__tcp__0: "tcp://social-1:29400"
-      services__social__tcp__1: "tcp://social-2:29401"
-      services__social__http__0: "http://social-1:28081"
-      services__social__http__1: "http://social-2:28083"
     ports:
       - "49100:29100"
       - "48080:28080"
@@ -136,16 +121,251 @@ services:
       - "--IsEnableHttp=true"
       - "--DataBaseUrl=mongodb://mongo:27017/?authSource=admin"
       - "--DataBaseName=gameframex_multi"
-    environment:
-      services__social__tcp__0: "tcp://social-1:29400"
-      services__social__tcp__1: "tcp://social-2:29401"
-      services__social__http__0: "http://social-1:28081"
-      services__social__http__1: "http://social-2:28083"
     ports:
       - "49101:29101"
       - "48082:28082"
     volumes:
       - "./running-multi/game-2/logs:/app/data/logs"
+      - "./GameFrameX.Config/json:/app/Configs:ro"
+    networks:
+      - gameframex-multi
+
+  game-3:
+    image: gameframex/server.launcher:local
+    depends_on:
+      mongo:
+        condition: service_healthy
+      social-1:
+        condition: service_started
+      social-2:
+        condition: service_started
+    command:
+      - "--ServerType=Game"
+      - "--ServerId=1003"
+      - "--ServerInstanceId=1003"
+      - "--InnerHost=0.0.0.0"
+      - "--InnerPort=29102"
+      - "--OuterHost=0.0.0.0"
+      - "--OuterPort=29102"
+      - "--HttpPort=28084"
+      - "--IsEnableHttp=true"
+      - "--DataBaseUrl=mongodb://mongo:27017/?authSource=admin"
+      - "--DataBaseName=gameframex_multi"
+    ports:
+      - "49102:29102"
+      - "48084:28084"
+    volumes:
+      - "./running-multi/game-3/logs:/app/data/logs"
+      - "./GameFrameX.Config/json:/app/Configs:ro"
+    networks:
+      - gameframex-multi
+
+  game-4:
+    image: gameframex/server.launcher:local
+    depends_on:
+      mongo:
+        condition: service_healthy
+      social-1:
+        condition: service_started
+      social-2:
+        condition: service_started
+    command:
+      - "--ServerType=Game"
+      - "--ServerId=1004"
+      - "--ServerInstanceId=1004"
+      - "--InnerHost=0.0.0.0"
+      - "--InnerPort=29103"
+      - "--OuterHost=0.0.0.0"
+      - "--OuterPort=29103"
+      - "--HttpPort=28086"
+      - "--IsEnableHttp=true"
+      - "--DataBaseUrl=mongodb://mongo:27017/?authSource=admin"
+      - "--DataBaseName=gameframex_multi"
+    ports:
+      - "49103:29103"
+      - "48086:28086"
+    volumes:
+      - "./running-multi/game-4/logs:/app/data/logs"
+      - "./GameFrameX.Config/json:/app/Configs:ro"
+    networks:
+      - gameframex-multi
+
+  game-5:
+    image: gameframex/server.launcher:local
+    depends_on:
+      mongo:
+        condition: service_healthy
+      social-1:
+        condition: service_started
+      social-2:
+        condition: service_started
+    command:
+      - "--ServerType=Game"
+      - "--ServerId=1005"
+      - "--ServerInstanceId=1005"
+      - "--InnerHost=0.0.0.0"
+      - "--InnerPort=29104"
+      - "--OuterHost=0.0.0.0"
+      - "--OuterPort=29104"
+      - "--HttpPort=28088"
+      - "--IsEnableHttp=true"
+      - "--DataBaseUrl=mongodb://mongo:27017/?authSource=admin"
+      - "--DataBaseName=gameframex_multi"
+    ports:
+      - "49104:29104"
+      - "48088:28088"
+    volumes:
+      - "./running-multi/game-5/logs:/app/data/logs"
+      - "./GameFrameX.Config/json:/app/Configs:ro"
+    networks:
+      - gameframex-multi
+
+  game-6:
+    image: gameframex/server.launcher:local
+    depends_on:
+      mongo:
+        condition: service_healthy
+      social-1:
+        condition: service_started
+      social-2:
+        condition: service_started
+    command:
+      - "--ServerType=Game"
+      - "--ServerId=1006"
+      - "--ServerInstanceId=1006"
+      - "--InnerHost=0.0.0.0"
+      - "--InnerPort=29105"
+      - "--OuterHost=0.0.0.0"
+      - "--OuterPort=29105"
+      - "--HttpPort=28090"
+      - "--IsEnableHttp=true"
+      - "--DataBaseUrl=mongodb://mongo:27017/?authSource=admin"
+      - "--DataBaseName=gameframex_multi"
+    ports:
+      - "49105:29105"
+      - "48090:28090"
+    volumes:
+      - "./running-multi/game-6/logs:/app/data/logs"
+      - "./GameFrameX.Config/json:/app/Configs:ro"
+    networks:
+      - gameframex-multi
+
+  game-7:
+    image: gameframex/server.launcher:local
+    depends_on:
+      mongo:
+        condition: service_healthy
+      social-1:
+        condition: service_started
+      social-2:
+        condition: service_started
+    command:
+      - "--ServerType=Game"
+      - "--ServerId=1007"
+      - "--ServerInstanceId=1007"
+      - "--InnerHost=0.0.0.0"
+      - "--InnerPort=29106"
+      - "--OuterHost=0.0.0.0"
+      - "--OuterPort=29106"
+      - "--HttpPort=28092"
+      - "--IsEnableHttp=true"
+      - "--DataBaseUrl=mongodb://mongo:27017/?authSource=admin"
+      - "--DataBaseName=gameframex_multi"
+    ports:
+      - "49106:29106"
+      - "48092:28092"
+    volumes:
+      - "./running-multi/game-7/logs:/app/data/logs"
+      - "./GameFrameX.Config/json:/app/Configs:ro"
+    networks:
+      - gameframex-multi
+
+  game-8:
+    image: gameframex/server.launcher:local
+    depends_on:
+      mongo:
+        condition: service_healthy
+      social-1:
+        condition: service_started
+      social-2:
+        condition: service_started
+    command:
+      - "--ServerType=Game"
+      - "--ServerId=1008"
+      - "--ServerInstanceId=1008"
+      - "--InnerHost=0.0.0.0"
+      - "--InnerPort=29107"
+      - "--OuterHost=0.0.0.0"
+      - "--OuterPort=29107"
+      - "--HttpPort=28094"
+      - "--IsEnableHttp=true"
+      - "--DataBaseUrl=mongodb://mongo:27017/?authSource=admin"
+      - "--DataBaseName=gameframex_multi"
+    ports:
+      - "49107:29107"
+      - "48094:28094"
+    volumes:
+      - "./running-multi/game-8/logs:/app/data/logs"
+      - "./GameFrameX.Config/json:/app/Configs:ro"
+    networks:
+      - gameframex-multi
+
+  game-9:
+    image: gameframex/server.launcher:local
+    depends_on:
+      mongo:
+        condition: service_healthy
+      social-1:
+        condition: service_started
+      social-2:
+        condition: service_started
+    command:
+      - "--ServerType=Game"
+      - "--ServerId=1009"
+      - "--ServerInstanceId=1009"
+      - "--InnerHost=0.0.0.0"
+      - "--InnerPort=29108"
+      - "--OuterHost=0.0.0.0"
+      - "--OuterPort=29108"
+      - "--HttpPort=28096"
+      - "--IsEnableHttp=true"
+      - "--DataBaseUrl=mongodb://mongo:27017/?authSource=admin"
+      - "--DataBaseName=gameframex_multi"
+    ports:
+      - "49108:29108"
+      - "48096:28096"
+    volumes:
+      - "./running-multi/game-9/logs:/app/data/logs"
+      - "./GameFrameX.Config/json:/app/Configs:ro"
+    networks:
+      - gameframex-multi
+
+  game-10:
+    image: gameframex/server.launcher:local
+    depends_on:
+      mongo:
+        condition: service_healthy
+      social-1:
+        condition: service_started
+      social-2:
+        condition: service_started
+    command:
+      - "--ServerType=Game"
+      - "--ServerId=1010"
+      - "--ServerInstanceId=1010"
+      - "--InnerHost=0.0.0.0"
+      - "--InnerPort=29109"
+      - "--OuterHost=0.0.0.0"
+      - "--OuterPort=29109"
+      - "--HttpPort=28098"
+      - "--IsEnableHttp=true"
+      - "--DataBaseUrl=mongodb://mongo:27017/?authSource=admin"
+      - "--DataBaseName=gameframex_multi"
+    ports:
+      - "49109:29109"
+      - "48098:28098"
+    volumes:
+      - "./running-multi/game-10/logs:/app/data/logs"
       - "./GameFrameX.Config/json:/app/Configs:ro"
     networks:
       - gameframex-multi
