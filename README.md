@@ -426,6 +426,58 @@ volumes:
   mongodb_data:
 ```
 
+### 🧪 多进程跨进程联调（MongoDB + Docker）
+
+当前仓库已提供 `docker-compose.multi.yml`，包含：
+- `mongo` x1
+- `game` x2（`game-1`、`game-2`）
+- `social` x2（`social-1`、`social-2`）
+
+#### 启动环境
+
+```bash
+docker compose -f docker-compose.multi.yml up -d --build
+docker compose -f docker-compose.multi.yml ps
+```
+
+#### 一键跨进程 smoke 测试
+
+```bash
+./scripts/multi/smoke-cross-process.sh
+```
+
+脚本会验证：
+- `game-1 -> social` 跨进程调用
+- `game-2 -> social` 跨进程调用
+- 返回 `code=0` 且 `FriendCount >= 1`
+
+#### 常用排查命令
+
+```bash
+docker compose -f docker-compose.multi.yml logs -f game-1 game-2 social-1 social-2
+docker compose -f docker-compose.multi.yml down
+```
+
+#### 机器人 RPC 登录/断开压测（Client）
+
+> 说明：当前项目中，账号校验与角色创建仍走 HTTP 接口，角色登录与在线流程走 TCP/RPC。  
+> 这个脚本用于模拟真实客户端反复“登录 -> 在线 -> 主动断开 -> 重连登录”。
+
+```bash
+./scripts/multi/run-bots-rpc.sh
+```
+
+可选环境变量：
+
+```bash
+BOT_COUNT=200 \
+TCP_PORT=49100 \
+LOGIN_URL=http://127.0.0.1:48080/game/api/ \
+DISCONNECT_AFTER_LOGIN_SECONDS=20 \
+RUN_SECONDS=300 \
+./scripts/multi/run-bots-rpc.sh
+```
+
 ### 🔍 监控与可观测性
 
 #### 指标端点
