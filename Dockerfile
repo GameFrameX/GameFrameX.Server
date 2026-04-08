@@ -19,7 +19,7 @@ RUN dotnet publish "GameFrameX.Launcher.csproj" -f net10.0 -c $BUILD_CONFIGURATI
 # 编译Hotfix程序集
 WORKDIR "/src/GameFrameX.Hotfix"
 RUN mkdir -p /app/build/hotfix
-RUN dotnet build "GameFrameX.Hotfix.csproj" -c $BUILD_CONFIGURATION -o /app/build/hotfix
+RUN dotnet build "GameFrameX.Hotfix.csproj" -c $BUILD_CONFIGURATION -o /app/build/hotfix /p:UseSharedCompilation=false
 
 FROM base AS final
 WORKDIR /app

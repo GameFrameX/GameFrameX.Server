@@ -6,7 +6,7 @@ services:
     ports:
       - "37017:27017"
     healthcheck:
-      test: ["CMD", "mongosh", "--quiet", "--eval", "db.runCommand({ ping: 1 }).ok"]
+      test: [ "CMD", "mongosh", "--quiet", "--eval", "db.runCommand({ ping: 1 }).ok" ]
       interval: 5s
       timeout: 3s
       retries: 20
