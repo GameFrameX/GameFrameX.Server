@@ -1,6 +1,5 @@
 global using GameFrameX.Foundation.Logger;
 global using GameFrameX.NetWork.Abstractions;
-global using GameFrameX.NetWork.Message;
 global using GameFrameX.NetWork.Messages;
 global using GameFrameX.NetWork.RemoteMessaging.Composition;
 global using GameFrameX.NetWork.RemoteMessaging.Contracts;
