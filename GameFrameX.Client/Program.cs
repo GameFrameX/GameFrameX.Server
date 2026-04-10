@@ -48,8 +48,8 @@ internal static class Program
         WarmUpProtoSerializer();
 
         LogHelper.Info(
-            "Bot options: bot-count={botCount}, tcp={tcpHost}:{tcpPort}, disconnect-loop={disconnectLoop}, disconnect-after-login-seconds={disconnectAfterLoginSeconds}, run-seconds={runSeconds}",
-            options.BotCount, options.TcpHost, options.TcpPort, options.EnableDisconnectLoop, options.DisconnectAfterLoginSeconds, options.RunSeconds);
+            "Bot options: bot-count={botCount}, tcp={tcpHost}:{tcpPort}, scenario={scenario}, disconnect-loop={disconnectLoop}, disconnect-after-login-seconds={disconnectAfterLoginSeconds}, run-seconds={runSeconds}",
+            options.BotCount, options.TcpHost, options.TcpPort, options.Scenario, options.EnableDisconnectLoop, options.DisconnectAfterLoginSeconds, options.RunSeconds);
 
         var cts = new CancellationTokenSource();
         var botTasks = new List<Task>(options.BotCount);
@@ -89,5 +89,11 @@ internal static class Program
         _ = ProtoBufSerializerHelper.Serialize(new RespPlayerList());
         _ = ProtoBufSerializerHelper.Serialize(new RespPlayerCreate());
         _ = ProtoBufSerializerHelper.Serialize(new RespPlayerLogin());
+        _ = ProtoBufSerializerHelper.Serialize(new ReqFriendByAdd());
+        _ = ProtoBufSerializerHelper.Serialize(new RespFriendByAdd());
+        _ = ProtoBufSerializerHelper.Serialize(new ReqDeleteFriend());
+        _ = ProtoBufSerializerHelper.Serialize(new RespDeleteFriend());
+        _ = ProtoBufSerializerHelper.Serialize(new ReqFriendList());
+        _ = ProtoBufSerializerHelper.Serialize(new RespFriendList());
     }
 }

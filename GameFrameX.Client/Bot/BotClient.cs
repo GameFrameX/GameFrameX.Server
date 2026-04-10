@@ -30,6 +30,7 @@
 using GameFrameX.NetWork.Messages;
 using GameFrameX.Proto.Proto;
 using GameFrameX.Foundation.Logger;
+using System.Collections.Concurrent;
 using ErrorEventArgs = GameFrameX.SuperSocket.ClientEngine.ErrorEventArgs;
 
 namespace GameFrameX.Client.Bot;
@@ -39,17 +40,34 @@ namespace GameFrameX.Client.Bot;
 /// </summary>
 public sealed class BotClient
 {
+    private static readonly ConcurrentDictionary<string, long> OnlinePlayerIds = new(StringComparer.Ordinal);
+
+    private enum FriendScenarioStage
+    {
+        None = 0,
+        WaitAdd = 1,
+        WaitListAfterAdd = 2,
+        WaitDelete = 3,
+        WaitListAfterDelete = 4,
+        Completed = 5,
+    }
+
     private readonly BotTcpClient m_TcpClient;
     private readonly string m_BotName;
     private readonly BotTcpClientEvent m_BotTcpClientEvent;
     private readonly BotRunOptions _options;
     private int _disconnectScheduled;
     private long _accountId;
+    private long _playerId;
+    private long _friendTargetPlayerId;
+    private int _friendTargetResolveAttempts;
+    private FriendScenarioStage _friendScenarioStage;
 
     /// <summary>
     /// 初始化机器人客户端
     /// </summary>
     /// <param name="botName">机器人名称</param>
+    /// <param name="options">运行参数</param>
     public BotClient(string botName, BotRunOptions options)
     {
         m_BotName = botName;
@@ -97,6 +115,15 @@ public sealed class BotClient
             case RespPlayerLogin msg:
                 OnPlayerLoginSuccess(msg);
                 break;
+            case RespFriendByAdd msg:
+                OnFriendAddSuccess(msg);
+                break;
+            case RespDeleteFriend msg:
+                OnDeleteFriendSuccess(msg);
+                break;
+            case RespFriendList msg:
+                OnFriendListSuccess(msg);
+                break;
         }
     }
 
@@ -115,6 +142,10 @@ public sealed class BotClient
     /// </summary>
     private void ClientClosedCallback()
     {
+        if (!string.IsNullOrWhiteSpace(m_BotName))
+        {
+            OnlinePlayerIds.TryRemove(m_BotName, out _);
+        }
     }
 
     /// <summary>
@@ -220,8 +251,133 @@ public sealed class BotClient
     /// <param name="msg">登录成功的响应消息</param>
     private void OnPlayerLoginSuccess(RespPlayerLogin msg)
     {
-        LogHelper.Info($"机器人-{m_BotName}登录成功,id:{msg.PlayerInfo.Id}");
+        _playerId = msg.PlayerInfo.Id;
+        OnlinePlayerIds[m_BotName] = _playerId;
+        LogHelper.Info($"机器人-{m_BotName}登录成功,id:{_playerId}");
+        if (_options.HasScenario("friend"))
+        {
+            StartFriendScenario();
+            return;
+        }
+
         ScheduleDisconnectIfNeeded();
+    }
+
+    private void StartFriendScenario()
+    {
+        if (_playerId <= 0)
+        {
+            LogHelper.Error($"机器人-{m_BotName}好友场景启动失败，玩家ID非法:{_playerId}");
+            ScheduleDisconnectIfNeeded();
+            return;
+        }
+
+        if (!TryResolveFriendTargetPlayerId())
+        {
+            _friendTargetResolveAttempts++;
+            if (_friendTargetResolveAttempts > 5)
+            {
+                LogHelper.Error($"机器人-{m_BotName}好友场景启动失败，未找到可用好友目标。");
+                ScheduleDisconnectIfNeeded();
+                return;
+            }
+
+            _ = Task.Run(async () =>
+            {
+                await Task.Delay(1000);
+                StartFriendScenario();
+            });
+            return;
+        }
+
+        _friendScenarioStage = FriendScenarioStage.WaitAdd;
+        LogHelper.Info($"机器人-{m_BotName}开始执行好友场景，目标玩家:{_friendTargetPlayerId}");
+        m_TcpClient.SendToServer(new ReqFriendByAdd { PlayerId = _friendTargetPlayerId });
+    }
+
+    private void OnFriendAddSuccess(RespFriendByAdd msg)
+    {
+        if (_friendScenarioStage != FriendScenarioStage.WaitAdd)
+        {
+            return;
+        }
+
+        if (!msg.Success || msg.ErrorCode != 0)
+        {
+            LogHelper.Error($"机器人-{m_BotName}好友场景-加好友失败，Success:{msg.Success}, ErrorCode:{msg.ErrorCode}");
+            ScheduleDisconnectIfNeeded();
+            return;
+        }
+
+        _friendScenarioStage = FriendScenarioStage.WaitListAfterAdd;
+        LogHelper.Info($"机器人-{m_BotName}好友场景-加好友成功，开始拉取好友列表。");
+        m_TcpClient.SendToServer(new ReqFriendList());
+    }
+
+    private void OnDeleteFriendSuccess(RespDeleteFriend msg)
+    {
+        if (_friendScenarioStage != FriendScenarioStage.WaitDelete)
+        {
+            return;
+        }
+
+        if (!msg.Success || msg.ErrorCode != 0)
+        {
+            LogHelper.Error($"机器人-{m_BotName}好友场景-删好友失败，Success:{msg.Success}, ErrorCode:{msg.ErrorCode}");
+            ScheduleDisconnectIfNeeded();
+            return;
+        }
+
+        _friendScenarioStage = FriendScenarioStage.WaitListAfterDelete;
+        LogHelper.Info($"机器人-{m_BotName}好友场景-删好友成功，开始二次拉取好友列表。");
+        m_TcpClient.SendToServer(new ReqFriendList());
+    }
+
+    private void OnFriendListSuccess(RespFriendList msg)
+    {
+        if (_friendScenarioStage != FriendScenarioStage.WaitListAfterAdd
+            && _friendScenarioStage != FriendScenarioStage.WaitListAfterDelete)
+        {
+            return;
+        }
+
+        if (msg.ErrorCode != 0)
+        {
+            LogHelper.Error($"机器人-{m_BotName}好友场景-拉取列表失败，ErrorCode:{msg.ErrorCode}");
+            ScheduleDisconnectIfNeeded();
+            return;
+        }
+
+        if (_friendScenarioStage == FriendScenarioStage.WaitListAfterAdd)
+        {
+            _friendScenarioStage = FriendScenarioStage.WaitDelete;
+            LogHelper.Info($"机器人-{m_BotName}好友场景-首次列表成功，数量:{msg.Friends?.Count ?? 0}，开始删好友。");
+            m_TcpClient.SendToServer(new ReqDeleteFriend { PlayerId = _friendTargetPlayerId });
+            return;
+        }
+
+        _friendScenarioStage = FriendScenarioStage.Completed;
+        LogHelper.Info($"机器人-{m_BotName}好友场景执行完成，二次列表数量:{msg.Friends?.Count ?? 0}。");
+        ScheduleDisconnectIfNeeded();
+    }
+
+    private bool TryResolveFriendTargetPlayerId()
+    {
+        foreach (var entry in OnlinePlayerIds)
+        {
+            if (entry.Key == m_BotName)
+            {
+                continue;
+            }
+
+            if (entry.Value > 0 && entry.Value != _playerId)
+            {
+                _friendTargetPlayerId = entry.Value;
+                return true;
+            }
+        }
+
+        return false;
     }
 
     private void ScheduleDisconnectIfNeeded()

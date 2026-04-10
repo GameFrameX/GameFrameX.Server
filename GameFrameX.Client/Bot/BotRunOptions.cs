@@ -14,6 +14,7 @@ public sealed class BotRunOptions
     public bool EnableDisconnectLoop { get; init; } = true;
     public int DisconnectAfterLoginSeconds { get; init; } = 15;
     public int RunSeconds { get; init; } = 0;
+    public string Scenario { get; init; } = "login";
 
     public static BotRunOptions Parse(string[] args)
     {
@@ -51,7 +52,27 @@ public sealed class BotRunOptions
             EnableDisconnectLoop = ReadBool(values, "disconnect-loop", true),
             DisconnectAfterLoginSeconds = ReadInt(values, "disconnect-after-login-seconds", 15),
             RunSeconds = ReadInt(values, "run-seconds", 0),
+            Scenario = ReadString(values, "scenario", "login"),
         };
+    }
+
+    public bool HasScenario(string scenarioName)
+    {
+        if (string.IsNullOrWhiteSpace(Scenario) || string.IsNullOrWhiteSpace(scenarioName))
+        {
+            return false;
+        }
+
+        var parts = Scenario.Split(',', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
+        foreach (var part in parts)
+        {
+            if (string.Equals(part, scenarioName, StringComparison.OrdinalIgnoreCase))
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     private static string ReadString(IDictionary<string, string> values, string key, string defaultValue)
