@@ -13,6 +13,7 @@ DISCONNECT_LOOP="${DISCONNECT_LOOP:-true}"
 DISCONNECT_AFTER_LOGIN_SECONDS="${DISCONNECT_AFTER_LOGIN_SECONDS:-15}"
 RUN_SECONDS="${RUN_SECONDS:-180}"
 CONNECT_STAGGER_MS="${CONNECT_STAGGER_MS:-10}"
+SCENARIO="${SCENARIO:-login}"
 
 echo "启动机器人压测:"
 echo "  BOT_COUNT=$BOT_COUNT"
@@ -22,6 +23,7 @@ echo "  DISCONNECT_LOOP=$DISCONNECT_LOOP"
 echo "  DISCONNECT_AFTER_LOGIN_SECONDS=$DISCONNECT_AFTER_LOGIN_SECONDS"
 echo "  RUN_SECONDS=$RUN_SECONDS"
 echo "  CONNECT_STAGGER_MS=$CONNECT_STAGGER_MS"
+echo "  SCENARIO=$SCENARIO"
 
 dotnet run --framework net10.0 --project GameFrameX.Client/GameFrameX.Client.csproj -- \
   --bot-count="$BOT_COUNT" \
@@ -31,4 +33,5 @@ dotnet run --framework net10.0 --project GameFrameX.Client/GameFrameX.Client.csp
   --disconnect-loop="$DISCONNECT_LOOP" \
   --disconnect-after-login-seconds="$DISCONNECT_AFTER_LOGIN_SECONDS" \
   --run-seconds="$RUN_SECONDS" \
-  --connect-stagger-ms="$CONNECT_STAGGER_MS"
+  --connect-stagger-ms="$CONNECT_STAGGER_MS" \
+  --scenario="$SCENARIO"
