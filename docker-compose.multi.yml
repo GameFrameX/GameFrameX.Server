@@ -1,5 +1,21 @@
 name: gfx-multi
 
+x-launcher-discovery-env: &launcher-discovery-env
+  services__Social_2001__tcp__0: "tcp://social-1:29400"
+  services__Social_2002__tcp__0: "tcp://social-2:29401"
+  services__Social__tcp__0: "tcp://social-1:29400"
+  services__Game_1001__tcp__0: "tcp://game-1:29100"
+  services__Game_1002__tcp__0: "tcp://game-2:29101"
+  services__Game_1003__tcp__0: "tcp://game-3:29102"
+  services__Game_1004__tcp__0: "tcp://game-4:29103"
+  services__Game_1005__tcp__0: "tcp://game-5:29104"
+  services__Game_1006__tcp__0: "tcp://game-6:29105"
+  services__Game_1007__tcp__0: "tcp://game-7:29106"
+  services__Game_1008__tcp__0: "tcp://game-8:29107"
+  services__Game_1009__tcp__0: "tcp://game-9:29108"
+  services__Game_1010__tcp__0: "tcp://game-10:29109"
+  services__Game__tcp__0: "tcp://game-1:29100"
+
 services:
   mongo:
     image: mongo:8.2
@@ -35,6 +51,8 @@ services:
       - "--IsEnableHttp=true"
       - "--DataBaseUrl=mongodb://mongo:27017/?authSource=admin"
       - "--DataBaseName=gameframex_multi"
+    environment:
+      <<: *launcher-discovery-env
     ports:
       - "49400:29400"
       - "48081:28081"
@@ -61,6 +79,8 @@ services:
       - "--IsEnableHttp=true"
       - "--DataBaseUrl=mongodb://mongo:27017/?authSource=admin"
       - "--DataBaseName=gameframex_multi"
+    environment:
+      <<: *launcher-discovery-env
     ports:
       - "49401:29401"
       - "48083:28083"
@@ -91,6 +111,8 @@ services:
       - "--IsEnableHttp=true"
       - "--DataBaseUrl=mongodb://mongo:27017/?authSource=admin"
       - "--DataBaseName=gameframex_multi"
+    environment:
+      <<: *launcher-discovery-env
     ports:
       - "49100:29100"
       - "48080:28080"
@@ -121,6 +143,8 @@ services:
       - "--IsEnableHttp=true"
       - "--DataBaseUrl=mongodb://mongo:27017/?authSource=admin"
       - "--DataBaseName=gameframex_multi"
+    environment:
+      <<: *launcher-discovery-env
     ports:
       - "49101:29101"
       - "48082:28082"
@@ -151,6 +175,8 @@ services:
       - "--IsEnableHttp=true"
       - "--DataBaseUrl=mongodb://mongo:27017/?authSource=admin"
       - "--DataBaseName=gameframex_multi"
+    environment:
+      <<: *launcher-discovery-env
     ports:
       - "49102:29102"
       - "48084:28084"
@@ -181,6 +207,8 @@ services:
       - "--IsEnableHttp=true"
       - "--DataBaseUrl=mongodb://mongo:27017/?authSource=admin"
       - "--DataBaseName=gameframex_multi"
+    environment:
+      <<: *launcher-discovery-env
     ports:
       - "49103:29103"
       - "48086:28086"
@@ -211,6 +239,8 @@ services:
       - "--IsEnableHttp=true"
       - "--DataBaseUrl=mongodb://mongo:27017/?authSource=admin"
       - "--DataBaseName=gameframex_multi"
+    environment:
+      <<: *launcher-discovery-env
     ports:
       - "49104:29104"
       - "48088:28088"
@@ -241,6 +271,8 @@ services:
       - "--IsEnableHttp=true"
       - "--DataBaseUrl=mongodb://mongo:27017/?authSource=admin"
       - "--DataBaseName=gameframex_multi"
+    environment:
+      <<: *launcher-discovery-env
     ports:
       - "49105:29105"
       - "48090:28090"
@@ -271,6 +303,8 @@ services:
       - "--IsEnableHttp=true"
       - "--DataBaseUrl=mongodb://mongo:27017/?authSource=admin"
       - "--DataBaseName=gameframex_multi"
+    environment:
+      <<: *launcher-discovery-env
     ports:
       - "49106:29106"
       - "48092:28092"
@@ -301,6 +335,8 @@ services:
       - "--IsEnableHttp=true"
       - "--DataBaseUrl=mongodb://mongo:27017/?authSource=admin"
       - "--DataBaseName=gameframex_multi"
+    environment:
+      <<: *launcher-discovery-env
     ports:
       - "49107:29107"
       - "48094:28094"
@@ -331,6 +367,8 @@ services:
       - "--IsEnableHttp=true"
       - "--DataBaseUrl=mongodb://mongo:27017/?authSource=admin"
       - "--DataBaseName=gameframex_multi"
+    environment:
+      <<: *launcher-discovery-env
     ports:
       - "49108:29108"
       - "48096:28096"
@@ -361,6 +399,8 @@ services:
       - "--IsEnableHttp=true"
       - "--DataBaseUrl=mongodb://mongo:27017/?authSource=admin"
       - "--DataBaseName=gameframex_multi"
+    environment:
+      <<: *launcher-discovery-env
     ports:
       - "49109:29109"
       - "48098:28098"
