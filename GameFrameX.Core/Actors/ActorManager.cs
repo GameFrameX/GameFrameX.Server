@@ -448,7 +448,7 @@ public static class ActorManager
         b = 0;
         foreach (var actor in ActorMap.Values)
         {
-            if (actor.Type > GlobalConst.ActorTypeSeparator)
+            if (actor.Type > GlobalConst.ActorTypeSeparator && actor.Type != driverActorType)
             {
                 b++;
 
