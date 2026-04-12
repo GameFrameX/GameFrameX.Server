@@ -88,6 +88,7 @@ public class FriendComponentAgent : StateComponentAgent<FriendComponent, FriendS
     {
         var reqInnerAddFriend = MessageObjectPoolHelper.Get<ReqInnerFriendByAdd>();
         reqInnerAddFriend.PlayerId = request.PlayerId;
+        reqInnerAddFriend.SourcePlayerId = ActorId;
         if (string.Equals(GlobalSettings.CurrentSetting?.ServerType, GameServerConst.Social.Name, StringComparison.OrdinalIgnoreCase))
         {
             var innerResponse = new RespInnerFriendByAdd();
@@ -139,6 +140,7 @@ public class FriendComponentAgent : StateComponentAgent<FriendComponent, FriendS
     {
         var reqInnerDeleteFriend = MessageObjectPoolHelper.Get<ReqInnerFriendByDelete>();
         reqInnerDeleteFriend.PlayerId = request.PlayerId;
+        reqInnerDeleteFriend.SourcePlayerId = ActorId;
         if (string.Equals(GlobalSettings.CurrentSetting?.ServerType, GameServerConst.Social.Name, StringComparison.OrdinalIgnoreCase))
         {
             var innerResponse = new RespInnerFriendByDelete();
@@ -185,7 +187,8 @@ public class FriendComponentAgent : StateComponentAgent<FriendComponent, FriendS
     /// </summary>
     public async Task OnInnerAddFriend(INetWorkChannel netWorkChannel, ReqInnerFriendByAdd request, RespInnerFriendByAdd response)
     {
-        var ownerPlayerId = ActorId;
+        // 优先使用请求中的 SourcePlayerId（跨服场景），否则降级为 ActorId（本服场景）
+        var ownerPlayerId = request.SourcePlayerId > 0 ? request.SourcePlayerId : ActorId;
         var targetPlayerId = request.PlayerId;
 
         // 参数校验
@@ -287,7 +290,8 @@ public class FriendComponentAgent : StateComponentAgent<FriendComponent, FriendS
     /// </summary>
     public async Task OnInnerDeleteFriend(INetWorkChannel netWorkChannel, ReqInnerFriendByDelete request, RespInnerFriendByDelete response)
     {
-        var ownerPlayerId = ActorId;
+        // 优先使用请求中的 SourcePlayerId（跨服场景），否则降级为 ActorId（本服场景）
+        var ownerPlayerId = request.SourcePlayerId > 0 ? request.SourcePlayerId : ActorId;
         var targetPlayerId = request.PlayerId;
 
         // 参数校验

@@ -46,15 +46,23 @@ namespace GameFrameX.Proto.Proto
 	public sealed class ReqInnerFriendByAdd : MessageObject, IRequestMessage
 	{
 		/// <summary>
-		/// 玩家ID
+		/// 目标玩家ID
 		/// </summary>
 		[ProtoMember(1)]
-		[System.ComponentModel.Description("玩家ID")]
+		[System.ComponentModel.Description("目标玩家ID")]
 		public long PlayerId { get; set; }
+
+		/// <summary>
+		/// 源玩家ID（发起好友请求的玩家ID）
+		/// </summary>
+		[ProtoMember(2)]
+		[System.ComponentModel.Description("源玩家ID")]
+		public long SourcePlayerId { get; set; }
 
 		public override void Clear()
 		{
 			PlayerId = default;
+			SourcePlayerId = default;
 		}
 	}
 
@@ -118,15 +126,23 @@ namespace GameFrameX.Proto.Proto
 	public sealed class ReqInnerFriendByDelete : MessageObject, IRequestMessage
 	{
 		/// <summary>
-		/// 玩家ID
+		/// 目标玩家ID（被删除的好友ID）
 		/// </summary>
 		[ProtoMember(1)]
-		[System.ComponentModel.Description("玩家ID")]
+		[System.ComponentModel.Description("目标玩家ID")]
 		public long PlayerId { get; set; }
+
+		/// <summary>
+		/// 源玩家ID（发起删除请求的玩家ID）
+		/// </summary>
+		[ProtoMember(2)]
+		[System.ComponentModel.Description("源玩家ID")]
+		public long SourcePlayerId { get; set; }
 
 		public override void Clear()
 		{
 			PlayerId = default;
+			SourcePlayerId = default;
 		}
 	}
 
