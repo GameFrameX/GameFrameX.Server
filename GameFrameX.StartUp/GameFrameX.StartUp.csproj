@@ -12,7 +12,6 @@
         <ProjectReference Include="..\GameFrameX.Monitor\GameFrameX.Monitor.csproj"/>
         <ProjectReference Include="..\GameFrameX.NetWork.Abstractions\GameFrameX.NetWork.Abstractions.csproj"/>
         <ProjectReference Include="..\GameFrameX.NetWork.HTTP\GameFrameX.NetWork.HTTP.csproj"/>
-        <ProjectReference Include="..\GameFrameX.NetWork.Kcp\GameFrameX.NetWork.Kcp.csproj"/>
         <ProjectReference Include="..\GameFrameX.NetWork.Message\GameFrameX.NetWork.Message.csproj"/>
         <ProjectReference Include="..\GameFrameX.Utility\GameFrameX.Utility.csproj"/>
     </ItemGroup>
