@@ -1,457 +1,581 @@
-# GameFrameX
+<p align="center">
+  <img src="logo.png" alt="GameFrameX Logo" width="200" />
+</p>
 
-**高性能、跨平台的游戏服务器框架**
+<h1 align="center">GameFrameX Server</h1>
 
-[![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](LICENSE)
-[![.NET](https://img.shields.io/badge/.NET-8.0-purple.svg)](https://dotnet.microsoft.com/download/dotnet/8.0)
-[![平台](https://img.shields.io/badge/平台-Windows%20%7C%20Linux%20%7C%20macOS-lightgrey.svg)]()
-[![Actor模型](https://img.shields.io/badge/架构-Actor--模型-orange.svg)]()
+<p align="center">
+  <strong>高性能、跨平台的游戏服务器框架</strong>
+</p>
 
-### 🎯 框架简介
+<p align="center">
+  <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT%20%7C%20Apache%202.0-blue.svg" alt="License" /></a>
+  <img src="https://img.shields.io/badge/.NET-10.0-purple.svg" alt=".NET" />
+  <img src="https://img.shields.io/badge/平台-Windows%20%7C%20Linux%20%7C%20macOS-lightgrey.svg" alt="Platform" />
+  <img src="https://img.shields.io/badge/架构-Actor%20模型-orange.svg" alt="Architecture" />
+</p>
 
-GameFrameX 是一个基于 C# .NET 8.0 开发的高性能、跨平台游戏服务器框架，采用 Actor 模型设计，支持热更新机制。专为多人在线游戏开发而设计，完美支持 Unity3D 客户端集成。
+<p align="center">
+  <a href="#-快速开始">快速开始</a> &middot;
+  <a href="#-项目结构">项目结构</a> &middot;
+  <a href="#-业务开发指南">开发指南</a> &middot;
+  <a href="#-配置说明">配置说明</a> &middot;
+  <a href="#-docker-部署">Docker 部署</a>
+</p>
 
-**设计理念**：大道至简，以简化繁
+---
 
-### ✨ 核心特性
+## 框架简介
 
-#### 🚀 高性能架构
-- **Actor 模型**：基于 TPL DataFlow 构建的无锁高并发系统
-- **零锁设计**：通过消息传递机制避免传统锁性能损耗
-- **全异步编程**：完整的 async/await 异步编程模型
-- **内存优化**：自动垃圾回收和对象池管理
+GameFrameX Server 是基于 C# .NET 10.0 开发的高性能游戏服务器框架，采用 **Actor 模型**设计，支持**热更新**机制。框架将持久化状态与业务逻辑严格分离，专为多人在线游戏场景设计。
 
-#### 🔄 热更新系统
-- **零停机更新**：运行时逻辑更新，无需停止服务
-- **状态逻辑分离**：持久化状态数据与可热更业务逻辑分离
-- **回滚保护**：更新失败自动回滚到稳定版本
-- **版本管理**：支持程序集版本控制和回退功能
+> 设计理念：大道至简，以简化繁
 
-#### 🌐 多协议网络通信
-- **TCP/UDP/WebSocket/HTTP**：全面的协议支持
-- **SuperSocket 集成**：高性能异步 I/O 模型
-- **消息分帧**：内置数据包处理和流量控制
-- **SSL/TLS 加密**：安全通信通道支持
-- **连接池**：优化的资源利用率
+## 核心特性
 
-#### 💾 数据库与持久化
-- **MongoDB 主数据库**：完整的 MongoDB 集成和连接池管理
-- **透明持久化**：自动序列化/反序列化，开发者无感知
-- **状态管理**：智能缓存和生命周期管理
-- **批量操作**：高性能批量处理
+- **Actor 模型** — 基于 TPL DataFlow 的无锁高并发架构，通过消息传递避免传统锁竞争
+- **状态-逻辑分离** — 持久化数据（Apps 层）与可热更业务逻辑（Hotfix 层）严格分离
+- **零停机热更新** — 运行时替换业务逻辑程序集，无需重启服务器
+- **多协议网络** — 支持 TCP、WebSocket、HTTP 协议，内置消息编解码与压缩
+- **MongoDB 持久化** — 基于 CacheState 的透明 ORM 映射，自动序列化/反序列化
+- **源码生成器** — 基于 Roslyn 的 Agent 代码生成，自动处理 Actor 消息队列调度
+- **配置表系统** — 集成 Luban 配置生成，支持 JSON 热加载
+- **OpenTelemetry** — 内置 Prometheus 指标导出、健康检查、性能监控
 
-#### 📊 监控与可观测性
-- **OpenTelemetry**：全面的指标、追踪和日志
-- **Grafana 集成**：内置仪表板和告警支持
-- **Prometheus 导出**：原生指标导出功能
-- **健康检查**：实时系统健康监控
-- **性能指标**：数据库、网络和业务逻辑监控
-
-### 🏗️ 系统架构
+## 系统架构
 
 ```
-┌─────────────────────────────────────────────────────────────┐
-│                        客户端层                              │
-├─────────────────────────────────────────────────────────────┤
-│                        网络层                                │
-│  ┌─────────────┐ ┌─────────────┐ ┌─────────────┐           │
-│  │     TCP     │ │  WebSocket  │ │    HTTP     │           │
-│  └─────────────┘ └─────────────┘ └─────────────┘           │
-├─────────────────────────────────────────────────────────────┤
-│                       消息处理层                             │
-│  ┌─────────────────────────────────────────────────────────┐ │
-│  │                  消息处理器                              │ │
-│  └─────────────────────────────────────────────────────────┘ │
-├─────────────────────────────────────────────────────────────┤
-│                       Actor 层                              │
-│  ┌─────────────┐ ┌─────────────┐ ┌─────────────┐           │
-│  │   玩家      │ │   服务器    │ │   账户      │           │
-│  │   Actor     │ │   Actor     │ │   Actor     │           │
-│  └─────────────┘ └─────────────┘ └─────────────┘           │
-├─────────────────────────────────────────────────────────────┤
-│                      组件层                                  │
-│  ┌─────────────┐ ┌─────────────┐ ┌─────────────┐           │
-│  │   组件      │ │   组件      │ │   组件      │           │
-│  │  + 状态     │ │  + 状态     │ │  + 状态     │           │
-│  └─────────────┘ └─────────────┘ └─────────────┘           │
-├─────────────────────────────────────────────────────────────┤
+┌──────────────────────────────────────────────────────────────┐
+│                         客户端层                              │
+├──────────────────────────────────────────────────────────────┤
+│                         网络层                                │
+│  ┌──────────┐  ┌──────────┐  ┌──────────┐  ┌──────────┐    │
+│  │   TCP    │  │WebSocket │  │   HTTP   │  │   KCP    │    │
+│  └──────────┘  └──────────┘  └──────────┘  └──────────┘    │
+├──────────────────────────────────────────────────────────────┤
+│                     Hotfix 层（可热更）                       │
+│  ┌──────────────────────────────────────────────────────┐   │
+│  │  ComponentAgent  │  HttpHandler  │  EventHandler     │   │
+│  └──────────────────────────────────────────────────────┘   │
+├──────────────────────────────────────────────────────────────┤
+│                      Apps 层（不可热更）                      │
+│  ┌──────────┐  ┌──────────┐  ┌──────────┐                  │
+│  │  State   │  │Component │  │ActorType │                  │
+│  └──────────┘  └──────────┘  └──────────┘                  │
+├──────────────────────────────────────────────────────────────┤
+│                    框架层（NuGet 包）                         │
+│  ┌──────────┐  ┌──────────┐  ┌──────────┐  ┌──────────┐    │
+│  │  Core    │  │ NetWork  │  │ DataBase │  │ Monitor  │    │
+│  └──────────┘  └──────────┘  └──────────┘  └──────────┘    │
+├──────────────────────────────────────────────────────────────┤
 │                      数据库层                                │
-│  ┌─────────────────────────────────────────────────────────┐ │
-│  │                    MongoDB                              │ │
-│  └─────────────────────────────────────────────────────────┘ │
-└─────────────────────────────────────────────────────────────┘
+│  ┌──────────────────────────────────────────────────────────┐ │
+│  │                      MongoDB                             │ │
+│  └──────────────────────────────────────────────────────────┘ │
+└──────────────────────────────────────────────────────────────┘
 ```
 
-### 🚀 快速开始
+## 快速开始
 
-#### 环境要求
-- [.NET 8.0 SDK](https://dotnet.microsoft.com/download/dotnet/8.0)
-- [MongoDB 4.x+](https://www.mongodb.com/try/download/community)
-- Visual Studio 2022 或 JetBrains Rider
+### 环境要求
 
-#### 安装步骤
+| 依赖 | 版本要求 |
+| :--- | :--- |
+| [.NET SDK](https://dotnet.microsoft.com/download) | 10.0+ |
+| [MongoDB](https://www.mongodb.com/try/download/community) | 4.x+ |
+| IDE | Visual Studio 2022 / JetBrains Rider / VS Code |
 
-1. **克隆仓库**
-   ```bash
-   git clone https://github.com/GameFrameX/GameFrameX.git
-   cd GameFrameX
-   ```
+### 安装与运行
 
-2. **还原依赖**
-   ```bash
-   dotnet restore
-   ```
+```bash
+# 1. 克隆仓库
+git clone https://github.com/GameFrameX/Server_main.git
+cd Server_main
 
-3. **配置数据库**
-   - 启动 MongoDB 服务
-   - 更新配置文件中的连接字符串
+# 2. 还原依赖
+dotnet restore
 
-4. **构建运行**
-   ```bash
-   dotnet build
-   dotnet run --project GameFrameX.Launcher --ServerType=Game --ServerId=1000
-   ```
+# 3. 构建
+dotnet build
 
-5. **验证部署**
-   - 检查健康端点：`http://localhost:29090/health`
-   - 查看日志确认启动成功
-
-### 📁 项目结构
-
-```
-GameFrameX/
-├── GameFrameX.Apps/              # 应用层（状态数据）
-│   ├── Account/                  # 账户模块状态
-│   ├── Player/                   # 玩家模块状态
-│   └── Server/                   # 服务器模块状态
-├── GameFrameX.Hotfix/            # 热更新层（业务逻辑）
-│   ├── Logic/                    # 业务逻辑实现
-│   └── StartUp/                  # 热更新启动逻辑
-├── GameFrameX.Core/              # 核心框架
-│   ├── Actors/                   # Actor 系统实现
-│   ├── Components/               # 组件系统
-│   └── Events/                   # 事件系统
-├── GameFrameX.NetWork/           # 网络通信
-├── GameFrameX.DataBase.Mongo/    # MongoDB 集成
-├── GameFrameX.Config/            # 配置管理
-├── GameFrameX.Monitor/           # 监控和指标
-├── GameFrameX.Launcher/          # 应用入口点
-└── GameFrameX.StartUp/           # 启动编排
+# 4. 运行游戏服务器
+dotnet run --project GameFrameX.Launcher \
+    --ServerType=Game \
+    --ServerId=1000 \
+    --APMPort=29090
 ```
 
-### 🔧 业务逻辑开发
+### 验证部署
 
-#### 基础示例：Hello World
+| 端点 | 地址 | 说明 |
+| :--- | :--- | :--- |
+| 健康检查 | `http://localhost:29090/health` | 服务健康状态 |
+| 指标监控 | `http://localhost:29090/metrics` | Prometheus 指标 |
+| 测试接口 | `http://localhost:28080/game/api/test` | HTTP 连通性测试 |
 
-快速创建一个 HTTP 接口来体验开发流程。
+## 项目结构
+
+```
+Server_main/
+├── GameFrameX.Launcher/         # 应用入口点（可执行程序）
+│   ├── Program.cs               # 启动引导：注册状态类型与协议消息
+│   └── StartUp/
+│       └── AppStartUpGame.cs    # 游戏服务器启动流程
+│
+├── GameFrameX.Hotfix/           # 热更新层（业务逻辑，可运行时替换）
+│   ├── Logic/
+│   │   ├── Http/                # HTTP 请求处理器
+│   │   │   ├── TestHttpHandler.cs
+│   │   │   ├── ReloadHttpHandler.cs
+│   │   │   ├── Player/          # 账户登录、在线查询
+│   │   │   └── Bag/             # 道具发放
+│   │   ├── Player/
+│   │   │   ├── Bag/             # 背包组件代理
+│   │   │   ├── Login/           # 登录/登出逻辑
+│   │   │   └── Pet/             # 宠物组件代理
+│   │   ├── Account/             # 账号组件代理
+│   │   └── Server/              # 服务器全局组件代理
+│   └── StartUp/                 # 热更新启动流程
+│       ├── AppStartUpHotfixGameByEntry.cs    # 加载入口
+│       ├── AppStartUpHotfixGameByMain.cs     # 网络/连接管理
+│       ├── AppStartUpHotfixGameByHeart.cs    # 心跳处理
+│       └── AppStartUpHotfixGameByGateWay.cs  # 网关通信
+│
+├── GameFrameX.Apps/             # 应用状态层（不可热更）
+│   ├── ActorType.cs             # Actor 类型枚举定义
+│   ├── Account/Login/           # 登录状态 + 组件
+│   ├── Player/
+│   │   ├── Bag/                 # 背包状态 + 组件
+│   │   ├── Player/              # 玩家状态 + 组件
+│   │   └── Pet/                 # 宠物状态 + 组件
+│   ├── Server/                  # 服务器全局状态 + 组件
+│   └── Common/
+│       ├── Session/             # 会话管理（SessionManager）
+│       ├── Event/               # 事件 ID 定义
+│       └── EventData/           # 事件参数
+│
+├── GameFrameX.Config/           # 配置表系统（Luban 生成）
+│   ├── ConfigComponent.cs       # 配置加载单例
+│   ├── Tables/                  # 生成的配置表类
+│   ├── TablesItem/              # 配置数据模型
+│   └── json/                    # JSON 配置数据文件
+│
+├── GameFrameX.Proto/            # 网络协议定义
+│   ├── Basic_10.cs              # 基础协议（心跳等）
+│   ├── Bag_100.cs               # 背包协议
+│   ├── User_300.cs              # 用户/账号协议
+│   └── BuiltIn/                 # 内置系统协议
+│
+├── GameFrameX.CodeGenerator/    # Roslyn 源码生成器
+│   ├── AgentGenerator.cs        # Agent 包装代码生成
+│   └── AgentTemplate.cs         # 代码模板
+│
+├── Server.sln                   # Visual Studio 解决方案
+├── Dockerfile                   # Docker 多阶段构建
+├── docker-compose.yml           # Docker Compose 编排
+└── LICENSE                      # MIT + Apache 2.0 双许可证
+```
+
+## 业务开发指南
+
+### 核心模式：状态-组件-代理
+
+GameFrameX 采用三层分离的开发模式，确保业务逻辑可以在不停服的情况下热更新。
+
+```
+┌──────────────┐     ┌──────────────┐     ┌──────────────┐
+│   State      │────▶│  Component   │◀────│ ComponentAgent│
+│  （数据定义）  │     │  （组件外壳） │     │  （业务逻辑）  │
+│   Apps 层    │     │   Apps 层    │     │  Hotfix 层   │
+│  不可热更    │     │  不可热更    │     │   可热更      │
+└──────────────┘     └──────────────┘     └──────────────┘
+```
+
+#### 第 1 步：定义状态（Apps 层）
+
+继承 `CacheState`，定义持久化数据结构。框架自动处理 MongoDB 序列化。
 
 ```csharp
-using GameFrameX.NetWork.HTTP;
+// GameFrameX.Apps/Player/Bag/Entity/BagState.cs
+public sealed class BagState : CacheState
+{
+    public Dictionary<int, BagItemState> List { get; set; } = new();
+}
 
+public sealed class BagItemState
+{
+    public long ItemId { get; set; }
+    public long Count { get; set; }
+}
+```
+
+#### 第 2 步：创建组件（Apps 层）
+
+继承 `StateComponent<TState>`，作为状态和逻辑的桥梁。
+
+```csharp
+// GameFrameX.Apps/Player/Bag/Component/BagComponent.cs
+[ComponentType(GlobalConst.ActorTypePlayer)]
+public class BagComponent : StateComponent<BagState> { }
+```
+
+#### 第 3 步：实现业务逻辑（Hotfix 层）
+
+继承 `StateComponentAgent<TComponent, TState>`，编写可热更的业务代码。
+
+```csharp
+// GameFrameX.Hotfix/Logic/Player/Bag/BagComponentAgent.cs
+public class BagComponentAgent : StateComponentAgent<BagComponent, BagState>
+{
+    public async Task OnAddBagItem(INetWorkChannel netWorkChannel,
+        ReqAddItem message, RespAddItem response)
+    {
+        // 校验物品配置是否存在
+        foreach (var item in message.ItemDic)
+        {
+            if (!ConfigComponent.Instance.GetConfig<TbItemConfig>()
+                .TryGet(item.Key, out var _))
+            {
+                response.ErrorCode = (int)OperationStatusCode.NotFound;
+                return;
+            }
+        }
+
+        await UpdateChanged(netWorkChannel, message.ItemDic);
+    }
+
+    public async Task<BagState> UpdateChanged(INetWorkChannel netWorkChannel,
+        Dictionary<int, long> itemDic)
+    {
+        var bagState = OwnerComponent.State;
+        var notify = new NotifyBagInfoChanged();
+
+        foreach (var item in itemDic)
+        {
+            if (bagState.List.TryGetValue(item.Key, out var value))
+            {
+                value.Count += item.Value;
+            }
+            else
+            {
+                bagState.List[item.Key] = new BagItemState
+                {
+                    Count = item.Value, ItemId = item.Key
+                };
+            }
+        }
+
+        await netWorkChannel.WriteAsync(notify);
+        await OwnerComponent.WriteStateAsync(); // 自动持久化到 MongoDB
+        return bagState;
+    }
+}
+```
+
+### HTTP 处理器
+
+继承 `BaseHttpHandler`，使用 `[HttpMessageMapping]` 注册路由。
+
+```csharp
+// GameFrameX.Hotfix/Logic/Http/TestHttpHandler.cs
 [HttpMessageMapping(typeof(TestHttpHandler))]
 [HttpMessageResponse(typeof(HttpTestResponse))]
-[Description("Hello World 示例接口")]
+[Description("测试通讯接口")]
 public sealed class TestHttpHandler : BaseHttpHandler
 {
-    public override Task<string> Action(string ip, string url, Dictionary<string, object> parameters)
+    public override Task<string> Action(string ip, string url,
+        Dictionary<string, object> parameters)
     {
-        var response = new HttpTestResponse
-        {
-            Message = "Hello World From GameFrameX",
-            Time = DateTime.Now
-        };
-        // 返回标准 JSON 格式
+        var response = new HttpTestResponse { Message = "hello" };
         return Task.FromResult(HttpJsonResult.SuccessString(response));
     }
 }
-
-public sealed class HttpTestResponse : HttpMessageResponseBase
-{
-    public string Message { get; set; }
-    public DateTime Time { get; set; }
-}
 ```
 
-#### 组件-代理模式
+### RPC 消息处理器
 
-**1. 定义状态（Apps 层 - 不可热更）**
+框架提供两种 RPC 处理器基类，自动注入 ComponentAgent：
+
 ```csharp
-public class BagState : CacheState
-{
-    public List<ItemData> Items { get; set; } = new();
-    public int MaxSlots { get; set; } = 50;
-}
-```
-
-**2. 创建组件（Apps 层）**
-```csharp
-public class BagComponent : StateComponent<BagState>
-{
-    // 组件初始化逻辑
-    protected override async Task OnInit()
-    {
-        await base.OnInit();
-        // 初始化组件状态
-    }
-}
-```
-
-**3. 实现业务逻辑（Hotfix 层 - 可热更）**
-```csharp
-public class BagComponentAgent : StateComponentAgent<BagComponent, BagState>
-{
-    public async Task<bool> AddItem(int itemId, int count)
-    {
-        if (State.Items.Count >= State.MaxSlots)
-            return false;
-
-        var item = new ItemData { Id = itemId, Count = count };
-        State.Items.Add(item);
-
-        await Save();
-        return true;
-    }
-}
-```
-
-#### 消息处理器模式
-
-**HTTP 处理器示例：**
-```csharp
-[HttpMessageMapping(typeof(GetPlayerInventoryHttpHandler))]
-[Description("获取玩家背包物品")]
-public sealed class GetPlayerInventoryHttpHandler : BaseHttpHandler
-{
-    public override async Task<MessageObject> Action(string ip, string url, Dictionary<string, object> parameters, MessageObject messageObject)
-    {
-        var request = (GetPlayerInventoryRequest)messageObject;
-        var response = new GetPlayerInventoryResponse();
-
-        // 从参数中获取玩家ID
-        if (!parameters.TryGetValue("playerId", out var playerIdObj))
-        {
-            response.ErrorCode = (int)ResultCode.InvalidParameter;
-            return response;
-        }
-
-        var playerId = Convert.ToInt64(playerIdObj);
-        var bagAgent = await ActorManager.GetComponentAgent<BagComponentAgent>(playerId);
-
-        if (bagAgent == null)
-        {
-            response.ErrorCode = (int)ResultCode.PlayerNotFound;
-            return response;
-        }
-
-        var items = await bagAgent.GetItems();
-        response.Items = items;
-        return response;
-    }
-}
-```
-
-**RPC 处理器示例：**
-```csharp
+// 玩家级别消息（绑定特定玩家 Actor）
 [MessageMapping(typeof(ReqAddItem))]
-internal sealed class AddItemHandler : PlayerRpcComponentHandler<BagComponentAgent, ReqAddItem, RespAddItem>
+internal sealed class AddItemHandler
+    : PlayerRpcComponentHandler<BagComponentAgent, ReqAddItem, RespAddItem>
 {
     protected override async Task ActionAsync(ReqAddItem request, RespAddItem response)
     {
-        try
-        {
-            // ComponentAgent 由基类自动注入,无需手动获取
-            await ComponentAgent.AddItem(request, response);
-        }
-        catch (Exception e)
-        {
-            LogHelper.Fatal(e);
-            response.ErrorCode = (int)OperationStatusCode.InternalServerError;
-        }
+        await ComponentAgent.OnAddBagItem(NetWorkChannel, request, response);
+    }
+}
+
+// 全局级别消息（绑定服务器 Actor）
+[MessageMapping(typeof(ReqHeartBeat))]
+internal sealed class HeartBeatHandler
+    : GlobalRpcComponentHandler<ServerComponentAgent, ReqHeartBeat, RespHeartBeat>
+{
+    protected override Task ActionAsync(ReqHeartBeat request, RespHeartBeat response)
+    {
+        // ComponentAgent 由基类自动注入
+        return Task.CompletedTask;
     }
 }
 ```
 
-#### 事件处理模式
+### 事件处理
+
+使用 `[Event]` 特性绑定事件 ID，框架自动分发给对应的 ComponentAgent。
 
 ```csharp
 [Event(EventId.PlayerLogin)]
 internal sealed class PlayerLoginEventHandler : EventListener<PlayerComponentAgent>
 {
-    protected override Task HandleEvent(PlayerComponentAgent agent, GameEventArgs gameEventArgs)
+    protected override Task HandleEvent(PlayerComponentAgent agent, GameEventArgs args)
     {
-        if (agent == null)
-        {
-            LogHelper.Error("代理对象为空");
-            return Task.CompletedTask;
-        }
-
-        // 处理登录事件逻辑
         return agent.OnLogin();
     }
 }
 ```
 
-### 🔄 热更新机制
+### Agent 方法标注
 
-#### 架构概述
+使用 Roslyn 源码生成器自动处理 Actor 消息队列调度。通过特性标注控制调用行为：
 
-热更新系统将**状态**（持久化数据）与**逻辑**（业务规则）分离：
+| 特性 | 说明 | 适用场景 |
+| :--- | :--- | :--- |
+| `[Service]` | 默认模式，方法调用进入 Actor 消息队列排队执行 | 所有业务方法 |
+| `[ThreadSafe]` | 跳过消息队列，直接调用（要求方法线程安全） | 纯读操作、无状态计算 |
+| `[Discard]` | 即发即弃，不等待返回值 | 日志、统计等不需要结果的场景 |
+| `[TimeOut(ms)]` | 为消息队列调用设置超时时间 | 需要超时控制的长操作 |
 
-1. **Apps 层**：包含状态定义和组件外壳（不可热更）
-2. **Hotfix 层**：包含业务逻辑实现（可热更）
-3. **代理模式**：作为状态和逻辑之间的桥梁
+```csharp
+public class ServerComponentAgent : StateComponentAgent<ServerComponent, ServerState>
+{
+    // 进入 Actor 消息队列排队执行
+    [Service]
+    public virtual Task<bool> IsOnline(long roleId) { ... }
 
-#### 热更新流程
+    // 跳过消息队列，线程安全直接调用
+    [Service]
+    [ThreadSafe]
+    public virtual long FirstStartTime()
+    {
+        return State.FirstStartTime;
+    }
 
-1. **编译新逻辑**：构建更新的 `GameFrameX.Hotfix.dll`
-2. **部署程序集**：复制到 `/hotfix` 目录
-3. **触发重载**：通过 HTTP 端点或文件监视器
-4. **优雅过渡**：新请求使用更新后的逻辑
-5. **回滚支持**：失败时自动回滚
-
-#### 热更新 API
-
-```bash
-# 通过 HTTP 触发热更新
-curl -X POST http://localhost:29090/api/reload
-
-# 检查重载状态
-curl http://localhost:29090/api/reload/status
+    // 即发即弃，不阻塞调用方
+    [Service]
+    [Discard]
+    public virtual ValueTask AddOnlineRole(long roleId)
+    {
+        OwnerComponent.OnlineSet.Add(roleId);
+        return ValueTask.CompletedTask;
+    }
+}
 ```
 
-### 📊 配置管理
+### 配置表访问
 
-GameFrameX 使用扁平化的配置结构，支持命令行参数 (`--Key=Value`)、环境变量 (`Key=Value`) 和 `appsettings.json` 配置文件。
+使用 `ConfigComponent` 单例访问 Luban 生成的配置表：
 
-#### 核心配置 (Server)
+```csharp
+var config = ConfigComponent.Instance.GetConfig<TbItemConfig>();
+
+// 使用 TryGet 安全查询
+if (config.TryGet(itemId, out var itemConfig))
+{
+    // 使用 itemConfig.Name, itemConfig.Type 等
+}
+```
+
+### 数据库操作
+
+通过 `GameDb` 静态类进行 MongoDB CRUD 操作：
+
+```csharp
+// 查询
+var state = await GameDb.FindAsync<LoginState>(
+    m => m.UserName == userName && m.Password == password);
+
+// 新增/更新
+await GameDb.AddOrUpdateAsync(loginState);
+
+// 列表查询
+var list = await GameDb.FindListAsync<LoginState>(m => m.Id != 0);
+
+// 删除
+var count = await GameDb.DeleteAsync(state);
+```
+
+## 热更新机制
+
+热更新系统允许在不停服的情况下替换业务逻辑。
+
+### 架构原理
+
+- **Apps 层**（`GameFrameX.Apps`）：包含状态定义和组件外壳，**不可热更**
+- **Hotfix 层**（`GameFrameX.Hotfix`）：包含所有业务逻辑，**可热更**
+- **Hotfix 程序集**输出到 `hotfix/` 目录，运行时由 `HotfixManager` 加载
+
+### 热更新流程
+
+```
+1. 编译新的 GameFrameX.Hotfix.dll
+2. 部署到服务器的 /hotfix 目录
+3. 调用 HTTP 接口触发重载
+4. 框架加载新程序集，清除旧 Agent 缓存
+5. 新请求自动使用更新后的逻辑
+```
+
+### 触发热更新
+
+```bash
+# 通过 HTTP 接口触发（指定版本号）
+curl "http://localhost:28080/game/api/Reload?version=1.0.1"
+```
+
+## 配置说明
+
+配置支持三种来源（优先级从高到低）：命令行参数 `--Key=Value`、环境变量 `Key=Value`、`appsettings.json`。
+
+### 服务器配置
+
 | 配置项 | 说明 | 默认值 | 示例 |
 | :--- | :--- | :--- | :--- |
-| `ServerType` | 服务器类型 (如 Game, Gate) | 无 | `Game` |
-| `ServerId` | 服务器唯一标识 ID | 无 | `1000` |
+| `ServerType` | 服务器类型 | — | `Game` |
+| `ServerId` | 服务器唯一标识 | — | `1000` |
 | `ServerName` | 服务器名称 | 同 ServerType | `Game-1` |
-| `MinModuleId` | 业务模块起始 ID | 0 | `100` |
-| `MaxModuleId` | 业务模块结束 ID | 0 | `1000` |
+| `MinModuleId` | 业务模块 ID 起始值 | `0` | `10` |
+| `MaxModuleId` | 业务模块 ID 结束值 | `0` | `9999` |
 
-#### 网络配置 (Network)
+### 网络配置
+
 | 配置项 | 说明 | 默认值 | 示例 |
 | :--- | :--- | :--- | :--- |
-| `InnerHost` | 内部通信 IP (集群间) | 无 | `0.0.0.0` |
-| `InnerPort` | 内部通信端口 | 无 | `29100` |
-| `OuterHost` | 外部通信 IP (面向客户端) | 无 | `0.0.0.0` |
-| `OuterPort` | 外部通信端口 | 无 | `29200` |
-| `HttpPort` | HTTP 服务端口 | 0 | `8080` |
-| `WsPort` | WebSocket 服务端口 | 0 | `29300` |
+| `InnerPort` | TCP 内部通信端口 | — | `29100` |
+| `OuterPort` | 外部通信端口 | — | `29200` |
+| `HttpPort` | HTTP 服务端口 | `0` | `28080` |
+| `WsPort` | WebSocket 服务端口 | `0` | `29110` |
+| `IsEnableTcp` | 是否启用 TCP | `false` | `true` |
+| `IsEnableHttp` | 是否启用 HTTP | `false` | `true` |
+| `MaxClientCount` | 最大客户端连接数 | — | `5000` |
 
-#### 数据库配置 (Database)
+### 数据库配置
+
 | 配置项 | 说明 | 默认值 | 示例 |
 | :--- | :--- | :--- | :--- |
-| `DataBaseUrl` | MongoDB 连接字符串 | 无 | `mongodb://localhost:27017` |
-| `DataBaseName` | 数据库名称 | 无 | `gameframex` |
+| `DataBaseUrl` | MongoDB 连接字符串 | — | `mongodb://localhost:27017` |
+| `DataBaseName` | 数据库名称 | — | `gameframex` |
 
-#### 监控配置 (Monitoring)
+### 监控配置
+
 | 配置项 | 说明 | 默认值 | 示例 |
 | :--- | :--- | :--- | :--- |
-| `IsOpenTelemetry` | 是否启用 OpenTelemetry | `false` | `true` |
-| `MetricsPort` | Prometheus 指标端口 | 0 (复用 HTTP) | `9090` |
+| `MetricsPort` | Prometheus 指标端口 | `0` | `29090` |
 | `IsDebug` | 开启调试日志 | `false` | `true` |
 
-#### 启动命令示例
+### 启动命令示例
+
 ```bash
 dotnet GameFrameX.Launcher.dll \
     --ServerType=Game \
     --ServerId=1000 \
-    --OuterPort=10000 \
+    --InnerPort=29100 \
+    --HttpPort=28080 \
+    --WsPort=29110 \
+    --MetricsPort=29090 \
     --DataBaseUrl=mongodb://127.0.0.1:27017 \
     --DataBaseName=game_db
 ```
 
-### 🐳 Docker 部署
+## Docker 部署
 
-```dockerfile
-# 构建阶段
-FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
-WORKDIR /src
-COPY . .
-RUN dotnet restore && dotnet build -c Release
+### 使用 Docker Compose（推荐）
 
-# 运行阶段
-FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS runtime
-WORKDIR /app
-COPY --from=build /src/bin/Release/net8.0/ .
-EXPOSE 29100 29110 29090
-ENTRYPOINT ["dotnet", "GameFrameX.Launcher.dll"]
+项目内置 `docker-compose.yml`，一键启动 MongoDB + GameFrameX 服务：
+
+```bash
+docker-compose up --build
 ```
 
-```yaml
-# docker-compose.yml
-version: '3.8'
-services:
-  gameframex:
-    build: .
-    ports:
-      - "29100:29100"  # TCP
-      - "29110:29110"  # WebSocket
-      - "29090:29090"  # 指标
-    environment:
-      - ServerType=Game
-      - ServerId=1000
-      - DataBaseUrl=mongodb://mongodb:27017
-    depends_on:
-      - mongodb
+服务端口映射：
 
-  mongodb:
-    image: mongo:6.0
-    ports:
-      - "27017:27017"
-    volumes:
-      - mongodb_data:/data/db
+| 端口 | 协议 | 说明 |
+| :--- | :--- | :--- |
+| `29090` | HTTP | APM 指标 / 健康检查 |
+| `29100` | TCP | 游戏客户端连接 |
+| `29110` | WebSocket | WebSocket 连接 |
+| `28080` | HTTP | HTTP API |
 
-volumes:
-  mongodb_data:
+### 数据持久化
+
+Docker Compose 默认挂载以下目录：
+
+```
+./running/
+├── database/      # MongoDB 数据
+├── hotfix/        # 热更新程序集
+├── json/          # 配置 JSON 文件
+├── logs/          # 服务器日志
+└── GameAnalytics/ # 分析数据
 ```
 
-### 🔍 监控与可观测性
+## 消息协议
 
-#### 指标端点
-- **健康检查**：`http://localhost:29090/health`
-- **Prometheus 指标**：`http://localhost:29090/metrics`
-- **Grafana 仪表板**：可通过环境配置
+协议采用 protobuf-net 标注，消息 ID 由模块 ID 位移计算：`(moduleId << 16) + seqId`。
 
-#### 关键指标
-- **数据库**：查询次数、持续时间、连接池状态
-- **网络**：连接数、消息吞吐量、字节传输量
-- **业务**：玩家登录、活跃会话、游戏特定指标
-- **系统**：CPU、内存、GC 性能、线程池状态
+### 模块划分
 
----
+| 模块 | ID 范围 | 文件 | 说明 |
+| :--- | :--- | :--- | :--- |
+| 系统 | -10 ~ -1 | `Player_-10.cs`, `Service_-3.cs` | 内置系统协议 |
+| 基础 | 10 | `Basic_10.cs` | 心跳、服务器就绪通知 |
+| 背包 | 100 | `Bag_100.cs` | 物品增删改查、使用、合成 |
+| 用户 | 300 | `User_300.cs` | 登录、注册、角色列表 |
 
-### 🤝 贡献指南
+### 新增协议
 
-我们欢迎任何形式的贡献！如果你想为 GameFrameX 做出贡献，请遵循以下步骤：
+1. 在 `GameFrameX.Proto/` 中创建协议文件，按 `{模块名}_{模块ID}.cs` 命名
+2. 使用 `[ProtoContract]` 和 `[MessageTypeHandler(id)]` 标注消息类
+3. 在 `GameFrameX.Hotfix/Logic/` 中实现对应的 Handler
+
+## 技术栈
+
+| 组件 | 技术 |
+| :--- | :--- |
+| 运行时 | .NET 10.0 |
+| 数据库 | MongoDB |
+| 网络框架 | SuperSocket |
+| 序列化 | protobuf-net |
+| 配置生成 | Luban |
+| 代码生成 | Roslyn Source Generator |
+| 监控 | OpenTelemetry + Prometheus |
+| 对象映射 | Mapster |
+| 容器化 | Docker + Docker Compose |
+
+## 相关链接
+
+- [官方文档](https://gameframex.doc.alianblank.com)
+- [GitHub 组织](https://github.com/GameFrameX)
+- [Gitee 镜像](https://gitee.com/GameFrameX)
+- [问题反馈](https://github.com/GameFrameX/GameFrameX/issues)
+- [社区讨论](https://github.com/GameFrameX/GameFrameX/discussions)
+
+## 贡献指南
 
 1. Fork 本仓库
 2. 创建功能分支（`git checkout -b feature/amazing-feature`）
-3. 提交更改（`git commit -m '添加某个功能'`）
+3. 提交更改（`git commit -m 'feat: 添加某个功能'`）
 4. 推送到分支（`git push origin feature/amazing-feature`）
 5. 创建 Pull Request
 
-### 📄 许可证
+## 许可证
 
-本项目采用 Apache License 2.0 许可证 - 详见 [LICENSE](LICENSE) 文件。
-
-### 🔗 相关链接
-
-- [在线文档](https://gameframex.doc.alianblank.com)
-- [Unity 客户端](https://github.com/GameFrameX/GameFrameX.Unity)
-- [问题反馈](https://github.com/GameFrameX/GameFrameX/issues)
-- [社区讨论](https://github.com/GameFrameX/GameFrameX/discussions)
+本项目采用 [MIT License](https://opensource.org/licenses/MIT) 和 [Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0) 双许可证分发。详见 [LICENSE](LICENSE) 文件。
 
 ---
 
 <div align="center">
 
-**如果这个项目对你有帮助，请给我们一个 ⭐**
-
-**Made with ❤️ by GameFrameX Team**
+如果这个项目对你有帮助，请给我们一个 Star
 
 </div>
