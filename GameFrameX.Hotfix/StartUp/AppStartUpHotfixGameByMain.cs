@@ -74,7 +74,7 @@ internal partial class AppStartUpHotfixGame
     protected override async ValueTask OnConnected(IAppSession appSession)
     {
         LogHelper.Info("有外部客户端网络连接成功！。链接信息：SessionID:" + appSession.SessionID + " RemoteEndPoint:" + appSession.RemoteEndPoint);
-        var netChannel = new DefaultNetWorkChannel(appSession, Setting, null, appSession is WebSocketSession);
+        var netChannel = new DefaultNetWorkChannel(appSession, Setting);
         var count = SessionManager.Count();
         if (count > Setting.MaxClientCount)
         {

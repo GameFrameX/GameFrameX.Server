@@ -37,7 +37,7 @@ namespace GameFrameX.Launcher.StartUp;
 /// <summary>
 /// 游戏服务器
 /// </summary>
-[StartUpTag(GlobalConst.GameServiceName)]
+[StartUpTag(GameServerConst.Game.Name)]
 internal sealed class AppStartUpGame : AppStartUpBase
 {
     public override async Task StartAsync()
@@ -74,7 +74,7 @@ internal sealed class AppStartUpGame : AppStartUpBase
             LogHelper.DebugConsole("加载热更新模块结束...");
 
             LogHelper.DebugConsole("进入游戏主循环...");
-            GlobalSettings.LaunchTime = TimerHelper.GetUtcNow();
+            GlobalSettings.LaunchTime = TimerHelper.GetNowWithUtc();
             GlobalSettings.IsAppRunning = true;
             LogHelper.Info($"服务器{Setting.ServerType}启动结束...");
             exitMessage = await AppExitToken;
@@ -96,8 +96,8 @@ internal sealed class AppStartUpGame : AppStartUpBase
         {
             Setting = new AppSetting
             {
-                ServerId = GlobalConst.GameServiceServerId,
-                ServerType = GlobalConst.GameServiceName,
+                ServerId = GameServerConst.Game.Id,
+                ServerType = GameServerConst.Game.Name,
                 IsEnableTcp = true,
                 InnerPort = 29100,
                 MetricsPort = 29090,
@@ -107,9 +107,7 @@ internal sealed class AppStartUpGame : AppStartUpBase
                 MinModuleId = 10,
                 HttpIsDevelopment = true,
                 MaxModuleId = 9999,
-                DiscoveryCenterHost = "127.0.0.1",
                 TagName = "GameFrameX",
-                DiscoveryCenterPort = 21001,
                 DataBaseUrl = "mongodb+srv://gameframex:f9v42aU9DVeFNfAF@gameframex.8taphic.mongodb.net/?retryWrites=true&w=majority",
                 DataBaseName = "gameframex",
             };

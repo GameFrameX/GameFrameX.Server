@@ -61,7 +61,7 @@ public class PlayerComponentAgent : StateComponentAgent<PlayerComponent, PlayerS
         // 更新连接会话数据
         SessionManager.UpdateSession(workChannel.GameAppSession.SessionID, playerState.Id, playerState.Id.ToString());
         response.Code = playerState.State;
-        response.CreateTime = playerState.CreateTime;
+        response.CreateTime = playerState.CreatedTime;
         response.PlayerInfo = new PlayerInfo
         {
             Id = playerState.Id,

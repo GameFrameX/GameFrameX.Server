@@ -36,8 +36,6 @@ namespace GameFrameX.Hotfix.StartUp;
 
 internal partial class AppStartUpHotfixGame : AppStartUpBase, IHotfixBridge
 {
-    protected override bool IsRegisterToDiscoveryCenter { get; set; } = false;
-
     public async Task<bool> OnLoadSuccess(AppSetting setting, bool reload)
     {
         if (reload)
