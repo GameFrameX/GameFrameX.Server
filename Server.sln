@@ -18,6 +18,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		docker-compose.yml = docker-compose.yml
 		Dockerfile = Dockerfile
 		logo.png = logo.png
+		README.md = README.md
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameFrameX.CodeGenerator", "GameFrameX.CodeGenerator\GameFrameX.CodeGenerator.csproj", "{136B1385-A2C7-4974-BF08-2236B023C568}"
