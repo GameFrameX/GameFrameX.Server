@@ -2,7 +2,7 @@
 
     <PropertyGroup>
         <OutputType>Exe</OutputType>
-        <TargetFramework>net8.0</TargetFramework>
+        <TargetFramework>net10.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <LangVersion>10</LangVersion>
         <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
@@ -35,6 +35,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <PackageReference Include="GameFrameX.StartUp" Version="2.0.0.2-dev4" />
+      <PackageReference Include="GameFrameX.StartUp" Version="1.7.2" />
     </ItemGroup>
 </Project>

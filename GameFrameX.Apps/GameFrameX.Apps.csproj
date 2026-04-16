@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFramework>net8.0</TargetFramework>
+        <TargetFramework>net10.0</TargetFramework>
         <ImplicitUsings>disable</ImplicitUsings>
         <Nullable>disable</Nullable>
     </PropertyGroup>
@@ -18,7 +18,7 @@
 
     <ItemGroup>
       <PackageReference Include="Mapster" Version="7.4.0" />
-      <PackageReference Include="GameFrameX.Core" Version="2.0.0.2-dev4" />
-      <PackageReference Include="GameFrameX.Monitor" Version="2.0.0.2-dev4" />
+      <PackageReference Include="GameFrameX.Core" Version="1.7.2" />
+      <PackageReference Include="GameFrameX.Monitor" Version="1.7.2" />
     </ItemGroup>
 </Project>
