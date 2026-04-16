@@ -34,7 +34,7 @@ using GameFrameX.Foundation.Logger;
 using GameFrameX.Foundation.Localization.Core;
 using GameFrameX.NetWork.Abstractions;
 using GameFrameX.NetWork.HTTP;
-using GameFrameX.NetWork.Kcp;
+// using GameFrameX.NetWork.Kcp;
 using GameFrameX.NetWork.Message;
 using GameFrameX.SuperSocket.Connection;
 using GameFrameX.SuperSocket.Primitives;
@@ -387,33 +387,33 @@ public abstract partial class AppStartUpBase
         // 启动KCP服务器
         if (Setting.IsEnableKcp)
         {
-            var kcpPort = Setting.KcpPort > 0 ? Setting.KcpPort : Setting.InnerPort;
-            if (kcpPort > 0 && NetHelper.PortIsAvailable(kcpPort))
-            {
-                LogHelper.Info(LocalizationService.GetString(Localization.Keys.StartUp.KcpServer.StartingServer, ServerType, Setting.InnerHost, kcpPort));
-                var kcpServer = new KcpServer(
-                    kcpPort,
-                    new KcpOptions { Enable = true },
-                    Setting,
-                    KcpPackageHandler,
-                    OnKcpConnected,
-                    OnKcpDisconnected
-                );
-                _ = kcpServer.StartAsync();
-                LogHelper.Info(LocalizationService.GetString(Localization.Keys.StartUp.KcpServer.StartupComplete, ServerType, Setting.InnerHost, kcpPort));
-            }
-            else
-            {
-                LogHelper.Warning(LocalizationService.GetString(Localization.Keys.StartUp.KcpServer.StartupFailed, ServerType, Setting.InnerHost, kcpPort));
-                if (kcpPort > 0)
-                {
-                    var occupiedProcesses = NetHelper.GetPortOccupyingProcesses(kcpPort);
-                    if (occupiedProcesses.Count > 0)
-                    {
-                        LogHelper.Warning($"KCP端口[{kcpPort}]占用详情: {string.Join(" | ", occupiedProcesses)}");
-                    }
-                }
-            }
+            // var kcpPort = Setting.KcpPort > 0 ? Setting.KcpPort : Setting.InnerPort;
+            // if (kcpPort > 0 && NetHelper.PortIsAvailable(kcpPort))
+            // {
+            //     LogHelper.Info(LocalizationService.GetString(Localization.Keys.StartUp.KcpServer.StartingServer, ServerType, Setting.InnerHost, kcpPort));
+            //     var kcpServer = new KcpServer(
+            //         kcpPort,
+            //         new KcpOptions { Enable = true },
+            //         Setting,
+            //         KcpPackageHandler,
+            //         OnKcpConnected,
+            //         OnKcpDisconnected
+            //     );
+            //     _ = kcpServer.StartAsync();
+            //     LogHelper.Info(LocalizationService.GetString(Localization.Keys.StartUp.KcpServer.StartupComplete, ServerType, Setting.InnerHost, kcpPort));
+            // }
+            // else
+            // {
+            //     LogHelper.Warning(LocalizationService.GetString(Localization.Keys.StartUp.KcpServer.StartupFailed, ServerType, Setting.InnerHost, kcpPort));
+            //     if (kcpPort > 0)
+            //     {
+            //         var occupiedProcesses = NetHelper.GetPortOccupyingProcesses(kcpPort);
+            //         if (occupiedProcesses.Count > 0)
+            //         {
+            //             LogHelper.Warning($"KCP端口[{kcpPort}]占用详情: {string.Join(" | ", occupiedProcesses)}");
+            //         }
+            //     }
+            // }
         }
         else
         {
