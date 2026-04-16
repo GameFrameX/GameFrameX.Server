@@ -1,0 +1,499 @@
+<div align="center">
+
+![GameFrameX Logo](https://download.alianblank.com/gameframex/gameframex_logo_320.png)
+
+# GameFrameX Server
+
+[![.NET](https://img.shields.io/badge/.NET-10.0-purple.svg)](https://dotnet.microsoft.com)
+[![License](https://img.shields.io/badge/license-MIT+Apache%202.0-orange.svg)](LICENSE)
+[![Documentation](https://img.shields.io/badge/docs-gameframex.doc.alianblank.com-brightgreen.svg)](https://gameframex.doc.alianblank.com)
+
+インディゲーム開発者向けオールインワンソリューション · インディ開発者の夢を支援
+
+[📖 ドキュメント](https://gameframex.doc.alianblank.com) · [🚀 クイックスタート](#quick-start) · [💬 QQグループ: 467608841](https://qm.qq.com/cgi-bin/qm/qr?k=sYFd1nv6m2KZIWFLorZ5pBR0AE5ZhbuL&jump_from=webapi&authKey=oCu+uoL3n35fT5SEt7iLgGtROPxh31n/rHUxRlp0w1f+j38W4tKBuWyRH3KEdwHN)
+
+---
+
+🌐 **言語**: [English](README.md) | [简体中文](README.zh-CN.md) | [繁體中文](README.zh-TW.md) | **日本語** | [한국어](README.ko.md)
+
+---
+
+</div>
+
+## プロジェクト概要
+
+GameFrameX Server は、C# .NET 10.0 で構築された高性能ゲームサーバーフレームワークです。**Actor モデル**アーキテクチャと**ホットアップデート**機能を備えています。永続的な状態とビジネスロジックを厳密に分離し、マルチプレイオンラインゲームのシナリオに特化して設計されています。
+
+> 設計哲学：複雑さよりもシンプルさを
+
+## コア機能
+
+- **Actor モデル** — TPL DataFlow に基づくロックフリーの高同時実行アーキテクチャ。メッセージパッシングにより従来のロック競合を回避
+- **状態・ロジック分離** — 永続データ（Apps 層）とホットアップデート可能なビジネスロジック（Hotfix 層）の厳密な分離
+- **ゼロダウンタイムホットアップデート** — サーバーの再起動なしに、実行時にビジネスロジックアセンブリを差し替え可能
+- **マルチプロトコルネットワーク** — TCP、WebSocket、HTTP プロトコルをサポート。メッセージのエンコード/デコードと圧縮を内蔵
+- **MongoDB 永続化** — CacheState に基づく透過的な ORM マッピング。自動シリアライズ/デシリアライズ
+- **Source Generator** — Roslyn ベースの Agent コード生成。Actor メッセージキューのスケジューリングを自動化
+- **コンフィグテーブルシステム** — Luban コンフィグ生成の統合。JSON ホットリロード対応
+- **OpenTelemetry** — Prometheus メトリクスエクスポート、ヘルスチェック、パフォーマンス監視を内蔵
+
+## アーキテクチャ
+
+```
+┌──────────────────────────────────────────────────────────────┐
+│                       Client Layer                           │
+├──────────────────────────────────────────────────────────────┤
+│                      Network Layer                           │
+│  ┌──────────┐  ┌──────────┐  ┌──────────┐  ┌──────────┐    │
+│  │   TCP    │  │WebSocket │  │   HTTP   │  │   KCP    │    │
+│  └──────────┘  └──────────┘  └──────────┘  └──────────┘    │
+├──────────────────────────────────────────────────────────────┤
+│                  Hotfix Layer (Hot-updatable)                │
+│  ┌──────────────────────────────────────────────────────┐   │
+│  │  ComponentAgent  │  HttpHandler  │  EventHandler     │   │
+│  └──────────────────────────────────────────────────────┘   │
+├──────────────────────────────────────────────────────────────┤
+│                  Apps Layer (Non-hot-updatable)              │
+│  ┌──────────┐  ┌──────────┐  ┌──────────┐                  │
+│  │  State   │  │Component │  │ActorType │                  │
+│  └──────────┘  └──────────┘  └──────────┘                  │
+├──────────────────────────────────────────────────────────────┤
+│                 Framework Layer (NuGet Packages)             │
+│  ┌──────────┐  ┌──────────┐  ┌──────────┐  ┌──────────┐    │
+│  │  Core    │  │ NetWork  │  │ DataBase │  │ Monitor  │    │
+│  └──────────┘  └──────────┘  └──────────┘  └──────────┘    │
+├──────────────────────────────────────────────────────────────┤
+│                     Database Layer                           │
+│  ┌──────────────────────────────────────────────────────────┐ │
+│  │                      MongoDB                             │ │
+│  └──────────────────────────────────────────────────────────┘ │
+└──────────────────────────────────────────────────────────────┘
+```
+
+## クイックスタート
+
+### 前提条件
+
+| 依存関係 | バージョン |
+| :--- | :--- |
+| [.NET SDK](https://dotnet.microsoft.com/download) | 10.0+ |
+| [MongoDB](https://www.mongodb.com/try/download/community) | 4.x+ |
+| IDE | Visual Studio 2022 / JetBrains Rider / VS Code |
+
+### インストールと実行
+
+```bash
+# 1. Clone the repository
+git clone https://github.com/GameFrameX/Server_main.git
+cd Server_main
+
+# 2. Restore dependencies
+dotnet restore
+
+# 3. Build
+dotnet build
+
+# 4. Run the game server
+dotnet run --project GameFrameX.Launcher \
+    --ServerType=Game \
+    --ServerId=1000 \
+    --APMPort=29090
+```
+
+### デプロイメントの確認
+
+| エンドポイント | URL | 説明 |
+| :--- | :--- | :--- |
+| ヘルスチェック | `http://localhost:29090/health` | サービスのヘルス状態 |
+| メトリクス | `http://localhost:29090/metrics` | Prometheus メトリクス |
+| テスト API | `http://localhost:28080/game/api/test` | HTTP 接続テスト |
+
+## プロジェクト構成
+
+```
+Server_main/
+├── GameFrameX.Launcher/         # アプリケーションのエントリポイント（実行可能ファイル）
+│   ├── Program.cs               # ブートストラップ：状態型とプロトコルメッセージの登録
+│   └── StartUp/
+│       └── AppStartUpGame.cs    # ゲームサーバー起動フロー
+│
+├── GameFrameX.Hotfix/           # ホットアップデート層（ビジネスロジック、実行時差し替え可能）
+│   ├── Logic/
+│   │   ├── Http/                # HTTP リクエストハンドラー
+│   │   │   ├── TestHttpHandler.cs
+│   │   │   ├── ReloadHttpHandler.cs
+│   │   │   ├── Player/          # アカウントログイン、オンライン照会
+│   │   │   └── Bag/             # アイテム送信
+│   │   ├── Player/
+│   │   │   ├── Bag/             # バッグコンポーネントエージェント
+│   │   │   ├── Login/           # ログイン/ログアウトロジック
+│   │   │   └── Pet/             # ペットコンポーネントエージェント
+│   │   ├── Account/             # アカウントコンポーネントエージェント
+│   │   └── Server/              # サーバーグローバルコンポーネントエージェント
+│   └── StartUp/                 # ホットアップデート起動フロー
+│       ├── AppStartUpHotfixGameByEntry.cs    # エントリポイント
+│       ├── AppStartUpHotfixGameByMain.cs     # ネットワーク/接続管理
+│       ├── AppStartUpHotfixGameByHeart.cs    # ハートビート処理
+│       └── AppStartUpHotfixGameByGateWay.cs  # ゲートウェイ通信
+│
+├── GameFrameX.Apps/             # アプリケーション状態層（ホットアップデート不可）
+│   ├── ActorType.cs             # Actor 型 enum 定義
+│   ├── Account/Login/           # ログイン状態 + コンポーネント
+│   ├── Player/
+│   │   ├── Bag/                 # バッグ状態 + コンポーネント
+│   │   ├── Player/              # プレイヤー状態 + コンポーネント
+│   │   └── Pet/                 # ペット状態 + コンポーネント
+│   ├── Server/                  # サーバーグローバル状態 + コンポーネント
+│   └── Common/
+│       ├── Session/             # セッション管理（SessionManager）
+│       ├── Event/               # イベント ID 定義
+│       └── EventData/           # イベント引数
+│
+├── GameFrameX.Config/           # コンフィグテーブルシステム（Luban 生成）
+│   ├── ConfigComponent.cs       # コンフィグ読み込みシングルトン
+│   ├── Tables/                  # 生成されたコンフィグテーブルクラス
+│   ├── TablesItem/              # コンフィグデータモデル
+│   └── json/                    # JSON コンフィグデータファイル
+│
+├── GameFrameX.Proto/            # ネットワークプロトコル定義
+│   ├── Basic_10.cs              # 基本プロトコル（ハートビート等）
+│   ├── Bag_100.cs               # バッグプロトコル
+│   ├── User_300.cs              # ユーザー/アカウントプロトコル
+│   └── BuiltIn/                 # 組み込みシステムプロトコル
+│
+├── GameFrameX.CodeGenerator/    # Roslyn Source Generator
+│   ├── AgentGenerator.cs        # Agent ラッパーコード生成
+│   └── AgentTemplate.cs         # コードテンプレート
+│
+├── Server.sln                   # Visual Studio ソリューション
+├── Dockerfile                   # Docker マルチステージビルド
+├── docker-compose.yml           # Docker Compose オーケストレーション
+└── LICENSE                      # MIT + Apache 2.0 デュアルライセンス
+```
+
+## 使用例
+
+### コアパターン：State - Component - Agent
+
+GameFrameX は3層分離パターンを採用しており、サーバーのダウンタイムなしにビジネスロジックのホットアップデートが可能です。
+
+```
+┌──────────────┐     ┌──────────────┐     ┌──────────────┐
+│   State      │────▶│  Component   │◀────│ ComponentAgent│
+│  (Data Def)  │     │   (Shell)    │     │  (Logic)     │
+│  Apps Layer  │     │  Apps Layer  │     │ Hotfix Layer │
+│  Not Hot-fix │     │  Not Hot-fix │     │  Hot-fixable │
+└──────────────┘     └──────────────┘     └──────────────┘
+```
+
+#### ステップ 1：State の定義（Apps 層）
+
+`CacheState` を継承して永続データ構造を定義します。フレームワークが MongoDB のシリアライズを自動的に処理します。
+
+```csharp
+// GameFrameX.Apps/Player/Bag/Entity/BagState.cs
+public sealed class BagState : CacheState
+{
+    public Dictionary<int, BagItemState> List { get; set; } = new();
+}
+
+public sealed class BagItemState
+{
+    public long ItemId { get; set; }
+    public long Count { get; set; }
+}
+```
+
+#### ステップ 2：Component の作成（Apps 層）
+
+`StateComponent<TState>` を継承して、状態とロジックの橋渡しとなるコンポーネントを作成します。
+
+```csharp
+// GameFrameX.Apps/Player/Bag/Component/BagComponent.cs
+[ComponentType(GlobalConst.ActorTypePlayer)]
+public class BagComponent : StateComponent<BagState> { }
+```
+
+#### ステップ 3：ビジネスロジックの実装（Hotfix 層）
+
+`StateComponentAgent<TComponent, TState>` を継承して、ホットアップデート可能なビジネスコードを記述します。
+
+```csharp
+// GameFrameX.Hotfix/Logic/Player/Bag/BagComponentAgent.cs
+public class BagComponentAgent : StateComponentAgent<BagComponent, BagState>
+{
+    public async Task OnAddBagItem(INetWorkChannel netWorkChannel,
+        ReqAddItem message, RespAddItem response)
+    {
+        // Validate item config exists
+        foreach (var item in message.ItemDic)
+        {
+            if (!ConfigComponent.Instance.GetConfig<TbItemConfig>()
+                .TryGet(item.Key, out var _))
+            {
+                response.ErrorCode = (int)OperationStatusCode.NotFound;
+                return;
+            }
+        }
+
+        await UpdateChanged(netWorkChannel, message.ItemDic);
+    }
+
+    public async Task<BagState> UpdateChanged(INetWorkChannel netWorkChannel,
+        Dictionary<int, long> itemDic)
+    {
+        var bagState = OwnerComponent.State;
+        var notify = new NotifyBagInfoChanged();
+
+        foreach (var item in itemDic)
+        {
+            if (bagState.List.TryGetValue(item.Key, out var value))
+            {
+                value.Count += item.Value;
+            }
+            else
+            {
+                bagState.List[item.Key] = new BagItemState
+                {
+                    Count = item.Value, ItemId = item.Key
+                };
+            }
+        }
+
+        await netWorkChannel.WriteAsync(notify);
+        await OwnerComponent.WriteStateAsync(); // Auto-persist to MongoDB
+        return bagState;
+    }
+}
+```
+
+### HTTP ハンドラー
+
+`BaseHttpHandler` を継承し、`[HttpMessageMapping]` で登録します。
+
+```csharp
+// GameFrameX.Hotfix/Logic/Http/TestHttpHandler.cs
+[HttpMessageMapping(typeof(TestHttpHandler))]
+[HttpMessageResponse(typeof(HttpTestResponse))]
+[Description("Test API endpoint")]
+public sealed class TestHttpHandler : BaseHttpHandler
+{
+    public override Task<string> Action(string ip, string url,
+        Dictionary<string, object> parameters)
+    {
+        var response = new HttpTestResponse { Message = "hello" };
+        return Task.FromResult(HttpJsonResult.SuccessString(response));
+    }
+}
+```
+
+### RPC メッセージハンドラー
+
+フレームワークは、ComponentAgent の自動注入を行う2つの RPC ハンドラー基底クラスを提供しています。
+
+```csharp
+// Player-level message (bound to a specific player Actor)
+[MessageMapping(typeof(ReqAddItem))]
+internal sealed class AddItemHandler
+    : PlayerRpcComponentHandler<BagComponentAgent, ReqAddItem, RespAddItem>
+{
+    protected override async Task ActionAsync(ReqAddItem request, RespAddItem response)
+    {
+        await ComponentAgent.OnAddBagItem(NetWorkChannel, request, response);
+    }
+}
+
+// Global-level message (bound to the server Actor)
+[MessageMapping(typeof(ReqHeartBeat))]
+internal sealed class HeartBeatHandler
+    : GlobalRpcComponentHandler<ServerComponentAgent, ReqHeartBeat, RespHeartBeat>
+{
+    protected override Task ActionAsync(ReqHeartBeat request, RespHeartBeat response)
+    {
+        return Task.CompletedTask;
+    }
+}
+```
+
+### イベント処理
+
+`[Event]` 属性を使用してイベント ID をバインドします。フレームワークが自動的に対応する ComponentAgent にディスパッチします。
+
+```csharp
+[Event(EventId.PlayerLogin)]
+internal sealed class PlayerLoginEventHandler : EventListener<PlayerComponentAgent>
+{
+    protected override Task HandleEvent(PlayerComponentAgent agent, GameEventArgs args)
+    {
+        return agent.OnLogin();
+    }
+}
+```
+
+### Agent メソッド属性
+
+Roslyn Source Generator が Actor メッセージキューのスケジューリングを自動的に処理します。属性を使って呼び出し動作を制御できます。
+
+| 属性 | 説明 | 使用例 |
+| :--- | :--- | :--- |
+| `[Service]` | デフォルトモード。メソッド呼び出しは Actor メッセージキューにエンキュー | すべてのビジネスメソッド |
+| `[ThreadSafe]` | メッセージキューをスキップし、直接呼び出し（スレッドセーフな実装が必要） | 読み取り専用操作、ステートレスな計算 |
+| `[Discard]` | ファイアアンドフォーゲット。戻り値を待機しない | ロギング、結果が不要な統計処理 |
+| `[TimeOut(ms)]` | メッセージキュー呼び出しのタイムアウトを設定 | タイムアウト制御が必要な長時間操作 |
+
+```csharp
+public class ServerComponentAgent : StateComponentAgent<ServerComponent, ServerState>
+{
+    // Enqueued to Actor message queue
+    [Service]
+    public virtual Task<bool> IsOnline(long roleId) { ... }
+
+    // Skip message queue, thread-safe direct call
+    [Service]
+    [ThreadSafe]
+    public virtual long FirstStartTime()
+    {
+        return State.FirstStartTime;
+    }
+
+    // Fire-and-forget, non-blocking
+    [Service]
+    [Discard]
+    public virtual ValueTask AddOnlineRole(long roleId)
+    {
+        OwnerComponent.OnlineSet.Add(roleId);
+        return ValueTask.CompletedTask;
+    }
+}
+```
+
+### コンフィグテーブルアクセス
+
+`ConfigComponent` シングルトンを使用して、Luban 生成のコンフィグテーブルにアクセスします。
+
+```csharp
+var config = ConfigComponent.Instance.GetConfig<TbItemConfig>();
+
+// Safe query with TryGet
+if (config.TryGet(itemId, out var itemConfig))
+{
+    // Use itemConfig.Name, itemConfig.Type, etc.
+}
+```
+
+### データベース操作
+
+`GameDb` 静的クラスを使用して MongoDB の CRUD 操作を行います。
+
+```csharp
+// Query
+var state = await GameDb.FindAsync<LoginState>(
+    m => m.UserName == userName && m.Password == password);
+
+// Add or update
+await GameDb.AddOrUpdateAsync(loginState);
+
+// List query
+var list = await GameDb.FindListAsync<LoginState>(m => m.Id != 0);
+
+// Delete
+var count = await GameDb.DeleteAsync(state);
+```
+
+### ホットアップデートの仕組み
+
+ホットアップデートシステムにより、サーバーを停止することなくビジネスロジックを差し替えることができます。
+
+- **Apps 層**（`GameFrameX.Apps`）：状態定義とコンポーネントのシェルを含む — **ホットアップデート不可**
+- **Hotfix 層**（`GameFrameX.Hotfix`）：すべてのビジネスロジックを含む — **ホットアップデート可能**
+- **Hotfix アセンブリ**は `hotfix/` ディレクトリに出力され、`HotfixManager` によって実行時に読み込まれます
+
+```bash
+# Trigger via HTTP endpoint (with version number)
+curl "http://localhost:28080/game/api/Reload?version=1.0.1"
+```
+
+## ドキュメントとリソース
+
+### 設定
+
+| パラメーター | 説明 | デフォルト | 例 |
+| :--- | :--- | :--- | :--- |
+| `ServerType` | サーバーの種類 | — | `Game` |
+| `ServerId` | 一意のサーバー ID | — | `1000` |
+| `InnerPort` | TCP 内部ポート | — | `29100` |
+| `HttpPort` | HTTP サービスポート | `0` | `28080` |
+| `WsPort` | WebSocket サービスポート | `0` | `29110` |
+| `MetricsPort` | Prometheus メトリクスポート | `0` | `29090` |
+| `DataBaseUrl` | MongoDB 接続文字列 | — | `mongodb://localhost:27017` |
+| `DataBaseName` | データベース名 | — | `gameframex` |
+
+```bash
+dotnet GameFrameX.Launcher.dll \
+    --ServerType=Game \
+    --ServerId=1000 \
+    --InnerPort=29100 \
+    --HttpPort=28080 \
+    --WsPort=29110 \
+    --MetricsPort=29090 \
+    --DataBaseUrl=mongodb://127.0.0.1:27017 \
+    --DataBaseName=game_db
+```
+
+### Docker デプロイ
+
+```bash
+docker-compose up --build
+```
+
+| ポート | プロトコル | 説明 |
+| :--- | :--- | :--- |
+| `29090` | HTTP | APM メトリクス / ヘルスチェック |
+| `29100` | TCP | ゲームクライアント接続 |
+| `29110` | WebSocket | WebSocket 接続 |
+| `28080` | HTTP | HTTP API |
+
+### メッセージプロトコル
+
+メッセージ ID はモジュール ID のシフトで計算されます：`(moduleId << 16) + seqId`
+
+| モジュール | ID 範囲 | ファイル | 説明 |
+| :--- | :--- | :--- | :--- |
+| System | -10 ~ -1 | `Player_-10.cs`, `Service_-3.cs` | 組み込みシステムプロトコル |
+| Basic | 10 | `Basic_10.cs` | ハートビート、サーバー準備完了通知 |
+| Bag | 100 | `Bag_100.cs` | アイテム CRUD、使用、合成 |
+| User | 300 | `User_300.cs` | ログイン、登録、キャラクター一覧 |
+
+### 技術スタック
+
+| コンポーネント | 技術 |
+| :--- | :--- |
+| ランタイム | .NET 10.0 |
+| データベース | MongoDB |
+| ネットワーク | SuperSocket |
+| シリアライズ | protobuf-net |
+| コンフィグ生成 | Luban |
+| コード生成 | Roslyn Source Generator |
+| 監視 | OpenTelemetry + Prometheus |
+| オブジェクトマッピング | Mapster |
+| コンテナ化 | Docker + Docker Compose |
+
+## コミュニティとサポート
+
+- [公式ドキュメント](https://gameframex.doc.alianblank.com)
+- [GitHub Organization](https://github.com/GameFrameX)
+- [Gitee ミラー](https://gitee.com/GameFrameX)
+- [イシュートラッカー](https://github.com/GameFrameX/GameFrameX/issues)
+- [ディスカッション](https://github.com/GameFrameX/GameFrameX/discussions)
+
+### コントリビュート
+
+1. このリポジトリをフォーク
+2. フィーチャーブランチを作成（`git checkout -b feature/amazing-feature`）
+3. 変更をコミット（`git commit -m 'feat: add some feature'`）
+4. ブランチにプッシュ（`git push origin feature/amazing-feature`）
+5. Pull Request を作成
+
+## ライセンス
+
+このプロジェクトは [MIT ライセンス](https://opensource.org/licenses/MIT)および [Apache ライセンス 2.0](https://www.apache.org/licenses/LICENSE-2.0) のデュアルライセンスです。詳細は [LICENSE](LICENSE) ファイルをご覧ください。
