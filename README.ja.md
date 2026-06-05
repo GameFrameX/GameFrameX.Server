@@ -5,7 +5,7 @@
 # GameFrameX Server
 
 [![.NET](https://img.shields.io/badge/.NET-10.0-purple.svg)](https://dotnet.microsoft.com)
-[![License](https://img.shields.io/badge/license-MIT+Apache%202.0-orange.svg)](LICENSE)
+[![License](https://img.shields.io/badge/license-Apache%202.0-orange.svg)](LICENSE.md)
 [![Documentation](https://img.shields.io/badge/docs-gameframex.doc.alianblank.com-brightgreen.svg)](https://gameframex.doc.alianblank.com)
 
 インディゲーム開発者向けオールインワンソリューション · インディ開発者の夢を支援
@@ -168,7 +168,7 @@ Server_main/
 ├── Server.sln                   # Visual Studio ソリューション
 ├── Dockerfile                   # Docker マルチステージビルド
 ├── docker-compose.yml           # Docker Compose オーケストレーション
-└── LICENSE                      # MIT + Apache 2.0 デュアルライセンス
+└── LICENSE.md                   # Apache License 2.0
 ```
 
 ## 使用例
@@ -496,4 +496,4 @@ docker-compose up --build
 
 ## ライセンス
 
-このプロジェクトは [MIT ライセンス](https://opensource.org/licenses/MIT)および [Apache ライセンス 2.0](https://www.apache.org/licenses/LICENSE-2.0) のデュアルライセンスです。詳細は [LICENSE](LICENSE) ファイルをご覧ください。
+このプロジェクトは [Apache ライセンス 2.0](https://www.apache.org/licenses/LICENSE-2.0) のもとで公開されています。詳細は [LICENSE.md](LICENSE.md) ファイルをご覧ください。

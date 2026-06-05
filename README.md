@@ -5,7 +5,7 @@
 # GameFrameX Server
 
 [![.NET](https://img.shields.io/badge/.NET-10.0-purple.svg)](https://dotnet.microsoft.com)
-[![License](https://img.shields.io/badge/license-MIT+Apache%202.0-orange.svg)](LICENSE)
+[![License](https://img.shields.io/badge/license-Apache%202.0-orange.svg)](LICENSE.md)
 [![Documentation](https://img.shields.io/badge/docs-gameframex.doc.alianblank.com-brightgreen.svg)](https://gameframex.doc.alianblank.com)
 
 **All-in-One Solution for Indie Game Development · Empowering Indie Developers' Dreams**
@@ -168,7 +168,7 @@ Server_main/
 ├── Server.sln                   # Visual Studio solution
 ├── Dockerfile                   # Docker multi-stage build
 ├── docker-compose.yml           # Docker Compose orchestration
-└── LICENSE                      # MIT + Apache 2.0 dual license
+└── LICENSE.md                   # Apache License 2.0
 ```
 
 ## Usage Examples
@@ -496,4 +496,4 @@ Message IDs are calculated by module ID shift: `(moduleId << 16) + seqId`
 
 ## License
 
-This project is dual-licensed under the [MIT License](https://opensource.org/licenses/MIT) and [Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0). See the [LICENSE](LICENSE) file for details.
+This project is licensed under the [Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0). See the [LICENSE.md](LICENSE.md) file for details.

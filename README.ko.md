@@ -5,7 +5,7 @@
 # GameFrameX Server
 
 [![.NET](https://img.shields.io/badge/.NET-10.0-purple.svg)](https://dotnet.microsoft.com)
-[![License](https://img.shields.io/badge/license-MIT+Apache%202.0-orange.svg)](LICENSE)
+[![License](https://img.shields.io/badge/license-Apache%202.0-orange.svg)](LICENSE.md)
 [![Documentation](https://img.shields.io/badge/docs-gameframex.doc.alianblank.com-brightgreen.svg)](https://gameframex.doc.alianblank.com)
 
 **인디 게임 개발자를 위한 올인원 솔루션 · 인디 개발자의 꿈을 실현**
@@ -168,7 +168,7 @@ Server_main/
 ├── Server.sln                   # Visual Studio 솔루션
 ├── Dockerfile                   # Docker 다단계 빌드
 ├── docker-compose.yml           # Docker Compose 오케스트레이션
-└── LICENSE                      # MIT + Apache 2.0 듀얼 라이선스
+└── LICENSE.md                   # Apache License 2.0
 ```
 
 ## 사용 예시
@@ -496,4 +496,4 @@ docker-compose up --build
 
 ## 라이선스
 
-이 프로젝트는 [MIT 라이선스](https://opensource.org/licenses/MIT)와 [Apache 라이선스 2.0](https://www.apache.org/licenses/LICENSE-2.0)의 듀얼 라이선스를 따릅니다. 자세한 내용은 [LICENSE](LICENSE) 파일을 참조하십시오.
+이 프로젝트는 [Apache 라이선스 2.0](https://www.apache.org/licenses/LICENSE-2.0)을 따릅니다. 자세한 내용은 [LICENSE.md](LICENSE.md) 파일을 참조하십시오.

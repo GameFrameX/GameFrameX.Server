@@ -5,7 +5,7 @@
 # GameFrameX Server
 
 [![.NET](https://img.shields.io/badge/.NET-10.0-purple.svg)](https://dotnet.microsoft.com)
-[![License](https://img.shields.io/badge/license-MIT+Apache%202.0-orange.svg)](LICENSE)
+[![License](https://img.shields.io/badge/license-Apache%202.0-orange.svg)](LICENSE.md)
 [![Documentation](https://img.shields.io/badge/docs-gameframex.doc.alianblank.com-brightgreen.svg)](https://gameframex.doc.alianblank.com)
 
 **独立游戏前后端一体化解决方案 · 独立游戏开发者的圆梦大使**
@@ -168,7 +168,7 @@ Server_main/
 ├── Server.sln                   # Visual Studio 解决方案
 ├── Dockerfile                   # Docker 多阶段构建
 ├── docker-compose.yml           # Docker Compose 编排
-└── LICENSE                      # MIT + Apache 2.0 双许可证
+└── LICENSE.md                   # Apache License 2.0
 ```
 
 ## 使用示例
@@ -494,4 +494,4 @@ docker-compose up --build
 
 ## 开源协议
 
-本项目采用 [MIT License](https://opensource.org/licenses/MIT) 和 [Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0) 双许可证分发。详见 [LICENSE](LICENSE) 文件。
+本项目采用 [Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0) 分发。详见 [LICENSE.md](LICENSE.md) 文件。
