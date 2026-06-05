@@ -14,7 +14,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <PackageReference Include="GameFrameX.Core.Config" Version="1.7.3" />
+      <PackageReference Include="GameFrameX.Core.Config" Version="1.8.1" />
       <PackageReference Include="GameFrameX.Foundation.Logger" Version="2.2.10" />
     </ItemGroup>
 
