@@ -428,6 +428,9 @@ curl "http://localhost:28080/game/api/Reload?version=1.0.1"
 | `DataBaseUrl` | MongoDB connection string | — | `mongodb://localhost:27017` |
 | `DataBaseName` | Database name | — | `gameframex` |
 
+> **[!NOTE]**
+> The table above lists only the minimum startup parameters. For the complete configuration reference (network, logging, actor, monitoring, security, etc.), see **[Configuration Management — GameFrameX.Server.Source](https://github.com/GameFrameX/GameFrameX.Server.Source#configuration-management)**.
+
 ```bash
 dotnet GameFrameX.Launcher.dll \
     --ServerType=Game \

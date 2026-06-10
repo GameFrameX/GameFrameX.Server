@@ -426,6 +426,9 @@ curl "http://localhost:28080/game/api/Reload?version=1.0.1"
 | `DataBaseUrl` | MongoDB 連線字串 | — | `mongodb://localhost:27017` |
 | `DataBaseName` | 資料庫名稱 | — | `gameframex` |
 
+> **[!NOTE]**
+> 上表僅列出最小啟動參數。完整配置項（網路、日誌、Actor、監控、安全等）請查閱 **[Configuration Management — GameFrameX.Server.Source](https://github.com/GameFrameX/GameFrameX.Server.Source#configuration-management)**。
+
 ```bash
 dotnet GameFrameX.Launcher.dll \
     --ServerType=Game \

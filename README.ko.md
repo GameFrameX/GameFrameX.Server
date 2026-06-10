@@ -428,6 +428,9 @@ curl "http://localhost:28080/game/api/Reload?version=1.0.1"
 | `DataBaseUrl` | MongoDB 연결 문자열 | — | `mongodb://localhost:27017` |
 | `DataBaseName` | 데이터베이스 이름 | — | `gameframex` |
 
+> **[!NOTE]**
+> 위 표는 최소 시작 매개변수만 나열합니다. 전체 설정 항목(네트워크, 로그, Actor, 모니터링, 보안 등)은 **[Configuration Management — GameFrameX.Server.Source](https://github.com/GameFrameX/GameFrameX.Server.Source#configuration-management)**를 참조하세요.
+
 ```bash
 dotnet GameFrameX.Launcher.dll \
     --ServerType=Game \
