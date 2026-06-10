@@ -27,7 +27,8 @@ FROM base AS final
 USER root
 WORKDIR /app
 COPY --from=publish /app/publish .
-COPY --from=publish /app/hotfix /app/hotfix-default
+COPY --from=publish /app/hotfix/GameFrameX.Hotfix.dll /app/hotfix-default/
+COPY --from=publish /app/hotfix/json /app/hotfix-default/json/
 
 RUN mkdir -p /app/hotfix && \
     printf '#!/bin/sh\n\
