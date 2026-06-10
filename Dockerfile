@@ -28,13 +28,17 @@ USER root
 WORKDIR /app
 COPY --from=publish /app/publish .
 COPY --from=publish /app/hotfix/GameFrameX.Hotfix.dll /app/hotfix-default/
-COPY --from=publish /app/hotfix/json /app/hotfix-default/json/
+COPY --from=publish /app/hotfix/json /app/json-default/
 
-RUN mkdir -p /app/hotfix && \
+RUN mkdir -p /app/hotfix /app/json /app/logs && \
     printf '#!/bin/sh\n\
 if [ -z "$(ls -A /app/hotfix 2>/dev/null)" ]; then\n\
     echo "hotfix directory is empty, copying defaults..."\n\
     cp -r /app/hotfix-default/* /app/hotfix/\n\
+fi\n\
+if [ -z "$(ls -A /app/json 2>/dev/null)" ]; then\n\
+    echo "json directory is empty, copying defaults..."\n\
+    cp -r /app/json-default/* /app/json/\n\
 fi\n\
 exec "$@"' > /app/entrypoint.sh && \
     chmod +x /app/entrypoint.sh
