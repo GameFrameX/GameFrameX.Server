@@ -4,7 +4,7 @@ namespace GameFrameX.CodeGenerator.Utils;
 
 public static class Logger
 {
-    public static void LogError(this GeneratorExecutionContext context, string msg)
+    public static void LogError(this SourceProductionContext context, string msg)
     {
         var invalidXmlWarning = new DiagnosticDescriptor("Error",
                                                          "Code Generator Error",
