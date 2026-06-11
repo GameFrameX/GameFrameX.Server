@@ -29,7 +29,7 @@ COPY --from=publish /app/publish .
 COPY --from=publish /app/hotfix/GameFrameX.Hotfix.dll /app/hotfix-default/
 COPY --from=publish /app/hotfix/json /app/json-default/
 
-RUN mkdir -p /app/hotfix /app/json /app/logs && \
+RUN mkdir -p /app/hotfix /app/json /app/data /app/data/logs && \
     printf '#!/bin/sh\n\
 if [ -z "$(ls -A /app/hotfix 2>/dev/null)" ]; then\n\
     echo "hotfix directory is empty, copying defaults..."\n\
@@ -40,6 +40,8 @@ if [ -z "$(ls -A /app/json 2>/dev/null)" ]; then\n\
     cp -r /app/json-default/* /app/json/\n\
 fi\n\
 exec "$@"' > /app/entrypoint.sh && \
+    chown -R $APP_UID:0 /app/hotfix /app/json /app/data && \
+    chmod -R u+rwX,g+rwX /app/hotfix /app/json /app/data && \
     chmod +x /app/entrypoint.sh
 
 USER $APP_UID
