@@ -8,6 +8,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\GameFrameX.Proto\GameFrameX.Proto.csproj" />
+      <ProjectReference Include="..\GameFrameX.Architecture.Analyzers\GameFrameX.Architecture.Analyzers.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
     </ItemGroup>
 
     <ItemGroup>
