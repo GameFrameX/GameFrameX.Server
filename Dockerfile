@@ -11,7 +11,6 @@ COPY ["GameFrameX.Config/GameFrameX.Config.csproj", "GameFrameX.Config/"]
 COPY ["GameFrameX.Apps/GameFrameX.Apps.csproj", "GameFrameX.Apps/"]
 COPY ["GameFrameX.Proto/GameFrameX.Proto.csproj", "GameFrameX.Proto/"]
 COPY ["GameFrameX.Hotfix/GameFrameX.Hotfix.csproj", "GameFrameX.Hotfix/"]
-COPY ["GameFrameX.CodeGenerator/GameFrameX.CodeGenerator.csproj", "GameFrameX.CodeGenerator/"]
 
 RUN dotnet restore "GameFrameX.Launcher/GameFrameX.Launcher.csproj"
 COPY . .
