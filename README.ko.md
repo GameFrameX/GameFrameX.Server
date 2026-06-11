@@ -161,7 +161,10 @@ Server_main/
 │   ├── User_300.cs              # 사용자/계정 프로토콜
 │   └── BuiltIn/                 # 내장 시스템 프로토콜
 │
+├── GameFrameX.Architecture.Analyzers/        # 컴파일 타임 아키텍처 규칙
+│
 ├── Server.sln                   # Visual Studio 솔루션
+├── Server.slnx                  # XML 솔루션
 ├── Dockerfile                   # Docker 다단계 빌드
 ├── docker-compose.yml           # Docker Compose 오케스트레이션
 └── LICENSE.md                   # Apache License 2.0
@@ -408,6 +411,27 @@ var count = await GameDb.DeleteAsync(state);
 # Trigger via HTTP endpoint (with version number)
 curl "http://localhost:28080/game/api/Reload?version=1.0.1"
 ```
+
+### 아키텍처 분석기
+
+`GameFrameX.Architecture.Analyzers`는 Apps/Hotfix 아키텍처를 컴파일 시점에 강제하는 Roslyn analyzer 프로젝트입니다. analyzer로 참조되는 프로젝트는 `GameFrameX.Apps`, `GameFrameX.Hotfix`, `GameFrameX.Launcher`뿐이며, `GameFrameX.Config`, `GameFrameX.Proto`, 테스트 어셈블리는 설계상 무시됩니다.
+
+| ID | 규칙 |
+| :--- | :--- |
+| `GFX0001` | `BaseCacheState` 하위 클래스는 `GameFrameX.Apps`에 정의해야 합니다. |
+| `GFX0002` | `StateComponent<TState>` 하위 클래스는 `GameFrameX.Apps`에 정의해야 합니다. |
+| `GFX0003` | `BaseHttpHandler` 하위 클래스는 `GameFrameX.Hotfix`에 정의해야 합니다. |
+| `GFX0004` | `IHotfixBridge` 구현 클래스는 `GameFrameX.Hotfix`에 정의해야 합니다. |
+| `GFX0005` | `IComponentAgent` 구현 클래스는 `GameFrameX.Hotfix`에 정의해야 합니다. |
+| `GFX0006` | `[MessageMapping]` 핸들러는 `GameFrameX.Hotfix`에 정의해야 합니다. |
+| `GFX0007` | `[MessageRpcMapping]` 핸들러는 `GameFrameX.Hotfix`에 정의해야 합니다. |
+| `GFX0008` | `IEventListener` 구현 클래스는 `GameFrameX.Hotfix`에 정의해야 합니다. |
+| `GFX0009` | `ITimerHandler` 구현 클래스는 `GameFrameX.Hotfix`에 정의해야 합니다. |
+| `GFX0010` | `[MessageMapping]` 핸들러는 `sealed`여야 합니다. |
+| `GFX0011` | `IEventListener` 구현 클래스는 `sealed`여야 합니다. |
+| `GFX0012` | `[MessageMapping]` 핸들러 타입 이름은 `Handler`로 끝나야 합니다. |
+| `GFX0013` | `IEventListener` 구현 타입 이름은 `EventListener`로 끝나야 합니다. |
+| `GFX0014` | `IComponentAgent` 구현 타입 이름은 `ComponentAgent`로 끝나야 합니다. |
 
 ## 문서 및 자료
 

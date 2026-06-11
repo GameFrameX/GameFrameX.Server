@@ -161,7 +161,10 @@ Server_main/
 │   ├── User_300.cs              # ユーザー/アカウントプロトコル
 │   └── BuiltIn/                 # 組み込みシステムプロトコル
 │
+├── GameFrameX.Architecture.Analyzers/        # コンパイル時アーキテクチャルール
+│
 ├── Server.sln                   # Visual Studio ソリューション
+├── Server.slnx                  # XML ソリューション
 ├── Dockerfile                   # Docker マルチステージビルド
 ├── docker-compose.yml           # Docker Compose オーケストレーション
 └── LICENSE.md                   # Apache License 2.0
@@ -408,6 +411,27 @@ var count = await GameDb.DeleteAsync(state);
 # Trigger via HTTP endpoint (with version number)
 curl "http://localhost:28080/game/api/Reload?version=1.0.1"
 ```
+
+### アーキテクチャアナライザー
+
+`GameFrameX.Architecture.Analyzers` は Roslyn analyzer プロジェクトで、Apps/Hotfix アーキテクチャをコンパイル時に強制します。analyzer として参照されるのは `GameFrameX.Apps`、`GameFrameX.Hotfix`、`GameFrameX.Launcher` のみです。`GameFrameX.Config`、`GameFrameX.Proto`、テストアセンブリは設計上無視されます。
+
+| ID | ルール |
+| :--- | :--- |
+| `GFX0001` | `BaseCacheState` のサブクラスは `GameFrameX.Apps` に定義する必要があります。 |
+| `GFX0002` | `StateComponent<TState>` のサブクラスは `GameFrameX.Apps` に定義する必要があります。 |
+| `GFX0003` | `BaseHttpHandler` のサブクラスは `GameFrameX.Hotfix` に定義する必要があります。 |
+| `GFX0004` | `IHotfixBridge` の実装は `GameFrameX.Hotfix` に定義する必要があります。 |
+| `GFX0005` | `IComponentAgent` の実装は `GameFrameX.Hotfix` に定義する必要があります。 |
+| `GFX0006` | `[MessageMapping]` ハンドラーは `GameFrameX.Hotfix` に定義する必要があります。 |
+| `GFX0007` | `[MessageRpcMapping]` ハンドラーは `GameFrameX.Hotfix` に定義する必要があります。 |
+| `GFX0008` | `IEventListener` の実装は `GameFrameX.Hotfix` に定義する必要があります。 |
+| `GFX0009` | `ITimerHandler` の実装は `GameFrameX.Hotfix` に定義する必要があります。 |
+| `GFX0010` | `[MessageMapping]` ハンドラーは `sealed` である必要があります。 |
+| `GFX0011` | `IEventListener` の実装は `sealed` である必要があります。 |
+| `GFX0012` | `[MessageMapping]` ハンドラーの型名は `Handler` で終わる必要があります。 |
+| `GFX0013` | `IEventListener` 実装の型名は `EventListener` で終わる必要があります。 |
+| `GFX0014` | `IComponentAgent` 実装の型名は `ComponentAgent` で終わる必要があります。 |
 
 ## ドキュメントとリソース
 

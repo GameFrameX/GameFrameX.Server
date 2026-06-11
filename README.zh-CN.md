@@ -161,7 +161,10 @@ Server_main/
 │   ├── User_300.cs              # 用户/账号协议
 │   └── BuiltIn/                 # 内置系统协议
 │
+├── GameFrameX.Architecture.Analyzers/        # 编译期架构规则检查器
+│
 ├── Server.sln                   # Visual Studio 解决方案
+├── Server.slnx                  # XML 解决方案
 ├── Dockerfile                   # Docker 多阶段构建
 ├── docker-compose.yml           # Docker Compose 编排
 └── LICENSE.md                   # Apache License 2.0
@@ -408,6 +411,27 @@ var count = await GameDb.DeleteAsync(state);
 # 通过 HTTP 接口触发（指定版本号）
 curl "http://localhost:28080/game/api/Reload?version=1.0.1"
 ```
+
+### 架构分析器
+
+`GameFrameX.Architecture.Analyzers` 是 Roslyn 分析器项目，用于在编译期强制约束 Apps/Hotfix 分层架构。它只作为 analyzer 引用到 `GameFrameX.Apps`、`GameFrameX.Hotfix` 和 `GameFrameX.Launcher`；`GameFrameX.Config`、`GameFrameX.Proto` 和测试程序集会按设计忽略。
+
+| ID | 规则 |
+| :--- | :--- |
+| `GFX0001` | `BaseCacheState` 子类必须定义在 `GameFrameX.Apps`。 |
+| `GFX0002` | `StateComponent<TState>` 子类必须定义在 `GameFrameX.Apps`。 |
+| `GFX0003` | `BaseHttpHandler` 子类必须定义在 `GameFrameX.Hotfix`。 |
+| `GFX0004` | `IHotfixBridge` 实现类必须定义在 `GameFrameX.Hotfix`。 |
+| `GFX0005` | `IComponentAgent` 实现类必须定义在 `GameFrameX.Hotfix`。 |
+| `GFX0006` | `[MessageMapping]` 处理器必须定义在 `GameFrameX.Hotfix`。 |
+| `GFX0007` | `[MessageRpcMapping]` 处理器必须定义在 `GameFrameX.Hotfix`。 |
+| `GFX0008` | `IEventListener` 实现类必须定义在 `GameFrameX.Hotfix`。 |
+| `GFX0009` | `ITimerHandler` 实现类必须定义在 `GameFrameX.Hotfix`。 |
+| `GFX0010` | `[MessageMapping]` 处理器必须标记为 `sealed`。 |
+| `GFX0011` | `IEventListener` 实现类必须标记为 `sealed`。 |
+| `GFX0012` | `[MessageMapping]` 处理器类型名必须以 `Handler` 结尾。 |
+| `GFX0013` | `IEventListener` 实现类类型名必须以 `EventListener` 结尾。 |
+| `GFX0014` | `IComponentAgent` 实现类类型名必须以 `ComponentAgent` 结尾。 |
 
 ## 文档与资源
 
