@@ -161,10 +161,6 @@ Server_main/
 │   ├── User_300.cs              # 用户/账号协议
 │   └── BuiltIn/                 # 内置系统协议
 │
-├── GameFrameX.CodeGenerator/    # Roslyn 源码生成器
-│   ├── AgentGenerator.cs        # Agent 包装代码生成
-│   └── AgentTemplate.cs         # 代码模板
-│
 ├── Server.sln                   # Visual Studio 解决方案
 ├── Dockerfile                   # Docker 多阶段构建
 ├── docker-compose.yml           # Docker Compose 编排

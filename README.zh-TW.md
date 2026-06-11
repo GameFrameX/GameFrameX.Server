@@ -161,10 +161,6 @@ Server_main/
 │   ├── User_300.cs              # 使用者/帳號協定
 │   └── BuiltIn/                 # 內建系統協定
 │
-├── GameFrameX.CodeGenerator/    # Roslyn 原始碼產生器
-│   ├── AgentGenerator.cs        # Agent 包裝程式碼產生
-│   └── AgentTemplate.cs         # 程式碼範本
-│
 ├── Server.sln                   # Visual Studio 解決方案
 ├── Dockerfile                   # Docker 多階段建置
 ├── docker-compose.yml           # Docker Compose 編排

@@ -161,10 +161,6 @@ Server_main/
 │   ├── User_300.cs              # User/account protocols
 │   └── BuiltIn/                 # Built-in system protocols
 │
-├── GameFrameX.CodeGenerator/    # Roslyn source generator
-│   ├── AgentGenerator.cs        # Agent wrapper code generation
-│   └── AgentTemplate.cs         # Code templates
-│
 ├── Server.sln                   # Visual Studio solution
 ├── Dockerfile                   # Docker multi-stage build
 ├── docker-compose.yml           # Docker Compose orchestration

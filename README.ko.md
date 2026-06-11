@@ -161,10 +161,6 @@ Server_main/
 │   ├── User_300.cs              # 사용자/계정 프로토콜
 │   └── BuiltIn/                 # 내장 시스템 프로토콜
 │
-├── GameFrameX.CodeGenerator/    # Roslyn 소스 제너레이터
-│   ├── AgentGenerator.cs        # Agent 래퍼 코드 생성
-│   └── AgentTemplate.cs         # 코드 템플릿
-│
 ├── Server.sln                   # Visual Studio 솔루션
 ├── Dockerfile                   # Docker 다단계 빌드
 ├── docker-compose.yml           # Docker Compose 오케스트레이션
