@@ -33,6 +33,7 @@
 using GameFrameX.Apps.Common.Session;
 using GameFrameX.Apps.Player.Player.Component;
 using GameFrameX.Apps.Player.Player.Entity;
+using GameFrameX.Hotfix.Logic.Game.Room;
 using GameFrameX.Hotfix.Logic.Server;
 
 namespace GameFrameX.Hotfix.Logic.Player.Login;
@@ -74,5 +75,8 @@ public class PlayerComponentAgent : StateComponentAgent<PlayerComponent, PlayerS
         //加入在线玩家
         var serverComp = await ActorManager.GetComponentAgent<ServerComponentAgent>();
         await serverComp.AddOnlineRole(ActorId);
+
+        var roomComp = await ActorManager.GetComponentAgent<RoomComponentAgent>();
+        await roomComp.MarkPlayerReconnected(ActorId);
     }
 }

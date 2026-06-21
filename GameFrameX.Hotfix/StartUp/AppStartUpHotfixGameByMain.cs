@@ -30,6 +30,7 @@
 // ==========================================================================================
 
 using GameFrameX.Apps.Common.Session;
+using GameFrameX.Hotfix.Logic.Game.Room;
 using GameFrameX.SuperSocket.Connection;
 using GameFrameX.SuperSocket.Server.Abstractions.Session;
 using GameFrameX.SuperSocket.WebSocket.Server;
@@ -64,11 +65,15 @@ internal partial class AppStartUpHotfixGame
     }
 
 
-    protected override ValueTask OnDisconnected(IAppSession appSession, CloseEventArgs disconnectEventArgs)
+    protected override async ValueTask OnDisconnected(IAppSession appSession, CloseEventArgs disconnectEventArgs)
     {
         LogHelper.Info("有外部客户端网络断开连接成功！。断开信息：" + appSession.SessionID + "  " + disconnectEventArgs.Reason);
-        SessionManager.Remove(appSession.SessionID);
-        return ValueTask.CompletedTask;
+        var session = SessionManager.Remove(appSession.SessionID);
+        if (session != null && session.PlayerId > 0)
+        {
+            var roomAgent = await ActorManager.GetComponentAgent<RoomComponentAgent>();
+            await roomAgent.MarkPlayerDisconnected(session.PlayerId);
+        }
     }
 
     protected override async ValueTask OnConnected(IAppSession appSession)
