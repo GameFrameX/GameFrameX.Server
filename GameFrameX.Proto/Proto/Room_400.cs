@@ -173,6 +173,86 @@ namespace GameFrameX.Proto.Proto
 	}
 
 	/// <summary>
+	/// 通用房间玩家在线状态
+	/// </summary>
+	[System.ComponentModel.Description("通用房间玩家在线状态")]
+	public enum RoomPlayerOnlineStatus
+	{
+		/// <summary>
+		/// 未知
+		/// </summary>
+		[System.ComponentModel.Description("未知")]
+		OnlineUnknown = 0,
+
+		/// <summary>
+		/// 在线
+		/// </summary>
+		[System.ComponentModel.Description("在线")]
+		Online = 1,
+
+		/// <summary>
+		/// 断线重连中
+		/// </summary>
+		[System.ComponentModel.Description("断线重连中")]
+		Reconnecting = 2,
+
+		/// <summary>
+		/// 离线
+		/// </summary>
+		[System.ComponentModel.Description("离线")]
+		Offline = 3,
+	}
+
+	/// <summary>
+	/// 通用房间玩家状态
+	/// </summary>
+	[System.ComponentModel.Description("通用房间玩家状态")]
+	public enum RoomPlayerStatus
+	{
+		/// <summary>
+		/// 无状态
+		/// </summary>
+		[System.ComponentModel.Description("无状态")]
+		PlayerStatusNone = 0,
+
+		/// <summary>
+		/// 等待中
+		/// </summary>
+		[System.ComponentModel.Description("等待中")]
+		Idle = 1,
+
+		/// <summary>
+		/// 可开始
+		/// </summary>
+		[System.ComponentModel.Description("可开始")]
+		ReadyInRoom = 2,
+
+		/// <summary>
+		/// 游戏中
+		/// </summary>
+		[System.ComponentModel.Description("游戏中")]
+		InGame = 3,
+
+		/// <summary>
+		/// 已提交操作
+		/// </summary>
+		[System.ComponentModel.Description("已提交操作")]
+		Submitted = 4,
+
+		/// <summary>
+		/// 结算中
+		/// </summary>
+		[System.ComponentModel.Description("结算中")]
+		SettlingInRoom = 5,
+
+		/// <summary>
+		/// 已结算
+		/// </summary>
+		[System.ComponentModel.Description("已结算")]
+		SettledInRoom = 6,
+	}
+
+	/// <summary>
 	/// 通用房间玩家信息
 	/// </summary>
 	[ProtoContract]
@@ -199,6 +279,34 @@ namespace GameFrameX.Proto.Proto
 		[ProtoMember(3)]
 		[System.ComponentModel.Description("是否房主")]
 		public bool IsOwner { get; set; }
+
+		/// <summary>
+		/// 玩家昵称
+		/// </summary>
+		[ProtoMember(4)]
+		[System.ComponentModel.Description("玩家昵称")]
+		public string Name { get; set; }
+
+		/// <summary>
+		/// 头像ID
+		/// </summary>
+		[ProtoMember(5)]
+		[System.ComponentModel.Description("头像ID")]
+		public uint Avatar { get; set; }
+
+		/// <summary>
+		/// 在线状态
+		/// </summary>
+		[ProtoMember(6)]
+		[System.ComponentModel.Description("在线状态")]
+		public RoomPlayerOnlineStatus OnlineStatus { get; set; }
+
+		/// <summary>
+		/// 房间内状态
+		/// </summary>
+		[ProtoMember(7)]
+		[System.ComponentModel.Description("房间内状态")]
+		public RoomPlayerStatus PlayerStatus { get; set; }
 	}
 
 	/// <summary>

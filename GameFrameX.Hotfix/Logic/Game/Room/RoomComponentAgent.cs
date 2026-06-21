@@ -32,6 +32,7 @@
 using GameFrameX.Apps.Common.Session;
 using GameFrameX.Apps.Game.Room.Component;
 using GameFrameX.Apps.Game.Room.Entity;
+using GameFrameX.Apps.Player.Player.Entity;
 using GameFrameX.Core.Abstractions.Attribute;
 using GameFrameX.Core.Abstractions.Events;
 using GameFrameX.Core.Timer.Handler;
@@ -67,15 +68,19 @@ public class RoomComponentAgent : StateComponentAgent<RoomComponent, RoomListSta
         return isContinue;
     }
 
-    public Task OnReqRoomListAsync(ReqRoomList request, RespRoomList response)
+    public async Task OnReqRoomListAsync(ReqRoomList request, RespRoomList response)
     {
-        response.Rooms = State.Rooms.Values
+        var rooms = State.Rooms.Values
             .Where(room => request.GameType == GameType.None || room.GameType == request.GameType)
             .Where(room => request.IncludeClosed || room.Status != RoomStatus.Closed && room.Status != RoomStatus.Disbanded)
             .OrderBy(room => room.RoomId)
-            .Select(ToMessage)
             .ToList();
-        return Task.CompletedTask;
+
+        response.Rooms = new List<RoomInfo>();
+        foreach (var room in rooms)
+        {
+            response.Rooms.Add(await ToMessageAsync(room));
+        }
     }
 
     public async Task OnCreateRoomAsync(long roleId, ReqCreateRoom request, RespCreateRoom response)
@@ -98,7 +103,7 @@ public class RoomComponentAgent : StateComponentAgent<RoomComponent, RoomListSta
         if (TryGetActiveRoom(roleId, out var activeRoom))
         {
             response.ErrorCode = (int)OperationStatusCode.HasExist;
-            response.Room = ToMessage(activeRoom);
+            response.Room = await ToMessageAsync(activeRoom);
             return;
         }
 
@@ -122,7 +127,7 @@ public class RoomComponentAgent : StateComponentAgent<RoomComponent, RoomListSta
         State.Rooms[roomId] = room;
         State.PlayerRoomMap[roleId] = roomId;
 
-        response.Room = ToMessage(room);
+        response.Room = await ToMessageAsync(room);
         await OwnerComponent.WriteStateAsync();
         await NotifyRoomChangedAsync(room, RoomChangeType.Created);
     }
@@ -143,26 +148,26 @@ public class RoomComponentAgent : StateComponentAgent<RoomComponent, RoomListSta
         {
             if (activeRoom.RoomId == request.RoomId)
             {
-                response.Room = ToMessage(activeRoom);
+                response.Room = await ToMessageAsync(activeRoom);
                 return;
             }
 
             response.ErrorCode = (int)OperationStatusCode.HasExist;
-            response.Room = ToMessage(activeRoom);
+            response.Room = await ToMessageAsync(activeRoom);
             return;
         }
 
         if (room.Status != RoomStatus.Waiting && room.Status != RoomStatus.Ready)
         {
             response.ErrorCode = (int)OperationStatusCode.Forbidden;
-            response.Room = ToMessage(room);
+            response.Room = await ToMessageAsync(room);
             return;
         }
 
         if (room.PlayerIds.Count >= room.MaxPlayerCount)
         {
             response.ErrorCode = (int)OperationStatusCode.ServerFullyLoaded;
-            response.Room = ToMessage(room);
+            response.Room = await ToMessageAsync(room);
             return;
         }
 
@@ -171,7 +176,7 @@ public class RoomComponentAgent : StateComponentAgent<RoomComponent, RoomListSta
         room.UpdatedTime = TimerHelper.UnixTimeSeconds();
         State.PlayerRoomMap[roleId] = room.RoomId;
 
-        response.Room = ToMessage(room);
+        response.Room = await ToMessageAsync(room);
         await OwnerComponent.WriteStateAsync();
         await NotifyRoomChangedAsync(room, RoomChangeType.Joined);
     }
@@ -191,11 +196,12 @@ public class RoomComponentAgent : StateComponentAgent<RoomComponent, RoomListSta
         if (!room.PlayerIds.Contains(roleId))
         {
             response.ErrorCode = (int)OperationStatusCode.NotFound;
-            response.Room = ToMessage(room);
+            response.Room = await ToMessageAsync(room);
             return;
         }
 
-        response.Room = LeaveRoom(roleId, room);
+        LeaveRoom(roleId, room);
+        response.Room = await ToMessageAsync(room);
         await OwnerComponent.WriteStateAsync();
         await NotifyRoomChangedAsync(room, RoomChangeType.Left);
     }
@@ -238,26 +244,26 @@ public class RoomComponentAgent : StateComponentAgent<RoomComponent, RoomListSta
         if (room.OwnerRoleId != roleId || room.Status != RoomStatus.Ready)
         {
             response.ErrorCode = (int)OperationStatusCode.Forbidden;
-            response.Room = ToMessage(room);
+            response.Room = await ToMessageAsync(room);
             return;
         }
 
         if (room.PlayerIds.Count < room.MinPlayerCount || room.PlayerIds.Count > room.MaxPlayerCount)
         {
             response.ErrorCode = (int)OperationStatusCode.Unprocessable;
-            response.Room = ToMessage(room);
+            response.Room = await ToMessageAsync(room);
             return;
         }
 
         room.Status = RoomStatus.Playing;
         room.UpdatedTime = TimerHelper.UnixTimeSeconds();
 
-        response.Room = ToMessage(room);
+        response.Room = await ToMessageAsync(room);
         await OwnerComponent.WriteStateAsync();
         await NotifyRoomChangedAsync(room, RoomChangeType.Started);
     }
 
-    private RoomInfo LeaveRoom(long roleId, RoomState room)
+    private void LeaveRoom(long roleId, RoomState room)
     {
         var previousStatus = room.Status;
         room.PlayerIds.Remove(roleId);
@@ -283,8 +289,6 @@ public class RoomComponentAgent : StateComponentAgent<RoomComponent, RoomListSta
 
             room.Status = room.PlayerIds.Count >= room.MinPlayerCount ? RoomStatus.Ready : RoomStatus.Waiting;
         }
-
-        return ToMessage(room);
     }
 
     [Service]
@@ -295,10 +299,10 @@ public class RoomComponentAgent : StateComponentAgent<RoomComponent, RoomListSta
     }
 
     [Service]
-    public virtual Task<RoomInfo> GetRoomInfo(long roomId)
+    public virtual async Task<RoomInfo> GetRoomInfo(long roomId)
     {
         State.Rooms.TryGetValue(roomId, out var room);
-        return Task.FromResult(room == null ? null : ToMessage(room));
+        return room == null ? null : await ToMessageAsync(room);
     }
 
     [Service]
@@ -313,7 +317,7 @@ public class RoomComponentAgent : StateComponentAgent<RoomComponent, RoomListSta
         room.UpdatedTime = TimerHelper.UnixTimeSeconds();
         await OwnerComponent.WriteStateAsync();
         await NotifyRoomChangedAsync(room, RoomChangeType.Settling);
-        return ToMessage(room);
+        return await ToMessageAsync(room);
     }
 
     [Service]
@@ -328,7 +332,7 @@ public class RoomComponentAgent : StateComponentAgent<RoomComponent, RoomListSta
         room.UpdatedTime = TimerHelper.UnixTimeSeconds();
         await OwnerComponent.WriteStateAsync();
         await NotifyRoomChangedAsync(room, RoomChangeType.Settled);
-        return ToMessage(room);
+        return await ToMessageAsync(room);
     }
 
     [Service]
@@ -341,7 +345,7 @@ public class RoomComponentAgent : StateComponentAgent<RoomComponent, RoomListSta
 
         if (room.Status != RoomStatus.Settled || room.PlayerIds.Count < room.MinPlayerCount)
         {
-            return ToMessage(room);
+            return await ToMessageAsync(room);
         }
 
         room.Round++;
@@ -349,7 +353,7 @@ public class RoomComponentAgent : StateComponentAgent<RoomComponent, RoomListSta
         room.UpdatedTime = TimerHelper.UnixTimeSeconds();
         await OwnerComponent.WriteStateAsync();
         await NotifyRoomChangedAsync(room, RoomChangeType.Reset);
-        return ToMessage(room);
+        return await ToMessageAsync(room);
     }
 
     private static bool CheckRoleId(long roleId, IResponseMessage response)
@@ -417,9 +421,9 @@ public class RoomComponentAgent : StateComponentAgent<RoomComponent, RoomListSta
         return true;
     }
 
-    private static RoomInfo ToMessage(RoomState room)
+    private async Task<RoomInfo> ToMessageAsync(RoomState room)
     {
-        return new RoomInfo
+        var message = new RoomInfo
         {
             RoomId = room.RoomId,
             Name = room.Name,
@@ -429,16 +433,63 @@ public class RoomComponentAgent : StateComponentAgent<RoomComponent, RoomListSta
             MinPlayerCount = room.MinPlayerCount,
             MaxPlayerCount = room.MaxPlayerCount,
             OwnerRoleId = room.OwnerRoleId,
-            Players = room.PlayerIds.Select((roleId, index) => new RoomPlayerInfo
-            {
-                RoleId = roleId,
-                SeatIndex = index,
-                IsOwner = roleId == room.OwnerRoleId,
-            }).ToList(),
+            Players = new List<RoomPlayerInfo>(),
             Round = room.Round,
             CreatedTime = room.CreatedTime,
             UpdatedTime = room.UpdatedTime,
         };
+
+        for (var index = 0; index < room.PlayerIds.Count; index++)
+        {
+            var roleId = room.PlayerIds[index];
+            message.Players.Add(await ToPlayerMessageAsync(room, roleId, index));
+        }
+
+        return message;
+    }
+
+    private async Task<RoomPlayerInfo> ToPlayerMessageAsync(RoomState room, long roleId, int seatIndex)
+    {
+        var playerState = await GameDb.FindAsync<PlayerState>(roleId);
+        return new RoomPlayerInfo
+        {
+            RoleId = roleId,
+            SeatIndex = seatIndex,
+            IsOwner = roleId == room.OwnerRoleId,
+            Name = string.IsNullOrWhiteSpace(playerState?.Name) ? $"玩家{roleId}" : playerState.Name,
+            Avatar = playerState?.Avatar ?? 0,
+            OnlineStatus = GetOnlineStatus(roleId),
+            PlayerStatus = GetPlayerStatus(room.Status),
+        };
+    }
+
+    private RoomPlayerOnlineStatus GetOnlineStatus(long roleId)
+    {
+        if (State.DisconnectedPlayerTimeMap.ContainsKey(roleId))
+        {
+            return RoomPlayerOnlineStatus.Reconnecting;
+        }
+
+        return SessionManager.GetByRoleId(roleId) == null ? RoomPlayerOnlineStatus.Offline : RoomPlayerOnlineStatus.Online;
+    }
+
+    private static RoomPlayerStatus GetPlayerStatus(RoomStatus roomStatus)
+    {
+        switch (roomStatus)
+        {
+            case RoomStatus.Waiting:
+                return RoomPlayerStatus.Idle;
+            case RoomStatus.Ready:
+                return RoomPlayerStatus.ReadyInRoom;
+            case RoomStatus.Playing:
+                return RoomPlayerStatus.InGame;
+            case RoomStatus.Settling:
+                return RoomPlayerStatus.SettlingInRoom;
+            case RoomStatus.Settled:
+                return RoomPlayerStatus.SettledInRoom;
+            default:
+                return RoomPlayerStatus.PlayerStatusNone;
+        }
     }
 
     private static void SetResponseErrorCode(IResponseMessage response, int errorCode)
@@ -450,12 +501,12 @@ public class RoomComponentAgent : StateComponentAgent<RoomComponent, RoomListSta
         }
     }
 
-    private static async Task NotifyRoomChangedAsync(RoomState room, RoomChangeType changeType)
+    private async Task NotifyRoomChangedAsync(RoomState room, RoomChangeType changeType)
     {
         var notify = new NotifyRoomChanged
         {
             ChangeType = changeType,
-            Room = ToMessage(room),
+            Room = await ToMessageAsync(room),
         };
 
         foreach (var roleId in room.PlayerIds)
