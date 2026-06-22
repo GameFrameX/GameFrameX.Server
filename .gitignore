@@ -1,4 +1,4 @@
-﻿
+
 .vs/
 .idea
 /database
@@ -9,3 +9,4 @@ bin
 *.user
 docs/_site
 running
+gfx-doc
