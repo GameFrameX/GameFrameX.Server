@@ -102,9 +102,16 @@ public class RoomComponentAgent : StateComponentAgent<RoomComponent, RoomListSta
 
         if (TryGetActiveRoom(roleId, out var activeRoom))
         {
-            response.ErrorCode = (int)OperationStatusCode.HasExist;
-            response.Room = await ToMessageAsync(activeRoom);
-            return;
+            if (CanAutoCloseBeforeEnterNewRoom(activeRoom))
+            {
+                await CloseRoomAsync(activeRoom, RoomChangeType.Closed);
+            }
+            else
+            {
+                response.ErrorCode = (int)OperationStatusCode.HasExist;
+                response.Room = await ToMessageAsync(activeRoom);
+                return;
+            }
         }
 
         var now = TimerHelper.UnixTimeSeconds();
@@ -152,9 +159,16 @@ public class RoomComponentAgent : StateComponentAgent<RoomComponent, RoomListSta
                 return;
             }
 
-            response.ErrorCode = (int)OperationStatusCode.HasExist;
-            response.Room = await ToMessageAsync(activeRoom);
-            return;
+            if (CanAutoCloseBeforeEnterNewRoom(activeRoom))
+            {
+                await CloseRoomAsync(activeRoom, RoomChangeType.Closed);
+            }
+            else
+            {
+                response.ErrorCode = (int)OperationStatusCode.HasExist;
+                response.Room = await ToMessageAsync(activeRoom);
+                return;
+            }
         }
 
         if (room.Status != RoomStatus.Waiting && room.Status != RoomStatus.Ready)
@@ -289,6 +303,22 @@ public class RoomComponentAgent : StateComponentAgent<RoomComponent, RoomListSta
 
             room.Status = room.PlayerIds.Count >= room.MinPlayerCount ? RoomStatus.Ready : RoomStatus.Waiting;
         }
+    }
+
+    private async Task CloseRoomAsync(RoomState room, RoomChangeType changeType)
+    {
+        foreach (var roleId in room.PlayerIds)
+        {
+            State.PlayerRoomMap.Remove(roleId);
+            State.DisconnectedPlayerTimeMap.Remove(roleId);
+        }
+
+        room.PlayerIds.Clear();
+        room.OwnerRoleId = 0;
+        room.Status = RoomStatus.Closed;
+        room.UpdatedTime = TimerHelper.UnixTimeSeconds();
+        await OwnerComponent.WriteStateAsync();
+        await NotifyRoomChangedAsync(room, changeType);
     }
 
     [Service]
@@ -509,13 +539,10 @@ public class RoomComponentAgent : StateComponentAgent<RoomComponent, RoomListSta
             Room = await ToMessageAsync(room),
         };
 
-        foreach (var roleId in room.PlayerIds)
+        var sessions = SessionManager.GetList(session => session.PlayerId > 0);
+        foreach (var session in sessions)
         {
-            var session = SessionManager.GetByRoleId(roleId);
-            if (session != null)
-            {
-                await session.WriteAsync(notify);
-            }
+            await session.WriteAsync(notify);
         }
     }
 
@@ -593,6 +620,11 @@ public class RoomComponentAgent : StateComponentAgent<RoomComponent, RoomListSta
     private static bool IsClosedRoom(RoomState room)
     {
         return room.Status == RoomStatus.Closed || room.Status == RoomStatus.Disbanded;
+    }
+
+    private static bool CanAutoCloseBeforeEnterNewRoom(RoomState room)
+    {
+        return room.Status == RoomStatus.Settled;
     }
 
     private async Task RunRoomMaintenanceAsync()
