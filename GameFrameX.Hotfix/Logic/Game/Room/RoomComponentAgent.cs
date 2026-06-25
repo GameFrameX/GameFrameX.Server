@@ -221,26 +221,26 @@ public class RoomComponentAgent : StateComponentAgent<RoomComponent, RoomListSta
     }
 
     [Service]
-    public virtual async Task MarkPlayerDisconnected(long roleId)
+    public virtual Task MarkPlayerDisconnected(long roleId)
     {
         if (roleId <= 0 || !TryGetActiveRoom(roleId, out _))
         {
-            return;
+            return Task.CompletedTask;
         }
 
         State.DisconnectedPlayerTimeMap[roleId] = TimerHelper.UnixTimeSeconds();
-        await OwnerComponent.WriteStateAsync();
+        return OwnerComponent.WriteStateAsync();
     }
 
     [Service]
-    public virtual async Task MarkPlayerReconnected(long roleId)
+    public virtual Task MarkPlayerReconnected(long roleId)
     {
         if (roleId <= 0 || !State.DisconnectedPlayerTimeMap.Remove(roleId))
         {
-            return;
+            return Task.CompletedTask;
         }
 
-        await OwnerComponent.WriteStateAsync();
+        return OwnerComponent.WriteStateAsync();
     }
 
     public async Task OnStartRoomGameAsync(long roleId, ReqStartRoomGame request, RespStartRoomGame response)
