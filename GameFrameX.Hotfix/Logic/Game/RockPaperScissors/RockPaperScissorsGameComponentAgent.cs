@@ -36,7 +36,7 @@ using GameFrameX.Hotfix.Logic.Game.Room;
 
 namespace GameFrameX.Hotfix.Logic.Game.RockPaperScissors;
 
-public sealed class RockPaperScissorsGameComponentAgent : StateComponentAgent<RockPaperScissorsGameComponent, RockPaperScissorsGameListState>
+public class RockPaperScissorsGameComponentAgent : StateComponentAgent<RockPaperScissorsGameComponent, RockPaperScissorsGameListState>
 {
     public async Task OnReqGameInfoAsync(ReqRockPaperScissorsGameInfo request, RespRockPaperScissorsGameInfo response)
     {
