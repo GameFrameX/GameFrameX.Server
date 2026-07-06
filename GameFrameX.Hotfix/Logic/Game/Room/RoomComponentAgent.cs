@@ -32,6 +32,13 @@ public class RoomComponentAgent : StateComponentAgent<RoomComponent, RoomListSta
             MaxPlayerCount = 2,
             DefaultNamePrefix = "四子棋房间",
         },
+        [GameType.DiceBattle] = new RoomRule
+        {
+            GameType = GameType.DiceBattle,
+            MinPlayerCount = 3,
+            MaxPlayerCount = 6,
+            DefaultNamePrefix = "掷骰子比大房间",
+        },
     };
 
     public override async Task<bool> ActiveAsync()
