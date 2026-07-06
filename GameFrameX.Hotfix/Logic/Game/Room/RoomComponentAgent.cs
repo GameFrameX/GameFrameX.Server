@@ -539,10 +539,40 @@ public class RoomComponentAgent : StateComponentAgent<RoomComponent, RoomListSta
             Room = await ToMessageAsync(room),
         };
 
-        var sessions = SessionManager.GetList(session => session.PlayerId > 0);
-        foreach (var session in sessions)
+        // 大厅可见的变化（房间增删、人数变化）需广播给所有在线玩家，以刷新房间列表。
+        // 其余为房间内部玩法事件（开始/结算/重置等），仅通知房间内成员，避免全服广播噪音。
+        if (IsLobbyVisibleChange(changeType))
         {
-            await session.WriteAsync(notify);
+            var sessions = SessionManager.GetList(session => session.PlayerId > 0);
+            foreach (var session in sessions)
+            {
+                await session.WriteAsync(notify);
+            }
+        }
+        else
+        {
+            await NotifyRoomMembersAsync(room, notify);
+        }
+    }
+
+    private static bool IsLobbyVisibleChange(RoomChangeType changeType)
+    {
+        return changeType == RoomChangeType.Created ||
+               changeType == RoomChangeType.Joined ||
+               changeType == RoomChangeType.Left ||
+               changeType == RoomChangeType.Closed ||
+               changeType == RoomChangeType.Disbanded;
+    }
+
+    private static async Task NotifyRoomMembersAsync(RoomState room, NotifyRoomChanged notify)
+    {
+        foreach (var roleId in room.PlayerIds)
+        {
+            var session = SessionManager.GetByRoleId(roleId);
+            if (session != null)
+            {
+                await session.WriteAsync(notify);
+            }
         }
     }
 
