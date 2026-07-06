@@ -54,6 +54,12 @@ namespace GameFrameX.Proto.Proto
 		/// </summary>
 		[System.ComponentModel.Description("石头剪刀布")]
 		RockPaperScissors = 1,
+
+		/// <summary>
+		/// 掷骰子比大小
+		/// </summary>
+		[System.ComponentModel.Description("掷骰子比大小")]
+		DiceBattle = 2,
 	}
 
 	/// <summary>
