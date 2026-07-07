@@ -36,6 +36,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <PackageReference Include="GameFrameX.StartUp" Version="1.10.2" />
+      <PackageReference Include="GameFrameX.StartUp" Version="1.13.0" />
     </ItemGroup>
 </Project>
