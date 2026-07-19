@@ -1,5 +1,7 @@
 using System;
 using GameFrameX.Apps.Player.Attribute;
+using GameFrameX.Apps.SelfCheck;
 
 AttributeCoreSelfCheck.Run();
-Console.WriteLine("AttributeCoreSelfCheck PASS");
+AttributeAgentSelfCheck.Run();
+Console.WriteLine("AttributeSelfCheck PASS");

@@ -70,6 +70,11 @@ public enum EventId
     /// </summary>
     PlayerSendItem,
 
+    /// <summary>
+    /// 玩家最终属性变化
+    /// </summary>
+    AttributeChanged,
+
     #endregion
 
     /// <summary>
