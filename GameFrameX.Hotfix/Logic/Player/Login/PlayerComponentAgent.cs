@@ -82,5 +82,8 @@ public class PlayerComponentAgent : StateComponentAgent<PlayerComponent, PlayerS
 
         var roomComp = await ActorManager.GetComponentAgent<RoomComponentAgent>();
         await roomComp.MarkPlayerReconnected(ActorId);
+
+        // 推送玩家属性完整快照，供客户端初始化属性显示
+        await workChannel.WriteAsync(attributeComponentAgent.BuildSyncSnapshot());
     }
 }
