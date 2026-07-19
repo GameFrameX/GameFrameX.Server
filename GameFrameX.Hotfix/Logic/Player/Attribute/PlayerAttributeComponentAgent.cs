@@ -74,6 +74,17 @@ public class PlayerAttributeComponentAgent : StateComponentAgent<PlayerAttribute
     }
 
     /// <summary>
+    /// 静默补齐玩家第一版基础属性默认值。已有基础属性槽不会被覆盖，避免重复登录重置成长结果。
+    /// </summary>
+    public async Task InitializeDefaultsSilent()
+    {
+        if (PlayerInitialAttributeDefaults.ApplyMissing(OwnerComponent.State.Values))
+        {
+            await OwnerComponent.WriteStateAsync();
+        }
+    }
+
+    /// <summary>
     /// 构建当前玩家属性的完整快照消息，用于登录后或重连时同步给客户端。
     /// </summary>
     /// <returns>属性快照消息。</returns>

@@ -73,6 +73,9 @@ public class PlayerComponentAgent : StateComponentAgent<PlayerComponent, PlayerS
             Avatar = playerState.Avatar,
         };
 
+        var attributeComponentAgent = await ActorManager.GetComponentAgent<PlayerAttributeComponentAgent>(playerState.Id);
+        await attributeComponentAgent.InitializeDefaultsSilent();
+
         //加入在线玩家
         var serverComp = await ActorManager.GetComponentAgent<ServerComponentAgent>();
         await serverComp.AddOnlineRole(ActorId);
@@ -81,7 +84,6 @@ public class PlayerComponentAgent : StateComponentAgent<PlayerComponent, PlayerS
         await roomComp.MarkPlayerReconnected(ActorId);
 
         // 推送玩家属性完整快照，供客户端初始化属性显示
-        var attributeAgent = await ActorManager.GetComponentAgent<PlayerAttributeComponentAgent>(ActorId);
-        await workChannel.WriteAsync(attributeAgent.BuildSyncSnapshot());
+        await workChannel.WriteAsync(attributeComponentAgent.BuildSyncSnapshot());
     }
 }
