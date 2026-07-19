@@ -9,6 +9,12 @@ internal static class AttributeAgentSelfCheck
 {
     public static void Run()
     {
+        VerifyMutation();
+        VerifyDefaultInitialization();
+    }
+
+    private static void VerifyMutation()
+    {
         var values = new Dictionary<int, long>
         {
             [(int)AttributeType.LifeBase] = 1000,
@@ -28,6 +34,24 @@ internal static class AttributeAgentSelfCheck
         result = PlayerAttributeMutation.ApplyValue(values, AttributeType.LifeAdd, 300, true);
         AssertEqual(1300, values[(int)AttributeType.Life], "PlayerAttributeComponentAgent.SilentLife");
         AssertEqual(false, result.ShouldDispatch, "PlayerAttributeComponentAgent.SilentDispatch");
+    }
+
+    private static void VerifyDefaultInitialization()
+    {
+        var values = new Dictionary<int, long>();
+        AssertEqual(true, PlayerInitialAttributeDefaults.ApplyMissing(values), "PlayerInitialAttributeDefaults.FirstChanged");
+        AssertEqual(1000, values[(int)AttributeType.LifeBase], "PlayerInitialAttributeDefaults.LifeBase");
+        AssertEqual(1000, values[(int)AttributeType.Life], "PlayerInitialAttributeDefaults.Life");
+        AssertEqual(100, values[(int)AttributeType.PhysicalAttackBase], "PlayerInitialAttributeDefaults.PhysicalAttackBase");
+        AssertEqual(100, values[(int)AttributeType.PhysicalAttack], "PlayerInitialAttributeDefaults.PhysicalAttack");
+
+        var count = values.Count;
+        values[(int)AttributeType.LifeBase] = 1200;
+        values[(int)AttributeType.Life] = 1200;
+        AssertEqual(false, PlayerInitialAttributeDefaults.ApplyMissing(values), "PlayerInitialAttributeDefaults.RepeatChanged");
+        AssertEqual(count, values.Count, "PlayerInitialAttributeDefaults.RepeatCount");
+        AssertEqual(1200, values[(int)AttributeType.LifeBase], "PlayerInitialAttributeDefaults.KeepLifeBase");
+        AssertEqual(1200, values[(int)AttributeType.Life], "PlayerInitialAttributeDefaults.KeepLife");
     }
 
     private static void AssertEqual<T>(T expected, T actual, string name)

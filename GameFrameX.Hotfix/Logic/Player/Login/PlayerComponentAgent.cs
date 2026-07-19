@@ -34,6 +34,7 @@ using GameFrameX.Apps.Common.Session;
 using GameFrameX.Apps.Player.Player.Component;
 using GameFrameX.Apps.Player.Player.Entity;
 using GameFrameX.Hotfix.Logic.Game.Room;
+using GameFrameX.Hotfix.Logic.Player.Attribute;
 using GameFrameX.Hotfix.Logic.Server;
 
 namespace GameFrameX.Hotfix.Logic.Player.Login;
@@ -71,6 +72,9 @@ public class PlayerComponentAgent : StateComponentAgent<PlayerComponent, PlayerS
             State = playerState.State,
             Avatar = playerState.Avatar,
         };
+
+        var attributeComponentAgent = await ActorManager.GetComponentAgent<PlayerAttributeComponentAgent>(playerState.Id);
+        await attributeComponentAgent.InitializeDefaultsSilent();
 
         //加入在线玩家
         var serverComp = await ActorManager.GetComponentAgent<ServerComponentAgent>();
