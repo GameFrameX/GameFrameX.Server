@@ -194,6 +194,24 @@ namespace GameFrameX.Proto.Proto
 		/// </summary>
 		[System.ComponentModel.Description("部分成功")]
 		PartialSuccess = 17,
+
+		/// <summary>
+		/// 邮件不存在（或已被删除）
+		/// </summary>
+		[System.ComponentModel.Description("邮件不存在")]
+		MailNotFound = 18,
+
+		/// <summary>
+		/// 邮件删除被拒绝：存在未领取附件（不可逆边界 B2）
+		/// </summary>
+		[System.ComponentModel.Description("存在未领取附件，禁止删除")]
+		UnclaimedAttachment = 19,
+
+		/// <summary>
+		/// 邮件已处于删除终态，重复删除被拒绝
+		/// </summary>
+		[System.ComponentModel.Description("邮件已删除")]
+		MailAlreadyDeleted = 20,
 	}
 
 	/// <summary>
