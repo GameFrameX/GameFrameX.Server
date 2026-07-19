@@ -11,4 +11,5 @@
   <Project Path="GameFrameX.Config\GameFrameX.Config.csproj" />
   <Project Path="GameFrameX.Proto\GameFrameX.Proto.csproj" />
   <Project Path="GameFrameX.Apps\GameFrameX.Apps.csproj" />
+  <Project Path="GameFrameX.Apps.SelfCheck\GameFrameX.Apps.SelfCheck.csproj" />
 </Solution>
