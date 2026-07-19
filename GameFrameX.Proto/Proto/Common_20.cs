@@ -176,6 +176,24 @@ namespace GameFrameX.Proto.Proto
 		/// </summary>
 		[System.ComponentModel.Description("通知客户端服务器人数已达上限")]
 		ServerFullyLoaded = 14,
+
+		/// <summary>
+		/// 不支持的操作（如一期未实现的奖励类型路由）
+		/// </summary>
+		[System.ComponentModel.Description("不支持的操作")]
+		Unsupported = 15,
+
+		/// <summary>
+		/// 奖励参数非法（数量小于等于 0、物品配置不存在等）
+		/// </summary>
+		[System.ComponentModel.Description("奖励参数非法")]
+		InvalidReward = 16,
+
+		/// <summary>
+		/// 部分成功（多项发放中仅部分成功）
+		/// </summary>
+		[System.ComponentModel.Description("部分成功")]
+		PartialSuccess = 17,
 	}
 
 	/// <summary>

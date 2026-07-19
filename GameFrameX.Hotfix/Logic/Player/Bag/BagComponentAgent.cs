@@ -96,7 +96,12 @@ public class BagComponentAgent : StateComponentAgent<BagComponent, BagState>
         }
 
 
-        await netWorkChannel.WriteAsync(notifyBagInfoChanged);
+        // netWorkChannel 为空表示离线发放（统一奖励发放接口）：只持久化背包，不推送客户端通知。
+        if (netWorkChannel != null)
+        {
+            await netWorkChannel.WriteAsync(notifyBagInfoChanged);
+        }
+
         await OwnerComponent.WriteStateAsync();
         return bagState;
     }
