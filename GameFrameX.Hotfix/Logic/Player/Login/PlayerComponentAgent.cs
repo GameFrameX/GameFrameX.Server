@@ -34,6 +34,7 @@ using GameFrameX.Apps.Common.Session;
 using GameFrameX.Apps.Player.Player.Component;
 using GameFrameX.Apps.Player.Player.Entity;
 using GameFrameX.Hotfix.Logic.Game.Room;
+using GameFrameX.Hotfix.Logic.Player.Attribute;
 using GameFrameX.Hotfix.Logic.Server;
 
 namespace GameFrameX.Hotfix.Logic.Player.Login;
@@ -78,5 +79,9 @@ public class PlayerComponentAgent : StateComponentAgent<PlayerComponent, PlayerS
 
         var roomComp = await ActorManager.GetComponentAgent<RoomComponentAgent>();
         await roomComp.MarkPlayerReconnected(ActorId);
+
+        // 推送玩家属性完整快照，供客户端初始化属性显示
+        var attributeAgent = await ActorManager.GetComponentAgent<PlayerAttributeComponentAgent>(ActorId);
+        await workChannel.WriteAsync(attributeAgent.BuildSyncSnapshot());
     }
 }

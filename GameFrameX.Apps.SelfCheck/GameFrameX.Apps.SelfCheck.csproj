@@ -12,6 +12,11 @@
       <Compile Include="..\GameFrameX.Apps\Player\Attribute\*.cs" Link="Player\Attribute\%(Filename)%(Extension)" />
       <Compile Include="..\GameFrameX.Apps\Player\Attribute\Entity\PlayerAttributeState.cs" Link="Player\Attribute\Entity\PlayerAttributeState.cs" />
       <Compile Include="..\GameFrameX.Hotfix\Logic\Player\Attribute\PlayerAttributeMutation.cs" Link="Player\Attribute\PlayerAttributeMutation.cs" />
+      <Compile Include="..\GameFrameX.Hotfix\Logic\Player\Attribute\PlayerAttributeSyncBuilder.cs" Link="Player\Attribute\PlayerAttributeSyncBuilder.cs" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\GameFrameX.Proto\GameFrameX.Proto.csproj" />
     </ItemGroup>
 
 </Project>

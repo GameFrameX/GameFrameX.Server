@@ -4,6 +4,7 @@ using GameFrameX.Apps.Player.Attribute;
 using GameFrameX.Apps.Player.Attribute.Component;
 using GameFrameX.Apps.Player.Attribute.Entity;
 using GameFrameX.Hotfix.Common.Events;
+using GameFrameX.Proto.Proto;
 
 namespace GameFrameX.Hotfix.Logic.Player.Attribute;
 
@@ -70,6 +71,15 @@ public class PlayerAttributeComponentAgent : StateComponentAgent<PlayerAttribute
         {
             await OwnerComponent.WriteStateAsync();
         }
+    }
+
+    /// <summary>
+    /// 构建当前玩家属性的完整快照消息，用于登录后或重连时同步给客户端。
+    /// </summary>
+    /// <returns>属性快照消息。</returns>
+    public NotifyPlayerAttributeSync BuildSyncSnapshot()
+    {
+        return PlayerAttributeSyncBuilder.BuildSnapshot(OwnerComponent.State);
     }
 
     private async Task Set(AttributeType attributeType, long value, bool silent)
