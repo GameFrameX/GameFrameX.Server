@@ -72,6 +72,17 @@ public class PlayerAttributeComponentAgent : StateComponentAgent<PlayerAttribute
         }
     }
 
+    /// <summary>
+    /// 静默补齐玩家第一版基础属性默认值。已有基础属性槽不会被覆盖，避免重复登录重置成长结果。
+    /// </summary>
+    public async Task InitializeDefaultsSilent()
+    {
+        if (PlayerInitialAttributeDefaults.ApplyMissing(OwnerComponent.State.Values))
+        {
+            await OwnerComponent.WriteStateAsync();
+        }
+    }
+
     private async Task Set(AttributeType attributeType, long value, bool silent)
     {
         var result = PlayerAttributeMutation.ApplyValue(OwnerComponent.State.Values, attributeType, value, silent);
