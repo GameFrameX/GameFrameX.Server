@@ -10,6 +10,7 @@
 
     <ItemGroup>
       <Compile Include="..\GameFrameX.Apps\Player\Attribute\*.cs" Link="Player\Attribute\%(Filename)%(Extension)" />
+      <Compile Include="..\GameFrameX.Apps\Player\Attribute\Entity\PlayerAttributeState.cs" Link="Player\Attribute\Entity\PlayerAttributeState.cs" />
     </ItemGroup>
 
 </Project>

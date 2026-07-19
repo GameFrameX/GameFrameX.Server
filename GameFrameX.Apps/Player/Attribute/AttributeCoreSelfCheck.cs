@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using GameFrameX.Apps.Player.Attribute.Entity;
 
 namespace GameFrameX.Apps.Player.Attribute;
 
@@ -23,6 +24,7 @@ public static class AttributeCoreSelfCheck
         };
 
         AssertEqual(1480, AttributeCore.RecalculateFinal(attributes, AttributeType.Life), "Life");
+        AssertPlayerAttributeState();
         AssertEqual(AttributeType.LifeBase, AttributeCore.GetSlotAttribute(AttributeType.Life, AttributeSlotKind.Base), "LifeBase");
         AssertEqual(AttributeType.LifeAdd, AttributeCore.GetSlotAttribute(AttributeType.Life, AttributeSlotKind.Add), "LifeAdd");
         AssertEqual(AttributeType.LifePct, AttributeCore.GetSlotAttribute(AttributeType.Life, AttributeSlotKind.Pct), "LifePct");
@@ -44,6 +46,15 @@ public static class AttributeCoreSelfCheck
         {
             throw new InvalidOperationException("未知派生槽不应触发反向重算。");
         }
+    }
+
+    private static void AssertPlayerAttributeState()
+    {
+        var state = new PlayerAttributeState();
+        state.Values[(int)AttributeType.LifeBase] = 1200;
+
+        AssertEqual(1200, state.GetValue(AttributeType.LifeBase), "PlayerAttributeState.LifeBase");
+        AssertEqual(0, state.GetValue(AttributeType.PhysicalAttackBase), "PlayerAttributeState.Missing");
     }
 
     private static void AssertDerived(AttributeType attributeType)
