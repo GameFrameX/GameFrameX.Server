@@ -30,13 +30,17 @@
 // ==========================================================================================
 
 using System;
+using System.Collections.Generic;
 using GameFrameX.Apps.Common.Session;
 using GameFrameX.Apps.Player.Mail;
 using GameFrameX.Apps.Player.Mail.Component;
 using GameFrameX.Apps.Player.Mail.Entity;
+using GameFrameX.Apps.Player.Reward;
+using GameFrameX.Apps.Player.Reward.Entity;
 using GameFrameX.Core.Abstractions.Attribute;
 using GameFrameX.Foundation.Utility;
 using GameFrameX.Hotfix.Logic.Player.Login;
+using GameFrameX.Hotfix.Logic.Player.Reward;
 
 namespace GameFrameX.Hotfix.Logic.Player.Mail;
 
@@ -268,6 +272,156 @@ public class MailComponentAgent : StateComponentAgent<MailComponent, MailBoxStat
     }
 
     /// <summary>
+    /// 处理 <see cref="ReqMailClaimAttachment"/>：领取单个邮件附件。经统一发放接口 <see cref="RewardGrantComponentAgent.GrantAsync"/> 入账（B6 幂等），
+    /// 成功后置 <see cref="ClaimStatus.Claimed"/> 终态；失败保留 <see cref="ClaimStatus.Claimable"/> 供重试。
+    /// </summary>
+    /// <remarks>不触发 <see cref="SyncAsync"/>：领取作用于当前邮件箱快照，懒同步由列表 / 读信路径保证。幂等命中已领槽位时按成功回包，不重复发奖。</remarks>
+    [Service]
+    public virtual async Task OnReqMailClaimAttachmentAsync(INetWorkChannel netWorkChannel, ReqMailClaimAttachment request, RespMailClaimAttachment response)
+    {
+        var state = OwnerComponent.State;
+        var prepare = MailAttachmentClaim.Prepare(state, request.MailId, request.SlotId);
+
+        response.MailId = request.MailId;
+        response.SlotId = request.SlotId;
+
+        if (prepare.Code == OperationStatusCode.MailNotFound || prepare.Mail == null)
+        {
+            response.ErrorCode = (int)OperationStatusCode.MailNotFound;
+            return;
+        }
+
+        // B6 幂等：已领槽位按成功回包当前状态，不调用发放接口。
+        if (prepare.Code == OperationStatusCode.AttachmentAlreadyClaimed)
+        {
+            FillClaimResponse(response, prepare.Mail, prepare.Attachment);
+            response.ErrorCode = (int)OperationStatusCode.Ok;
+            return;
+        }
+
+        if (prepare.Code != OperationStatusCode.Ok || prepare.Attachment == null)
+        {
+            response.ErrorCode = (int)prepare.Code;
+            return;
+        }
+
+        var mail = prepare.Mail;
+        var att = prepare.Attachment;
+        var now = TimerHelper.UnixTimeSeconds();
+
+        var grantResult = await GrantAttachmentAsync(mail, att);
+
+        if (grantResult.AllSuccess)
+        {
+            MailAttachmentClaim.MarkClaimed(att, now);
+        }
+
+        mail.AttachmentStatus = MailAttachmentClaim.ComputeAttachmentStatus(mail);
+        await OwnerComponent.WriteStateAsync();
+
+        FillClaimResponse(response, mail, att);
+        response.ErrorCode = (int)(grantResult.AllSuccess ? OperationStatusCode.Ok : (OperationStatusCode)grantResult.ErrorCode);
+        await NotifyChangedAsync(new List<long> { mail.MailId });
+    }
+
+    /// <summary>
+    /// 处理 <see cref="ReqMailClaimAllAttachment"/>：一键领取当前邮件箱所有 <see cref="ClaimStatus.Claimable"/> 槽位。逐项独立判定，部分失败不影响其余项。
+    /// </summary>
+    [Service]
+    public virtual async Task OnReqMailClaimAllAttachmentAsync(INetWorkChannel netWorkChannel, ReqMailClaimAllAttachment request, RespMailClaimAllAttachment response)
+    {
+        var state = OwnerComponent.State;
+        var changedMailIds = new List<long>();
+        var now = TimerHelper.UnixTimeSeconds();
+
+        foreach (var mail in state.List)
+        {
+            if (mail.MailStatus == MailStatus.Deleted)
+            {
+                continue;
+            }
+
+            foreach (var att in mail.Attachments)
+            {
+                if (att.ClaimStatus != ClaimStatus.Claimable)
+                {
+                    continue;
+                }
+
+                var grantResult = await GrantAttachmentAsync(mail, att);
+                var success = grantResult.AllSuccess;
+                if (success)
+                {
+                    MailAttachmentClaim.MarkClaimed(att, now);
+                }
+
+                mail.AttachmentStatus = MailAttachmentClaim.ComputeAttachmentStatus(mail);
+
+                response.Slots.Add(new MailClaimedSlot
+                {
+                    MailId = mail.MailId,
+                    SlotId = att.SlotId,
+                    RewardType = att.RewardType,
+                    ItemId = att.ItemId,
+                    Count = att.Amount,
+                    ClaimStatus = (int)att.ClaimStatus,
+                    Success = success,
+                });
+
+                if (success)
+                {
+                    response.ClaimedCount++;
+                }
+
+                if (!changedMailIds.Contains(mail.MailId))
+                {
+                    changedMailIds.Add(mail.MailId);
+                }
+            }
+        }
+
+        if (changedMailIds.Count > 0)
+        {
+            await OwnerComponent.WriteStateAsync();
+            await NotifyChangedAsync(changedMailIds);
+        }
+
+        response.ErrorCode = (int)OperationStatusCode.Ok;
+    }
+
+    /// <summary>
+    /// 调用统一发放接口发放单个附件。幂等键 <c>RoleId:SourceType=Mail:SourceId:TraceId</c>，trace 为 <c>CampaignId:Version:MailId:SlotId</c> 四元组（B6）。
+    /// </summary>
+    private async Task<RewardGrantResult> GrantAttachmentAsync(MailState mail, MailAttachmentInstance att)
+    {
+        var rewardAgent = await ActorManager.GetComponentAgent<RewardGrantComponentAgent>();
+        return await rewardAgent.GrantAsync(new RewardGrantRequest
+        {
+            RoleId = ActorId,
+            SourceType = RewardSourceType.Mail,
+            SourceId = "mail:" + mail.MailId + ":slot:" + att.SlotId,
+            TraceId = MailAttachmentClaim.BuildTrace(mail.CampaignId, mail.CampaignVersion, mail.MailId, att.SlotId),
+            Rewards = new List<RewardItem>
+            {
+                new RewardItem { RewardType = (RewardType)att.RewardType, ItemId = att.ItemId, Count = att.Amount },
+            },
+        });
+    }
+
+    /// <summary>
+    /// 填充单领响应的奖励元信息与领取后邮件 / 附件状态。
+    /// </summary>
+    private static void FillClaimResponse(RespMailClaimAttachment response, MailState mail, MailAttachmentInstance att)
+    {
+        response.RewardType = att.RewardType;
+        response.ItemId = att.ItemId;
+        response.Count = att.Amount;
+        response.ClaimStatus = (int)att.ClaimStatus;
+        response.MailStatus = (int)mail.MailStatus;
+        response.AttachmentStatus = (int)mail.AttachmentStatus;
+    }
+
+    /// <summary>
     /// 过期清理（U1 §4.7 / B4）。遍历邮件箱，按 Campaign <c>ExpireAttachmentPolicy</c> 处理到期邮件。
     /// </summary>
     [Service]
@@ -471,45 +625,11 @@ public class MailComponentAgent : StateComponentAgent<MailComponent, MailBoxStat
     }
 
     /// <summary>
-    /// 重算 <see cref="MailState.AttachmentStatus"/> 派生字段（U1 §4.3）。
+    /// 重算 <see cref="MailState.AttachmentStatus"/> 派生字段（U1 §4.3）。委托 <see cref="MailAttachmentClaim.ComputeAttachmentStatus"/>，单一事实来源。
     /// </summary>
     private static void RecomputeAttachmentStatus(MailState mail)
     {
-        if (mail.Attachments == null || mail.Attachments.Count == 0)
-        {
-            mail.AttachmentStatus = AttachmentStatus.NoAttachment;
-            return;
-        }
-
-        if (mail.MailStatus == MailStatus.Revoked || mail.MailStatus == MailStatus.Expired)
-        {
-            mail.AttachmentStatus = AttachmentStatus.Unclaimable;
-            return;
-        }
-
-        var claimed = 0;
-        var claimable = 0;
-        foreach (var att in mail.Attachments)
-        {
-            if (att.ClaimStatus == ClaimStatus.Claimed)
-            {
-                claimed++;
-            }
-            else if (att.ClaimStatus == ClaimStatus.Claimable)
-            {
-                claimable++;
-            }
-        }
-
-        if (claimable == 0 && claimed == mail.Attachments.Count)
-        {
-            mail.AttachmentStatus = AttachmentStatus.AllClaimed;
-        }
-        else
-        {
-            // 仍存在可领（未领）附件 → PartialClaimed（含 0 已领情况，用于 B2 删除门禁）。
-            mail.AttachmentStatus = AttachmentStatus.PartialClaimed;
-        }
+        mail.AttachmentStatus = MailAttachmentClaim.ComputeAttachmentStatus(mail);
     }
 
     /// <summary>

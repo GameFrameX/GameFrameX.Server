@@ -350,4 +350,183 @@ namespace GameFrameX.Proto.Proto
 		}
 	}
 
+	/// <summary>
+	/// 单个附件槽位的领取结果（单领 / 一键领取共用）。携带发放的奖励元信息与领取后状态，供客户端播放特效与刷新背包。
+	/// </summary>
+	[ProtoContract]
+	[System.ComponentModel.Description("附件领取结果")]
+	public sealed class MailClaimedSlot
+	{
+		/// <summary>邮件实例 ID</summary>
+		[ProtoMember(1)]
+		[System.ComponentModel.Description("邮件实例 ID")]
+		public long MailId { get; set; }
+
+		/// <summary>附件槽位 ID</summary>
+		[ProtoMember(2)]
+		[System.ComponentModel.Description("附件槽位 ID")]
+		public int SlotId { get; set; }
+
+		/// <summary>奖励类型（RewardType）</summary>
+		[ProtoMember(3)]
+		[System.ComponentModel.Description("奖励类型")]
+		public int RewardType { get; set; }
+
+		/// <summary>物品 ID</summary>
+		[ProtoMember(4)]
+		[System.ComponentModel.Description("物品 ID")]
+		public int ItemId { get; set; }
+
+		/// <summary>数量</summary>
+		[ProtoMember(5)]
+		[System.ComponentModel.Description("数量")]
+		public long Count { get; set; }
+
+		/// <summary>领取状态（ClaimStatus）</summary>
+		[ProtoMember(6)]
+		[System.ComponentModel.Description("领取状态")]
+		public int ClaimStatus { get; set; }
+
+		/// <summary>是否发放成功</summary>
+		[ProtoMember(7)]
+		[System.ComponentModel.Description("是否发放成功")]
+		public bool Success { get; set; }
+	}
+
+	/// <summary>
+	/// 领取单个邮件附件请求。服务端校验邮件 / 附件状态后经统一奖励发放接口入账（B6 幂等）。
+	/// </summary>
+	[ProtoContract]
+	[System.ComponentModel.Description("领取邮件附件请求")]
+	[MessageTypeHandler(((-10) << 16) + 128)]
+	public sealed class ReqMailClaimAttachment : MessageObject, IRequestMessage
+	{
+		/// <summary>邮件实例 ID</summary>
+		[ProtoMember(1)]
+		[System.ComponentModel.Description("邮件实例 ID")]
+		public long MailId { get; set; }
+
+		/// <summary>附件槽位 ID</summary>
+		[ProtoMember(2)]
+		[System.ComponentModel.Description("附件槽位 ID")]
+		public int SlotId { get; set; }
+
+		public override void Clear()
+		{
+			MailId = default;
+			SlotId = default;
+		}
+	}
+
+	/// <summary>
+	/// 领取单个邮件附件响应。返回本次发放的奖励元信息与领取后邮件 / 附件最新状态。
+	/// </summary>
+	[ProtoContract]
+	[System.ComponentModel.Description("领取邮件附件响应")]
+	[MessageTypeHandler(((-10) << 16) + 129)]
+	public sealed class RespMailClaimAttachment : MessageObject, IResponseMessage
+	{
+		/// <summary>邮件实例 ID</summary>
+		[ProtoMember(1)]
+		[System.ComponentModel.Description("邮件实例 ID")]
+		public long MailId { get; set; }
+
+		/// <summary>附件槽位 ID</summary>
+		[ProtoMember(2)]
+		[System.ComponentModel.Description("附件槽位 ID")]
+		public int SlotId { get; set; }
+
+		/// <summary>奖励类型（RewardType）</summary>
+		[ProtoMember(3)]
+		[System.ComponentModel.Description("奖励类型")]
+		public int RewardType { get; set; }
+
+		/// <summary>物品 ID</summary>
+		[ProtoMember(4)]
+		[System.ComponentModel.Description("物品 ID")]
+		public int ItemId { get; set; }
+
+		/// <summary>数量</summary>
+		[ProtoMember(5)]
+		[System.ComponentModel.Description("数量")]
+		public long Count { get; set; }
+
+		/// <summary>本槽位领取后状态（ClaimStatus）</summary>
+		[ProtoMember(6)]
+		[System.ComponentModel.Description("本槽位领取状态")]
+		public int ClaimStatus { get; set; }
+
+		/// <summary>邮件生命周期状态（MailStatus）</summary>
+		[ProtoMember(7)]
+		[System.ComponentModel.Description("邮件生命周期状态")]
+		public int MailStatus { get; set; }
+
+		/// <summary>附件整体维度（AttachmentStatus）</summary>
+		[ProtoMember(8)]
+		[System.ComponentModel.Description("附件整体状态")]
+		public int AttachmentStatus { get; set; }
+
+		/// <summary>错误码（OperationStatusCode）</summary>
+		[ProtoMember(2047)]
+		[System.ComponentModel.Description("错误码")]
+		public int ErrorCode { get; set; }
+
+		public override void Clear()
+		{
+			MailId = default;
+			SlotId = default;
+			RewardType = default;
+			ItemId = default;
+			Count = default;
+			ClaimStatus = default;
+			MailStatus = default;
+			AttachmentStatus = default;
+			ErrorCode = default;
+		}
+	}
+
+	/// <summary>
+	/// 一键领取全部可领附件请求。无参，服务端遍历当前玩家邮件箱所有 <c>Claimable</c> 槽位批量发放。
+	/// </summary>
+	[ProtoContract]
+	[System.ComponentModel.Description("一键领取邮件附件请求")]
+	[MessageTypeHandler(((-10) << 16) + 130)]
+	public sealed class ReqMailClaimAllAttachment : MessageObject, IRequestMessage
+	{
+		public override void Clear()
+		{
+		}
+	}
+
+	/// <summary>
+	/// 一键领取全部可领附件响应。返回逐槽位结果与成功计数。
+	/// </summary>
+	[ProtoContract]
+	[System.ComponentModel.Description("一键领取邮件附件响应")]
+	[MessageTypeHandler(((-10) << 16) + 131)]
+	public sealed class RespMailClaimAllAttachment : MessageObject, IResponseMessage
+	{
+		/// <summary>逐槽位领取结果</summary>
+		[ProtoMember(1)]
+		[System.ComponentModel.Description("逐槽位领取结果")]
+		public List<MailClaimedSlot> Slots { get; set; } = new List<MailClaimedSlot>();
+
+		/// <summary>成功领取的槽位数</summary>
+		[ProtoMember(2)]
+		[System.ComponentModel.Description("成功领取的槽位数")]
+		public int ClaimedCount { get; set; }
+
+		/// <summary>错误码（OperationStatusCode）</summary>
+		[ProtoMember(2047)]
+		[System.ComponentModel.Description("错误码")]
+		public int ErrorCode { get; set; }
+
+		public override void Clear()
+		{
+			Slots.Clear();
+			ClaimedCount = default;
+			ErrorCode = default;
+		}
+	}
+
 }
