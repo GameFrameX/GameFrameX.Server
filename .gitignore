@@ -10,3 +10,7 @@ bin
 docs/_site
 running
 gfx-doc
+.codegraph
+CLAUDE.md
+AGENTS.md
+.claude
