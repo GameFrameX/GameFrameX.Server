@@ -109,7 +109,7 @@ internal sealed class AppStartUpGame : AppStartUpBase
                 MinModuleId = 10,
                 MaxModuleId = 9999,
                 TagName = "GameFrameX",
-                DataBaseUrl = "mongodb://admin:admin@127.0.0.1:27017/?authSource=admin&retryWrites=true&w=majority",
+                DataBaseUrl = "mongodb+srv://gameframex:f9v42aU9DVeFNfAF@gameframex.8taphic.mongodb.net/?retryWrites=true&w=majority",
                 DataBaseName = "gameframex",
             };
         }
