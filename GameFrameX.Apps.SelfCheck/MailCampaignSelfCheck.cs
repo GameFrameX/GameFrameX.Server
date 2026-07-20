@@ -40,7 +40,8 @@ namespace GameFrameX.Apps.SelfCheck
 {
     /// <summary>
     /// Admin 邮件发布 HTTP API 的最小自检：覆盖 <see cref="MailCampaignRegistry"/> 的校验、发布、撤回、查询路径，
-    /// 以及 B1（发布后不可修改）/ B3（撤回不回滚已发放资产，仅置状态）/ 幂等错误码。
+    /// 以及 B1（发布后不可修改）/ B3（撤回不回滚已发放资产，仅置状态）/ B5（撤回后同 CampaignId 拒绝再发布，Campaign 侧兜底）/
+    /// 端到端 smoke（发布 → 查询 → 撤回 → 查询）/ 幂等错误码。
     /// </summary>
     public static class MailCampaignSelfCheck
     {
@@ -54,6 +55,8 @@ namespace GameFrameX.Apps.SelfCheck
             AssertValidate();
             AssertPublishAndB1Immutability();
             AssertRevokeAndB3NoRollback();
+            AssertRevokeBlocksRepublish();
+            AssertEndToEndFlow();
             AssertQuery();
 
             MailCampaignRegistry.ResetForTest();
@@ -193,6 +196,86 @@ namespace GameFrameX.Apps.SelfCheck
             {
                 throw new InvalidOperationException("TryQuery 不存在的 CampaignId 应返回 false。");
             }
+        }
+
+        // B5（Campaign 侧兜底）：撤回后的 Campaign，再次以同 CampaignId 调用 PublishOrUpdate 应抛 InvalidOperationException，
+        // 呼应 U1 §4.5「撤回 Campaign 防重实例化」与 §4.6「未实例化的 Campaign：撤回仅置 Campaign 状态，懒创建算法的防重实例化分支兜底」。
+        private static void AssertRevokeBlocksRepublish()
+        {
+            var campaign = MakeValidCampaign();
+            var published = MailCampaignRegistry.PublishOrUpdate(campaign, "admin-test", 1_700_010_000L);
+
+            AssertEqual(OperationStatusCode.Ok, MailCampaignRegistry.Revoke(published.CampaignId, "admin-test", 1_700_010_100L), "Revoke(before-republish)");
+
+            // 撤回后同 CampaignId 再发布：Registry 拒绝（已撤回视为终态，主体字段不可再修改）。
+            var republish = MakeValidCampaign();
+            republish.CampaignId = published.CampaignId;
+            try
+            {
+                MailCampaignRegistry.PublishOrUpdate(republish, "admin-test", 1_700_010_200L);
+                throw new InvalidOperationException("B5 自检失败：撤回后同 CampaignId 再次发布应抛异常。");
+            }
+            catch (InvalidOperationException)
+            {
+                // 预期：撤回后同 CampaignId 不可再发布，避免撤回 Campaign 被重实例化。
+            }
+
+            // 撤回状态应保持不变（不被再发布覆盖）。
+            if (!MailCampaignRegistry.TryQuery(published.CampaignId, out var afterAttempt))
+            {
+                throw new InvalidOperationException("B5 自检失败：再发布尝试后 TryQuery 失败。");
+            }
+            AssertEqual(MailCampaignStatus.Revoked, afterAttempt.Status, "Revoke-blocks-republish.Status");
+            AssertEqual(1_700_010_100L, afterAttempt.RevokedAt, "Revoke-blocks-republish.RevokedAt");
+        }
+
+        // 端到端 smoke（Campaign 侧）：Admin 发布 → Server 保存发布记录 → TryQuery 命中 Published →
+        // 撤回 → TryQuery 命中 Revoked（含 RevokedAt / RevokeOperator）→ QueryAll(status=Revoked) 过滤命中。
+        // 玩家懒创建 / 附件领取 / B2 / B6 由 #74 / C10 落地后补，本 smoke 只覆盖 Campaign 侧子流程。
+        private static void AssertEndToEndFlow()
+        {
+            var campaign = MakeValidCampaign();
+            campaign.MailType = MailType.Operation;
+            campaign.ServerIds = new List<int> { 200 };
+            campaign.MinLevel = 20;
+            campaign.MaxLevel = 80;
+
+            // 1. 发布 → Server 保存不可变快照（B1）。
+            var published = MailCampaignRegistry.PublishOrUpdate(campaign, "admin-flow", 1_700_020_000L);
+            if (published.CampaignId <= 0)
+            {
+                throw new InvalidOperationException("E2E 自检失败：PublishOrUpdate 应分配 CampaignId。");
+            }
+            AssertEqual(MailCampaignStatus.Published, published.Status, "E2E.Publish.Status");
+            AssertEqual("admin-flow", published.PublishOperator, "E2E.Publish.Operator");
+
+            // 2. TryQuery 命中 Published。
+            if (!MailCampaignRegistry.TryQuery(published.CampaignId, out var q1))
+            {
+                throw new InvalidOperationException("E2E 自检失败：发布后 TryQuery 失败。");
+            }
+            AssertEqual(MailCampaignStatus.Published, q1.Status, "E2E.QueryPublished.Status");
+            AssertEqual(0L, q1.RevokedAt, "E2E.QueryPublished.RevokedAt");
+
+            // 3. 撤回（B3：仅置状态字段，不回滚已发放资产——资产回滚由统一发放接口幂等账本保证）。
+            AssertEqual(OperationStatusCode.Ok, MailCampaignRegistry.Revoke(published.CampaignId, "admin-revoke", 1_700_020_500L), "E2E.Revoke");
+
+            // 4. TryQuery 命中 Revoked + RevokedAt + RevokeOperator。
+            if (!MailCampaignRegistry.TryQuery(published.CampaignId, out var q2))
+            {
+                throw new InvalidOperationException("E2E 自检失败：撤回后 TryQuery 失败。");
+            }
+            AssertEqual(MailCampaignStatus.Revoked, q2.Status, "E2E.QueryRevoked.Status");
+            AssertEqual(1_700_020_500L, q2.RevokedAt, "E2E.QueryRevoked.RevokedAt");
+            AssertEqual("admin-revoke", q2.RevokeOperator, "E2E.QueryRevoked.RevokeOperator");
+
+            // 5. QueryAll(status=Revoked) 过滤命中；重复撤回返回 CampaignAlreadyRevoked。
+            var revokedList = MailCampaignRegistry.QueryAll(status: MailCampaignStatus.Revoked);
+            if (revokedList.Find(c => c.CampaignId == published.CampaignId) == null)
+            {
+                throw new InvalidOperationException("E2E 自检失败：QueryAll(status=Revoked) 未命中已撤回 Campaign。");
+            }
+            AssertEqual(OperationStatusCode.CampaignAlreadyRevoked, MailCampaignRegistry.Revoke(published.CampaignId, "admin-revoke", 1_700_020_600L), "E2E.Revoke(duplicate)");
         }
 
         private static MailCampaignState MakeValidCampaign()
