@@ -14,6 +14,13 @@
       <Compile Include="..\GameFrameX.Hotfix\Logic\Player\Attribute\PlayerAttributeMutation.cs" Link="Player\Attribute\PlayerAttributeMutation.cs" />
       <Compile Include="..\GameFrameX.Hotfix\Logic\Player\Attribute\PlayerAttributeSyncBuilder.cs" Link="Player\Attribute\PlayerAttributeSyncBuilder.cs" />
       <Compile Include="..\GameFrameX.Hotfix\Logic\Player\Attribute\PlayerInitialAttributeDefaults.cs" Link="Player\Attribute\PlayerInitialAttributeDefaults.cs" />
+      <Compile Include="..\GameFrameX.Apps\Player\Mail\MailCampaignStatus.cs" Link="Player\Mail\MailCampaignStatus.cs" />
+      <Compile Include="..\GameFrameX.Apps\Player\Mail\MailType.cs" Link="Player\Mail\MailType.cs" />
+      <Compile Include="..\GameFrameX.Apps\Player\Mail\ExpireAttachmentPolicy.cs" Link="Player\Mail\ExpireAttachmentPolicy.cs" />
+      <Compile Include="..\GameFrameX.Apps\Player\Mail\Entity\MailLocalizedContent.cs" Link="Player\Mail\Entity\MailLocalizedContent.cs" />
+      <Compile Include="..\GameFrameX.Apps\Player\Mail\Entity\MailAttachmentState.cs" Link="Player\Mail\Entity\MailAttachmentState.cs" />
+      <Compile Include="..\GameFrameX.Apps\Player\Mail\Entity\MailCampaignState.cs" Link="Player\Mail\Entity\MailCampaignState.cs" />
+      <Compile Include="..\GameFrameX.Hotfix\Logic\Player\Mail\MailCampaignRegistry.cs" Link="Player\Mail\MailCampaignRegistry.cs" />
     </ItemGroup>
 
     <ItemGroup>

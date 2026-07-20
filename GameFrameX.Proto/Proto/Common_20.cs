@@ -194,6 +194,24 @@ namespace GameFrameX.Proto.Proto
 		/// </summary>
 		[System.ComponentModel.Description("部分成功")]
 		PartialSuccess = 17,
+
+		/// <summary>
+		/// 运营邮件 Campaign 不存在（查询 / 撤回时未找到对应 CampaignId）
+		/// </summary>
+		[System.ComponentModel.Description("运营邮件 Campaign 不存在")]
+		CampaignNotFound = 21,
+
+		/// <summary>
+		/// 运营邮件 Campaign 已撤回，不可重复撤回或修改
+		/// </summary>
+		[System.ComponentModel.Description("运营邮件 Campaign 已撤回")]
+		CampaignAlreadyRevoked = 22,
+
+		/// <summary>
+		/// 运营邮件 Campaign 参数非法（必填缺失、过滤条件矛盾、附件数量非正等）
+		/// </summary>
+		[System.ComponentModel.Description("运营邮件 Campaign 参数非法")]
+		InvalidCampaignParameter = 23,
 	}
 
 	/// <summary>
