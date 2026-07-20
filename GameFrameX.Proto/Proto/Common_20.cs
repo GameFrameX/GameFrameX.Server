@@ -229,6 +229,24 @@ namespace GameFrameX.Proto.Proto
 		/// </summary>
 		[System.ComponentModel.Description("运营邮件 Campaign 参数非法")]
 		InvalidCampaignParameter = 23,
+
+		/// <summary>
+		/// 邮件附件槽位不存在（领取时 SlotId 未命中）
+		/// </summary>
+		[System.ComponentModel.Description("邮件附件槽位不存在")]
+		AttachmentNotFound = 24,
+
+		/// <summary>
+		/// 附件已领取（幂等命中，不重复发奖，B6）
+		/// </summary>
+		[System.ComponentModel.Description("附件已领取")]
+		AttachmentAlreadyClaimed = 25,
+
+		/// <summary>
+		/// 附件不可领取（撤回 / 过期已作废，B3 / B4）
+		/// </summary>
+		[System.ComponentModel.Description("附件不可领取")]
+		UnclaimableAttachment = 26,
 	}
 
 	/// <summary>
