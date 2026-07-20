@@ -66,7 +66,12 @@ public class MailComponentAgent : StateComponentAgent<MailComponent, MailBoxStat
     /// 先按 <c>LastSyncCampaignTime</c> 增量扫描新发布 Campaign 做懒创建（B5），再扫描已撤回 Campaign 对已实例化邮件执行 B3 作废。变更后持久化并推送 <c>NotifyMailChanged</c>。
     /// </remarks>
     [Service]
-    public virtual async Task SyncAsync()
+    public virtual Task SyncAsync()
+    {
+        return SyncAsyncImpl();
+    }
+
+    private async Task SyncAsyncImpl()
     {
         var (playerLevel, playerCreatedTime) = await GetPlayerFilterContext();
         var serverId = GameServerConst.Game.Id;
@@ -143,7 +148,12 @@ public class MailComponentAgent : StateComponentAgent<MailComponent, MailBoxStat
     /// 处理 <see cref="ReqMailList"/>：先懒同步，再分页返回邮件摘要（排除已删除）。
     /// </summary>
     [Service]
-    public virtual async Task OnReqMailListAsync(INetWorkChannel netWorkChannel, ReqMailList request, RespMailList response)
+    public virtual Task OnReqMailListAsync(INetWorkChannel netWorkChannel, ReqMailList request, RespMailList response)
+    {
+        return OnReqMailListAsyncImpl(netWorkChannel, request, response);
+    }
+
+    private async Task OnReqMailListAsyncImpl(INetWorkChannel netWorkChannel, ReqMailList request, RespMailList response)
     {
         await SyncAsync();
 
@@ -178,7 +188,12 @@ public class MailComponentAgent : StateComponentAgent<MailComponent, MailBoxStat
     /// 处理 <see cref="ReqMailRead"/>：标记已读（读信幂等），返回完整文案与附件领取状态。
     /// </summary>
     [Service]
-    public virtual async Task OnReqMailReadAsync(INetWorkChannel netWorkChannel, ReqMailRead request, RespMailRead response)
+    public virtual Task OnReqMailReadAsync(INetWorkChannel netWorkChannel, ReqMailRead request, RespMailRead response)
+    {
+        return OnReqMailReadAsyncImpl(netWorkChannel, request, response);
+    }
+
+    private async Task OnReqMailReadAsyncImpl(INetWorkChannel netWorkChannel, ReqMailRead request, RespMailRead response)
     {
         var state = OwnerComponent.State;
         var mail = TryFindMail(state, request.MailId);
@@ -233,7 +248,12 @@ public class MailComponentAgent : StateComponentAgent<MailComponent, MailBoxStat
     /// 处理 <see cref="ReqMailDelete"/>：U1 §4.8 删除算法（B2）。未领附件邮件拒绝删除。
     /// </summary>
     [Service]
-    public virtual async Task OnReqMailDeleteAsync(INetWorkChannel netWorkChannel, ReqMailDelete request, RespMailDelete response)
+    public virtual Task OnReqMailDeleteAsync(INetWorkChannel netWorkChannel, ReqMailDelete request, RespMailDelete response)
+    {
+        return OnReqMailDeleteAsyncImpl(netWorkChannel, request, response);
+    }
+
+    private async Task OnReqMailDeleteAsyncImpl(INetWorkChannel netWorkChannel, ReqMailDelete request, RespMailDelete response)
     {
         var state = OwnerComponent.State;
         var mail = TryFindMail(state, request.MailId);
@@ -277,7 +297,12 @@ public class MailComponentAgent : StateComponentAgent<MailComponent, MailBoxStat
     /// </summary>
     /// <remarks>不触发 <see cref="SyncAsync"/>：领取作用于当前邮件箱快照，懒同步由列表 / 读信路径保证。幂等命中已领槽位时按成功回包，不重复发奖。</remarks>
     [Service]
-    public virtual async Task OnReqMailClaimAttachmentAsync(INetWorkChannel netWorkChannel, ReqMailClaimAttachment request, RespMailClaimAttachment response)
+    public virtual Task OnReqMailClaimAttachmentAsync(INetWorkChannel netWorkChannel, ReqMailClaimAttachment request, RespMailClaimAttachment response)
+    {
+        return OnReqMailClaimAttachmentAsyncImpl(netWorkChannel, request, response);
+    }
+
+    private async Task OnReqMailClaimAttachmentAsyncImpl(INetWorkChannel netWorkChannel, ReqMailClaimAttachment request, RespMailClaimAttachment response)
     {
         var state = OwnerComponent.State;
         var prepare = MailAttachmentClaim.Prepare(state, request.MailId, request.SlotId);
@@ -328,7 +353,12 @@ public class MailComponentAgent : StateComponentAgent<MailComponent, MailBoxStat
     /// 处理 <see cref="ReqMailClaimAllAttachment"/>：一键领取当前邮件箱所有 <see cref="ClaimStatus.Claimable"/> 槽位。逐项独立判定，部分失败不影响其余项。
     /// </summary>
     [Service]
-    public virtual async Task OnReqMailClaimAllAttachmentAsync(INetWorkChannel netWorkChannel, ReqMailClaimAllAttachment request, RespMailClaimAllAttachment response)
+    public virtual Task OnReqMailClaimAllAttachmentAsync(INetWorkChannel netWorkChannel, ReqMailClaimAllAttachment request, RespMailClaimAllAttachment response)
+    {
+        return OnReqMailClaimAllAttachmentAsyncImpl(netWorkChannel, request, response);
+    }
+
+    private async Task OnReqMailClaimAllAttachmentAsyncImpl(INetWorkChannel netWorkChannel, ReqMailClaimAllAttachment request, RespMailClaimAllAttachment response)
     {
         var state = OwnerComponent.State;
         var changedMailIds = new List<long>();
@@ -425,7 +455,12 @@ public class MailComponentAgent : StateComponentAgent<MailComponent, MailBoxStat
     /// 过期清理（U1 §4.7 / B4）。遍历邮件箱，按 Campaign <c>ExpireAttachmentPolicy</c> 处理到期邮件。
     /// </summary>
     [Service]
-    public virtual async Task ExpireSweepAsync()
+    public virtual Task ExpireSweepAsync()
+    {
+        return ExpireSweepAsyncImpl();
+    }
+
+    private async Task ExpireSweepAsyncImpl()
     {
         var state = OwnerComponent.State;
         var now = TimerHelper.UnixTimeSeconds();
@@ -485,7 +520,12 @@ public class MailComponentAgent : StateComponentAgent<MailComponent, MailBoxStat
     /// </summary>
     /// <remarks>幂等：重复调用对已处理邮件无副作用。通常由 <see cref="SyncAsync"/> 扫描已撤回 Campaign 时触发；本方法也可供撤回推送路径直接调用。</remarks>
     [Service]
-    public virtual async Task ApplyRevokeAsync(long campaignId, int campaignVersion)
+    public virtual Task ApplyRevokeAsync(long campaignId, int campaignVersion)
+    {
+        return ApplyRevokeAsyncImpl(campaignId, campaignVersion);
+    }
+
+    private async Task ApplyRevokeAsyncImpl(long campaignId, int campaignVersion)
     {
         var state = OwnerComponent.State;
         var changedMailIds = new List<long>();
