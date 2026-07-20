@@ -101,14 +101,15 @@ internal sealed class AppStartUpGame : AppStartUpBase
                 IsEnableTcp = true,
                 InnerPort = 29100,
                 MetricsPort = 29090,
-                HttpPort = 28080,
                 IsEnableHttp = true,
+                HttpPort = 28080,
+                IsEnableWebSocket = true,
                 WsPort = 29110,
-                MinModuleId = 10,
                 HttpIsDevelopment = true,
+                MinModuleId = 10,
                 MaxModuleId = 9999,
                 TagName = "GameFrameX",
-                DataBaseUrl = "mongodb+srv://gameframex:f9v42aU9DVeFNfAF@gameframex.8taphic.mongodb.net/?retryWrites=true&w=majority",
+                DataBaseUrl = "mongodb://admin:admin@127.0.0.1:27017/?authSource=admin&retryWrites=true&w=majority",
                 DataBaseName = "gameframex",
             };
         }
