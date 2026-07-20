@@ -214,6 +214,35 @@ namespace GameFrameX.Hotfix.Logic.Player.Mail
         }
 
         /// <summary>
+        /// 构造玩家邮箱懒创建去重键 <c>CampaignId@PublishVersion</c>（B5 幂等键）。
+        /// </summary>
+        public static string BuildKey(long campaignId, int publishVersion)
+        {
+            return campaignId + "@" + publishVersion;
+        }
+
+        /// <summary>
+        /// 按 <see cref="MailCampaignState.PublishedAt"/> 升序返回发布时间大于 <paramref name="since"/> 的 Campaign。
+        /// </summary>
+        public static List<MailCampaignState> QueryPublishedSince(long since)
+        {
+            return Campaigns.Values
+                .Where(c => c.PublishedAt > since)
+                .OrderBy(c => c.PublishedAt)
+                .ToList();
+        }
+
+        /// <summary>
+        /// 返回当前所有已撤回 Campaign，供玩家懒同步时作废已实例化邮件（B3）。
+        /// </summary>
+        public static List<MailCampaignState> GetRevokedCampaigns()
+        {
+            return Campaigns.Values
+                .Where(c => c.Status == MailCampaignStatus.Revoked)
+                .ToList();
+        }
+
+        /// <summary>
         /// 按过滤条件查询 Campaign 列表（Admin 查询发布状态）。所有过滤条件为 AND 关系，空 / 0 表示不限。
         /// </summary>
         /// <param name="status">状态过滤；传 null 表示不限。</param>

@@ -35,6 +35,7 @@ using GameFrameX.Apps.Player.Player.Component;
 using GameFrameX.Apps.Player.Player.Entity;
 using GameFrameX.Hotfix.Logic.Game.Room;
 using GameFrameX.Hotfix.Logic.Player.Attribute;
+using GameFrameX.Hotfix.Logic.Player.Mail;
 using GameFrameX.Hotfix.Logic.Server;
 
 namespace GameFrameX.Hotfix.Logic.Player.Login;
@@ -85,5 +86,9 @@ public class PlayerComponentAgent : StateComponentAgent<PlayerComponent, PlayerS
 
         // 推送玩家属性完整快照，供客户端初始化属性显示
         await workChannel.WriteAsync(attributeComponentAgent.BuildSyncSnapshot());
+
+        // 触发邮件懒同步（懒创建触发点 1：登录完成后）。SyncAsync 在线时会推送 NotifyMailChanged。
+        var mailAgent = await ActorManager.GetComponentAgent<MailComponentAgent>(playerState.Id);
+        await mailAgent.SyncAsync();
     }
 }
