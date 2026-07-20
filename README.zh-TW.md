@@ -82,22 +82,91 @@ GameFrameX Server 是基於 C# .NET 10.0 開發的高效能遊戲伺服器框架
 
 ### 安裝與執行
 
+本機開發預設規則：
+
+- 優先開啟 `Server.slnx`。它更簡潔、更容易審查；如果 IDE 不支援 `.slnx`，再開啟 `Server.sln`。
+- 一般本機偵錯時 `Program arguments` / `Command line arguments` 留空。預設設定在 `GameFrameX.Launcher/StartUp/AppStartUpGame.cs`。
+- 只有需要覆蓋預設值時才傳啟動參數，例如換連接埠或連接其他 MongoDB。
+
+#### 方式 1：Docker 一鍵啟動
+
 ```bash
-# 1. 克隆倉庫
 git clone https://github.com/GameFrameX/Server_main.git
 cd Server_main
+docker compose up -d --build
+```
 
-# 2. 還原依賴
+#### 方式 2：命令列本機啟動
+
+先啟動 MongoDB：
+
+```bash
+docker compose up -d mongodb
+```
+
+再編譯並從輸出目錄啟動 Launcher：
+
+```bash
+git clone https://github.com/GameFrameX/Server_main.git
+cd Server_main
 dotnet restore
-
-# 3. 建置
-dotnet build
-
-# 4. 執行遊戲伺服器
-dotnet run --project GameFrameX.Launcher \
-    --ServerType=Game \
+dotnet build Server.sln
+cd bin/app_debug
+dotnet GameFrameX.Launcher.dll \
     --ServerId=1000 \
-    --APMPort=29090
+    --ServerType=Game \
+    --IsEnableTcp=true \
+    --InnerPort=29100 \
+    --MetricsPort=29090 \
+    --IsEnableHttp=true \
+    --HttpPort=28080 \
+    --IsEnableWebSocket=true \
+    --WsPort=29110 \
+    --HttpIsDevelopment=true \
+    --MinModuleId=10 \
+    --MaxModuleId=9999 \
+    --TagName=GameFrameX \
+    --DataBaseUrl="mongodb+srv://gameframex:f9v42aU9DVeFNfAF@gameframex.8taphic.mongodb.net/?retryWrites=true&w=majority" \
+    --DataBaseName=gameframex
+```
+
+#### 方式 3：Rider 偵錯
+
+1. 開啟 `Server.slnx`；如果 Rider 版本不支援 `.slnx`，再開啟 `Server.sln`。
+2. 啟動 MongoDB：`docker compose up -d mongodb`。
+3. 建立或編輯 `GameFrameX.Launcher` 的 `.NET Project` 執行設定。
+4. `Working directory` 設定為 `$SolutionDir$/bin/app_debug`。
+5. `Program arguments` 留空。
+6. 點擊 Debug。第一次偵錯前如果 `bin/app_debug` 不存在，先執行一次 `dotnet build Server.sln`。
+
+#### 方式 4：Visual Studio 偵錯
+
+1. 開啟 `Server.slnx`；如果 Visual Studio 版本不支援 `.slnx`，再開啟 `Server.sln`。
+2. 將 `GameFrameX.Launcher` 設為啟動專案。
+3. 啟動 MongoDB：`docker compose up -d mongodb`。
+4. `Working directory` 設定為解決方案目錄下的 `bin\app_debug`。
+5. `Command line arguments` 留空。
+6. 按 F5 啟動偵錯。第一次偵錯前如果輸出目錄不存在，先執行一次 Build Solution。
+
+#### 需要時覆蓋預設設定
+
+```bash
+dotnet GameFrameX.Launcher.dll \
+    --ServerId=1000 \
+    --ServerType=Game \
+    --IsEnableTcp=true \
+    --InnerPort=29100 \
+    --MetricsPort=29090 \
+    --IsEnableHttp=true \
+    --HttpPort=28080 \
+    --IsEnableWebSocket=true \
+    --WsPort=29110 \
+    --HttpIsDevelopment=true \
+    --MinModuleId=10 \
+    --MaxModuleId=9999 \
+    --TagName=GameFrameX \
+    --DataBaseUrl="mongodb+srv://gameframex:f9v42aU9DVeFNfAF@gameframex.8taphic.mongodb.net/?retryWrites=true&w=majority" \
+    --DataBaseName=gameframex
 ```
 
 ### 驗證部署
@@ -163,8 +232,8 @@ Server_main/
 │
 ├── GameFrameX.Architecture.Analyzers/        # 編譯期架構規則檢查器
 │
-├── Server.sln                   # Visual Studio 解決方案
-├── Server.slnx                  # XML 解決方案
+├── Server.slnx                  # 新版本 IDE 推薦使用的解決方案檔案
+├── Server.sln                   # 不支援 .slnx 的 IDE 備用解決方案
 ├── Dockerfile                   # Docker 多階段建置
 ├── docker-compose.yml           # Docker Compose 編排
 └── LICENSE.md                   # Apache License 2.0
@@ -435,30 +504,46 @@ curl "http://localhost:28080/game/api/Reload?version=1.0.1"
 
 ## 文檔與資源
 
+### 設定覆蓋參數
+
 | 設定項 | 說明 | 預設值 | 範例 |
 | :--- | :--- | :--- | :--- |
 | `ServerType` | 伺服器類型 | — | `Game` |
 | `ServerId` | 伺服器唯一識別 | — | `1000` |
+| `IsEnableTcp` | 是否啟用 TCP 服務 | `false` | `true` |
 | `InnerPort` | TCP 內部通訊埠 | — | `29100` |
+| `IsEnableHttp` | 是否啟用 HTTP 服務 | `false` | `true` |
 | `HttpPort` | HTTP 服務埠 | `0` | `28080` |
+| `IsEnableWebSocket` | 是否啟用 WebSocket 服務 | `false` | `true` |
 | `WsPort` | WebSocket 服務埠 | `0` | `29110` |
 | `MetricsPort` | Prometheus 指標埠 | `0` | `29090` |
+| `HttpIsDevelopment` | 是否啟用 HTTP 開發模式 | `false` | `true` |
+| `MinModuleId` | 遊戲伺服器處理的最小模組 ID | — | `10` |
+| `MaxModuleId` | 遊戲伺服器處理的最大模組 ID | — | `9999` |
+| `TagName` | 執行時標籤名稱 | — | `GameFrameX` |
 | `DataBaseUrl` | MongoDB 連線字串 | — | `mongodb://localhost:27017` |
 | `DataBaseName` | 資料庫名稱 | — | `gameframex` |
 
 > **[!NOTE]**
-> 上表僅列出最小啟動參數。完整配置項（網路、日誌、Actor、監控、安全等）請查閱 **[Configuration Management — GameFrameX.Server.Source](https://github.com/GameFrameX/GameFrameX.Server.Source#configuration-management)**。
+> 本機偵錯可以直接使用 `GameFrameX.Launcher/StartUp/AppStartUpGame.cs` 中的預設設定，不需要傳參。上表列出的是常見覆蓋參數。完整配置項（網路、日誌、Actor、監控、安全等）請查閱 **[Configuration Management — GameFrameX.Server.Source](https://github.com/GameFrameX/GameFrameX.Server.Source#configuration-management)**。
 
 ```bash
 dotnet GameFrameX.Launcher.dll \
-    --ServerType=Game \
     --ServerId=1000 \
+    --ServerType=Game \
+    --IsEnableTcp=true \
     --InnerPort=29100 \
-    --HttpPort=28080 \
-    --WsPort=29110 \
     --MetricsPort=29090 \
-    --DataBaseUrl=mongodb://127.0.0.1:27017 \
-    --DataBaseName=game_db
+    --IsEnableHttp=true \
+    --HttpPort=28080 \
+    --IsEnableWebSocket=true \
+    --WsPort=29110 \
+    --HttpIsDevelopment=true \
+    --MinModuleId=10 \
+    --MaxModuleId=9999 \
+    --TagName=GameFrameX \
+    --DataBaseUrl="mongodb+srv://gameframex:f9v42aU9DVeFNfAF@gameframex.8taphic.mongodb.net/?retryWrites=true&w=majority" \
+    --DataBaseName=gameframex
 ```
 
 ### Docker 部署

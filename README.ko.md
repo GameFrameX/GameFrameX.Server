@@ -82,22 +82,91 @@ GameFrameX Server는 C# .NET 10.0 기반의 고성능 게임 서버 프레임워
 
 ### 설치 및 실행
 
+로컬 개발 기본 규칙:
+
+- 먼저 `Server.slnx`를 여세요. 더 간결하고 리뷰하기 쉽습니다. IDE가 `.slnx`를 지원하지 않으면 `Server.sln`을 여세요.
+- 일반적인 로컬 디버깅에서는 `Program arguments` / `Command line arguments`를 비워 둡니다. 기본 설정은 `GameFrameX.Launcher/StartUp/AppStartUpGame.cs`에 있습니다.
+- 포트나 MongoDB를 바꾸는 등 기본값을 재정의해야 할 때만 시작 인자를 전달합니다.
+
+#### 방법 1: Docker로 한 번에 실행
+
 ```bash
-# 1. Clone the repository
 git clone https://github.com/GameFrameX/Server_main.git
 cd Server_main
+docker compose up -d --build
+```
 
-# 2. Restore dependencies
+#### 방법 2: 터미널에서 로컬 실행
+
+먼저 MongoDB를 시작합니다.
+
+```bash
+docker compose up -d mongodb
+```
+
+그 다음 빌드하고 출력 디렉터리에서 Launcher를 실행합니다.
+
+```bash
+git clone https://github.com/GameFrameX/Server_main.git
+cd Server_main
 dotnet restore
-
-# 3. Build
-dotnet build
-
-# 4. Run the game server
-dotnet run --project GameFrameX.Launcher \
-    --ServerType=Game \
+dotnet build Server.sln
+cd bin/app_debug
+dotnet GameFrameX.Launcher.dll \
     --ServerId=1000 \
-    --APMPort=29090
+    --ServerType=Game \
+    --IsEnableTcp=true \
+    --InnerPort=29100 \
+    --MetricsPort=29090 \
+    --IsEnableHttp=true \
+    --HttpPort=28080 \
+    --IsEnableWebSocket=true \
+    --WsPort=29110 \
+    --HttpIsDevelopment=true \
+    --MinModuleId=10 \
+    --MaxModuleId=9999 \
+    --TagName=GameFrameX \
+    --DataBaseUrl="mongodb+srv://gameframex:f9v42aU9DVeFNfAF@gameframex.8taphic.mongodb.net/?retryWrites=true&w=majority" \
+    --DataBaseName=gameframex
+```
+
+#### 방법 3: Rider로 디버그
+
+1. `Server.slnx`를 엽니다. Rider가 `.slnx`를 지원하지 않으면 `Server.sln`을 여세요.
+2. MongoDB를 시작합니다: `docker compose up -d mongodb`.
+3. `GameFrameX.Launcher`의 `.NET Project` 실행 구성을 만들거나 수정합니다.
+4. `Working directory`를 `$SolutionDir$/bin/app_debug`로 설정합니다.
+5. `Program arguments`를 비워 둡니다.
+6. Debug를 실행합니다. `bin/app_debug`가 없다면 먼저 `dotnet build Server.sln`을 한 번 실행하세요.
+
+#### 방법 4: Visual Studio로 디버그
+
+1. `Server.slnx`를 엽니다. Visual Studio가 `.slnx`를 지원하지 않으면 `Server.sln`을 여세요.
+2. `GameFrameX.Launcher`를 시작 프로젝트로 설정합니다.
+3. MongoDB를 시작합니다: `docker compose up -d mongodb`.
+4. `Working directory`를 솔루션 아래의 `bin\app_debug`로 설정합니다.
+5. `Command line arguments`를 비워 둡니다.
+6. F5로 디버그를 시작합니다. 출력 디렉터리가 없다면 먼저 Build Solution을 실행하세요.
+
+#### 필요할 때만 기본값 재정의
+
+```bash
+dotnet GameFrameX.Launcher.dll \
+    --ServerId=1000 \
+    --ServerType=Game \
+    --IsEnableTcp=true \
+    --InnerPort=29100 \
+    --MetricsPort=29090 \
+    --IsEnableHttp=true \
+    --HttpPort=28080 \
+    --IsEnableWebSocket=true \
+    --WsPort=29110 \
+    --HttpIsDevelopment=true \
+    --MinModuleId=10 \
+    --MaxModuleId=9999 \
+    --TagName=GameFrameX \
+    --DataBaseUrl="mongodb+srv://gameframex:f9v42aU9DVeFNfAF@gameframex.8taphic.mongodb.net/?retryWrites=true&w=majority" \
+    --DataBaseName=gameframex
 ```
 
 ### 배포 확인
@@ -163,8 +232,8 @@ Server_main/
 │
 ├── GameFrameX.Architecture.Analyzers/        # 컴파일 타임 아키텍처 규칙
 │
-├── Server.sln                   # Visual Studio 솔루션
-├── Server.slnx                  # XML 솔루션
+├── Server.slnx                  # 새 IDE에 권장하는 솔루션 파일
+├── Server.sln                   # .slnx 미지원 IDE용 대체 솔루션
 ├── Dockerfile                   # Docker 다단계 빌드
 ├── docker-compose.yml           # Docker Compose 오케스트레이션
 └── LICENSE.md                   # Apache License 2.0
@@ -435,32 +504,46 @@ curl "http://localhost:28080/game/api/Reload?version=1.0.1"
 
 ## 문서 및 자료
 
-### 설정
+### 기본 설정 재정의
 
 | 매개변수 | 설명 | 기본값 | 예시 |
 | :--- | :--- | :--- | :--- |
 | `ServerType` | 서버 타입 | — | `Game` |
 | `ServerId` | 고유 서버 ID | — | `1000` |
+| `IsEnableTcp` | TCP 서비스 활성화 여부 | `false` | `true` |
 | `InnerPort` | TCP 내부 포트 | — | `29100` |
+| `IsEnableHttp` | HTTP 서비스 활성화 여부 | `false` | `true` |
 | `HttpPort` | HTTP 서비스 포트 | `0` | `28080` |
+| `IsEnableWebSocket` | WebSocket 서비스 활성화 여부 | `false` | `true` |
 | `WsPort` | WebSocket 서비스 포트 | `0` | `29110` |
 | `MetricsPort` | Prometheus 메트릭 포트 | `0` | `29090` |
+| `HttpIsDevelopment` | HTTP 개발 모드 활성화 여부 | `false` | `true` |
+| `MinModuleId` | 게임 서버가 처리하는 최소 모듈 ID | — | `10` |
+| `MaxModuleId` | 게임 서버가 처리하는 최대 모듈 ID | — | `9999` |
+| `TagName` | 런타임 태그 이름 | — | `GameFrameX` |
 | `DataBaseUrl` | MongoDB 연결 문자열 | — | `mongodb://localhost:27017` |
 | `DataBaseName` | 데이터베이스 이름 | — | `gameframex` |
 
 > **[!NOTE]**
-> 위 표는 최소 시작 매개변수만 나열합니다. 전체 설정 항목(네트워크, 로그, Actor, 모니터링, 보안 등)은 **[Configuration Management — GameFrameX.Server.Source](https://github.com/GameFrameX/GameFrameX.Server.Source#configuration-management)**를 참조하세요.
+> 로컬 디버깅은 `GameFrameX.Launcher/StartUp/AppStartUpGame.cs`의 기본 설정을 사용할 수 있으므로 인자가 필요 없습니다. 위 표는 자주 쓰는 재정의 매개변수입니다. 전체 설정 항목(네트워크, 로그, Actor, 모니터링, 보안 등)은 **[Configuration Management — GameFrameX.Server.Source](https://github.com/GameFrameX/GameFrameX.Server.Source#configuration-management)**를 참조하세요.
 
 ```bash
 dotnet GameFrameX.Launcher.dll \
-    --ServerType=Game \
     --ServerId=1000 \
+    --ServerType=Game \
+    --IsEnableTcp=true \
     --InnerPort=29100 \
-    --HttpPort=28080 \
-    --WsPort=29110 \
     --MetricsPort=29090 \
-    --DataBaseUrl=mongodb://127.0.0.1:27017 \
-    --DataBaseName=game_db
+    --IsEnableHttp=true \
+    --HttpPort=28080 \
+    --IsEnableWebSocket=true \
+    --WsPort=29110 \
+    --HttpIsDevelopment=true \
+    --MinModuleId=10 \
+    --MaxModuleId=9999 \
+    --TagName=GameFrameX \
+    --DataBaseUrl="mongodb+srv://gameframex:f9v42aU9DVeFNfAF@gameframex.8taphic.mongodb.net/?retryWrites=true&w=majority" \
+    --DataBaseName=gameframex
 ```
 
 ### Docker 배포

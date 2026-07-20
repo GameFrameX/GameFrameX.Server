@@ -82,22 +82,91 @@ GameFrameX Server is a high-performance game server framework built on C# .NET 1
 
 ### Installation & Run
 
+Local development defaults:
+
+- Prefer opening `Server.slnx`. It is smaller and easier to review. If your IDE does not support `.slnx`, open `Server.sln`.
+- For normal local debugging, leave `Program arguments` / `Command line arguments` empty. Defaults are defined in `GameFrameX.Launcher/StartUp/AppStartUpGame.cs`.
+- Use startup arguments only when you need to override those defaults, such as changing ports or using another MongoDB instance.
+
+#### Option 1: Run Everything With Docker
+
 ```bash
-# 1. Clone the repository
 git clone https://github.com/GameFrameX/Server_main.git
 cd Server_main
+docker compose up -d --build
+```
 
-# 2. Restore dependencies
+#### Option 2: Run Locally From Terminal
+
+Start MongoDB first:
+
+```bash
+docker compose up -d mongodb
+```
+
+Then build and run the launcher from the output directory:
+
+```bash
+git clone https://github.com/GameFrameX/Server_main.git
+cd Server_main
 dotnet restore
-
-# 3. Build
-dotnet build
-
-# 4. Run the game server
-dotnet run --project GameFrameX.Launcher \
-    --ServerType=Game \
+dotnet build Server.sln
+cd bin/app_debug
+dotnet GameFrameX.Launcher.dll \
     --ServerId=1000 \
-    --APMPort=29090
+    --ServerType=Game \
+    --IsEnableTcp=true \
+    --InnerPort=29100 \
+    --MetricsPort=29090 \
+    --IsEnableHttp=true \
+    --HttpPort=28080 \
+    --IsEnableWebSocket=true \
+    --WsPort=29110 \
+    --HttpIsDevelopment=true \
+    --MinModuleId=10 \
+    --MaxModuleId=9999 \
+    --TagName=GameFrameX \
+    --DataBaseUrl="mongodb+srv://gameframex:f9v42aU9DVeFNfAF@gameframex.8taphic.mongodb.net/?retryWrites=true&w=majority" \
+    --DataBaseName=gameframex
+```
+
+#### Option 3: Debug With Rider
+
+1. Open `Server.slnx`; if your Rider version does not support `.slnx`, open `Server.sln`.
+2. Start MongoDB: `docker compose up -d mongodb`.
+3. Create or edit a `.NET Project` run configuration for `GameFrameX.Launcher`.
+4. Set `Working directory` to `$SolutionDir$/bin/app_debug`.
+5. Leave `Program arguments` empty.
+6. Click Debug. If `bin/app_debug` does not exist yet, run `dotnet build Server.sln` once.
+
+#### Option 4: Debug With Visual Studio
+
+1. Open `Server.slnx`; if your Visual Studio version does not support `.slnx`, open `Server.sln`.
+2. Set `GameFrameX.Launcher` as the startup project.
+3. Start MongoDB: `docker compose up -d mongodb`.
+4. Set `Working directory` to `bin\app_debug`.
+5. Leave `Command line arguments` empty.
+6. Press F5. If the output directory does not exist yet, run Build Solution once.
+
+#### Override Defaults When Needed
+
+```bash
+dotnet GameFrameX.Launcher.dll \
+    --ServerId=1000 \
+    --ServerType=Game \
+    --IsEnableTcp=true \
+    --InnerPort=29100 \
+    --MetricsPort=29090 \
+    --IsEnableHttp=true \
+    --HttpPort=28080 \
+    --IsEnableWebSocket=true \
+    --WsPort=29110 \
+    --HttpIsDevelopment=true \
+    --MinModuleId=10 \
+    --MaxModuleId=9999 \
+    --TagName=GameFrameX \
+    --DataBaseUrl="mongodb+srv://gameframex:f9v42aU9DVeFNfAF@gameframex.8taphic.mongodb.net/?retryWrites=true&w=majority" \
+    --DataBaseName=gameframex
 ```
 
 ### Verify Deployment
@@ -163,8 +232,8 @@ Server_main/
 │
 ├── GameFrameX.Architecture.Analyzers/        # Compile-time architecture rules
 │
-├── Server.sln                   # Visual Studio solution
-├── Server.slnx                  # XML solution
+├── Server.slnx                  # Recommended solution for newer IDEs
+├── Server.sln                   # Fallback solution for IDEs that do not support .slnx
 ├── Dockerfile                   # Docker multi-stage build
 ├── docker-compose.yml           # Docker Compose orchestration
 └── LICENSE.md                   # Apache License 2.0
@@ -435,32 +504,46 @@ curl "http://localhost:28080/game/api/Reload?version=1.0.1"
 
 ## Documentation & Resources
 
-### Configuration
+### Configuration Overrides
 
 | Parameter | Description | Default | Example |
 | :--- | :--- | :--- | :--- |
 | `ServerType` | Server type | — | `Game` |
 | `ServerId` | Unique server ID | — | `1000` |
+| `IsEnableTcp` | Enable TCP service | `false` | `true` |
 | `InnerPort` | TCP internal port | — | `29100` |
+| `IsEnableHttp` | Enable HTTP service | `false` | `true` |
 | `HttpPort` | HTTP service port | `0` | `28080` |
+| `IsEnableWebSocket` | Enable WebSocket service | `false` | `true` |
 | `WsPort` | WebSocket service port | `0` | `29110` |
 | `MetricsPort` | Prometheus metrics port | `0` | `29090` |
+| `HttpIsDevelopment` | Enable HTTP development mode | `false` | `true` |
+| `MinModuleId` | Minimum module ID handled by the game server | — | `10` |
+| `MaxModuleId` | Maximum module ID handled by the game server | — | `9999` |
+| `TagName` | Runtime tag name | — | `GameFrameX` |
 | `DataBaseUrl` | MongoDB connection string | — | `mongodb://localhost:27017` |
 | `DataBaseName` | Database name | — | `gameframex` |
 
 > **[!NOTE]**
-> The table above lists only the minimum startup parameters. For the complete configuration reference (network, logging, actor, monitoring, security, etc.), see **[Configuration Management — GameFrameX.Server.Source](https://github.com/GameFrameX/GameFrameX.Server.Source#configuration-management)**.
+> Local debugging can use the defaults in `GameFrameX.Launcher/StartUp/AppStartUpGame.cs` without passing arguments. The table above lists common override parameters. For the complete configuration reference (network, logging, actor, monitoring, security, etc.), see **[Configuration Management — GameFrameX.Server.Source](https://github.com/GameFrameX/GameFrameX.Server.Source#configuration-management)**.
 
 ```bash
 dotnet GameFrameX.Launcher.dll \
-    --ServerType=Game \
     --ServerId=1000 \
+    --ServerType=Game \
+    --IsEnableTcp=true \
     --InnerPort=29100 \
-    --HttpPort=28080 \
-    --WsPort=29110 \
     --MetricsPort=29090 \
-    --DataBaseUrl=mongodb://127.0.0.1:27017 \
-    --DataBaseName=game_db
+    --IsEnableHttp=true \
+    --HttpPort=28080 \
+    --IsEnableWebSocket=true \
+    --WsPort=29110 \
+    --HttpIsDevelopment=true \
+    --MinModuleId=10 \
+    --MaxModuleId=9999 \
+    --TagName=GameFrameX \
+    --DataBaseUrl="mongodb+srv://gameframex:f9v42aU9DVeFNfAF@gameframex.8taphic.mongodb.net/?retryWrites=true&w=majority" \
+    --DataBaseName=gameframex
 ```
 
 ### Docker Deployment
