@@ -29,90 +29,118 @@
 //  Official Documentation: https://gameframex.doc.alianblank.com/
 // ==========================================================================================
 
-namespace GameFrameX.Apps.Player.Mail.Entity;
+using System;
+using System.Collections.Generic;
+using GameFrameX.DataBase.Mongo;
 
-/// <summary>
-/// 运营邮件发布记录的多语言文案快照条目。按语言代码（如 <c>zh-CN</c> / <c>en-US</c>）索引标题与正文。
-/// </summary>
-/// <remarks>
-/// 发布即冻结：Admin 后续修改模板不回灌已发布邮件（U1 §3.2 / B1）。
-/// </remarks>
-public sealed class MailLocalizedText
+namespace GameFrameX.Apps.Player.Mail.Entity
 {
-    /// <summary>渲染后标题。</summary>
-    public string Title { get; set; }
+    /// <summary>
+    /// 运营邮件发布记录（Campaign）不可变快照。
+    /// 由 Admin 发布接口（<c>PublishMailCampaignHttpHandler</c>）写入，发布后主体字段不可修改（B1：发布后不可修改），
+    /// 仅 <see cref="Status"/> / <see cref="RevokedAt"/> / <see cref="RevokeOperator"/> 可通过撤回接口流转。
+    /// </summary>
+    public sealed class MailCampaignState : CacheState
+    {
+        /// <summary>
+        /// Campaign 唯一 ID。由发布接口生成（雪花 ID 或自增），全局唯一。
+        /// </summary>
+        public long CampaignId { get; set; }
 
-    /// <summary>渲染后正文。</summary>
-    public string Content { get; set; }
-}
+        /// <summary>
+        /// 模板 ID。引用运营邮件模板（多语言标题/正文/附件预设），0 表示无模板（裸文案发布）。
+        /// </summary>
+        public long TemplateId { get; set; }
 
-/// <summary>
-/// 运营邮件发布记录（Campaign 不可变快照）。Server 端 <see cref="Status"/> 仅 <see cref="MailCampaignStatus.Published"/> / <see cref="MailCampaignStatus.Revoked"/>。
-/// </summary>
-/// <remarks>
-/// 不可变边界（B1）：一旦发布，全字段冻结，不存在修改入口；改文案必须发新 <see cref="CampaignVersion"/>。
-/// 命中判断：<see cref="ServerInstanceIds"/> 空 = 不限；非空 = 含当前服 <c>Setting.ServerId</c>（业务 <c>ServerInstanceId</c> 即 <c>Setting.ServerId</c>，与协议层 <c>ServerId</c> 区分，U1 §3.2 / §6）。
-/// 撤回不可逆（B3）：仅置 <see cref="RevokedAt"/> 与 <see cref="Status"/>，不回滚已领取资产。
-/// </remarks>
-public sealed class MailCampaignState
-{
-    /// <summary>运营邮件活动 ID，全局唯一。</summary>
-    public string CampaignId { get; set; }
+        /// <summary>
+        /// 发布版本号。每次重新发布同一 Campaign（修正未发布草稿）自增；发布成功后不可再变更主体字段，版本随之冻结。
+        /// 与持久化层 <c>EntityBase.Version</c>（乐观并发控制）语义不同，单独命名为 <see cref="PublishVersion"/>。
+        /// </summary>
+        public int PublishVersion { get; set; }
 
-    /// <summary>发布版本号。同一 <see cref="CampaignId"/> 允许多版本，单调递增，发布即冻结（B1）。</summary>
-    public long CampaignVersion { get; set; }
+        /// <summary>
+        /// 生命周期状态。发布后为 <c>Published</c>，撤回后为 <c>Revoked</c>。撤回不可逆。
+        /// </summary>
+        public MailCampaignStatus Status { get; set; }
 
-    /// <summary>命中服务器实例集合（业务 <c>ServerInstanceId</c>，即 <c>Setting.ServerId</c>，long）。空集合 = 不限；非空 = 含当前服 <c>Setting.ServerId</c> 才命中。</summary>
-    public HashSet<long> ServerInstanceIds { get; set; } = new HashSet<long>();
+        /// <summary>
+        /// 邮件类型（系统 / 运营 / 补偿）。决定展示样式与过滤命中策略。
+        /// </summary>
+        public MailType MailType { get; set; }
 
-    /// <summary>渠道集合。空集合 = 不限。游戏服不持有渠道运行参数，带渠道条件的 Campaign 一期默认不实例化（U1 §4.5）。</summary>
-    public HashSet<string> ChannelIds { get; set; } = new HashSet<string>();
+        /// <summary>
+        /// 多语言标题列表。至少含一种语言，缺失语言由客户端回退到首项。
+        /// </summary>
+        public List<MailLocalizedContent> Titles { get; set; } = new List<MailLocalizedContent>();
 
-    /// <summary>等级区间下限（含）。空 = 不限。读取自 <c>PlayerState.Level</c>。</summary>
-    public int? MinLevel { get; set; }
+        /// <summary>
+        /// 多语言正文列表。规则同 <see cref="Titles"/>。
+        /// </summary>
+        public List<MailLocalizedContent> Contents { get; set; } = new List<MailLocalizedContent>();
 
-    /// <summary>等级区间上限（含）。空 = 不限。读取自 <c>PlayerState.Level</c>。</summary>
-    public int? MaxLevel { get; set; }
+        /// <summary>
+        /// 多语言发件人名称列表。规则同 <see cref="Titles"/>。
+        /// </summary>
+        public List<MailLocalizedContent> SenderNames { get; set; } = new List<MailLocalizedContent>();
 
-    /// <summary>玩家创建时间下限（unix 秒）。空 = 不限。读取自 <c>CacheState.CreatedTime</c>。</summary>
-    public long? PlayerCreatedAfter { get; set; }
+        /// <summary>
+        /// 附件槽位列表。玩家领取时按 <c>SlotId</c> 逐项走统一奖励发放接口。
+        /// </summary>
+        public List<MailAttachmentState> Attachments { get; set; } = new List<MailAttachmentState>();
 
-    /// <summary>玩家创建时间上限（unix 秒）。空 = 不限。读取自 <c>CacheState.CreatedTime</c>。</summary>
-    public long? PlayerCreatedBefore { get; set; }
+        /// <summary>
+        /// 命中过滤：服务器 ID 白名单。空列表表示不限服务器。
+        /// </summary>
+        public List<int> ServerIds { get; set; } = new List<int>();
 
-    /// <summary>邮件业务类型。仅分类展示，不影响状态机。</summary>
-    public MailType MailType { get; set; }
+        /// <summary>
+        /// 命中过滤：渠道 ID 白名单。空列表表示不限渠道。
+        /// </summary>
+        public List<int> ChannelIds { get; set; } = new List<int>();
 
-    /// <summary>模板 ID。发布即冻结。</summary>
-    public int TemplateId { get; set; }
+        /// <summary>
+        /// 命中过滤：最低玩家等级（含）。0 表示不设下限。
+        /// </summary>
+        public int MinLevel { get; set; }
 
-    /// <summary>模板版本。发布即冻结，模板后续编辑不影响已发布邮件。</summary>
-    public long TemplateVersion { get; set; }
+        /// <summary>
+        /// 命中过滤：最高玩家等级（含）。0 表示不设上限。
+        /// </summary>
+        public int MaxLevel { get; set; }
 
-    /// <summary>模板参数。与模板版本一同冻结。</summary>
-    public Dictionary<string, string> TemplateArgs { get; set; } = new Dictionary<string, string>();
+        /// <summary>
+        /// 附件过期处置策略（B4）。撤回或自然过期后未领取附件的处理方式。
+        /// </summary>
+        public ExpireAttachmentPolicy ExpireAttachmentPolicy { get; set; }
 
-    /// <summary>多语言文案快照。key = 语言代码。发布即冻结（B1）。</summary>
-    public Dictionary<string, MailLocalizedText> LocalizedContentSnapshot { get; set; } = new Dictionary<string, MailLocalizedText>();
+        /// <summary>
+        /// 邮件过期时间（Unix 秒，UTC）。0 表示永不过期；过期后未领取附件按 <see cref="ExpireAttachmentPolicy"/> 处理。
+        /// </summary>
+        public long ExpireAt { get; set; }
 
-    /// <summary>附件定义列表（Campaign 侧元信息，不含领取状态）。</summary>
-    public List<MailAttachmentState> Attachments { get; set; } = new List<MailAttachmentState>();
+        /// <summary>
+        /// 发布时间（Unix 秒，UTC）。Admin 发布接口写入时戳。
+        /// </summary>
+        public long PublishedAt { get; set; }
 
-    /// <summary>绝对过期时间（unix 秒）。空表示用 <see cref="ExpireDays"/> 相对计算。</summary>
-    public long? ExpireAt { get; set; }
+        /// <summary>
+        /// 撤回时间（Unix 秒，UTC）。未撤回时为 0；撤回后写入时间戳，不可清零。
+        /// </summary>
+        public long RevokedAt { get; set; }
 
-    /// <summary>自玩家实例化起算的相对过期天数。与 <see cref="ExpireAt"/> 二选一，<see cref="ExpireAt"/> 优先。</summary>
-    public int? ExpireDays { get; set; }
+        /// <summary>
+        /// Campaign 创建时间（Unix 秒，UTC）。Admin 查询发布状态时按此字段过滤。
+        /// </summary>
+        public long CreateTime { get; set; }
 
-    /// <summary>过期附件策略。默认 <see cref="ExpireAttachmentPolicy.DiscardUnclaimed"/>（B4）。</summary>
-    public ExpireAttachmentPolicy ExpireAttachmentPolicy { get; set; } = ExpireAttachmentPolicy.DiscardUnclaimed;
+        /// <summary>
+        /// 发布操作人（Admin 账号名）。用于审计。
+        /// </summary>
+        public string PublishOperator { get; set; }
 
-    /// <summary>Campaign 状态。<see cref="MailCampaignStatus.Published"/> → <see cref="MailCampaignStatus.Revoked"/> 单向不可逆（B1）。</summary>
-    public MailCampaignStatus Status { get; set; } = MailCampaignStatus.Published;
-
-    /// <summary>发布时间（unix 秒）。不可变。</summary>
-    public long PublishedAt { get; set; }
-
-    /// <summary>撤回时间（unix 秒）。空表示未撤回；非空表示已撤回（终态，B3）。</summary>
-    public long? RevokedAt { get; set; }
+        /// <summary>
+        /// 撤回操作人（Admin 账号名）。未撤回时为 null。
+        /// </summary>
+        public string RevokeOperator { get; set; }
+    }
 }

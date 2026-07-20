@@ -44,10 +44,10 @@ public sealed class MailState
     public long MailId { get; set; }
 
     /// <summary>来源发布记录 ID。</summary>
-    public string CampaignId { get; set; }
+    public long CampaignId { get; set; }
 
     /// <summary>来源发布版本号。与 <see cref="MailBoxState.CreatedCampaignVersions"/> 的 <c>CampaignId@Version</c> 对应。</summary>
-    public long CampaignVersion { get; set; }
+    public int CampaignVersion { get; set; }
 
     /// <summary>邮件业务类型。继承自 Campaign。</summary>
     public MailType MailType { get; set; }

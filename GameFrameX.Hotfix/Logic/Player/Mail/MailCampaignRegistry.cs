@@ -29,118 +29,311 @@
 //  Official Documentation: https://gameframex.doc.alianblank.com/
 // ==========================================================================================
 
+using System;
+using System.Collections.Concurrent;
+using System.Collections.Generic;
+using System.Linq;
 using GameFrameX.Apps.Player.Mail;
 using GameFrameX.Apps.Player.Mail.Entity;
+using GameFrameX.Proto.Proto;
 
-namespace GameFrameX.Hotfix.Logic.Player.Mail;
-
-/// <summary>
-/// 运营邮件发布记录的进程内只读源（Campaign 不可变快照存储）。
-/// </summary>
-/// <remarks>
-/// 一期为进程内单例（懒创建与撤回作废的查询入口）；Admin 发布 / 撤回 HTTP API（后续 derived change）向本注册表写入，
-/// 运行时无 Campaign 时懒创建空跑（不实例化任何邮件）。
-/// 写入与查询做了 <c>lock</c> 互斥，保证并发安全；Campaign 持久化（落库）不在本 change 范围。
-/// </remarks>
-public static class MailCampaignRegistry
+namespace GameFrameX.Hotfix.Logic.Player.Mail
 {
-    private static readonly object LockObj = new object();
-    private static readonly Dictionary<string, MailCampaignState> Campaigns = new Dictionary<string, MailCampaignState>();
-
     /// <summary>
-    /// 构造 Campaign 去重键 <c>CampaignId@Version</c>（B5 幂等键）。
+    /// 运营邮件 Campaign 进程级注册表：Admin HTTP API 的写入 / 撤回 / 查询入口，
+    /// 也是玩家邮件懒创建逻辑读取 Campaign 的只读源（见 U1 §3.8）。
+    /// 一期为单进程内存权威（<see cref="ConcurrentDictionary{TKey, TValue}"/>），跨进程持久化与同步不在本 change 范围。
     /// </summary>
-    public static string BuildKey(string campaignId, long campaignVersion)
+    /// <remarks>
+    /// 不可逆边界（B1–B4）：
+    /// - B1 发布后主体字段不可修改：已 <see cref="MailCampaignStatus.Published"/> 的 Campaign 再次提交时拒绝（返回 <see cref="OperationStatusCode.HasExist"/>）。
+    /// - B3 撤回不回滚：撤回只置 <see cref="MailCampaignState.Status"/> = <see cref="MailCampaignStatus.Revoked"/> 与 <see cref="MailCampaignState.RevokedAt"/>，已发放的奖励不回收。
+    /// - B4 过期未领取附件按 <see cref="MailCampaignState.ExpireAttachmentPolicy"/> 处理；落库与领取流程由后续玩家邮件核心 change 实现。
+    /// </remarks>
+    public static class MailCampaignRegistry
     {
-        return campaignId + "@" + campaignVersion;
-    }
+        private static readonly ConcurrentDictionary<long, MailCampaignState> Campaigns = new ConcurrentDictionary<long, MailCampaignState>();
 
-    /// <summary>
-    /// 写入或替换 Campaign 快照（幂等：同 <c>CampaignId@Version</c> 覆盖）。
-    /// 供后续 Admin 发布 HTTP API 与测试调用；本 change 运行时不主动调用。
-    /// </summary>
-    public static void PublishOrUpdate(MailCampaignState campaign)
-    {
-        if (campaign == null || string.IsNullOrEmpty(campaign.CampaignId))
-        {
-            return;
-        }
+        private static long _nextCampaignId = 1;
 
-        lock (LockObj)
+        /// <summary>
+        /// 校验 Campaign 参数合法性（发布与预览共用）。
+        /// 返回 <see cref="OperationStatusCode.Ok"/> 表示通过；否则返回对应错误码。
+        /// </summary>
+        /// <param name="campaign">待校验的 Campaign 快照（<see cref="MailCampaignState.CampaignId"/> 可为 0，由发布接口分配）。</param>
+        public static OperationStatusCode Validate(MailCampaignState campaign)
         {
-            Campaigns[BuildKey(campaign.CampaignId, campaign.CampaignVersion)] = campaign;
-        }
-    }
-
-    /// <summary>
-    /// 置 Campaign 撤回（<see cref="MailCampaignStatus.Revoked"/>，终态，B1 / B3）。
-    /// 供后续 Admin 撤回 HTTP API调用；本 change 运行时不主动调用。在线玩家的邮件作废在玩家下次懒同步时由 <c>MailComponentAgent</c> 兜底。
-    /// </summary>
-    /// <returns>命中并撤回返回 true；Campaign 不存在返回 false。</returns>
-    public static bool Revoke(string campaignId, long campaignVersion, long revokedAt)
-    {
-        if (string.IsNullOrEmpty(campaignId))
-        {
-            return false;
-        }
-
-        lock (LockObj)
-        {
-            if (!Campaigns.TryGetValue(BuildKey(campaignId, campaignVersion), out var campaign))
+            if (campaign == null)
             {
-                return false;
+                return OperationStatusCode.InvalidCampaignParameter;
             }
 
-            // Published → Revoked 单向不可逆（B1）：已是 Revoked 则保持原 RevokedAt 不变。
+            if (campaign.Titles == null || campaign.Titles.Count == 0)
+            {
+                return OperationStatusCode.InvalidCampaignParameter;
+            }
+
+            foreach (var title in campaign.Titles)
+            {
+                if (title == null || string.IsNullOrWhiteSpace(title.Language) || string.IsNullOrWhiteSpace(title.Text))
+                {
+                    return OperationStatusCode.InvalidCampaignParameter;
+                }
+            }
+
+            if (campaign.Contents != null)
+            {
+                foreach (var content in campaign.Contents)
+                {
+                    if (content == null || string.IsNullOrWhiteSpace(content.Language))
+                    {
+                        return OperationStatusCode.InvalidCampaignParameter;
+                    }
+                }
+            }
+
+            if (campaign.Attachments != null && campaign.Attachments.Count > 0)
+            {
+                var slotSet = new HashSet<int>();
+                foreach (var attachment in campaign.Attachments)
+                {
+                    if (attachment == null || attachment.Amount <= 0)
+                    {
+                        return OperationStatusCode.InvalidReward;
+                    }
+
+                    if (!slotSet.Add(attachment.SlotId))
+                    {
+                        return OperationStatusCode.InvalidCampaignParameter;
+                    }
+                }
+            }
+
+            if (campaign.MinLevel < 0 || campaign.MaxLevel < 0)
+            {
+                return OperationStatusCode.InvalidCampaignParameter;
+            }
+
+            if (campaign.MaxLevel > 0 && campaign.MinLevel > campaign.MaxLevel)
+            {
+                return OperationStatusCode.InvalidCampaignParameter;
+            }
+
+            if (campaign.ExpireAt < 0 || campaign.PublishedAt < 0 || campaign.CreateTime < 0)
+            {
+                return OperationStatusCode.InvalidCampaignParameter;
+            }
+
+            return OperationStatusCode.Ok;
+        }
+
+        /// <summary>
+        /// 发布或更新 Campaign（B1：已发布的主体字段不可修改，重复提交返回 <see cref="OperationStatusCode.HasExist"/>）。
+        /// 成功时分配 <see cref="MailCampaignState.CampaignId"/>（若入参为 0）、置 <see cref="MailCampaignState.Status"/> = Published、写入 <see cref="MailCampaignState.PublishedAt"/>。
+        /// </summary>
+        /// <param name="campaign">待发布的 Campaign 快照。</param>
+        /// <param name="operatorName">发布操作人（Admin 账号），写入 <see cref="MailCampaignState.PublishOperator"/> 用于审计。</param>
+        /// <param name="nowUnixSeconds">发布时间戳（Unix 秒，UTC）；调用方传入以便测试注入。</param>
+        /// <returns>发布成功后的最终 Campaign（含分配的 CampaignId / 版本号 / 时间戳）。</returns>
+        public static MailCampaignState PublishOrUpdate(MailCampaignState campaign, string operatorName, long nowUnixSeconds)
+        {
+            var code = Validate(campaign);
+            if (code != OperationStatusCode.Ok)
+            {
+                throw new ArgumentException("Campaign 参数非法，code=" + code);
+            }
+
+            if (campaign.CampaignId <= 0)
+            {
+                campaign.CampaignId = AllocateCampaignId();
+                campaign.PublishVersion = 1;
+            }
+            else if (Campaigns.TryGetValue(campaign.CampaignId, out var existing))
+            {
+                if (existing.Status == MailCampaignStatus.Published || existing.Status == MailCampaignStatus.Revoked)
+                {
+                    throw new InvalidOperationException("Campaign 已发布或已撤回，主体字段不可修改（B1）。CampaignId=" + campaign.CampaignId);
+                }
+
+                campaign.PublishVersion = existing.PublishVersion + 1;
+            }
+            else
+            {
+                campaign.PublishVersion = 1;
+            }
+
+            campaign.Status = MailCampaignStatus.Published;
+            campaign.PublishedAt = nowUnixSeconds;
+            if (campaign.CreateTime <= 0)
+            {
+                campaign.CreateTime = nowUnixSeconds;
+            }
+
+            campaign.PublishOperator = operatorName;
+            campaign.RevokedAt = 0;
+            campaign.RevokeOperator = null;
+            Campaigns[campaign.CampaignId] = campaign;
+            return campaign;
+        }
+
+        /// <summary>
+        /// 撤回 Campaign（B3：撤回不回滚已发放资产）。
+        /// 将 <see cref="MailCampaignState.Status"/> 置为 <see cref="MailCampaignStatus.Revoked"/>，写入 <see cref="MailCampaignState.RevokedAt"/> 与 <see cref="MailCampaignState.RevokeOperator"/>。
+        /// </summary>
+        /// <param name="campaignId">待撤回的 Campaign ID。</param>
+        /// <param name="operatorName">撤回操作人（Admin 账号）。</param>
+        /// <param name="nowUnixSeconds">撤回时间戳（Unix 秒，UTC）。</param>
+        /// <returns>成功返回 <see cref="OperationStatusCode.Ok"/>；Campaign 不存在返回 <see cref="OperationStatusCode.CampaignNotFound"/>；已撤回返回 <see cref="OperationStatusCode.CampaignAlreadyRevoked"/>。</returns>
+        public static OperationStatusCode Revoke(long campaignId, string operatorName, long nowUnixSeconds)
+        {
+            if (!Campaigns.TryGetValue(campaignId, out var campaign))
+            {
+                return OperationStatusCode.CampaignNotFound;
+            }
+
             if (campaign.Status == MailCampaignStatus.Revoked)
             {
-                return true;
+                return OperationStatusCode.CampaignAlreadyRevoked;
             }
 
             campaign.Status = MailCampaignStatus.Revoked;
-            campaign.RevokedAt = revokedAt;
-            return true;
+            campaign.RevokedAt = nowUnixSeconds;
+            campaign.RevokeOperator = operatorName;
+            return OperationStatusCode.Ok;
         }
-    }
 
-    /// <summary>
-    /// 按 <c>PublishedAt</c> 升序返回 <c>PublishedAt &gt; since</c> 的 Campaign（含已撤回，供懒创建防重实例化分支判断，B5）。
-    /// </summary>
-    public static List<MailCampaignState> QueryPublishedSince(long since)
-    {
-        lock (LockObj)
+        /// <summary>
+        /// 查询单个 Campaign（Admin 查询发布状态）。
+        /// </summary>
+        /// <param name="campaignId">Campaign ID。</param>
+        /// <param name="campaign">查到时输出 Campaign 快照；否则输出 null。</param>
+        /// <returns>存在返回 true；否则 false。</returns>
+        public static bool TryQuery(long campaignId, out MailCampaignState campaign)
         {
-            var result = new List<MailCampaignState>();
-            foreach (var campaign in Campaigns.Values)
+            return Campaigns.TryGetValue(campaignId, out campaign);
+        }
+
+        /// <summary>
+        /// 构造玩家邮箱懒创建去重键 <c>CampaignId@PublishVersion</c>（B5 幂等键）。
+        /// </summary>
+        public static string BuildKey(long campaignId, int publishVersion)
+        {
+            return campaignId + "@" + publishVersion;
+        }
+
+        /// <summary>
+        /// 按 <see cref="MailCampaignState.PublishedAt"/> 升序返回发布时间大于 <paramref name="since"/> 的 Campaign。
+        /// </summary>
+        public static List<MailCampaignState> QueryPublishedSince(long since)
+        {
+            return Campaigns.Values
+                .Where(c => c.PublishedAt > since)
+                .OrderBy(c => c.PublishedAt)
+                .ToList();
+        }
+
+        /// <summary>
+        /// 返回当前所有已撤回 Campaign，供玩家懒同步时作废已实例化邮件（B3）。
+        /// </summary>
+        public static List<MailCampaignState> GetRevokedCampaigns()
+        {
+            return Campaigns.Values
+                .Where(c => c.Status == MailCampaignStatus.Revoked)
+                .ToList();
+        }
+
+        /// <summary>
+        /// 按过滤条件查询 Campaign 列表（Admin 查询发布状态）。所有过滤条件为 AND 关系，空 / 0 表示不限。
+        /// </summary>
+        /// <param name="status">状态过滤；传 null 表示不限。</param>
+        /// <param name="mailType">类型过滤；传 null 表示不限。</param>
+        /// <param name="serverId">服务器 ID 过滤；≤ 0 表示不限。</param>
+        /// <param name="channelId">渠道 ID 过滤；≤ 0 表示不限。</param>
+        /// <param name="minLevel">最低等级过滤；≤ 0 表示不限。</param>
+        /// <param name="createdFromUnixSeconds">创建时间下限（含）；≤ 0 表示不限。</param>
+        /// <param name="createdToUnixSeconds">创建时间上限（含）；≤ 0 表示不限。</param>
+        /// <param name="limit">返回条数上限；≤ 0 表示返回全部。</param>
+        public static List<MailCampaignState> QueryAll(MailCampaignStatus? status = null, MailType? mailType = null, int serverId = 0, int channelId = 0, int minLevel = 0, long createdFromUnixSeconds = 0, long createdToUnixSeconds = 0, int limit = 0)
+        {
+            IEnumerable<MailCampaignState> result = Campaigns.Values;
+
+            if (status.HasValue)
             {
-                if (campaign.PublishedAt > since)
-                {
-                    result.Add(campaign);
-                }
+                result = result.Where(c => c.Status == status.Value);
             }
 
-            result.Sort((a, b) => a.PublishedAt.CompareTo(b.PublishedAt));
-            return result;
-        }
-    }
-
-    /// <summary>
-    /// 返回当前所有已撤回 Campaign（供玩家懒同步时作废已实例化邮件，B3）。调用方按需拷贝快照后处理。
-    /// </summary>
-    public static List<MailCampaignState> GetRevokedCampaigns()
-    {
-        lock (LockObj)
-        {
-            var result = new List<MailCampaignState>();
-            foreach (var campaign in Campaigns.Values)
+            if (mailType.HasValue)
             {
-                if (campaign.Status == MailCampaignStatus.Revoked)
-                {
-                    result.Add(campaign);
-                }
+                result = result.Where(c => c.MailType == mailType.Value);
             }
 
-            return result;
+            if (serverId > 0)
+            {
+                result = result.Where(c => c.ServerIds != null && c.ServerIds.Contains(serverId));
+            }
+
+            if (channelId > 0)
+            {
+                result = result.Where(c => c.ChannelIds != null && c.ChannelIds.Contains(channelId));
+            }
+
+            if (minLevel > 0)
+            {
+                result = result.Where(c => c.MaxLevel == 0 || c.MaxLevel >= minLevel);
+            }
+
+            if (createdFromUnixSeconds > 0)
+            {
+                result = result.Where(c => c.CreateTime >= createdFromUnixSeconds);
+            }
+
+            if (createdToUnixSeconds > 0)
+            {
+                result = result.Where(c => c.CreateTime <= createdToUnixSeconds);
+            }
+
+            result = result.OrderBy(c => c.CreateTime);
+
+            if (limit > 0)
+            {
+                result = result.Take(limit);
+            }
+
+            return result.ToList();
+        }
+
+        /// <summary>
+        /// 估算 Campaign 命中规模（预览用）。一期返回附件槽位数 + 过滤条件摘要，不做真实玩家数估算（数据源不在本 change 范围）。
+        /// </summary>
+        /// <param name="campaign">待预览的 Campaign。</param>
+        /// <param name="estimatedHitCount">估算命中玩家数（一期固定返回 -1，表示「需要接入在线 / 角色统计模块后才有真实值」）。</param>
+        public static void Preview(MailCampaignState campaign, out long estimatedHitCount)
+        {
+            var code = Validate(campaign);
+            if (code != OperationStatusCode.Ok)
+            {
+                throw new ArgumentException("Campaign 参数非法，code=" + code);
+            }
+
+            // 一期无角色 / 在线统计模块接入，估算命中返回 -1 表示「未知」。
+            estimatedHitCount = -1;
+        }
+
+        /// <summary>
+        /// 分配下一个 CampaignId（线程安全自增）。一期使用进程内自增，跨进程部署需替换为雪花 / 数据库序列。
+        /// </summary>
+        private static long AllocateCampaignId()
+        {
+            return System.Threading.Interlocked.Increment(ref _nextCampaignId);
+        }
+
+        /// <summary>
+        /// 测试 / SelfCheck 用：清空注册表并重置 ID 分配器。生产路径不得调用。
+        /// </summary>
+        internal static void ResetForTest()
+        {
+            Campaigns.Clear();
+            _nextCampaignId = 1;
         }
     }
 }

@@ -32,55 +32,6 @@
 namespace GameFrameX.Apps.Player.Mail;
 
 /// <summary>
-/// 运营邮件发布记录状态。Server 端仅 <see cref="Published"/> / <see cref="Revoked"/> 二态（U1 §4.1）。
-/// </summary>
-/// <remarks>
-/// <see cref="Published"/> → <see cref="Revoked"/> 单向不可逆；撤回后永不回到 <see cref="Published"/>，新需求必须发新 <c>CampaignVersion</c> 或新 <c>CampaignId</c>（B1）。
-/// 过期不是 Campaign 状态：<c>ExpireAt</c> 到期后 Campaign 仍为 <see cref="Published"/>，过期作用在玩家实例。
-/// </remarks>
-public enum MailCampaignStatus
-{
-    /// <summary>已发布。Campaign 已冻结为不可变快照。</summary>
-    Published = 0,
-
-    /// <summary>已撤回。终态，不可逆（B1 / B3）。</summary>
-    Revoked = 1,
-}
-
-/// <summary>
-/// 邮件业务类型。仅作分类与展示，不影响状态机（U1 §3.2）。
-/// </summary>
-public enum MailType
-{
-    /// <summary>系统邮件。</summary>
-    System = 0,
-
-    /// <summary>运营邮件。</summary>
-    Operation = 1,
-
-    /// <summary>补偿邮件。</summary>
-    Compensation = 2,
-}
-
-/// <summary>
-/// 过期附件策略（U1 §4.7 / B4）。
-/// </summary>
-/// <remarks>
-/// 默认 <see cref="DiscardUnclaimed"/>（过期未领取附件作废）；<see cref="KeepUnclaimed"/> 可配置开启（保留待领取）；<see cref="AutoClaim"/> 预留，需显式配置，本 change 不启用自动领取路径。
-/// </remarks>
-public enum ExpireAttachmentPolicy
-{
-    /// <summary>默认：过期时未领取附件作废（置 <see cref="ClaimStatus.Discarded"/>），邮件进入 <see cref="MailStatus.Expired"/>（B4）。</summary>
-    DiscardUnclaimed = 0,
-
-    /// <summary>保留未领取附件：仅标记邮件视图过期，附件仍可领（需配置开启）。</summary>
-    KeepUnclaimed = 1,
-
-    /// <summary>预留：过期时自动领取未领附件（需显式配置，本 change 不启用）。</summary>
-    AutoClaim = 2,
-}
-
-/// <summary>
 /// 玩家邮件实例生命周期状态（U1 §4.2）。
 /// </summary>
 /// <remarks>

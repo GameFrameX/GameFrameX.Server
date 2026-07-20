@@ -29,30 +29,40 @@
 //  Official Documentation: https://gameframex.doc.alianblank.com/
 // ==========================================================================================
 
-using GameFrameX.Apps.Player.Reward;
+using System.Collections.Generic;
 
-namespace GameFrameX.Apps.Player.Mail.Entity;
-
-/// <summary>
-/// 运营邮件活动附件元信息（Campaign 侧，不含领取状态）。
-/// </summary>
-/// <remarks>
-/// 实例化时由 <see cref="MailAttachmentInstance"/> 复制本元信息并承载领取状态；本类型本身只描述「发什么」，不描述「领没领」（U1 §3.5）。
-/// </remarks>
-public sealed class MailAttachmentState
+namespace GameFrameX.Apps.Player.Mail.Entity
 {
-    /// <summary>附件 ID。邮件内唯一。</summary>
-    public string AttachmentId { get; set; }
+    /// <summary>
+    /// 运营邮件附件元信息（Campaign 侧）。描述一个附件槽位的类型、物品、数量，
+    /// 实际发放走统一奖励发放接口（<c>RewardGrantComponentAgent.GrantAsync</c>），
+    /// 玩家领取时再生成具体 <c>RewardItem</c> 并写入幂等账本。
+    /// </summary>
+    public sealed class MailAttachmentState
+    {
+        /// <summary>
+        /// 附件槽位 ID，Campaign 内唯一。用于领取幂等与展示排序。
+        /// </summary>
+        public int SlotId { get; set; }
 
-    /// <summary>奖励类型（普通道具 / 隐藏道具 / 月卡 / 终生卡 / VIP 点 / 权益）。复用统一发放接口 <see cref="RewardType"/>。</summary>
-    public RewardType RewardType { get; set; }
+        /// <summary>
+        /// 奖励类型（普通道具 / 隐藏道具 / 月卡 / VIP 点 等）。一期仅 <c>NormalItem</c> 可发放，其它返回 <c>Unsupported</c>。
+        /// </summary>
+        public int RewardType { get; set; }
 
-    /// <summary>物品 ID。普通道具对应 <c>TbItemConfig</c> 配置 ID。</summary>
-    public int ItemId { get; set; }
+        /// <summary>
+        /// 物品 ID（普通道具对应 <c>TbItemConfig</c> 配置 ID）。
+        /// </summary>
+        public int ItemId { get; set; }
 
-    /// <summary>数量。必须大于 0。</summary>
-    public long Count { get; set; }
+        /// <summary>
+        /// 数量。必须大于 0，否则发布校验返回 <c>InvalidReward</c>。
+        /// </summary>
+        public long Amount { get; set; }
 
-    /// <summary>扩展数据（预留）。实例化时原样复制到 <see cref="MailAttachmentInstance.ExtraData"/>。</summary>
-    public string ExtraData { get; set; }
+        /// <summary>
+        /// 展示用图标 ID（可选，缺省时由客户端按 ItemId 兜底）。
+        /// </summary>
+        public int IconId { get; set; }
+    }
 }

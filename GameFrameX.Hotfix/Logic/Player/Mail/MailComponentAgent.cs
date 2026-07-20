@@ -29,6 +29,7 @@
 //  Official Documentation: https://gameframex.doc.alianblank.com/
 // ==========================================================================================
 
+using System;
 using GameFrameX.Apps.Common.Session;
 using GameFrameX.Apps.Player.Mail;
 using GameFrameX.Apps.Player.Mail.Component;
@@ -54,8 +55,6 @@ namespace GameFrameX.Hotfix.Logic.Player.Mail;
 /// </remarks>
 public class MailComponentAgent : StateComponentAgent<MailComponent, MailBoxState>
 {
-    private const long SecondsPerDay = 86400L;
-
     /// <summary>
     /// 邮件懒同步（U1 §4.5 + §4.6）。触发点：登录完成后、列表拉取前、显式同步。
     /// </summary>
@@ -81,7 +80,7 @@ public class MailComponentAgent : StateComponentAgent<MailComponent, MailBoxStat
                 maxPublishedAt = campaign.PublishedAt;
             }
 
-            var key = MailCampaignRegistry.BuildKey(campaign.CampaignId, campaign.CampaignVersion);
+            var key = MailCampaignRegistry.BuildKey(campaign.CampaignId, campaign.PublishVersion);
             if (state.CreatedCampaignVersions.Contains(key))
             {
                 continue; // 幂等（B5）
@@ -123,7 +122,7 @@ public class MailComponentAgent : StateComponentAgent<MailComponent, MailBoxStat
         // 2. 撤回作废（U1 §4.6 / B3）：扫描已撤回 Campaign，对已实例化邮件作废未领附件。
         foreach (var revoked in MailCampaignRegistry.GetRevokedCampaigns())
         {
-            if (ApplyRevokeToMailbox(state, revoked.CampaignId, revoked.CampaignVersion, changedMailIds))
+            if (ApplyRevokeToMailbox(state, revoked.CampaignId, revoked.PublishVersion, changedMailIds))
             {
                 changed = true;
             }
@@ -215,10 +214,10 @@ public class MailComponentAgent : StateComponentAgent<MailComponent, MailBoxStat
         {
             response.Attachments.Add(new MailAttachmentInfo
             {
-                AttachmentId = att.AttachmentId,
-                RewardType = (int)att.RewardType,
+                SlotId = att.SlotId,
+                RewardType = att.RewardType,
                 ItemId = att.ItemId,
-                Count = att.Count,
+                Count = att.Amount,
                 ClaimStatus = (int)att.ClaimStatus,
             });
         }
@@ -332,7 +331,7 @@ public class MailComponentAgent : StateComponentAgent<MailComponent, MailBoxStat
     /// </summary>
     /// <remarks>幂等：重复调用对已处理邮件无副作用。通常由 <see cref="SyncAsync"/> 扫描已撤回 Campaign 时触发；本方法也可供撤回推送路径直接调用。</remarks>
     [Service]
-    public virtual async Task ApplyRevokeAsync(string campaignId, long campaignVersion)
+    public virtual async Task ApplyRevokeAsync(long campaignId, int campaignVersion)
     {
         var state = OwnerComponent.State;
         var changedMailIds = new List<long>();
@@ -392,35 +391,26 @@ public class MailComponentAgent : StateComponentAgent<MailComponent, MailBoxStat
         {
             MailId = ++state.MailIdSeq,
             CampaignId = campaign.CampaignId,
-            CampaignVersion = campaign.CampaignVersion,
+            CampaignVersion = campaign.PublishVersion,
             MailType = campaign.MailType,
             Title = title,
             Content = content,
-            TemplateId = campaign.TemplateId,
-            TemplateVersion = campaign.TemplateVersion,
+            TemplateId = (int)campaign.TemplateId,
             CreateTime = now,
             ExpireTime = ResolveExpireTime(campaign, now),
             MailStatus = MailStatus.Unread,
             ReadStatus = ReadStatus.Unread,
         };
 
-        if (campaign.TemplateArgs != null)
-        {
-            foreach (var pair in campaign.TemplateArgs)
-            {
-                mail.TemplateArgs[pair.Key] = pair.Value;
-            }
-        }
-
         foreach (var att in campaign.Attachments)
         {
             mail.Attachments.Add(new MailAttachmentInstance
             {
-                AttachmentId = att.AttachmentId,
+                SlotId = att.SlotId,
                 RewardType = att.RewardType,
                 ItemId = att.ItemId,
-                Count = att.Count,
-                ExtraData = att.ExtraData,
+                Amount = att.Amount,
+                IconId = att.IconId,
                 ClaimStatus = ClaimStatus.Claimable,
             });
         }
@@ -432,7 +422,7 @@ public class MailComponentAgent : StateComponentAgent<MailComponent, MailBoxStat
     /// <summary>
     /// 对邮件箱执行撤回作废（B3）。返回是否有变更。
     /// </summary>
-    private bool ApplyRevokeToMailbox(MailBoxState state, string campaignId, long campaignVersion, List<long> changedMailIds)
+    private bool ApplyRevokeToMailbox(MailBoxState state, long campaignId, int campaignVersion, List<long> changedMailIds)
     {
         var changed = false;
         foreach (var mail in state.List)
@@ -523,18 +513,13 @@ public class MailComponentAgent : StateComponentAgent<MailComponent, MailBoxStat
     }
 
     /// <summary>
-    /// 计算实例过期时间：Campaign <c>ExpireAt</c> 优先；否则 <c>CreateTime + ExpireDays</c>；都空表示永不过期。
+    /// 计算实例过期时间：Campaign <c>ExpireAt</c> 大于 0 时使用；否则表示永不过期。
     /// </summary>
     private static long ResolveExpireTime(MailCampaignState campaign, long createTime)
     {
-        if (campaign.ExpireAt.HasValue)
+        if (campaign.ExpireAt > 0)
         {
-            return campaign.ExpireAt.Value;
-        }
-
-        if (campaign.ExpireDays.HasValue)
-        {
-            return createTime + campaign.ExpireDays.Value * SecondsPerDay;
+            return campaign.ExpireAt;
         }
 
         return long.MaxValue;
@@ -545,7 +530,7 @@ public class MailComponentAgent : StateComponentAgent<MailComponent, MailBoxStat
     /// </summary>
     private ExpireAttachmentPolicy ResolveExpirePolicy(MailState mail)
     {
-        var campaign = MailCampaignRegistry.QueryPublishedSince(0).Find(c => c.CampaignId == mail.CampaignId && c.CampaignVersion == mail.CampaignVersion);
+        var campaign = MailCampaignRegistry.QueryPublishedSince(0).Find(c => c.CampaignId == mail.CampaignId && c.PublishVersion == mail.CampaignVersion);
         return campaign?.ExpireAttachmentPolicy ?? ExpireAttachmentPolicy.DiscardUnclaimed;
     }
 
@@ -556,25 +541,34 @@ public class MailComponentAgent : StateComponentAgent<MailComponent, MailBoxStat
     {
         title = string.Empty;
         content = string.Empty;
-        if (campaign.LocalizedContentSnapshot == null || campaign.LocalizedContentSnapshot.Count == 0)
+        title = PickText(campaign.Titles);
+        content = PickText(campaign.Contents);
+    }
+
+    private static string PickText(List<MailLocalizedContent> content)
+    {
+        if (content == null || content.Count == 0)
         {
-            return;
+            return string.Empty;
         }
 
-        if (!campaign.LocalizedContentSnapshot.TryGetValue("zh-CN", out var text))
+        foreach (var item in content)
         {
-            foreach (var value in campaign.LocalizedContentSnapshot.Values)
+            if (item != null && string.Equals(item.Language, "zh-cn", StringComparison.OrdinalIgnoreCase))
             {
-                text = value;
-                break;
+                return item.Text ?? string.Empty;
             }
         }
 
-        if (text != null)
+        foreach (var item in content)
         {
-            title = text.Title ?? string.Empty;
-            content = text.Content ?? string.Empty;
+            if (item != null)
+            {
+                return item.Text ?? string.Empty;
+            }
         }
+
+        return string.Empty;
     }
 
     /// <summary>

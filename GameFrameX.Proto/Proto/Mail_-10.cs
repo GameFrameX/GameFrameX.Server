@@ -44,10 +44,10 @@ namespace GameFrameX.Proto.Proto
 	[System.ComponentModel.Description("邮件附件视图（含领取状态）")]
 	public sealed class MailAttachmentInfo
 	{
-		/// <summary>附件 ID（邮件内唯一）</summary>
+		/// <summary>附件槽位 ID（邮件内唯一）</summary>
 		[ProtoMember(1)]
-		[System.ComponentModel.Description("附件 ID")]
-		public string AttachmentId { get; set; }
+		[System.ComponentModel.Description("附件槽位 ID")]
+		public int SlotId { get; set; }
 
 		/// <summary>奖励类型（RewardType：0=普通道具，其余为预留路由位）</summary>
 		[ProtoMember(2)]
@@ -85,7 +85,7 @@ namespace GameFrameX.Proto.Proto
 		/// <summary>来源运营邮件活动 ID</summary>
 		[ProtoMember(2)]
 		[System.ComponentModel.Description("活动 ID")]
-		public string CampaignId { get; set; }
+		public long CampaignId { get; set; }
 
 		/// <summary>来源发布版本号</summary>
 		[ProtoMember(3)]

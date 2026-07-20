@@ -29,35 +29,27 @@
 //  Official Documentation: https://gameframex.doc.alianblank.com/
 // ==========================================================================================
 
-namespace GameFrameX.Apps.Player.Mail.Entity;
-
-/// <summary>
-/// 玩家邮件内的单个附件实例。实例化时从 <see cref="MailAttachmentState"/> 复制元信息，并承载领取状态（U1 §3.5）。
-/// </summary>
-/// <remarks>
-/// 领取状态 <see cref="ClaimStatus"/> 单向流转：<see cref="ClaimStatus.Claimable"/> → <see cref="ClaimStatus.Claimed"/>（已领，终态，撤回不回滚，B3）；
-/// 或 → <see cref="ClaimStatus.Discarded"/>（撤回 / 过期作废，B3 / B4）。领取幂等（B6）由统一发放接口保证。
-/// </remarks>
-public sealed class MailAttachmentInstance
+namespace GameFrameX.Apps.Player.Mail
 {
-    /// <summary>附件槽位 ID。邮件内唯一，实例化时从 <see cref="MailAttachmentState.SlotId"/> 复制。</summary>
-    public int SlotId { get; set; }
+    /// <summary>
+    /// 邮件附件过期处置策略（B4：过期未领取附件默认作废，可配置）。
+    /// 决定 Campaign 撤回或自然过期后，玩家尚未领取的附件如何处理。
+    /// </summary>
+    public enum ExpireAttachmentPolicy
+    {
+        /// <summary>
+        /// 默认作废：未领取附件直接丢弃，不进入玩家任何资产账户，日志留痕用于审计。
+        /// </summary>
+        DiscardUnclaimed = 0,
 
-    /// <summary>奖励类型。实例化时复制。</summary>
-    public int RewardType { get; set; }
+        /// <summary>
+        /// 保留未领取：附件保留在邮件中，玩家仍可领取，仅停止向新玩家下发（用于「停发但已命中可继续领」场景）。
+        /// </summary>
+        KeepUnclaimed = 1,
 
-    /// <summary>物品 ID。实例化时复制。</summary>
-    public int ItemId { get; set; }
-
-    /// <summary>数量。实例化时复制。</summary>
-    public long Amount { get; set; }
-
-    /// <summary>展示用图标 ID。实例化时复制。</summary>
-    public int IconId { get; set; }
-
-    /// <summary>领取状态。单向流转，终态不可回退（B3 / B6）。</summary>
-    public ClaimStatus ClaimStatus { get; set; } = ClaimStatus.Claimable;
-
-    /// <summary>首次领取时间（unix 秒）。空表示未领取。一旦写入不可清空（B3 不回滚）。</summary>
-    public long? ClaimTime { get; set; }
+        /// <summary>
+        /// 自动入袋：未领取附件通过统一奖励发放接口自动发放到玩家账户（需谨慎，可能突破发放窗口限制）。
+        /// </summary>
+        AutoClaim = 2,
+    }
 }

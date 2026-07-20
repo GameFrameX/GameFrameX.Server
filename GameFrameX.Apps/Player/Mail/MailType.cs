@@ -29,35 +29,26 @@
 //  Official Documentation: https://gameframex.doc.alianblank.com/
 // ==========================================================================================
 
-namespace GameFrameX.Apps.Player.Mail.Entity;
-
-/// <summary>
-/// 玩家邮件内的单个附件实例。实例化时从 <see cref="MailAttachmentState"/> 复制元信息，并承载领取状态（U1 §3.5）。
-/// </summary>
-/// <remarks>
-/// 领取状态 <see cref="ClaimStatus"/> 单向流转：<see cref="ClaimStatus.Claimable"/> → <see cref="ClaimStatus.Claimed"/>（已领，终态，撤回不回滚，B3）；
-/// 或 → <see cref="ClaimStatus.Discarded"/>（撤回 / 过期作废，B3 / B4）。领取幂等（B6）由统一发放接口保证。
-/// </remarks>
-public sealed class MailAttachmentInstance
+namespace GameFrameX.Apps.Player.Mail
 {
-    /// <summary>附件槽位 ID。邮件内唯一，实例化时从 <see cref="MailAttachmentState.SlotId"/> 复制。</summary>
-    public int SlotId { get; set; }
+    /// <summary>
+    /// 邮件类型：决定展示样式与领取限制。编号发布后不可变，新增类型只追加不复用。
+    /// </summary>
+    public enum MailType
+    {
+        /// <summary>
+        /// 系统邮件：系统自动触发（如维护补偿），无运营 Campaign 概念时也走相同展示通道。
+        /// </summary>
+        System = 0,
 
-    /// <summary>奖励类型。实例化时复制。</summary>
-    public int RewardType { get; set; }
+        /// <summary>
+        /// 运营邮件：由 Admin 发布接口创建 Campaign，按过滤条件命中懒创建到玩家邮箱。
+        /// </summary>
+        Operation = 1,
 
-    /// <summary>物品 ID。实例化时复制。</summary>
-    public int ItemId { get; set; }
-
-    /// <summary>数量。实例化时复制。</summary>
-    public long Amount { get; set; }
-
-    /// <summary>展示用图标 ID。实例化时复制。</summary>
-    public int IconId { get; set; }
-
-    /// <summary>领取状态。单向流转，终态不可回退（B3 / B6）。</summary>
-    public ClaimStatus ClaimStatus { get; set; } = ClaimStatus.Claimable;
-
-    /// <summary>首次领取时间（unix 秒）。空表示未领取。一旦写入不可清空（B3 不回滚）。</summary>
-    public long? ClaimTime { get; set; }
+        /// <summary>
+        /// 补偿邮件：针对单角色或小范围的定向补偿，复用 Campaign 落库但不走全服过滤命中。
+        /// </summary>
+        Compensation = 2,
+    }
 }
