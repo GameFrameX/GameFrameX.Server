@@ -181,7 +181,6 @@ public class MailComponentAgent : StateComponentAgent<MailComponent, MailBoxStat
         }
 
         response.HasMore = cursor + response.Mails.Count < visible.Count;
-        response.ErrorCode = (int)OperationStatusCode.Ok;
     }
 
     /// <summary>
@@ -200,7 +199,7 @@ public class MailComponentAgent : StateComponentAgent<MailComponent, MailBoxStat
         if (mail == null || mail.MailStatus == MailStatus.Deleted)
         {
             response.MailId = request.MailId;
-            response.ErrorCode = (int)OperationStatusCode.MailNotFound;
+            response.ErrorCode = (int)MailErrorCode.MailNotFound;
             return;
         }
 
@@ -241,7 +240,6 @@ public class MailComponentAgent : StateComponentAgent<MailComponent, MailBoxStat
             });
         }
 
-        response.ErrorCode = (int)OperationStatusCode.Ok;
     }
 
     /// <summary>
@@ -260,14 +258,14 @@ public class MailComponentAgent : StateComponentAgent<MailComponent, MailBoxStat
         if (mail == null)
         {
             response.MailId = request.MailId;
-            response.ErrorCode = (int)OperationStatusCode.MailNotFound;
+            response.ErrorCode = (int)MailErrorCode.MailNotFound;
             return;
         }
 
         if (mail.MailStatus == MailStatus.Deleted)
         {
             response.MailId = request.MailId;
-            response.ErrorCode = (int)OperationStatusCode.MailAlreadyDeleted;
+            response.ErrorCode = (int)MailErrorCode.MailAlreadyDeleted;
             return;
         }
 
@@ -278,7 +276,7 @@ public class MailComponentAgent : StateComponentAgent<MailComponent, MailBoxStat
             && mail.AttachmentStatus != AttachmentStatus.Unclaimable)
         {
             response.MailId = request.MailId;
-            response.ErrorCode = (int)OperationStatusCode.UnclaimedAttachment;
+            response.ErrorCode = (int)MailErrorCode.UnclaimedAttachment;
             return;
         }
 
@@ -287,7 +285,6 @@ public class MailComponentAgent : StateComponentAgent<MailComponent, MailBoxStat
         await OwnerComponent.WriteStateAsync();
 
         response.MailId = request.MailId;
-        response.ErrorCode = (int)OperationStatusCode.Ok;
         await NotifyChangedAsync(new List<long> { mail.MailId });
     }
 
@@ -310,23 +307,31 @@ public class MailComponentAgent : StateComponentAgent<MailComponent, MailBoxStat
         response.MailId = request.MailId;
         response.SlotId = request.SlotId;
 
-        if (prepare.Code == OperationStatusCode.MailNotFound || prepare.Mail == null)
+        // 邮件不存在 / 已删除
+        if (prepare.Mail == null)
         {
-            response.ErrorCode = (int)OperationStatusCode.MailNotFound;
+            response.ErrorCode = (int)MailErrorCode.MailNotFound;
             return;
         }
 
-        // B6 幂等：已领槽位按成功回包当前状态，不调用发放接口。
-        if (prepare.Code == OperationStatusCode.AttachmentAlreadyClaimed)
+        // 槽位不存在
+        if (prepare.Attachment == null)
+        {
+            response.ErrorCode = (int)MailErrorCode.AttachmentNotFound;
+            return;
+        }
+
+        // B6 幂等：已领槽位按成功回包当前状态，不调用发放接口（不赋 ErrorCode，框架默认 0）。
+        if (prepare.Attachment.ClaimStatus == ClaimStatus.Claimed)
         {
             FillClaimResponse(response, prepare.Mail, prepare.Attachment);
-            response.ErrorCode = (int)OperationStatusCode.Ok;
             return;
         }
 
-        if (prepare.Code != OperationStatusCode.Ok || prepare.Attachment == null)
+        // 作废 / 其它非可领状态：不可领取
+        if (prepare.Attachment.ClaimStatus != ClaimStatus.Claimable)
         {
-            response.ErrorCode = (int)prepare.Code;
+            response.ErrorCode = (int)MailErrorCode.UnclaimableAttachment;
             return;
         }
 
@@ -345,7 +350,11 @@ public class MailComponentAgent : StateComponentAgent<MailComponent, MailBoxStat
         await OwnerComponent.WriteStateAsync();
 
         FillClaimResponse(response, mail, att);
-        response.ErrorCode = (int)(grantResult.AllSuccess ? OperationStatusCode.Ok : (OperationStatusCode)grantResult.ErrorCode);
+        // 成功不赋 ErrorCode（默认 0）；奖励发放部分失败时透传发放错误码（OperationStatusCode 体系）。
+        if (!grantResult.AllSuccess)
+        {
+            response.ErrorCode = grantResult.ErrorCode;
+        }
         await NotifyChangedAsync(new List<long> { mail.MailId });
     }
 
@@ -416,7 +425,6 @@ public class MailComponentAgent : StateComponentAgent<MailComponent, MailBoxStat
             await NotifyChangedAsync(changedMailIds);
         }
 
-        response.ErrorCode = (int)OperationStatusCode.Ok;
     }
 
     /// <summary>

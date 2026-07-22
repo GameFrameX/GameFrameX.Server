@@ -56,7 +56,7 @@ namespace GameFrameX.Hotfix.Logic.Http.Mail
             response.Code = code;
             switch (code)
             {
-                case OperationStatusCode.Ok:
+                case MailCampaignErrorCode.Ok:
                     response.Message = "撤回成功（已发放资产不回滚 B3）";
                     if (MailCampaignRegistry.TryQuery(request.CampaignId, out var campaign))
                     {
@@ -64,10 +64,10 @@ namespace GameFrameX.Hotfix.Logic.Http.Mail
                     }
 
                     break;
-                case OperationStatusCode.CampaignNotFound:
+                case MailCampaignErrorCode.CampaignNotFound:
                     response.Message = "Campaign 不存在";
                     break;
-                case OperationStatusCode.CampaignAlreadyRevoked:
+                case MailCampaignErrorCode.CampaignAlreadyRevoked:
                     response.Message = "Campaign 已撤回，不可重复撤回";
                     break;
                 default:
@@ -102,7 +102,7 @@ namespace GameFrameX.Hotfix.Logic.Http.Mail
     {
         /// <summary>业务码。</summary>
         [Description("业务码")]
-        public OperationStatusCode Code { get; set; }
+        public MailCampaignErrorCode Code { get; set; }
 
         /// <summary>Campaign ID。</summary>
         [Description("CampaignId")]

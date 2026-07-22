@@ -51,7 +51,7 @@ namespace GameFrameX.Hotfix.Logic.Http.Mail
         public override async Task<string> Action(string ip, string url, HttpMessageRequestBase requestBase)
         {
             var request = (QueryMailCampaignRequest)requestBase;
-            var response = new QueryMailCampaignResponse { Code = OperationStatusCode.Ok };
+            var response = new QueryMailCampaignResponse { Code = MailCampaignErrorCode.Ok };
 
             if (request.CampaignId > 0)
             {
@@ -62,7 +62,7 @@ namespace GameFrameX.Hotfix.Logic.Http.Mail
                 }
                 else
                 {
-                    response.Code = OperationStatusCode.CampaignNotFound;
+                    response.Code = MailCampaignErrorCode.CampaignNotFound;
                     response.Message = "Campaign 不存在";
                 }
 
@@ -135,7 +135,7 @@ namespace GameFrameX.Hotfix.Logic.Http.Mail
     {
         /// <summary>业务码。</summary>
         [Description("业务码")]
-        public OperationStatusCode Code { get; set; }
+        public MailCampaignErrorCode Code { get; set; }
 
         /// <summary>命中 Campaign 列表。</summary>
         [Description("Campaign 列表")]

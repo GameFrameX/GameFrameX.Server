@@ -34,7 +34,6 @@ using System.Collections.Generic;
 using GameFrameX.Apps.Player.Mail;
 using GameFrameX.Apps.Player.Mail.Entity;
 using GameFrameX.Hotfix.Logic.Player.Mail;
-using GameFrameX.Proto.Proto;
 using Xunit;
 
 namespace GameFrameX.Hotfix.Tests;
@@ -55,17 +54,17 @@ public class MailCampaignRegistryTests
     {
         MailCampaignRegistry.ResetForTest();
 
-        Assert.Equal(OperationStatusCode.InvalidCampaignParameter, MailCampaignRegistry.Validate(null));
+        Assert.Equal(MailCampaignErrorCode.InvalidCampaignParameter, MailCampaignRegistry.Validate(null));
 
         var noTitle = new MailCampaignState { MailType = MailType.Operation };
-        Assert.Equal(OperationStatusCode.InvalidCampaignParameter, MailCampaignRegistry.Validate(noTitle));
+        Assert.Equal(MailCampaignErrorCode.InvalidCampaignParameter, MailCampaignRegistry.Validate(noTitle));
 
         var blankTitle = new MailCampaignState
         {
             MailType = MailType.Operation,
             Titles = new List<MailLocalizedContent> { new MailLocalizedContent { Language = "", Text = "" } },
         };
-        Assert.Equal(OperationStatusCode.InvalidCampaignParameter, MailCampaignRegistry.Validate(blankTitle));
+        Assert.Equal(MailCampaignErrorCode.InvalidCampaignParameter, MailCampaignRegistry.Validate(blankTitle));
 
         var dupSlot = new MailCampaignState
         {
@@ -77,19 +76,19 @@ public class MailCampaignRegistryTests
                 new MailAttachmentState { SlotId = 1, Amount = 20 },
             },
         };
-        Assert.Equal(OperationStatusCode.InvalidCampaignParameter, MailCampaignRegistry.Validate(dupSlot));
+        Assert.Equal(MailCampaignErrorCode.InvalidCampaignParameter, MailCampaignRegistry.Validate(dupSlot));
 
         var levelRangeBad = MakeValidCampaign();
         levelRangeBad.MinLevel = 50;
         levelRangeBad.MaxLevel = 10;
-        Assert.Equal(OperationStatusCode.InvalidCampaignParameter, MailCampaignRegistry.Validate(levelRangeBad));
+        Assert.Equal(MailCampaignErrorCode.InvalidCampaignParameter, MailCampaignRegistry.Validate(levelRangeBad));
 
-        Assert.Equal(OperationStatusCode.Ok, MailCampaignRegistry.Validate(MakeValidCampaign()));
+        Assert.Equal(MailCampaignErrorCode.Ok, MailCampaignRegistry.Validate(MakeValidCampaign()));
     }
 
-    /// <summary>校验：附件 amount&lt;=0 返回 InvalidReward。</summary>
+    /// <summary>校验：附件 amount&lt;=0 返回 InvalidCampaignParameter（附件数量非正属 Campaign 参数非法）。</summary>
     [Fact]
-    public void Validate_Returns_InvalidReward_For_NonPositive_Amount()
+    public void Validate_Returns_InvalidCampaignParameter_For_NonPositive_Amount()
     {
         MailCampaignRegistry.ResetForTest();
 
@@ -100,7 +99,7 @@ public class MailCampaignRegistryTests
             Attachments = new List<MailAttachmentState> { new MailAttachmentState { SlotId = 1, Amount = 0 } },
         };
 
-        Assert.Equal(OperationStatusCode.InvalidReward, MailCampaignRegistry.Validate(badAttachment));
+        Assert.Equal(MailCampaignErrorCode.InvalidCampaignParameter, MailCampaignRegistry.Validate(badAttachment));
     }
 
     /// <summary>B1：PublishOrUpdate 分配 CampaignId / PublishVersion=1 / Status=Published / PublishedAt / PublishOperator；
@@ -135,9 +134,9 @@ public class MailCampaignRegistryTests
 
         var published = MailCampaignRegistry.PublishOrUpdate(MakeValidCampaign(), "admin-test", 1_700_000_200L);
 
-        Assert.Equal(OperationStatusCode.CampaignNotFound, MailCampaignRegistry.Revoke(999_999L, "admin-test", 1_700_000_300L));
+        Assert.Equal(MailCampaignErrorCode.CampaignNotFound, MailCampaignRegistry.Revoke(999_999L, "admin-test", 1_700_000_300L));
 
-        Assert.Equal(OperationStatusCode.Ok, MailCampaignRegistry.Revoke(published.CampaignId, "admin-test", 1_700_000_300L));
+        Assert.Equal(MailCampaignErrorCode.Ok, MailCampaignRegistry.Revoke(published.CampaignId, "admin-test", 1_700_000_300L));
 
         Assert.True(MailCampaignRegistry.TryQuery(published.CampaignId, out var revoked));
         Assert.Equal(MailCampaignStatus.Revoked, revoked.Status);
@@ -145,7 +144,7 @@ public class MailCampaignRegistryTests
         Assert.Equal("admin-test", revoked.RevokeOperator);
 
         // B3：重复撤回返回 CampaignAlreadyRevoked（资产回滚由统一发放接口幂等账本保证，不在此校验）。
-        Assert.Equal(OperationStatusCode.CampaignAlreadyRevoked,
+        Assert.Equal(MailCampaignErrorCode.CampaignAlreadyRevoked,
             MailCampaignRegistry.Revoke(published.CampaignId, "admin-test", 1_700_000_400L));
     }
 
@@ -157,7 +156,7 @@ public class MailCampaignRegistryTests
         MailCampaignRegistry.ResetForTest();
 
         var published = MailCampaignRegistry.PublishOrUpdate(MakeValidCampaign(), "admin-test", 1_700_010_000L);
-        Assert.Equal(OperationStatusCode.Ok, MailCampaignRegistry.Revoke(published.CampaignId, "admin-test", 1_700_010_100L));
+        Assert.Equal(MailCampaignErrorCode.Ok, MailCampaignRegistry.Revoke(published.CampaignId, "admin-test", 1_700_010_100L));
 
         var republish = MakeValidCampaign();
         republish.CampaignId = published.CampaignId;
@@ -195,7 +194,7 @@ public class MailCampaignRegistryTests
         Assert.Equal(0L, q1.RevokedAt);
 
         // 3. 撤回（B3：仅置状态字段）。
-        Assert.Equal(OperationStatusCode.Ok, MailCampaignRegistry.Revoke(published.CampaignId, "admin-revoke", 1_700_020_500L));
+        Assert.Equal(MailCampaignErrorCode.Ok, MailCampaignRegistry.Revoke(published.CampaignId, "admin-revoke", 1_700_020_500L));
 
         // 4. TryQuery 命中 Revoked + RevokedAt + RevokeOperator。
         Assert.True(MailCampaignRegistry.TryQuery(published.CampaignId, out var q2));
@@ -206,7 +205,7 @@ public class MailCampaignRegistryTests
         // 5. QueryAll(status=Revoked) 过滤命中；重复撤回返回 CampaignAlreadyRevoked。
         var revokedList = MailCampaignRegistry.QueryAll(status: MailCampaignStatus.Revoked);
         Assert.Contains(revokedList, c => c.CampaignId == published.CampaignId);
-        Assert.Equal(OperationStatusCode.CampaignAlreadyRevoked,
+        Assert.Equal(MailCampaignErrorCode.CampaignAlreadyRevoked,
             MailCampaignRegistry.Revoke(published.CampaignId, "admin-revoke", 1_700_020_600L));
     }
 

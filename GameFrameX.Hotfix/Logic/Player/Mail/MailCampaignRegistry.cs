@@ -35,7 +35,6 @@ using System.Collections.Generic;
 using System.Linq;
 using GameFrameX.Apps.Player.Mail;
 using GameFrameX.Apps.Player.Mail.Entity;
-using GameFrameX.Proto.Proto;
 
 namespace GameFrameX.Hotfix.Logic.Player.Mail
 {
@@ -46,7 +45,7 @@ namespace GameFrameX.Hotfix.Logic.Player.Mail
     /// </summary>
     /// <remarks>
     /// 不可逆边界（B1–B4）：
-    /// - B1 发布后主体字段不可修改：已 <see cref="MailCampaignStatus.Published"/> 的 Campaign 再次提交时拒绝（返回 <see cref="OperationStatusCode.HasExist"/>）。
+    /// - B1 发布后主体字段不可修改：已 <see cref="MailCampaignStatus.Published"/> 的 Campaign 再次提交时拒绝（返回 <see cref="MailCampaignErrorCode.HasExist"/>）。
     /// - B3 撤回不回滚：撤回只置 <see cref="MailCampaignState.Status"/> = <see cref="MailCampaignStatus.Revoked"/> 与 <see cref="MailCampaignState.RevokedAt"/>，已发放的奖励不回收。
     /// - B4 过期未领取附件按 <see cref="MailCampaignState.ExpireAttachmentPolicy"/> 处理；落库与领取流程由后续玩家邮件核心 change 实现。
     /// </remarks>
@@ -58,26 +57,26 @@ namespace GameFrameX.Hotfix.Logic.Player.Mail
 
         /// <summary>
         /// 校验 Campaign 参数合法性（发布与预览共用）。
-        /// 返回 <see cref="OperationStatusCode.Ok"/> 表示通过；否则返回对应错误码。
+        /// 返回 <see cref="MailCampaignErrorCode.Ok"/> 表示通过；否则返回对应错误码。
         /// </summary>
         /// <param name="campaign">待校验的 Campaign 快照（<see cref="MailCampaignState.CampaignId"/> 可为 0，由发布接口分配）。</param>
-        public static OperationStatusCode Validate(MailCampaignState campaign)
+        public static MailCampaignErrorCode Validate(MailCampaignState campaign)
         {
             if (campaign == null)
             {
-                return OperationStatusCode.InvalidCampaignParameter;
+                return MailCampaignErrorCode.InvalidCampaignParameter;
             }
 
             if (campaign.Titles == null || campaign.Titles.Count == 0)
             {
-                return OperationStatusCode.InvalidCampaignParameter;
+                return MailCampaignErrorCode.InvalidCampaignParameter;
             }
 
             foreach (var title in campaign.Titles)
             {
                 if (title == null || string.IsNullOrWhiteSpace(title.Language) || string.IsNullOrWhiteSpace(title.Text))
                 {
-                    return OperationStatusCode.InvalidCampaignParameter;
+                    return MailCampaignErrorCode.InvalidCampaignParameter;
                 }
             }
 
@@ -87,7 +86,7 @@ namespace GameFrameX.Hotfix.Logic.Player.Mail
                 {
                     if (content == null || string.IsNullOrWhiteSpace(content.Language))
                     {
-                        return OperationStatusCode.InvalidCampaignParameter;
+                        return MailCampaignErrorCode.InvalidCampaignParameter;
                     }
                 }
             }
@@ -97,38 +96,39 @@ namespace GameFrameX.Hotfix.Logic.Player.Mail
                 var slotSet = new HashSet<int>();
                 foreach (var attachment in campaign.Attachments)
                 {
+                    // 附件数量非正属于 Campaign 参数非法（奖励发放层的 InvalidReward 用于运行时发放失败，与此处校验区分）。
                     if (attachment == null || attachment.Amount <= 0)
                     {
-                        return OperationStatusCode.InvalidReward;
+                        return MailCampaignErrorCode.InvalidCampaignParameter;
                     }
 
                     if (!slotSet.Add(attachment.SlotId))
                     {
-                        return OperationStatusCode.InvalidCampaignParameter;
+                        return MailCampaignErrorCode.InvalidCampaignParameter;
                     }
                 }
             }
 
             if (campaign.MinLevel < 0 || campaign.MaxLevel < 0)
             {
-                return OperationStatusCode.InvalidCampaignParameter;
+                return MailCampaignErrorCode.InvalidCampaignParameter;
             }
 
             if (campaign.MaxLevel > 0 && campaign.MinLevel > campaign.MaxLevel)
             {
-                return OperationStatusCode.InvalidCampaignParameter;
+                return MailCampaignErrorCode.InvalidCampaignParameter;
             }
 
             if (campaign.ExpireAt < 0 || campaign.PublishedAt < 0 || campaign.CreateTime < 0)
             {
-                return OperationStatusCode.InvalidCampaignParameter;
+                return MailCampaignErrorCode.InvalidCampaignParameter;
             }
 
-            return OperationStatusCode.Ok;
+            return MailCampaignErrorCode.Ok;
         }
 
         /// <summary>
-        /// 发布或更新 Campaign（B1：已发布的主体字段不可修改，重复提交返回 <see cref="OperationStatusCode.HasExist"/>）。
+        /// 发布或更新 Campaign（B1：已发布的主体字段不可修改，重复提交返回 <see cref="MailCampaignErrorCode.HasExist"/>）。
         /// 成功时分配 <see cref="MailCampaignState.CampaignId"/>（若入参为 0）、置 <see cref="MailCampaignState.Status"/> = Published、写入 <see cref="MailCampaignState.PublishedAt"/>。
         /// </summary>
         /// <param name="campaign">待发布的 Campaign 快照。</param>
@@ -138,7 +138,7 @@ namespace GameFrameX.Hotfix.Logic.Player.Mail
         public static MailCampaignState PublishOrUpdate(MailCampaignState campaign, string operatorName, long nowUnixSeconds)
         {
             var code = Validate(campaign);
-            if (code != OperationStatusCode.Ok)
+            if (code != MailCampaignErrorCode.Ok)
             {
                 throw new ArgumentException("Campaign 参数非法，code=" + code);
             }
@@ -183,23 +183,23 @@ namespace GameFrameX.Hotfix.Logic.Player.Mail
         /// <param name="campaignId">待撤回的 Campaign ID。</param>
         /// <param name="operatorName">撤回操作人（Admin 账号）。</param>
         /// <param name="nowUnixSeconds">撤回时间戳（Unix 秒，UTC）。</param>
-        /// <returns>成功返回 <see cref="OperationStatusCode.Ok"/>；Campaign 不存在返回 <see cref="OperationStatusCode.CampaignNotFound"/>；已撤回返回 <see cref="OperationStatusCode.CampaignAlreadyRevoked"/>。</returns>
-        public static OperationStatusCode Revoke(long campaignId, string operatorName, long nowUnixSeconds)
+        /// <returns>成功返回 <see cref="MailCampaignErrorCode.Ok"/>；Campaign 不存在返回 <see cref="MailCampaignErrorCode.CampaignNotFound"/>；已撤回返回 <see cref="MailCampaignErrorCode.CampaignAlreadyRevoked"/>。</returns>
+        public static MailCampaignErrorCode Revoke(long campaignId, string operatorName, long nowUnixSeconds)
         {
             if (!Campaigns.TryGetValue(campaignId, out var campaign))
             {
-                return OperationStatusCode.CampaignNotFound;
+                return MailCampaignErrorCode.CampaignNotFound;
             }
 
             if (campaign.Status == MailCampaignStatus.Revoked)
             {
-                return OperationStatusCode.CampaignAlreadyRevoked;
+                return MailCampaignErrorCode.CampaignAlreadyRevoked;
             }
 
             campaign.Status = MailCampaignStatus.Revoked;
             campaign.RevokedAt = nowUnixSeconds;
             campaign.RevokeOperator = operatorName;
-            return OperationStatusCode.Ok;
+            return MailCampaignErrorCode.Ok;
         }
 
         /// <summary>
@@ -310,7 +310,7 @@ namespace GameFrameX.Hotfix.Logic.Player.Mail
         public static void Preview(MailCampaignState campaign, out long estimatedHitCount)
         {
             var code = Validate(campaign);
-            if (code != OperationStatusCode.Ok)
+            if (code != MailCampaignErrorCode.Ok)
             {
                 throw new ArgumentException("Campaign 参数非法，code=" + code);
             }

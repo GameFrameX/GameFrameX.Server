@@ -32,7 +32,6 @@
 using GameFrameX.Apps.Player.Mail;
 using GameFrameX.Apps.Player.Mail.Entity;
 using GameFrameX.Hotfix.Logic.Player.Mail;
-using GameFrameX.Proto.Proto;
 using Xunit;
 
 namespace GameFrameX.Hotfix.Tests;
@@ -43,7 +42,7 @@ namespace GameFrameX.Hotfix.Tests;
 /// </summary>
 public class MailAttachmentClaimTests
 {
-    /// <summary>GFX-136 闭环：单附件领取成功 → Claimed 终态 → 附件整体 AllClaimed。</summary>
+    /// <summary>GFX-136 闭环：单附件领取成功 → Claimable 可发放 → 命中邮件 / 附件。</summary>
     [Fact]
     public void Prepare_Claimable_Returns_Ok()
     {
@@ -51,13 +50,12 @@ public class MailAttachmentClaimTests
 
         var prepare = MailAttachmentClaim.Prepare(state, mailId, slotId);
 
-        Assert.Equal(OperationStatusCode.Ok, prepare.Code);
         Assert.NotNull(prepare.Mail);
         Assert.NotNull(prepare.Attachment);
         Assert.Equal(ClaimStatus.Claimable, prepare.Attachment.ClaimStatus);
     }
 
-    /// <summary>B6 幂等：重复领取已 Claimed 槽位返回 AttachmentAlreadyClaimed（调用方据此短路，不重复发奖）。</summary>
+    /// <summary>B6 幂等：重复领取已 Claimed 槽位，命中附件仍为 Claimed（调用方据此短路，不重复发奖）。</summary>
     [Fact]
     public void Prepare_AlreadyClaimed_Returns_Idempotent()
     {
@@ -67,11 +65,11 @@ public class MailAttachmentClaimTests
 
         var prepare = MailAttachmentClaim.Prepare(state, mailId, slotId);
 
-        Assert.Equal(OperationStatusCode.AttachmentAlreadyClaimed, prepare.Code);
+        Assert.NotNull(prepare.Attachment);
         Assert.Equal(ClaimStatus.Claimed, prepare.Attachment.ClaimStatus);
     }
 
-    /// <summary>B3 / B4：撤回 / 过期作废后的附件不可领。</summary>
+    /// <summary>B3 / B4：撤回 / 过期作废后的附件命中状态为 Discarded。</summary>
     [Fact]
     public void Prepare_Discarded_Returns_Unclaimable()
     {
@@ -80,10 +78,11 @@ public class MailAttachmentClaimTests
 
         var prepare = MailAttachmentClaim.Prepare(state, mailId, slotId);
 
-        Assert.Equal(OperationStatusCode.UnclaimableAttachment, prepare.Code);
+        Assert.NotNull(prepare.Attachment);
+        Assert.Equal(ClaimStatus.Discarded, prepare.Attachment.ClaimStatus);
     }
 
-    /// <summary>邮件不存在（或已删除）→ MailNotFound。</summary>
+    /// <summary>邮件不存在 → 未命中（Mail 为 null）。</summary>
     [Fact]
     public void Prepare_MissingMail_Returns_MailNotFound()
     {
@@ -91,11 +90,10 @@ public class MailAttachmentClaimTests
 
         var prepare = MailAttachmentClaim.Prepare(state, 9999L, 1);
 
-        Assert.Equal(OperationStatusCode.MailNotFound, prepare.Code);
         Assert.Null(prepare.Mail);
     }
 
-    /// <summary>B2 删除终态：已删除邮件按不存在处理。</summary>
+    /// <summary>B2 删除终态：已删除邮件按不存在处理（Mail 为 null）。</summary>
     [Fact]
     public void Prepare_DeletedMail_Returns_MailNotFound()
     {
@@ -104,10 +102,10 @@ public class MailAttachmentClaimTests
 
         var prepare = MailAttachmentClaim.Prepare(state, mailId, slotId);
 
-        Assert.Equal(OperationStatusCode.MailNotFound, prepare.Code);
+        Assert.Null(prepare.Mail);
     }
 
-    /// <summary>槽位不存在 → AttachmentNotFound。</summary>
+    /// <summary>槽位不存在 → 邮件命中但附件未命中（Attachment 为 null）。</summary>
     [Fact]
     public void Prepare_MissingSlot_Returns_AttachmentNotFound()
     {
@@ -115,7 +113,7 @@ public class MailAttachmentClaimTests
 
         var prepare = MailAttachmentClaim.Prepare(state, mailId, 999);
 
-        Assert.Equal(OperationStatusCode.AttachmentNotFound, prepare.Code);
+        Assert.Null(prepare.Attachment);
     }
 
     /// <summary>MarkClaimed 写入终态 Claimed + ClaimTime（不可回退）。</summary>

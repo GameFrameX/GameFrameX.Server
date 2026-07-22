@@ -67,7 +67,7 @@ namespace GameFrameX.Hotfix.Logic.Http.Mail
             };
 
             var code = MailCampaignRegistry.Validate(state);
-            if (code != OperationStatusCode.Ok)
+            if (code != MailCampaignErrorCode.Ok)
             {
                 response.Code = code;
                 response.Message = "参数校验失败";
@@ -77,14 +77,14 @@ namespace GameFrameX.Hotfix.Logic.Http.Mail
             try
             {
                 MailCampaignRegistry.Preview(state, out var estimatedHitCount);
-                response.Code = OperationStatusCode.Ok;
+                response.Code = MailCampaignErrorCode.Ok;
                 response.EstimatedHitCount = estimatedHitCount;
                 response.Message = "参数校验通过";
                 return HttpJsonResult.SuccessString(response);
             }
             catch (ArgumentException ex)
             {
-                response.Code = OperationStatusCode.InvalidCampaignParameter;
+                response.Code = MailCampaignErrorCode.InvalidCampaignParameter;
                 response.Message = ex.Message;
                 return HttpJsonResult.SuccessString(response);
             }
@@ -144,9 +144,9 @@ namespace GameFrameX.Hotfix.Logic.Http.Mail
     /// </summary>
     public sealed class PreviewMailCampaignResponse : HttpMessageResponseBase
     {
-        /// <summary>业务码（Ok / InvalidCampaignParameter / InvalidReward）。</summary>
+        /// <summary>业务码（Ok / InvalidCampaignParameter）。</summary>
         [Description("业务码")]
-        public OperationStatusCode Code { get; set; }
+        public MailCampaignErrorCode Code { get; set; }
 
         /// <summary>预估命中玩家数。一期固定 -1（未知），需接入在线 / 角色统计模块后才有真实值。</summary>
         [Description("预估命中玩家数")]

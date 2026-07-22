@@ -33,12 +33,11 @@ using System.Collections.Generic;
 using System.Text;
 using GameFrameX.Apps.Player.Mail;
 using GameFrameX.Apps.Player.Mail.Entity;
-using GameFrameX.Proto.Proto;
 
 namespace GameFrameX.Hotfix.Logic.Player.Mail;
 
 /// <summary>
-/// 邮件附件领取的纯函数集合（U1 §4.4 / B6）。集中承载领取前的校验决策、领取状态写入、附件整体维度派生与幂等 trace 构造，
+/// 邮件附件领取的纯函数集合（U1 §4.4 / B6）。集中承载领取前的查找、领取状态写入、附件整体维度派生与幂等 trace 构造，
 /// 作为 <see cref="MailComponentAgent"/> 与单元测试的共同事实来源。
 /// </summary>
 /// <remarks>
@@ -48,38 +47,24 @@ namespace GameFrameX.Hotfix.Logic.Player.Mail;
 public static class MailAttachmentClaim
 {
     /// <summary>
-    /// 校验并准备一次单附件领取。不写入任何状态，仅返回决策结果与命中的邮件 / 附件引用。
+    /// 查找并准备一次单附件领取。不写入任何状态，仅返回命中的邮件 / 附件引用（未命中为 null）。
+    /// 不在此处判定错误码：调用方根据 <see cref="ClaimPrepareResult.Mail"/> / <see cref="ClaimPrepareResult.Attachment"/>
+    /// 是否命中与 <see cref="MailAttachmentInstance.ClaimStatus"/> 直接给响应的 ErrorCode 赋值（成功不赋，框架默认 0）。
     /// </summary>
     /// <param name="state">玩家邮件箱状态。</param>
     /// <param name="mailId">邮件实例 ID。</param>
     /// <param name="slotId">附件槽位 ID。</param>
-    /// <returns>决策结果：<see cref="OperationStatusCode.Ok"/> 表示可发放；其余码表示不可发放（调用方原样回包）。</returns>
     public static ClaimPrepareResult Prepare(MailBoxState state, long mailId, int slotId)
     {
         var mail = TryFindMail(state, mailId);
         if (mail == null || mail.MailStatus == MailStatus.Deleted)
         {
-            return new ClaimPrepareResult { Code = OperationStatusCode.MailNotFound };
+            return ClaimPrepareResult.Empty;
         }
 
         // 终态邮件（撤回 / 过期）整体不可领：未领附件已被作废流程置 Discarded，统一由附件状态判定。
         var attachment = TryFindAttachment(mail, slotId);
-        if (attachment == null)
-        {
-            return new ClaimPrepareResult { Code = OperationStatusCode.AttachmentNotFound, Mail = mail };
-        }
-
-        switch (attachment.ClaimStatus)
-        {
-            case ClaimStatus.Claimable:
-                return new ClaimPrepareResult { Code = OperationStatusCode.Ok, Mail = mail, Attachment = attachment };
-            case ClaimStatus.Claimed:
-                // B6 幂等：已领视为成功，不重复发奖；调用方据此回包当前状态而不调用发放接口。
-                return new ClaimPrepareResult { Code = OperationStatusCode.AttachmentAlreadyClaimed, Mail = mail, Attachment = attachment };
-            case ClaimStatus.Discarded:
-            default:
-                return new ClaimPrepareResult { Code = OperationStatusCode.UnclaimableAttachment, Mail = mail, Attachment = attachment };
-        }
+        return new ClaimPrepareResult { Mail = mail, Attachment = attachment };
     }
 
     /// <summary>
@@ -186,16 +171,16 @@ public static class MailAttachmentClaim
 }
 
 /// <summary>
-/// <see cref="MailAttachmentClaim.Prepare"/> 的决策结果。
+/// <see cref="MailAttachmentClaim.Prepare"/> 的查找结果（仅承载命中的邮件 / 附件引用，不存储错误码）。
 /// </summary>
 public sealed class ClaimPrepareResult
 {
-    /// <summary>决策错误码。<see cref="OperationStatusCode.Ok"/> 表示可发放；<see cref="OperationStatusCode.AttachmentAlreadyClaimed"/> 表示幂等命中（按成功回包）。</summary>
-    public OperationStatusCode Code { get; set; }
-
-    /// <summary>命中的邮件实例（未命中邮件时为 null）。</summary>
+    /// <summary>命中的邮件实例（未命中或已删除时为 null）。</summary>
     public MailState Mail { get; set; }
 
-    /// <summary>命中的附件实例（未命中附件时为 null）。</summary>
+    /// <summary>命中的附件实例（未命中槽位时为 null）。</summary>
     public MailAttachmentInstance Attachment { get; set; }
+
+    /// <summary>空结果（邮件未命中）。复用避免分配。</summary>
+    public static ClaimPrepareResult Empty { get; } = new ClaimPrepareResult();
 }

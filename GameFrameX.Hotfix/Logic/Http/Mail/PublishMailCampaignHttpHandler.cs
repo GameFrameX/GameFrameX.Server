@@ -56,7 +56,7 @@ namespace GameFrameX.Hotfix.Logic.Http.Mail
 
             var state = BuildCampaignState(request);
             var code = MailCampaignRegistry.Validate(state);
-            if (code != OperationStatusCode.Ok)
+            if (code != MailCampaignErrorCode.Ok)
             {
                 response.Code = code;
                 response.Message = "Campaign 参数校验失败";
@@ -66,7 +66,7 @@ namespace GameFrameX.Hotfix.Logic.Http.Mail
             try
             {
                 var published = MailCampaignRegistry.PublishOrUpdate(state, request.Operator, DateTimeOffset.UtcNow.ToUnixTimeSeconds());
-                response.Code = OperationStatusCode.Ok;
+                response.Code = MailCampaignErrorCode.Ok;
                 response.CampaignId = published.CampaignId;
                 response.Version = published.PublishVersion;
                 response.PublishedAt = published.PublishedAt;
@@ -75,13 +75,13 @@ namespace GameFrameX.Hotfix.Logic.Http.Mail
             }
             catch (InvalidOperationException)
             {
-                response.Code = OperationStatusCode.HasExist;
+                response.Code = MailCampaignErrorCode.HasExist;
                 response.Message = "Campaign 已发布或已撤回，主体字段不可修改（B1）";
                 return HttpJsonResult.SuccessString(response);
             }
             catch (ArgumentException)
             {
-                response.Code = OperationStatusCode.InvalidCampaignParameter;
+                response.Code = MailCampaignErrorCode.InvalidCampaignParameter;
                 response.Message = "Campaign 参数非法";
                 return HttpJsonResult.SuccessString(response);
             }
@@ -180,7 +180,7 @@ namespace GameFrameX.Hotfix.Logic.Http.Mail
     {
         /// <summary>业务码（Ok / InvalidCampaignParameter / HasExist 等）。</summary>
         [Description("业务码")]
-        public OperationStatusCode Code { get; set; }
+        public MailCampaignErrorCode Code { get; set; }
 
         /// <summary>分配 / 复用的 CampaignId。</summary>
         [Description("CampaignId")]

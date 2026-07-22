@@ -82,9 +82,9 @@ namespace GameFrameX.Proto.Proto
 	}
 
 	/// <summary>
-	/// 操作错误代码
+	/// 操作错误代码（客户端与服务器之间的业务错误码）
 	/// </summary>
-	[System.ComponentModel.Description("操作错误代码")]
+	[System.ComponentModel.Description("操作错误代码（客户端与服务器之间的业务错误码）")]
 	public enum OperationStatusCode
 	{
 		/// <summary>
@@ -178,13 +178,13 @@ namespace GameFrameX.Proto.Proto
 		ServerFullyLoaded = 14,
 
 		/// <summary>
-		/// 不支持的操作（如一期未实现的奖励类型路由）
+		/// 不支持的操作（如未实现的奖励类型路由）
 		/// </summary>
-		[System.ComponentModel.Description("不支持的操作")]
+		[System.ComponentModel.Description("不支持的操作（如未实现的奖励类型路由）")]
 		Unsupported = 15,
 
 		/// <summary>
-		/// 奖励参数非法（数量小于等于 0、物品配置不存在等）
+		/// 奖励参数非法
 		/// </summary>
 		[System.ComponentModel.Description("奖励参数非法")]
 		InvalidReward = 16,
@@ -192,61 +192,8 @@ namespace GameFrameX.Proto.Proto
 		/// <summary>
 		/// 部分成功（多项发放中仅部分成功）
 		/// </summary>
-		[System.ComponentModel.Description("部分成功")]
+		[System.ComponentModel.Description("部分成功（多项发放中仅部分成功）")]
 		PartialSuccess = 17,
-
-		/// 邮件不存在（或已被删除）
-		/// </summary>
-		[System.ComponentModel.Description("邮件不存在")]
-		MailNotFound = 18,
-
-		/// <summary>
-		/// 邮件删除被拒绝：存在未领取附件（不可逆边界 B2）
-		/// </summary>
-		[System.ComponentModel.Description("存在未领取附件，禁止删除")]
-		UnclaimedAttachment = 19,
-
-		/// <summary>
-		/// 邮件已处于删除终态，重复删除被拒绝
-		/// </summary>
-		[System.ComponentModel.Description("邮件已删除")]
-		MailAlreadyDeleted = 20,
-
-		/// <summary>
-		/// 运营邮件 Campaign 不存在（查询 / 撤回时未找到对应 CampaignId）
-		/// </summary>
-		[System.ComponentModel.Description("运营邮件 Campaign 不存在")]
-		CampaignNotFound = 21,
-
-		/// <summary>
-		/// 运营邮件 Campaign 已撤回，不可重复撤回或修改
-		/// </summary>
-		[System.ComponentModel.Description("运营邮件 Campaign 已撤回")]
-		CampaignAlreadyRevoked = 22,
-
-		/// <summary>
-		/// 运营邮件 Campaign 参数非法（必填缺失、过滤条件矛盾、附件数量非正等）
-		/// </summary>
-		[System.ComponentModel.Description("运营邮件 Campaign 参数非法")]
-		InvalidCampaignParameter = 23,
-
-		/// <summary>
-		/// 邮件附件槽位不存在（领取时 SlotId 未命中）
-		/// </summary>
-		[System.ComponentModel.Description("邮件附件槽位不存在")]
-		AttachmentNotFound = 24,
-
-		/// <summary>
-		/// 附件已领取（幂等命中，不重复发奖，B6）
-		/// </summary>
-		[System.ComponentModel.Description("附件已领取")]
-		AttachmentAlreadyClaimed = 25,
-
-		/// <summary>
-		/// 附件不可领取（撤回 / 过期已作废，B3 / B4）
-		/// </summary>
-		[System.ComponentModel.Description("附件不可领取")]
-		UnclaimableAttachment = 26,
 	}
 
 	/// <summary>
