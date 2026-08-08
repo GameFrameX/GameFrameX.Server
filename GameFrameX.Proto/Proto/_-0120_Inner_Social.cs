@@ -88,10 +88,10 @@ namespace GameFrameX.Proto.Proto
 	}
 
 	/// <summary>
-	/// 
+	/// 内部好友信息
 	/// </summary>
 	[ProtoContract]
-	[System.ComponentModel.Description("")]
+	[System.ComponentModel.Description("内部好友信息")]
 	public sealed class InnerFriendInfo
 	{
 		/// <summary>
@@ -193,7 +193,7 @@ namespace GameFrameX.Proto.Proto
 		/// </summary>
 		[ProtoMember(1)]
 		[System.ComponentModel.Description("好友列表")]
-		public List<FriendInfo> Friends { get; set; } = new List<FriendInfo>();
+		public List<InnerFriendInfo> Friends { get; set; } = new List<InnerFriendInfo>();
 
 		/// <summary>
 		/// 返回的错误码

@@ -38,17 +38,17 @@ using GameFrameX.NetWork.Messages;
 namespace GameFrameX.Proto.Proto
 {
 	/// <summary>
-	/// 
+	/// 背包道具
 	/// </summary>
 	[ProtoContract]
-	[System.ComponentModel.Description("")]
+	[System.ComponentModel.Description("背包道具")]
 	public sealed class BagItem
 	{
 		/// <summary>
-		/// 道具id
+		/// 道具ID
 		/// </summary>
 		[ProtoMember(1)]
-		[System.ComponentModel.Description("道具id")]
+		[System.ComponentModel.Description("道具ID")]
 		public int ItemId { get; set; }
 
 		/// <summary>
@@ -82,10 +82,10 @@ namespace GameFrameX.Proto.Proto
 	public sealed class RespBagInfo : MessageObject, IResponseMessage
 	{
 		/// <summary>
-		/// 
+		/// 道具字典，key:道具ID，value:数量
 		/// </summary>
 		[ProtoMember(1)]
-		[System.ComponentModel.Description("")]
+		[System.ComponentModel.Description("道具字典，key:道具ID，value:数量")]
 		[ProtoMap(DisableMap = true)]
 		public Dictionary<int, long> ItemDic { get; set; } = new Dictionary<int, long>();
 
@@ -104,18 +104,18 @@ namespace GameFrameX.Proto.Proto
 	}
 
 	/// <summary>
-	/// 
+	/// 通知背包道具变化
 	/// </summary>
 	[ProtoContract]
-	[System.ComponentModel.Description("")]
+	[System.ComponentModel.Description("通知背包道具变化")]
 	[MessageTypeHandler(((100) << 16) + 12)]
 	public sealed class NotifyBagItem : MessageObject, INotifyMessage
 	{
 		/// <summary>
-		/// 道具id
+		/// 道具ID
 		/// </summary>
 		[ProtoMember(1)]
-		[System.ComponentModel.Description("道具id")]
+		[System.ComponentModel.Description("道具ID")]
 		public int ItemId { get; set; }
 
 		/// <summary>
@@ -149,10 +149,10 @@ namespace GameFrameX.Proto.Proto
 	public sealed class NotifyBagInfoChanged : MessageObject, INotifyMessage
 	{
 		/// <summary>
-		/// 变化的道具，key:道具id，value:数量
+		/// 变化的道具，key:道具ID，value:变化信息
 		/// </summary>
 		[ProtoMember(1)]
-		[System.ComponentModel.Description("变化的道具，key:道具id，value:数量")]
+		[System.ComponentModel.Description("变化的道具，key:道具ID，value:变化信息")]
 		[ProtoMap(DisableMap = true)]
 		public Dictionary<int, NotifyBagItem> ItemDic { get; set; } = new Dictionary<int, NotifyBagItem>();
 
@@ -171,10 +171,10 @@ namespace GameFrameX.Proto.Proto
 	public sealed class ReqComposePet : MessageObject, IRequestMessage
 	{
 		/// <summary>
-		/// 碎片id
+		/// 碎片ID
 		/// </summary>
 		[ProtoMember(1)]
-		[System.ComponentModel.Description("碎片id")]
+		[System.ComponentModel.Description("碎片ID")]
 		public int FragmentId { get; set; }
 
 		public override void Clear()
@@ -192,10 +192,10 @@ namespace GameFrameX.Proto.Proto
 	public sealed class RespComposePet : MessageObject, IResponseMessage
 	{
 		/// <summary>
-		/// 合成宠物的Id
+		/// 合成宠物的ID
 		/// </summary>
 		[ProtoMember(1)]
-		[System.ComponentModel.Description("合成宠物的Id")]
+		[System.ComponentModel.Description("合成宠物的ID")]
 		public int PetId { get; set; }
 
 		/// <summary>
@@ -221,10 +221,10 @@ namespace GameFrameX.Proto.Proto
 	public sealed class ReqUseItem : MessageObject, IRequestMessage
 	{
 		/// <summary>
-		/// 道具id
+		/// 道具ID
 		/// </summary>
 		[ProtoMember(1)]
-		[System.ComponentModel.Description("道具id")]
+		[System.ComponentModel.Description("道具ID")]
 		public int ItemId { get; set; }
 
 		/// <summary>
@@ -242,18 +242,18 @@ namespace GameFrameX.Proto.Proto
 	}
 
 	/// <summary>
-	/// 请求使用道具
+	/// 返回使用道具
 	/// </summary>
 	[ProtoContract]
-	[System.ComponentModel.Description("请求使用道具")]
+	[System.ComponentModel.Description("返回使用道具")]
 	[MessageTypeHandler(((100) << 16) + 17)]
 	public sealed class RespUseItem : MessageObject, IResponseMessage
 	{
 		/// <summary>
-		/// 道具id
+		/// 道具ID
 		/// </summary>
 		[ProtoMember(1)]
-		[System.ComponentModel.Description("道具id")]
+		[System.ComponentModel.Description("道具ID")]
 		public int ItemId { get; set; }
 
 		/// <summary>
@@ -279,18 +279,18 @@ namespace GameFrameX.Proto.Proto
 	}
 
 	/// <summary>
-	/// 丢弃物品请求
+	/// 请求丢弃道具
 	/// </summary>
 	[ProtoContract]
-	[System.ComponentModel.Description("丢弃物品请求")]
+	[System.ComponentModel.Description("请求丢弃道具")]
 	[MessageTypeHandler(((100) << 16) + 18)]
 	public sealed class ReqDiscardItem : MessageObject, IRequestMessage
 	{
 		/// <summary>
-		/// 道具id
+		/// 道具ID
 		/// </summary>
 		[ProtoMember(1)]
-		[System.ComponentModel.Description("道具id")]
+		[System.ComponentModel.Description("道具ID")]
 		public int ItemId { get; set; }
 
 		/// <summary>
@@ -308,18 +308,18 @@ namespace GameFrameX.Proto.Proto
 	}
 
 	/// <summary>
-	/// 丢弃物品返回
+	/// 返回丢弃道具
 	/// </summary>
 	[ProtoContract]
-	[System.ComponentModel.Description("丢弃物品返回")]
+	[System.ComponentModel.Description("返回丢弃道具")]
 	[MessageTypeHandler(((100) << 16) + 19)]
 	public sealed class RespDiscardItem : MessageObject, IResponseMessage
 	{
 		/// <summary>
-		/// 道具id
+		/// 道具ID
 		/// </summary>
 		[ProtoMember(1)]
-		[System.ComponentModel.Description("道具id")]
+		[System.ComponentModel.Description("道具ID")]
 		public int ItemId { get; set; }
 
 		/// <summary>
@@ -345,18 +345,18 @@ namespace GameFrameX.Proto.Proto
 	}
 
 	/// <summary>
-	/// 出售道具
+	/// 请求出售道具
 	/// </summary>
 	[ProtoContract]
-	[System.ComponentModel.Description("出售道具")]
+	[System.ComponentModel.Description("请求出售道具")]
 	[MessageTypeHandler(((100) << 16) + 20)]
 	public sealed class ReqSellItem : MessageObject, IRequestMessage
 	{
 		/// <summary>
-		/// 道具id
+		/// 道具ID
 		/// </summary>
 		[ProtoMember(1)]
-		[System.ComponentModel.Description("道具id")]
+		[System.ComponentModel.Description("道具ID")]
 		public int ItemId { get; set; }
 
 		public override void Clear()
@@ -366,18 +366,18 @@ namespace GameFrameX.Proto.Proto
 	}
 
 	/// <summary>
-	/// 出售道具
+	/// 返回出售道具
 	/// </summary>
 	[ProtoContract]
-	[System.ComponentModel.Description("出售道具")]
+	[System.ComponentModel.Description("返回出售道具")]
 	[MessageTypeHandler(((100) << 16) + 21)]
-	public sealed class RespItemChange : MessageObject, IResponseMessage
+	public sealed class RespSellItem : MessageObject, IResponseMessage
 	{
 		/// <summary>
-		/// 变化的道具
+		/// 变化的道具，key:道具ID，value:数量
 		/// </summary>
 		[ProtoMember(1)]
-		[System.ComponentModel.Description("变化的道具")]
+		[System.ComponentModel.Description("变化的道具，key:道具ID，value:数量")]
 		[ProtoMap(DisableMap = true)]
 		public Dictionary<long, long> ItemDic { get; set; } = new Dictionary<long, long>();
 
@@ -396,18 +396,18 @@ namespace GameFrameX.Proto.Proto
 	}
 
 	/// <summary>
-	/// 增加道具
+	/// 请求增加道具
 	/// </summary>
 	[ProtoContract]
-	[System.ComponentModel.Description("增加道具")]
+	[System.ComponentModel.Description("请求增加道具")]
 	[MessageTypeHandler(((100) << 16) + 22)]
 	public sealed class ReqAddItem : MessageObject, IRequestMessage
 	{
 		/// <summary>
-		/// 
+		/// 增加的道具，key:道具ID，value:数量
 		/// </summary>
 		[ProtoMember(1)]
-		[System.ComponentModel.Description("")]
+		[System.ComponentModel.Description("增加的道具，key:道具ID，value:数量")]
 		[ProtoMap(DisableMap = true)]
 		public Dictionary<int, long> ItemDic { get; set; } = new Dictionary<int, long>();
 
@@ -418,18 +418,18 @@ namespace GameFrameX.Proto.Proto
 	}
 
 	/// <summary>
-	/// 增加道具返回
+	/// 返回增加道具
 	/// </summary>
 	[ProtoContract]
-	[System.ComponentModel.Description("增加道具返回")]
+	[System.ComponentModel.Description("返回增加道具")]
 	[MessageTypeHandler(((100) << 16) + 23)]
 	public sealed class RespAddItem : MessageObject, IResponseMessage
 	{
 		/// <summary>
-		/// 变化的道具
+		/// 变化的道具，key:道具ID，value:数量
 		/// </summary>
 		[ProtoMember(1)]
-		[System.ComponentModel.Description("变化的道具")]
+		[System.ComponentModel.Description("变化的道具，key:道具ID，value:数量")]
 		[ProtoMap(DisableMap = true)]
 		public Dictionary<int, long> ItemDic { get; set; } = new Dictionary<int, long>();
 
@@ -448,18 +448,18 @@ namespace GameFrameX.Proto.Proto
 	}
 
 	/// <summary>
-	/// 减少道具
+	/// 请求减少道具
 	/// </summary>
 	[ProtoContract]
-	[System.ComponentModel.Description("减少道具")]
+	[System.ComponentModel.Description("请求减少道具")]
 	[MessageTypeHandler(((100) << 16) + 24)]
 	public sealed class ReqRemoveItem : MessageObject, IRequestMessage
 	{
 		/// <summary>
-		/// 
+		/// 减少的道具，key:道具ID，value:数量
 		/// </summary>
 		[ProtoMember(1)]
-		[System.ComponentModel.Description("")]
+		[System.ComponentModel.Description("减少的道具，key:道具ID，value:数量")]
 		[ProtoMap(DisableMap = true)]
 		public Dictionary<int, long> ItemDic { get; set; } = new Dictionary<int, long>();
 
@@ -470,18 +470,18 @@ namespace GameFrameX.Proto.Proto
 	}
 
 	/// <summary>
-	/// 减少道具返回
+	/// 返回减少道具
 	/// </summary>
 	[ProtoContract]
-	[System.ComponentModel.Description("减少道具返回")]
+	[System.ComponentModel.Description("返回减少道具")]
 	[MessageTypeHandler(((100) << 16) + 25)]
 	public sealed class RespRemoveItem : MessageObject, IResponseMessage
 	{
 		/// <summary>
-		/// 变化的道具
+		/// 变化的道具，key:道具ID，value:数量
 		/// </summary>
 		[ProtoMember(1)]
-		[System.ComponentModel.Description("变化的道具")]
+		[System.ComponentModel.Description("变化的道具，key:道具ID，value:数量")]
 		[ProtoMap(DisableMap = true)]
 		public Dictionary<int, long> ItemDic { get; set; } = new Dictionary<int, long>();
 
