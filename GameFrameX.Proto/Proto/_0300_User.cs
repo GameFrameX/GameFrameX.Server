@@ -46,38 +46,38 @@ namespace GameFrameX.Proto.Proto
 	public sealed class ReqLogin : MessageObject, IRequestMessage
 	{
 		/// <summary>
-		/// 
+		/// 用户名
 		/// </summary>
 		[ProtoMember(1)]
-		[System.ComponentModel.Description("")]
+		[System.ComponentModel.Description("用户名")]
 		public string UserName { get; set; }
 
 		/// <summary>
-		/// 
+		/// 平台
 		/// </summary>
 		[ProtoMember(2)]
-		[System.ComponentModel.Description("")]
+		[System.ComponentModel.Description("平台")]
 		public string Platform { get; set; }
 
 		/// <summary>
-		/// 
+		/// SDK类型
 		/// </summary>
 		[ProtoMember(3)]
-		[System.ComponentModel.Description("")]
+		[System.ComponentModel.Description("SDK类型")]
 		public int SdkType { get; set; }
 
 		/// <summary>
-		/// 
+		/// SDK令牌
 		/// </summary>
 		[ProtoMember(4)]
-		[System.ComponentModel.Description("")]
+		[System.ComponentModel.Description("SDK令牌")]
 		public string SdkToken { get; set; }
 
 		/// <summary>
-		/// 
+		/// 设备信息
 		/// </summary>
 		[ProtoMember(5)]
-		[System.ComponentModel.Description("")]
+		[System.ComponentModel.Description("设备信息")]
 		public string Device { get; set; }
 
 		/// <summary>
@@ -99,18 +99,18 @@ namespace GameFrameX.Proto.Proto
 	}
 
 	/// <summary>
-	/// 请求账号登录返回
+	/// 返回账号登录
 	/// </summary>
 	[ProtoContract]
-	[System.ComponentModel.Description("请求账号登录返回")]
+	[System.ComponentModel.Description("返回账号登录")]
 	[MessageTypeHandler(((300) << 16) + 11)]
 	public sealed class RespLogin : MessageObject, IResponseMessage
 	{
 		/// <summary>
-		/// 
+		/// 返回码（ResultCode）
 		/// </summary>
 		[ProtoMember(1)]
-		[System.ComponentModel.Description("")]
+		[System.ComponentModel.Description("返回码（ResultCode）")]
 		public int Code { get; set; }
 
 		/// <summary>
@@ -189,10 +189,10 @@ namespace GameFrameX.Proto.Proto
 	}
 
 	/// <summary>
-	/// 请求角色创建返回
+	/// 返回角色创建
 	/// </summary>
 	[ProtoContract]
-	[System.ComponentModel.Description("请求角色创建返回")]
+	[System.ComponentModel.Description("返回角色创建")]
 	[MessageTypeHandler(((300) << 16) + 13)]
 	public sealed class RespPlayerCreate : MessageObject, IResponseMessage
 	{
@@ -239,10 +239,10 @@ namespace GameFrameX.Proto.Proto
 	}
 
 	/// <summary>
-	/// 请求角色列表返回
+	/// 返回角色列表
 	/// </summary>
 	[ProtoContract]
-	[System.ComponentModel.Description("请求角色列表返回")]
+	[System.ComponentModel.Description("返回角色列表")]
 	[MessageTypeHandler(((300) << 16) + 15)]
 	public sealed class RespPlayerList : MessageObject, IResponseMessage
 	{
@@ -268,10 +268,10 @@ namespace GameFrameX.Proto.Proto
 	}
 
 	/// <summary>
-	/// 
+	/// 角色信息
 	/// </summary>
 	[ProtoContract]
-	[System.ComponentModel.Description("")]
+	[System.ComponentModel.Description("角色信息")]
 	public sealed class PlayerInfo
 	{
 		/// <summary>
@@ -339,18 +339,18 @@ namespace GameFrameX.Proto.Proto
 	}
 
 	/// <summary>
-	/// 请求玩家登录返回
+	/// 返回玩家登录
 	/// </summary>
 	[ProtoContract]
-	[System.ComponentModel.Description("请求玩家登录返回")]
+	[System.ComponentModel.Description("返回玩家登录")]
 	[MessageTypeHandler(((300) << 16) + 17)]
 	public sealed class RespPlayerLogin : MessageObject, IResponseMessage
 	{
 		/// <summary>
-		/// 
+		/// 返回码（ResultCode）
 		/// </summary>
 		[ProtoMember(1)]
-		[System.ComponentModel.Description("")]
+		[System.ComponentModel.Description("返回码（ResultCode）")]
 		public int Code { get; set; }
 
 		/// <summary>
@@ -421,10 +421,10 @@ namespace GameFrameX.Proto.Proto
 	}
 
 	/// <summary>
-	/// 
+	/// 提示信息
 	/// </summary>
 	[ProtoContract]
-	[System.ComponentModel.Description("")]
+	[System.ComponentModel.Description("提示信息")]
 	[MessageTypeHandler(((300) << 16) + 19)]
 	public sealed class RespPrompt : MessageObject, IResponseMessage
 	{

@@ -38,10 +38,10 @@ using GameFrameX.NetWork.Messages;
 namespace GameFrameX.Proto.Proto
 {
 	/// <summary>
-	/// 
+	/// 好友信息
 	/// </summary>
 	[ProtoContract]
-	[System.ComponentModel.Description("")]
+	[System.ComponentModel.Description("好友信息")]
 	public sealed class FriendInfo
 	{
 		/// <summary>
