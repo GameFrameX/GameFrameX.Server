@@ -32,7 +32,7 @@ namespace GameFrameX.Config.Tables
             foreach(var element in jsonElement.EnumerateArray())
             {
                 Tables.AchievementConfig _v;
-                _v = Tables.AchievementConfig.DeserializeAchievementConfig(element);
+                _v = global::GameFrameX.Config.Tables.AchievementConfig.DeserializeAchievementConfig(element);
                 DataList.Add(_v);
                 LongDataMaps.Add(_v.Id, _v);
                 StringDataMaps.Add(_v.Id.ToString(), _v);
@@ -47,12 +47,23 @@ namespace GameFrameX.Config.Tables
                 element.ResolveRef(tables);
             }
         }
-    
+
+        public void TranslateText(System.Func<string, string, string> translator)
+        {
+            foreach(var element in DataList)
+            {
+                element.TranslateText(translator);
+            }
+        }
+
     
         partial void PostInit();
 
-        public TbAchievementConfig(Func<Task<JsonElement>> loadFunc) : base(loadFunc)
+        private readonly System.Func<System.Threading.Tasks.Task<JsonElement>> _loadFunc;
+
+        public TbAchievementConfig(System.Func<System.Threading.Tasks.Task<JsonElement>> loadFunc)
         {
+            _loadFunc = loadFunc;
         }
     }
 }

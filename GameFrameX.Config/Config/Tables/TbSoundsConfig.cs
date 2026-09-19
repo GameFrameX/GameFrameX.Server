@@ -32,7 +32,7 @@ namespace GameFrameX.Config.Tables
             foreach(var element in jsonElement.EnumerateArray())
             {
                 Tables.SoundsConfig _v;
-                _v = Tables.SoundsConfig.DeserializeSoundsConfig(element);
+                _v = global::GameFrameX.Config.Tables.SoundsConfig.DeserializeSoundsConfig(element);
                 DataList.Add(_v);
                 LongDataMaps.Add(_v.Id, _v);
                 StringDataMaps.Add(_v.Id.ToString(), _v);
@@ -47,12 +47,23 @@ namespace GameFrameX.Config.Tables
                 element.ResolveRef(tables);
             }
         }
-    
+
+        public void TranslateText(System.Func<string, string, string> translator)
+        {
+            foreach(var element in DataList)
+            {
+                element.TranslateText(translator);
+            }
+        }
+
     
         partial void PostInit();
 
-        public TbSoundsConfig(Func<Task<JsonElement>> loadFunc) : base(loadFunc)
+        private readonly System.Func<System.Threading.Tasks.Task<JsonElement>> _loadFunc;
+
+        public TbSoundsConfig(System.Func<System.Threading.Tasks.Task<JsonElement>> loadFunc)
         {
+            _loadFunc = loadFunc;
         }
     }
 }

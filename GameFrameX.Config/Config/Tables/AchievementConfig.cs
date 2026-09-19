@@ -14,6 +14,9 @@ namespace GameFrameX.Config.Tables
 {
     public sealed partial class AchievementConfig : BeanBase
     {
+
+        private System.Func<string, string, string> Translator;
+
         /*
         public AchievementConfig(int Id, int Image, string Name, string AchievementContent, string LockText, System.Collections.Generic.List<int> AchievementUnlockCondition) 
         {
@@ -29,12 +32,19 @@ namespace GameFrameX.Config.Tables
 
         public AchievementConfig(JsonElement _buf) 
         {
+            Translator = null;
             Id = _buf.GetProperty("id").GetInt32();
             Image = _buf.GetProperty("image").GetInt32();
             Name = _buf.GetProperty("name").GetString();
             AchievementContent = _buf.GetProperty("achievement_content").GetString();
             LockText = _buf.GetProperty("LockText").GetString();
             { var __json0 = _buf.GetProperty("achievement_unlock_condition"); AchievementUnlockCondition = new System.Collections.Generic.List<int>(__json0.GetArrayLength()); foreach(JsonElement __e0 in __json0.EnumerateArray()) { int __v0;  __v0 = __e0.GetInt32();  AchievementUnlockCondition.Add(__v0); }   }
+
+            // Localization Key Begin
+            Name_Localization_Key = Name;
+            AchievementContent_Localization_Key = AchievementContent;
+            LockText_Localization_Key = LockText;
+            // Localization Key End
         }
     
         public static AchievementConfig DeserializeAchievementConfig(JsonElement _buf)
@@ -53,15 +63,63 @@ namespace GameFrameX.Config.Tables
         /// <summary>
         /// 成就Key
         /// </summary>
-        public string Name { private set; get; }
+        private string _Name;
+        public string Name
+        {
+            get
+            {
+                if (Translator != null)
+                {
+                    return Translator(Name_Localization_Key, _Name);
+                }
+                return _Name;
+            }
+            private set => _Name = value;
+        }
+        /// <summary>
+        /// 成就Key 的多语言Key
+        /// </summary>
+        public readonly string Name_Localization_Key;
         /// <summary>
         /// 成就内容Key
         /// </summary>
-        public string AchievementContent { private set; get; }
+        private string _AchievementContent;
+        public string AchievementContent
+        {
+            get
+            {
+                if (Translator != null)
+                {
+                    return Translator(AchievementContent_Localization_Key, _AchievementContent);
+                }
+                return _AchievementContent;
+            }
+            private set => _AchievementContent = value;
+        }
+        /// <summary>
+        /// 成就内容Key 的多语言Key
+        /// </summary>
+        public readonly string AchievementContent_Localization_Key;
         /// <summary>
         /// 未解锁文字key
         /// </summary>
-        public string LockText { private set; get; }
+        private string _LockText;
+        public string LockText
+        {
+            get
+            {
+                if (Translator != null)
+                {
+                    return Translator(LockText_Localization_Key, _LockText);
+                }
+                return _LockText;
+            }
+            private set => _LockText = value;
+        }
+        /// <summary>
+        /// 未解锁文字key 的多语言Key
+        /// </summary>
+        public readonly string LockText_Localization_Key;
         /// <summary>
         /// 成就解锁条件
         /// </summary>
@@ -78,6 +136,11 @@ namespace GameFrameX.Config.Tables
             
             
             
+        }
+
+        public  void TranslateText(System.Func<string, string, string> translator)
+        {
+            Translator = translator;
         }
 
         public override string ToString()

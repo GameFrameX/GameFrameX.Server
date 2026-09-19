@@ -14,6 +14,9 @@ namespace GameFrameX.Config
 {
     public partial struct vec3
     {
+
+        private System.Func<string, string, string> Translator;
+
         /*
         public vec3(float X, float Y, float Z) 
         {
@@ -26,9 +29,13 @@ namespace GameFrameX.Config
 
         public vec3(JsonElement _buf) 
         {
+            Translator = null;
             X = _buf.GetProperty("x").GetSingle();
             Y = _buf.GetProperty("y").GetSingle();
             Z = _buf.GetProperty("z").GetSingle();
+
+            // Localization Key Begin
+            // Localization Key End
         }
     
         public static vec3 Deserializevec3(JsonElement _buf)
@@ -46,6 +53,11 @@ namespace GameFrameX.Config
             
             
             
+        }
+
+        public  void TranslateText(System.Func<string, string, string> translator)
+        {
+            Translator = translator;
         }
 
         public override string ToString()

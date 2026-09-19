@@ -32,7 +32,7 @@ namespace GameFrameX.Config.Tables
             foreach(var element in jsonElement.EnumerateArray())
             {
                 Tables.ItemConfig _v;
-                _v = Tables.ItemConfig.DeserializeItemConfig(element);
+                _v = global::GameFrameX.Config.Tables.ItemConfig.DeserializeItemConfig(element);
                 DataList.Add(_v);
                 LongDataMaps.Add(_v.Id, _v);
                 StringDataMaps.Add(_v.Id.ToString(), _v);
@@ -47,12 +47,23 @@ namespace GameFrameX.Config.Tables
                 element.ResolveRef(tables);
             }
         }
-    
+
+        public void TranslateText(System.Func<string, string, string> translator)
+        {
+            foreach(var element in DataList)
+            {
+                element.TranslateText(translator);
+            }
+        }
+
     
         partial void PostInit();
 
-        public TbItemConfig(Func<Task<JsonElement>> loadFunc) : base(loadFunc)
+        private readonly System.Func<System.Threading.Tasks.Task<JsonElement>> _loadFunc;
+
+        public TbItemConfig(System.Func<System.Threading.Tasks.Task<JsonElement>> loadFunc)
         {
+            _loadFunc = loadFunc;
         }
     }
 }

@@ -14,6 +14,9 @@ namespace GameFrameX.Config.Local
 {
     public sealed partial class Localization : BeanBase
     {
+
+        private System.Func<string, string, string> Translator;
+
         /*
         public Localization(string Key, string ChineseSimplified, string ChineseTraditional, string English, string Japanese, string Korean, string Thai, string Indonesian, string French, string German, string Russian, string Italian, string PortuguesePortugal, string Spanish, string Vietnamese) 
         {
@@ -38,6 +41,7 @@ namespace GameFrameX.Config.Local
 
         public Localization(JsonElement _buf) 
         {
+            Translator = null;
             Key = _buf.GetProperty("key").GetString();
             ChineseSimplified = _buf.GetProperty("ChineseSimplified").GetString();
             ChineseTraditional = _buf.GetProperty("ChineseTraditional").GetString();
@@ -53,6 +57,9 @@ namespace GameFrameX.Config.Local
             PortuguesePortugal = _buf.GetProperty("PortuguesePortugal").GetString();
             Spanish = _buf.GetProperty("Spanish").GetString();
             Vietnamese = _buf.GetProperty("Vietnamese").GetString();
+
+            // Localization Key Begin
+            // Localization Key End
         }
     
         public static Localization DeserializeLocalization(JsonElement _buf)
@@ -141,6 +148,11 @@ namespace GameFrameX.Config.Local
             
             
             
+        }
+
+        public  void TranslateText(System.Func<string, string, string> translator)
+        {
+            Translator = translator;
         }
 
         public override string ToString()
