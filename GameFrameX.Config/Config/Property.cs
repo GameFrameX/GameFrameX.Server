@@ -17,9 +17,6 @@ namespace GameFrameX.Config
     /// </summary>
     public sealed partial class Property : BeanBase
     {
-
-        private System.Func<string, string, string> Translator;
-
         /*
         public Property(int PhysicalAttack, int MagicAttack, int PhysicalDefense, int MagicDefense, int Life, int Crit, int BurstDamage, int Precise, int Block) 
         {
@@ -38,7 +35,6 @@ namespace GameFrameX.Config
 
         public Property(JsonElement _buf) 
         {
-            Translator = null;
             PhysicalAttack = _buf.GetProperty("PhysicalAttack").GetInt32();
             MagicAttack = _buf.GetProperty("MagicAttack").GetInt32();
             PhysicalDefense = _buf.GetProperty("PhysicalDefense").GetInt32();
@@ -48,9 +44,6 @@ namespace GameFrameX.Config
             BurstDamage = _buf.GetProperty("burstDamage").GetInt32();
             Precise = _buf.GetProperty("precise").GetInt32();
             Block = _buf.GetProperty("block").GetInt32();
-
-            // Localization Key Begin
-            // Localization Key End
         }
     
         public static Property DeserializeProperty(JsonElement _buf)
@@ -109,11 +102,6 @@ namespace GameFrameX.Config
             
             
             
-        }
-
-        public  void TranslateText(System.Func<string, string, string> translator)
-        {
-            Translator = translator;
         }
 
         public override string ToString()

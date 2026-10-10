@@ -32,7 +32,7 @@ namespace GameFrameX.Config.Local
             foreach(var element in jsonElement.EnumerateArray())
             {
                 Local.Localization _v;
-                _v = global::GameFrameX.Config.Local.Localization.DeserializeLocalization(element);
+                _v = Local.Localization.DeserializeLocalization(element);
                 DataList.Add(_v);
                 StringDataMaps.Add(_v.Key.ToString(), _v);
             }
@@ -46,23 +46,12 @@ namespace GameFrameX.Config.Local
                 element.ResolveRef(tables);
             }
         }
-
-        public void TranslateText(System.Func<string, string, string> translator)
-        {
-            foreach(var element in DataList)
-            {
-                element.TranslateText(translator);
-            }
-        }
-
+    
     
         partial void PostInit();
 
-        private readonly System.Func<System.Threading.Tasks.Task<JsonElement>> _loadFunc;
-
-        public TbLocalization(System.Func<System.Threading.Tasks.Task<JsonElement>> loadFunc)
+        public TbLocalization(Func<Task<JsonElement>> loadFunc) : base(loadFunc)
         {
-            _loadFunc = loadFunc;
         }
     }
 }

@@ -14,9 +14,6 @@ namespace GameFrameX.Config
 {
     public sealed partial class PropItem : BeanBase
     {
-
-        private System.Func<string, string, string> Translator;
-
         /*
         public PropItem(int Id, int Count) 
         {
@@ -28,12 +25,8 @@ namespace GameFrameX.Config
 
         public PropItem(JsonElement _buf) 
         {
-            Translator = null;
             Id = _buf.GetProperty("Id").GetInt32();
             Count = _buf.GetProperty("Count").GetInt32();
-
-            // Localization Key Begin
-            // Localization Key End
         }
     
         public static PropItem DeserializePropItem(JsonElement _buf)
@@ -57,11 +50,6 @@ namespace GameFrameX.Config
         {
             
             
-        }
-
-        public  void TranslateText(System.Func<string, string, string> translator)
-        {
-            Translator = translator;
         }
 
         public override string ToString()

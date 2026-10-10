@@ -14,9 +14,6 @@ namespace GameFrameX.Config.Tables
 {
     public sealed partial class ItemConfig : BeanBase
     {
-
-        private System.Func<string, string, string> Translator;
-
         /*
         public ItemConfig(int Id, string Name, ItemType Type, ItemSubType SubType, ItemEPrompt EPrompt, ItemCanUse CanUse, bool IsDecompose, int MaxNum, string Description, System.Collections.Generic.List<int> ComeLink, string Icon, string BgIcon, ItemLevelColor LevelColor, bool CanAnnounce, string LinkInfo, int FunctionID, ItemUseLimiteType UseLimiteType, bool Abandon, bool DoubleCheckDesc, bool CanTrade, int TradeCD, int TradeItemsLimit, int UseLinmit, long? ExpireTime, bool IsRecordLog) 
         {
@@ -51,7 +48,6 @@ namespace GameFrameX.Config.Tables
 
         public ItemConfig(JsonElement _buf) 
         {
-            Translator = null;
             Id = _buf.GetProperty("id").GetInt32();
             Name = _buf.GetProperty("Name").GetString();
             Type = (ItemType)_buf.GetProperty("Type").GetInt32();
@@ -77,11 +73,6 @@ namespace GameFrameX.Config.Tables
             UseLinmit = _buf.GetProperty("UseLinmit").GetInt32();
             {if (_buf.TryGetProperty("ExpireTime", out var _j) && _j.ValueKind != JsonValueKind.Null) { ExpireTime = _j.GetInt64(); } else { ExpireTime = null; } }
             IsRecordLog = _buf.GetProperty("IsRecordLog").GetBoolean();
-
-            // Localization Key Begin
-            Name_Localization_Key = Name;
-            Description_Localization_Key = Description;
-            // Localization Key End
         }
     
         public static ItemConfig DeserializeItemConfig(JsonElement _buf)
@@ -93,20 +84,7 @@ namespace GameFrameX.Config.Tables
         /// ID
         /// </summary>
         public int Id { private set; get; }
-        private string _Name;
-        public string Name
-        {
-            get
-            {
-                if (Translator != null)
-                {
-                    return Translator(Name_Localization_Key, _Name);
-                }
-                return _Name;
-            }
-            private set => _Name = value;
-        }
-        public readonly string Name_Localization_Key;
+        public string Name { private set; get; }
         /// <summary>
         /// 道具类型
         /// </summary>
@@ -134,23 +112,7 @@ namespace GameFrameX.Config.Tables
         /// <summary>
         /// 描述信息
         /// </summary>
-        private string _Description;
-        public string Description
-        {
-            get
-            {
-                if (Translator != null)
-                {
-                    return Translator(Description_Localization_Key, _Description);
-                }
-                return _Description;
-            }
-            private set => _Description = value;
-        }
-        /// <summary>
-        /// 描述信息 的多语言Key
-        /// </summary>
-        public readonly string Description_Localization_Key;
+        public string Description { private set; get; }
         /// <summary>
         /// 来源链接
         /// </summary>
@@ -246,11 +208,6 @@ namespace GameFrameX.Config.Tables
             
             
             
-        }
-
-        public  void TranslateText(System.Func<string, string, string> translator)
-        {
-            Translator = translator;
         }
 
         public override string ToString()

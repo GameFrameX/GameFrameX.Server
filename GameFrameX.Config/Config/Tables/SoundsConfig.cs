@@ -14,9 +14,6 @@ namespace GameFrameX.Config.Tables
 {
     public sealed partial class SoundsConfig : BeanBase
     {
-
-        private System.Func<string, string, string> Translator;
-
         /*
         public SoundsConfig(int Id, string GroupName, string Path, string Title, string CharacterName) 
         {
@@ -31,17 +28,11 @@ namespace GameFrameX.Config.Tables
 
         public SoundsConfig(JsonElement _buf) 
         {
-            Translator = null;
             Id = _buf.GetProperty("id").GetInt32();
             GroupName = _buf.GetProperty("groupName").GetString();
             Path = _buf.GetProperty("path").GetString();
             Title = _buf.GetProperty("title").GetString();
             CharacterName = _buf.GetProperty("characterName").GetString();
-
-            // Localization Key Begin
-            Title_Localization_Key = Title;
-            CharacterName_Localization_Key = CharacterName;
-            // Localization Key End
         }
     
         public static SoundsConfig DeserializeSoundsConfig(JsonElement _buf)
@@ -64,37 +55,8 @@ namespace GameFrameX.Config.Tables
         /// <summary>
         /// 声音标题Key
         /// </summary>
-        private string _Title;
-        public string Title
-        {
-            get
-            {
-                if (Translator != null)
-                {
-                    return Translator(Title_Localization_Key, _Title);
-                }
-                return _Title;
-            }
-            private set => _Title = value;
-        }
-        /// <summary>
-        /// 声音标题Key 的多语言Key
-        /// </summary>
-        public readonly string Title_Localization_Key;
-        private string _CharacterName;
-        public string CharacterName
-        {
-            get
-            {
-                if (Translator != null)
-                {
-                    return Translator(CharacterName_Localization_Key, _CharacterName);
-                }
-                return _CharacterName;
-            }
-            private set => _CharacterName = value;
-        }
-        public readonly string CharacterName_Localization_Key;
+        public string Title { private set; get; }
+        public string CharacterName { private set; get; }
 
         private const int __ID__ = 4070031;
         public override int GetTypeId() => __ID__;
@@ -106,11 +68,6 @@ namespace GameFrameX.Config.Tables
             
             
             
-        }
-
-        public  void TranslateText(System.Func<string, string, string> translator)
-        {
-            Translator = translator;
         }
 
         public override string ToString()
