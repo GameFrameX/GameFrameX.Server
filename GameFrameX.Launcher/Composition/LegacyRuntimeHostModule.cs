@@ -32,6 +32,7 @@ using GameFrameX.Capability.Hosting.Abstractions;
 using GameFrameX.Foundation.Localization.Core;
 using GameFrameX.Localization;
 using GameFrameX.Core.Components;
+using GameFrameX.Core.Timer;
 
 namespace GameFrameX.Launcher.Composition;
 
@@ -104,6 +105,13 @@ internal sealed class LegacyRuntimeHostModule : ICapabilityModule
         await ComponentRegister.InitAsync(typeof(AppsHandler).Assembly);
         LogHelper.DebugConsole(LocalizationService.GetString(Localization.Keys.Launcher.ComponentRegisterEnd));
         await _owner.LoadHotfixModuleAsync();
+
+        // 旧栈定时器与全局组件激活（对齐框架热更生命周期桥的启动段）：必须先起 Quartz 调度器再激活
+        // 全局组件——全局组件（服务器/房间等）激活期注册周期任务，调度器未启动时激活恒失败
+        //（容错吞掉异常但组件状态缺失），房间等协议面随之不可用。
+        await QuartzTimer.StartAsync();
+        GlobalTimer.Start();
+        await ComponentRegister.ActiveGlobalComponentsAsync();
     }
 
     /// <summary>
