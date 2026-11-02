@@ -22,7 +22,9 @@
 
 ## プロジェクト概要
 
-GameFrameX Server は、C# .NET 10.0 で構築された高性能ゲームサーバーフレームワークです。**Actor モデル**アーキテクチャと**ホットアップデート**機能を備えています。永続的な状態とビジネスロジックを厳密に分離し、マルチプレイオンラインゲームのシナリオに特化して設計されています。
+**GameFrameX でゲームを作る** —— 本リポジトリは GameFrameX 公式ゲームリポジトリです。2.0 NuGet パッケージでフレームワーク機能を利用し、「起動 → マッチング → 対局 → 決済 → ランキング」の最短ループのライブデモ（四目並べを Online 能力ブリッジに接続）を同梱、あなた自身のゲームの出発テンプレートでもあります。フレームワーク本体は Server.Source リポジトリで進化し、本リポジトリは Issue / サンプル要件を通じてそのバックログを駆動します。コードの逆流コピーは禁止です。
+
+基盤は C# .NET 10.0 と **Actor モデル**、**ホットアップデート**対応、永続状態とビジネスロジックの厳格な分離。
 
 > 設計哲学：複雑さよりもシンプルさを
 
@@ -529,8 +531,8 @@ flowchart TB
             Admin["Admin<br/>Admin · Client · Hub API"]
             subgraph GameServers["Game servers"]
                 direction TB
-                Server["Server<br/>NuGet framework"]
-                ServerSource["Server.Source<br/>source framework"]
+                Server["Server<br/>official game repo (this repo)"]
+                ServerSource["Server.Source<br/>framework repo (NuGet)"]
             end
         end
     end

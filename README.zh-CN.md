@@ -22,7 +22,7 @@
 
 ## 项目简介
 
-GameFrameX Server 是基于 C# .NET 10.0 开发的高性能游戏服务器框架，采用 **Actor 模型**设计，支持**热更新**机制。框架将持久化状态与业务逻辑严格分离，专为多人在线游戏场景设计。
+**用 GameFrameX 做一个游戏** —— 本仓是 GameFrameX 官方游戏仓：以 2.0 NuGet 包消费框架能力，内置「开服 → 匹配 → 对局 → 结算 → 排行榜」最短闭环的活演示（四子棋接 Online 能力桥），同时是你用 GameFrameX 起一个自己游戏的起点模板。框架本体（分发包）在 [Server.Source](https://github.com/GameFrameX/GameFrameX.Server.Source) 框架仓演进；本仓以 Issue / 示例需求反向驱动框架仓 backlog，禁止代码反向拷贝。
 
 > 设计理念：大道至简，以简化繁
 
@@ -529,8 +529,8 @@ flowchart TB
             Admin["Admin<br/>Admin · Client · Hub API"]
             subgraph GameServers["Game servers"]
                 direction TB
-                Server["Server<br/>NuGet framework"]
-                ServerSource["Server.Source<br/>source framework"]
+                Server["Server<br/>official game repo (this repo)"]
+                ServerSource["Server.Source<br/>framework repo (NuGet)"]
             end
         end
     end
@@ -558,7 +558,7 @@ flowchart TB
 | 项目 | 作用 | 技术栈 | 产物与对接 |
 |------|------|------|------|
 | [Unity](https://github.com/GameFrameX/GameFrameX.Unity) | Unity 客户端工程：从 GameFrameX UPM 源按需组装 90+ 框架组件，HybridCLR 热更新，内置登录、背包、房间等示例 | Unity 2019.4.40+, HybridCLR, YooAsset, FairyGUI, UniTask | 消费 Protobuf / Config / FairyGUIProject 产物；TCP 29100 + HTTP 28080 连 Server，HTTP 20808 连 Admin Client API |
-| [Server](https://github.com/GameFrameX/GameFrameX.Server) | Actor 模型游戏服务器：Apps 持久化状态层与 Hotfix 可热更逻辑层严格分离，支持单进程与多进程部署 | .NET 10, MongoDB, Docker | 监听 TCP 29100 / WebSocket 29110 / HTTP 28080；为 Admin 提供邮件、发道具、玩家管理等 HTTP 管理接口 |
+| [Server](https://github.com/GameFrameX/GameFrameX.Server)（本仓） | **官方游戏仓 / 用户起点模板**：以 GameFrameX 2.0 NuGet 包消费框架能力，四子棋接 Online 能力桥演示「开服→匹配→对局→结算→排行榜」最短闭环 | .NET 10, MongoDB, Docker | 监听 TCP 29100 / WebSocket 29110 / HTTP 28080；以 Issue / 示例需求反向驱动框架仓 backlog |
 | [Admin](https://github.com/GameFrameX/GameFrameX.Admin) | 多租户运营后台：Admin（20802）/ Client（20808）/ Hub（20806）三个 host + Vue 管理端，覆盖区服、公告、邮件、订单支付、远程配置、在线运营 | .NET 10, SqlSugar, PostgreSQL, Vue 3.5, PrimeVue | 按区服 `HttpManageUrl` 调用 Server；Client API 为游戏客户端提供全局信息、登录与支付回调 |
 | [luban](https://github.com/GameFrameX/luban) | Luban 配置工具的 GameFrameX 分支：合入官方 v5.1.0，增加 `gameframex` 表导入器与 `cs-dotnet-json` / `cs-dotnet-bin` 等生成目标 | .NET 10, Scriban | 发布 Luban tar.gz 与 Docker 镜像；每日同步进 Config 的 `Tools/` |
 | [Config](https://github.com/GameFrameX/GameFrameX.Config) | 配置表仓：Excel 数据表 + schema + 本地化表，一键脚本生成前后端代码与数据 | Excel, Luban | `gen-client-*` → Unity; `gen-server-json` → Server; `gen-server-bin` → Server.Source; `gen-godot-json` / `gen-cocos-json` / `gen-laya-json` → Godot / CocosCreator / LayaBox |
@@ -571,7 +571,7 @@ flowchart TB
 |------|------|------|------|
 | [Foundation](https://github.com/GameFrameX/GameFrameX.Foundation) | 模块化 .NET 类库合集：本地化、JSON、命令行参数、日志、HTTP、加密、哈希、ORM 基类实体、幂等性 | .NET | 以 NuGet 包被 Server、Server.Source、Admin、Tools 引用 |
 | [SuperSocket](https://github.com/GameFrameX/GameFrameX.SuperSocket) | SuperSocket 的 GameFrameX 分支：.NET 10 构建目标、依赖注入支持、面向弱网游戏流量的 KCP / ReliableSession | .NET 10 | NuGet：Server（ClientEngine）、Server.Source（Server / Kcp / Udp / WebSocket） |
-| [Server.Source](https://github.com/GameFrameX/GameFrameX.Server.Source) | 框架层以源码形式放在仓内的服务器版本：服务发现、跨进程 RemoteMessaging（TCP / KCP）、多进程部署 | .NET 10, MongoDB, Docker | 接收 Config `gen-server-bin` 产物；`docker-compose.multi.yml` 多进程部署 |
+| [Server.Source](https://github.com/GameFrameX/GameFrameX.Server.Source) | **框架仓（GameFrameX 分发本体）**：L0–L5 单调分层的框架源码 + Online 能力族，产出 2.0 NuGet 分发包 | .NET 10, MongoDB, Docker | 2.0 NuGet 包供本仓（Server）消费；接收 Config `gen-server-bin` 产物；多进程部署 |
 | [Godot](https://github.com/GameFrameX/GameFrameX.Godot) | Godot .NET 客户端：可复用运行时模块、编辑器插件、热更新程序集 | Godot 4.7, C# | Config `gen-godot-json`, Protobuf `Proto2CsExport_Godot`；TCP 29100 / WebSocket 29110 连 Server |
 | [CocosCreator](https://github.com/GameFrameX/GameFrameX.CocosCreator) | Cocos Creator 客户端，以 Unity 版为基准迁移 | Cocos Creator 3.8, TypeScript | `npm run gen:proto` / `gen:config` 调用 Protobuf / Config 脚本；WebSocket 连 Server |
 | [LayaBox](https://github.com/GameFrameX/GameFrameX.LayaBox) | LayaBox 客户端 | LayaAir, TypeScript | Config `gen-laya-json`, Protobuf `Proto2TsExport_LayaBox`；WebSocket 连 Server |

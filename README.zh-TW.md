@@ -22,7 +22,9 @@
 
 ## 項目簡介
 
-GameFrameX Server 是基於 C# .NET 10.0 開發的高效能遊戲伺服器框架，採用 **Actor 模型**設計，支援**熱更新**機制。框架將持久化狀態與業務邏輯嚴格分離，專為多人線上遊戲場景設計。
+**用 GameFrameX 做一個遊戲** —— 本倉是 GameFrameX 官方遊戲倉：以 2.0 NuGet 包消費框架能力，內建「開服 → 匹配 → 對局 → 結算 → 排行榜」最短閉環活演示（四子棋接 Online 能力橋），同時是你起一個自己遊戲的起點模板。框架本體在 Server.Source 框架倉演進；本倉以 Issue / 示例需求反向驅動框架倉 backlog，禁止代碼反向拷貝。
+
+底層基於 C# .NET 10.0 與 **Actor 模型**，支援**熱更新**，持久化狀態與業務邏輯嚴格分離。
 
 > 設計理念：大道至簡，以簡化繁
 
@@ -529,8 +531,8 @@ flowchart TB
             Admin["Admin<br/>Admin · Client · Hub API"]
             subgraph GameServers["Game servers"]
                 direction TB
-                Server["Server<br/>NuGet framework"]
-                ServerSource["Server.Source<br/>source framework"]
+                Server["Server<br/>official game repo (this repo)"]
+                ServerSource["Server.Source<br/>framework repo (NuGet)"]
             end
         end
     end

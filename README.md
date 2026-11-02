@@ -22,7 +22,7 @@
 
 ## Project Overview
 
-GameFrameX Server is a high-performance game server framework built on C# .NET 10.0, featuring an **Actor Model** architecture with **hot-update** support. The framework enforces strict separation between persistent state and business logic, designed specifically for multiplayer online game scenarios.
+**Make a game with GameFrameX** — this repo is the official GameFrameX game repository: it consumes the framework via the 2.0 NuGet packages, ships a living demo of the shortest closed loop (server boot → matchmaking → match → settlement → leaderboard, with ConnectFour bridged onto the Online capabilities), and doubles as the starting template for your own game. The framework itself (the distribution packages) evolves in the [Server.Source](https://github.com/GameFrameX/GameFrameX.Server.Source) framework repo; this repo drives its backlog through issues and sample requests — code is never copied backwards.
 
 > Design Philosophy: Simplicity over complexity
 
@@ -529,8 +529,8 @@ flowchart TB
             Admin["Admin<br/>Admin · Client · Hub API"]
             subgraph GameServers["Game servers"]
                 direction TB
-                Server["Server<br/>NuGet framework"]
-                ServerSource["Server.Source<br/>source framework"]
+                Server["Server<br/>official game repo (this repo)"]
+                ServerSource["Server.Source<br/>framework repo (NuGet)"]
             end
         end
     end
@@ -558,7 +558,7 @@ flowchart TB
 | Project | Role | Tech Stack | Integration |
 |------|------|------|------|
 | [Unity](https://github.com/GameFrameX/GameFrameX.Unity) | Unity client project: assembles 90+ framework packages from the GameFrameX UPM registry, HybridCLR hot update, login / bag / room samples | Unity 2019.4.40+, HybridCLR, YooAsset, FairyGUI, UniTask | Consumes Protobuf / Config / FairyGUIProject output; TCP 29100 + HTTP 28080 to Server, HTTP 20808 to Admin Client API |
-| [Server](https://github.com/GameFrameX/GameFrameX.Server) | Actor-model game server: persistent Apps state layer strictly separated from the hot-updatable Hotfix logic layer; single- or multi-process deployment | .NET 10, MongoDB, Docker | Listens on TCP 29100 / WebSocket 29110 / HTTP 28080; HTTP management endpoints (mail, item grants, player management) for Admin |
+| [Server](https://github.com/GameFrameX/GameFrameX.Server) (this repo) | **Official game repo / user starting template**: consumes GameFrameX 2.0 NuGet packages; ConnectFour bridged onto the Online capabilities demos the shortest loop (boot → matchmaking → match → settlement → leaderboard) | .NET 10, MongoDB, Docker | Listens on TCP 29100 / WebSocket 29110 / HTTP 28080; drives the framework repo backlog via issues and sample requests |
 | [Admin](https://github.com/GameFrameX/GameFrameX.Admin) | Multi-tenant operations backend: Admin (20802) / Client (20808) / Hub (20806) hosts + Vue console, covering game areas, announcements, mail, orders & payment, remote config, LiveOps | .NET 10, SqlSugar, PostgreSQL, Vue 3.5, PrimeVue | Calls Server through each game area's `HttpManageUrl`; Client API serves global info, login and payment callbacks to game clients |
 | [luban](https://github.com/GameFrameX/luban) | GameFrameX fork of Luban: merged upstream v5.1.0, adds the `gameframex` table importer and `cs-dotnet-json` / `cs-dotnet-bin` code targets | .NET 10, Scriban | Publishes Luban tar.gz and Docker image; synced daily into Config `Tools/` |
 | [Config](https://github.com/GameFrameX/GameFrameX.Config) | Config table repository: Excel data tables + schema + localization tables, one-click scripts generate client and server code and data | Excel, Luban | `gen-client-*` → Unity; `gen-server-json` → Server; `gen-server-bin` → Server.Source; `gen-godot-json` / `gen-cocos-json` / `gen-laya-json` → Godot / CocosCreator / LayaBox |
@@ -571,7 +571,7 @@ flowchart TB
 |------|------|------|------|
 | [Foundation](https://github.com/GameFrameX/GameFrameX.Foundation) | Modular .NET libraries: localization, JSON, command-line options, logging, HTTP, encryption, hashing, ORM base entities, idempotency | .NET | NuGet packages referenced by Server, Server.Source, Admin, Tools |
 | [SuperSocket](https://github.com/GameFrameX/GameFrameX.SuperSocket) | GameFrameX fork of SuperSocket: .NET 10 targets, dependency injection, KCP / ReliableSession for weak-network game traffic | .NET 10 | NuGet: Server (ClientEngine), Server.Source (Server / Kcp / Udp / WebSocket) |
-| [Server.Source](https://github.com/GameFrameX/GameFrameX.Server.Source) | Server variant with the framework as in-repo source: service discovery, cross-process RemoteMessaging (TCP / KCP), multi-process deployment | .NET 10, MongoDB, Docker | Receives Config `gen-server-bin` output; multi-process via `docker-compose.multi.yml` |
+| [Server.Source](https://github.com/GameFrameX/GameFrameX.Server.Source) | **Framework repo (the GameFrameX distribution itself)**: L0–L5 monotonic framework source + the Online capability family; produces the 2.0 NuGet packages | .NET 10, MongoDB, Docker | 2.0 NuGet packages consumed by this repo (Server); receives Config `gen-server-bin` output; multi-process deployment |
 | [Godot](https://github.com/GameFrameX/GameFrameX.Godot) | Godot .NET client with reusable runtime modules, editor plugins and hot-update assemblies | Godot 4.7, C# | Config `gen-godot-json`, Protobuf `Proto2CsExport_Godot`; TCP 29100 / WebSocket 29110 to Server |
 | [CocosCreator](https://github.com/GameFrameX/GameFrameX.CocosCreator) | Cocos Creator client, migrated from the Unity version | Cocos Creator 3.8, TypeScript | `npm run gen:proto` / `gen:config` call Protobuf / Config scripts; WebSocket to Server |
 | [LayaBox](https://github.com/GameFrameX/GameFrameX.LayaBox) | LayaBox client | LayaAir, TypeScript | Config `gen-laya-json`, Protobuf `Proto2TsExport_LayaBox`; WebSocket to Server |
