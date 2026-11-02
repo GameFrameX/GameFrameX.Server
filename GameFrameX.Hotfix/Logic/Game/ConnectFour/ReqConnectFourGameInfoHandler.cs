@@ -37,7 +37,8 @@ internal sealed class ReqConnectFourGameInfoHandler : GlobalRpcComponentHandler<
     {
         try
         {
-            await ComponentAgent.OnReqGameInfoAsync(request, response);
+            var roleId = ConnectFourHandlerHelper.GetCurrentPlayerId(NetworkChannel);
+            await ComponentAgent.OnReqGameInfoAsync(roleId, request, response);
         }
         catch (Exception e)
         {

@@ -1,2 +1,2 @@
-@REM 游戏服务器
-start dotnet GameFrameX.Launcher.dll --ServerType=Game --ServerId=9000 --APMPort=29090 --InnerIp=127.0.0.1 --InnerPort=29100 --OuterIp=127.0.0.1 --OuterPort=29010 --MinModuleId=1 --MaxModuleId=9999 --WsPort=29110 --DiscoveryCenterIp=127.0.0.1 --DiscoveryCenterPort=21001 --HttpCode=inner_httpcode --DataBaseUrl="mongodb+srv://gameframex:f9v42aU9DVeFNfAF@gameframex.8taphic.mongodb.net/?retryWrites=true&w=majority" --DataBaseName=gameframex
+@REM 游戏服务器（零依赖快速启动：SQLite 嵌入式，数据落运行目录 data/ 子目录）
+start dotnet GameFrameX.Launcher.dll --AllInOne --DatabaseProvider=Sqlite --DataBaseUrl="Data Source=data/gameframex.db"

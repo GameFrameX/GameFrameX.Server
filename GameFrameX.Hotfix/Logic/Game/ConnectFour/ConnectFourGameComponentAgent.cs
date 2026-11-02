@@ -32,18 +32,45 @@ using GameFrameX.Core.Session;
 using GameFrameX.Apps.Game.ConnectFour.Component;
 using GameFrameX.Apps.Game.ConnectFour.Entity;
 using GameFrameX.Hotfix.Logic.Game.Room;
+using GameFrameX.Capability.Online.Abstractions.Contracts;
 
 namespace GameFrameX.Hotfix.Logic.Game.ConnectFour;
 
 public class ConnectFourGameComponentAgent : StateComponentAgent<ConnectFourGameComponent, ConnectFourGameListState>
 {
-    public async Task OnReqGameInfoAsync(ReqConnectFourGameInfo request, RespConnectFourGameInfo response)
+    public async Task OnReqGameInfoAsync(long roleId, ReqConnectFourGameInfo request, RespConnectFourGameInfo response)
     {
         var roomAgent = await ActorManager.GetComponentAgentAsync<RoomComponentAgent>();
         var room = await roomAgent.GetRoomAsync(request.RoomId);
         if (!CheckRoom(room, response))
         {
             return;
+        }
+
+        // 对局桥路径（online-match 能力启用时独占）：查询平台对局生命周期投影并驱动房间状态映射；
+        // 棋盘明细取本地回显镜像（同一落子序列与平台权威棋盘一致，镜像仅为协议回显，非裁决依据）。
+        if (ConnectFourMatchBridge.IsBridgeEnabled && room.PlayerIds.Contains(roleId))
+        {
+            var infoResult = await ConnectFourMatchBridge.TryGetGameInfoAsync(roleId, room.RoomId, room.Round);
+            if (infoResult.Handled)
+            {
+                if (infoResult.View == null)
+                {
+                    response.GameInfo = null;
+                    return;
+                }
+
+                await ConnectFourMatchBridge.ApplyRoomStateAsync(roomAgent, room, infoResult.View);
+                var mirrored = GetOrCreateGame(room.RoomId, room.Round, room.PlayerIds);
+                if (mirrored.WinnerRoleId == 0 && infoResult.View.WinnerPlayerId != 0)
+                {
+                    mirrored.WinnerRoleId = infoResult.View.WinnerPlayerId;
+                    mirrored.CurrentPlayerId = 0;
+                }
+
+                response.GameInfo = ToMessage(mirrored, room.PlayerIds);
+                return;
+            }
         }
 
         var game = GetOrCreateGame(room.RoomId, room.Round, room.PlayerIds);
@@ -79,6 +106,57 @@ public class ConnectFourGameComponentAgent : StateComponentAgent<ConnectFourGame
             response.ErrorCode = (int)OperationStatusCode.Forbidden;
             response.GameInfo = BuildGameInfo(room);
             return;
+        }
+
+        // 对局桥路径（online-match 能力启用时独占）：平台权威裁决（回合 / 重力落子 / 四连）→
+        // 成功后本地镜像同步落子并按平台结算事实驱动房间状态映射 + 全员推送；
+        // 平台结算随后经结算管线发奖（统一资产入口）并投影写默认榜。
+        if (ConnectFourMatchBridge.IsBridgeEnabled)
+        {
+            var submitResult = await ConnectFourMatchBridge.TrySubmitMoveAsync(roleId, room.RoomId, room.Round, request.Column);
+            if (submitResult.Handled)
+            {
+                if (submitResult.View == null)
+                {
+                    response.ErrorCode = -(int)OperationStatusCode.Unprocessable;
+                    response.GameInfo = null;
+                    return;
+                }
+
+                var mirrored = GetOrCreateGame(room.RoomId, room.Round, room.PlayerIds);
+                if (mirrored.WinnerRoleId == 0 && !mirrored.IsDraw)
+                {
+                    var mirrorRow = ConnectFourBoardLogic.FindDropRow(mirrored.Board, request.Column);
+                    if (mirrorRow >= 0)
+                    {
+                        mirrored.Board[mirrorRow * ConnectFourBoardLogic.Width + request.Column] = room.PlayerIds.IndexOf(roleId) + 1;
+                        mirrored.MoveCount++;
+                        mirrored.LastMoveColumn = request.Column;
+                        mirrored.LastMoveRow = mirrorRow;
+                        mirrored.CurrentPlayerId = room.PlayerIds.FirstOrDefault(otherRoleId => otherRoleId != roleId);
+                    }
+
+                    if (submitResult.View.WinnerPlayerId != 0)
+                    {
+                        mirrored.WinnerRoleId = submitResult.View.WinnerPlayerId;
+                        mirrored.CurrentPlayerId = 0;
+                    }
+                    else if (submitResult.View.State == OnlineMatchBridgeGameState.Completed ||
+                             submitResult.View.State == OnlineMatchBridgeGameState.SettlementFailed ||
+                             submitResult.View.State == OnlineMatchBridgeGameState.Terminated)
+                    {
+                        // 平台终局且无胜者 = 平局投影。
+                        mirrored.IsDraw = true;
+                        mirrored.CurrentPlayerId = 0;
+                    }
+                }
+
+                await ConnectFourMatchBridge.ApplyRoomStateAsync(roomAgent, room, submitResult.View);
+                await OwnerComponent.WriteStateAsync();
+                response.GameInfo = ToMessage(mirrored, room.PlayerIds);
+                await NotifyGameChangedAsync(room.PlayerIds, response.GameInfo);
+                return;
+            }
         }
 
         var game = GetOrCreateGame(room.RoomId, room.Round, room.PlayerIds);
@@ -162,6 +240,36 @@ public class ConnectFourGameComponentAgent : StateComponentAgent<ConnectFourGame
             response.ErrorCode = (int)OperationStatusCode.Forbidden;
             response.GameInfo = BuildGameInfo(room);
             return;
+        }
+
+        // 对局桥路径（online-match 能力启用时独占）：桥以新局号先行创建新平台对局（确定性局号幂等）→
+        // 成功后旧链 RestartRoomGame（round++ → Playing）完成房间推进，本地镜像按新局号重置。
+        if (ConnectFourMatchBridge.IsBridgeEnabled)
+        {
+            var nextRoundResult = await ConnectFourMatchBridge.TryStartNextRoundAsync(roleId, room.RoomId, room.Round + 1, room.PlayerIds);
+            if (nextRoundResult.Handled)
+            {
+                if (nextRoundResult.View == null)
+                {
+                    response.ErrorCode = -(int)OperationStatusCode.Unprocessable;
+                    response.GameInfo = null;
+                    return;
+                }
+
+                var restarted = await roomAgent.RestartRoomGameAsync(room.RoomId);
+                if (restarted == null || restarted.Status != RoomStatus.Playing)
+                {
+                    response.ErrorCode = (int)OperationStatusCode.Unprocessable;
+                    response.GameInfo = BuildGameInfo(room);
+                    return;
+                }
+
+                var newGame = GetOrCreateGame(room.RoomId, room.Round, room.PlayerIds);
+                await OwnerComponent.WriteStateAsync();
+                response.GameInfo = ToMessage(newGame, room.PlayerIds);
+                await NotifyGameChangedAsync(room.PlayerIds, response.GameInfo);
+                return;
+            }
         }
 
         var roomInfo = await roomAgent.RestartRoomGameAsync(room.RoomId);

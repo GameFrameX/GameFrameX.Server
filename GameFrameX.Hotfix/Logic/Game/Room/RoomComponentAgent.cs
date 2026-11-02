@@ -6,7 +6,7 @@ using GameFrameX.Core.Abstractions.Attribute;
 using GameFrameX.Core.Abstractions.Events;
 using GameFrameX.Core.Timer.Handler;
 using GameFrameX.Foundation.Utility;
-using GameFrameX.Hotfix.Logic.Game.RockPaperScissors;
+using GameFrameX.Hotfix.Logic.Game.ConnectFour;
 
 namespace GameFrameX.Hotfix.Logic.Game.Room;
 
@@ -244,19 +244,19 @@ public class RoomComponentAgent : StateComponentAgent<RoomComponent, RoomListSta
         await NotifyRoomChangedAsync(room, RoomChangeType.Started);
     }
 
-    // 对局桥路径（开关开启 + RPS 房间时独占先行；其余房间走旧链）：
+    // 对局桥路径（开关开启 + 四子棋房间时独占先行；其余房间走旧链）：
     // 轻量前置校验（只读 GetRoom，与旧链同判语义）→ 桥先行创建平台对局（幂等）→
     // 失败显式负值错误码返回（不推进房间）；成功回落旧链完成 Room → Playing 推进。
     // 返回 true 表示已写响应（或桥已完整处理），调用方应立即返回；false 表示走旧链。
     private async Task<bool> TryStartRoomGameViaBridgeAsync(long playerId, ReqStartRoomGame request, RespStartRoomGame response)
     {
-        if (!RockPaperScissorsMatchBridge.IsBridgeEnabled)
+        if (!ConnectFourMatchBridge.IsBridgeEnabled)
         {
             return false;
         }
 
         var bridgeRoom = await GetRoomAsync(request.RoomId);
-        if (bridgeRoom == null || bridgeRoom.GameType != GameType.RockPaperScissors)
+        if (bridgeRoom == null || bridgeRoom.GameType != GameType.ConnectFour)
         {
             return false;
         }
@@ -267,7 +267,7 @@ public class RoomComponentAgent : StateComponentAgent<RoomComponent, RoomListSta
             return true;
         }
 
-        var bridgeHandled = await RockPaperScissorsMatchBridge.TryStartRoomGameAsync(playerId, bridgeRoom.RoomId, bridgeRoom.Round, bridgeRoom.PlayerIds, response);
+        var bridgeHandled = await ConnectFourMatchBridge.TryStartRoomGameAsync(playerId, bridgeRoom.RoomId, bridgeRoom.Round, bridgeRoom.PlayerIds, response);
         return !bridgeHandled || response.ErrorCode != 0;
     }
 

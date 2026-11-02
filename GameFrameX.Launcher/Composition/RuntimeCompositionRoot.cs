@@ -294,8 +294,9 @@ internal sealed class RuntimeCompositionRoot
         options.Override<IOnlineHotfixRollbackLog>(new LogHelperHotfixRollbackLog());
         options.Override<IOnlineMatchAssignmentNotifier>(new OnlineMatchAssignmentSessionNotifier());
 
-        // 玩法注入：RPS 验收夹具游戏（对局能力零具体玩法；宿主组合根注入演示黄金路径用的样例玩法）。
-        options.Configure<OnlineMatchOptions>(match => match.AddGame(new OnlineRockPaperScissorsGame()));
+        // 玩法注入：本仓旗舰玩法 = 四子棋（对局桥单玩法样例期口径——首个注册游戏承载桥；
+        // 四子棋经平台管线结算→发奖→默认榜上榜）。石头剪刀布保留本地房间链，不走对局桥。
+        options.Configure<OnlineMatchOptions>(match => match.AddGame(new OnlineConnectFourGame()));
 
         // GameDb 一级 store 覆盖（Online.UseGameDbStores 三态）：true 预置五个持久化适配器（业务库已就绪由宿主模块早段保证）；
         // 未声明（null）= 无声降级防护位——启用族但未声明存储模式时告警（不 fail-fast，保护既有无键部署），随后保持 InMemory 默认。

@@ -3,7 +3,7 @@
     <PropertyGroup>
         <TargetFramework>net10.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
-        <LangVersion>10</LangVersion>
+
         <Nullable>disable</Nullable>
         <IsPackable>false</IsPackable>
         <IsTestProject>true</IsTestProject>
@@ -11,6 +11,17 @@
 
     <ItemGroup>
         <ProjectReference Include="..\GameFrameX.Hotfix\GameFrameX.Hotfix.csproj" />
+        <ProjectReference Include="..\GameFrameX.Launcher\GameFrameX.Launcher.csproj" />
+        <PackageReference Include="GameFrameX.Capability.Hosting.Abstractions" Version="2.0.0" />
+        <PackageReference Include="GameFrameX.Capability.Hosting.AdminApi" Version="2.0.0" />
+        <PackageReference Include="GameFrameX.Capability.Hosting.Core" Version="2.0.0" />
+        <PackageReference Include="GameFrameX.Capability.Online.Abstractions" Version="2.0.0" />
+        <PackageReference Include="GameFrameX.Capability.Online.Social" Version="2.0.0" />
+        <PackageReference Include="GameFrameX.Capability.Online.Matchmaking" Version="2.0.0" />
+        <PackageReference Include="GameFrameX.Capability.Online.Match" Version="2.0.0" />
+        <PackageReference Include="GameFrameX.Capability.Online.Assets" Version="2.0.0" />
+        <PackageReference Include="GameFrameX.Capability.Online.Leaderboard" Version="2.0.0" />
+        <PackageReference Include="GameFrameX.Capability.Online.Competition" Version="2.0.0" />
     </ItemGroup>
 
     <ItemGroup>

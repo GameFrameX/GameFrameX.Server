@@ -11,35 +11,6 @@ public class RockPaperScissorsGameComponentAgent : StateComponentAgent<RockPaper
     {
         var roomAgent = await ActorManager.GetComponentAgentAsync<RoomComponentAgent>();
         var room = await roomAgent.GetRoomAsync(request.RoomId);
-
-        // 对局桥路径（开关开启 + RPS 房间时独占；不含 Playing 判定——Settling/Settled 也可查）：
-        // 校验请求主体为房间成员 → 桥查询（保密投影）→ 视图映射回填 + Room 状态映射（无推送）。
-        if (RockPaperScissorsMatchBridge.IsBridgeEnabled && room != null && room.GameType == GameType.RockPaperScissors)
-        {
-            if (!CheckPlayerId(playerId, response) || !room.PlayerIds.Contains(playerId))
-            {
-                if (response.ErrorCode == 0)
-                {
-                    response.ErrorCode = (int)OperationStatusCode.Forbidden;
-                    response.GameInfo = null;
-                }
-
-                return;
-            }
-
-            var infoResult = await RockPaperScissorsMatchBridge.TryGetGameInfoAsync(playerId, room.RoomId, room.Round, response);
-            if (infoResult.Handled)
-            {
-                if (infoResult.View == null)
-                {
-                    return;
-                }
-
-                await RockPaperScissorsMatchBridge.ApplyRoomStateAsync(roomAgent, room, infoResult.View);
-                return;
-            }
-        }
-
         if (!CheckRoom(room, response))
         {
             return;
@@ -64,11 +35,6 @@ public class RockPaperScissorsGameComponentAgent : StateComponentAgent<RockPaper
 
         var roomAgent = await ActorManager.GetComponentAgentAsync<RoomComponentAgent>();
         var room = await roomAgent.GetRoomAsync(request.RoomId);
-
-        if (await TrySubmitGestureViaBridgeAsync(playerId, request, room, roomAgent, response))
-        {
-            return;
-        }
 
         if (!CheckRoom(room, response))
         {
@@ -119,11 +85,6 @@ public class RockPaperScissorsGameComponentAgent : StateComponentAgent<RockPaper
         var roomAgent = await ActorManager.GetComponentAgentAsync<RoomComponentAgent>();
         var room = await roomAgent.GetRoomAsync(request.RoomId);
 
-        if (await TryRestartGameViaBridgeAsync(playerId, room, roomAgent, response))
-        {
-            return;
-        }
-
         if (!CheckRoom(room, response))
         {
             return;
@@ -151,75 +112,6 @@ public class RockPaperScissorsGameComponentAgent : StateComponentAgent<RockPaper
 
         response.GameInfo = ToMessage(game, room.PlayerIds, false);
         await NotifyGameChangedAsync(room.PlayerIds, response.GameInfo);
-    }
-
-    private async Task<bool> TrySubmitGestureViaBridgeAsync(long playerId, ReqSubmitRockPaperScissorsGesture request, GameFrameX.Apps.Game.Room.Entity.RoomState room, RoomComponentAgent roomAgent, RespSubmitRockPaperScissorsGesture response)
-    {
-        // 对局桥路径（开关开启 + RPS 房间时独占；失败显式负值错误码返回）：
-        // 校验房间与成员位（与旧链同判语义）→ 桥提交（服务端裁决）→ 视图映射回填 +
-        // Room 状态映射 + 全员推送。桥未接管（开关竞态关闭）时落旧链。
-        if (RockPaperScissorsMatchBridge.IsBridgeEnabled && room != null && room.GameType == GameType.RockPaperScissors)
-        {
-            if (room.Status != RoomStatus.Playing || !room.PlayerIds.Contains(playerId))
-            {
-                response.ErrorCode = (int)OperationStatusCode.Forbidden;
-                response.GameInfo = null;
-                return true;
-            }
-
-            var submitResult = await RockPaperScissorsMatchBridge.TrySubmitGestureAsync(playerId, room.RoomId, room.Round, (int)request.Gesture, response);
-            if (submitResult.Handled)
-            {
-                if (submitResult.View == null)
-                {
-                    return true;
-                }
-
-                await RockPaperScissorsMatchBridge.ApplyRoomStateAsync(roomAgent, room, submitResult.View);
-                await NotifyGameChangedAsync(room.PlayerIds, response.GameInfo);
-                return true;
-            }
-        }
-
-        return false;
-    }
-
-    private async Task<bool> TryRestartGameViaBridgeAsync(long playerId, GameFrameX.Apps.Game.Room.Entity.RoomState room, RoomComponentAgent roomAgent, RespRestartRockPaperScissorsGame response)
-    {
-        // 对局桥路径（开关开启 + RPS 房间时独占）：桥以新局号先行创建新对局（确定性局号幂等）→
-        // 成功后旧链 RestartRoomGame（round++ → Playing）完成房间推进，视图映射回填 + 全员推送；
-        // 失败显式负值错误码返回（不推进房间）。桥未接管（开关竞态关闭）时落旧链。
-        if (RockPaperScissorsMatchBridge.IsBridgeEnabled && room != null && room.GameType == GameType.RockPaperScissors)
-        {
-            if (room.OwnerRoleId != playerId || room.Status != RoomStatus.Settled)
-            {
-                response.ErrorCode = (int)OperationStatusCode.Forbidden;
-                response.GameInfo = null;
-                return true;
-            }
-
-            var nextRoundResult = await RockPaperScissorsMatchBridge.TryStartNextRoundAsync(playerId, room.RoomId, room.Round + 1, room.PlayerIds, response);
-            if (nextRoundResult.Handled)
-            {
-                if (nextRoundResult.View == null)
-                {
-                    return true;
-                }
-
-                var restarted = await roomAgent.RestartRoomGameAsync(room.RoomId);
-                response.GameInfo = RockPaperScissorsMatchBridge.MapGameInfo(nextRoundResult.View);
-                if (restarted == null || restarted.Status != RoomStatus.Playing)
-                {
-                    response.ErrorCode = (int)OperationStatusCode.Unprocessable;
-                    return true;
-                }
-
-                await NotifyGameChangedAsync(room.PlayerIds, response.GameInfo);
-                return true;
-            }
-        }
-
-        return false;
     }
 
     private RockPaperScissorsGameInfo BuildGameInfo(GameFrameX.Apps.Game.Room.Entity.RoomState room, bool revealGestures)
