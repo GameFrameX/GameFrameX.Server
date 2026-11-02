@@ -78,16 +78,16 @@ public static class ConnectFourMatchBridge
     /// <param name="roomId">房间标识。</param>
     /// <param name="round">局号。</param>
     /// <param name="column">目标列号（0 起）。</param>
-    /// <returns>桥未发布返回 <c>(false, null)</c>；接管返回 <c>(true, 视图)</c>（失败时视图为 null，错误码由调用方经响应回填）。</returns>
-    public static async Task<(bool Handled, OnlineMatchBridgeGameView View)> TrySubmitMoveAsync(long playerId, long roomId, int round, int column)
+    /// <returns>桥未发布返回 <c>(false, 0, null)</c>；接管返回 <c>(true, 错误码, 视图)</c>（错误码 0 = 成功且视图非空；失败时视图为 null，错误码为桥映射后的显式负值，由调用方经响应回填）。</returns>
+    public static async Task<(bool Handled, int ErrorCode, OnlineMatchBridgeGameView View)> TrySubmitMoveAsync(long playerId, long roomId, int round, int column)
     {
         if (!IsBridgeEnabled)
         {
-            return (false, null);
+            return (false, 0, null);
         }
 
         var (errorCode, view) = await InvokeAsync(playerId, (lease, scope) => lease.SubmitGestureAsync(scope, roomId, round, column));
-        return (true, errorCode == 0 ? view : null);
+        return (true, errorCode, errorCode == 0 ? view : null);
     }
 
     /// <summary>
@@ -96,16 +96,16 @@ public static class ConnectFourMatchBridge
     /// <param name="playerId">请求主体（玩家全局 actor）标识。</param>
     /// <param name="roomId">房间标识。</param>
     /// <param name="round">局号。</param>
-    /// <returns>桥未发布返回 <c>(false, null)</c>；接管返回 <c>(true, 视图)</c>。</returns>
-    public static async Task<(bool Handled, OnlineMatchBridgeGameView View)> TryGetGameInfoAsync(long playerId, long roomId, int round)
+    /// <returns>桥未发布返回 <c>(false, 0, null)</c>；接管返回 <c>(true, 错误码, 视图)</c>（错误码 0 = 成功且视图非空；失败时视图为 null，错误码须显式回传客户端，不得静默吞掉）。</returns>
+    public static async Task<(bool Handled, int ErrorCode, OnlineMatchBridgeGameView View)> TryGetGameInfoAsync(long playerId, long roomId, int round)
     {
         if (!IsBridgeEnabled)
         {
-            return (false, null);
+            return (false, 0, null);
         }
 
         var (errorCode, view) = await InvokeAsync(playerId, (lease, scope) => lease.GetGameInfoAsync(scope, roomId, round));
-        return (true, errorCode == 0 ? view : null);
+        return (true, errorCode, errorCode == 0 ? view : null);
     }
 
     /// <summary>
@@ -115,16 +115,16 @@ public static class ConnectFourMatchBridge
     /// <param name="roomId">房间标识。</param>
     /// <param name="round">新局号（房间当前局号 + 1）。</param>
     /// <param name="playerIds">本局玩家集合。</param>
-    /// <returns>桥未发布返回 <c>(false, null)</c>；接管返回 <c>(true, 视图)</c>。</returns>
-    public static async Task<(bool Handled, OnlineMatchBridgeGameView View)> TryStartNextRoundAsync(long playerId, long roomId, int round, IReadOnlyList<long> playerIds)
+    /// <returns>桥未发布返回 <c>(false, 0, null)</c>；接管返回 <c>(true, 错误码, 视图)</c>（错误码 0 = 成功且视图非空；失败时视图为 null，错误码须显式回传客户端）。</returns>
+    public static async Task<(bool Handled, int ErrorCode, OnlineMatchBridgeGameView View)> TryStartNextRoundAsync(long playerId, long roomId, int round, IReadOnlyList<long> playerIds)
     {
         if (!IsBridgeEnabled)
         {
-            return (false, null);
+            return (false, 0, null);
         }
 
         var (errorCode, view) = await InvokeAsync(playerId, (lease, scope) => lease.StartRoomGameAsync(scope, roomId, round, playerIds));
-        return (true, errorCode == 0 ? view : null);
+        return (true, errorCode, errorCode == 0 ? view : null);
     }
 
     /// <summary>

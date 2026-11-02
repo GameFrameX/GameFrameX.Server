@@ -47,16 +47,25 @@ public class ConnectFourGameComponentAgent : StateComponentAgent<ConnectFourGame
             return;
         }
 
+        // 成员校验（桥路径与本地回退路径同判）：对局数据只对房间成员可见，
+        // 任意登录角色不得仅凭 RoomId 窥探他人对局。
+        if (!room.PlayerIds.Contains(roleId))
+        {
+            response.ErrorCode = (int)OperationStatusCode.Forbidden;
+            return;
+        }
+
         // 对局桥路径（online-match 能力启用时独占）：查询平台对局生命周期投影并驱动房间状态映射；
         // 棋盘明细取本地回显镜像（同一落子序列与平台权威棋盘一致，镜像仅为协议回显，非裁决依据）。
-        if (ConnectFourMatchBridge.IsBridgeEnabled && room.PlayerIds.Contains(roleId))
+        // 桥查询失败按红线显式回传错误码（平台 -1001 以下错误段），绝不以「成功 + 空数据」静默掩盖。
+        if (ConnectFourMatchBridge.IsBridgeEnabled)
         {
             var infoResult = await ConnectFourMatchBridge.TryGetGameInfoAsync(roleId, room.RoomId, room.Round);
             if (infoResult.Handled)
             {
                 if (infoResult.View == null)
                 {
-                    response.GameInfo = null;
+                    response.ErrorCode = infoResult.ErrorCode;
                     return;
                 }
 
@@ -118,7 +127,9 @@ public class ConnectFourGameComponentAgent : StateComponentAgent<ConnectFourGame
             {
                 if (submitResult.View == null)
                 {
-                    response.ErrorCode = -(int)OperationStatusCode.Unprocessable;
+                    // 桥失败错误码显式透传（平台 -1001 以下错误段，与开局路径同口径），
+                    // 不坍缩为通用不可处理码，客户端可区分资源不存在 / 作用域拒绝等失败原因。
+                    response.ErrorCode = submitResult.ErrorCode;
                     response.GameInfo = null;
                     return;
                 }
@@ -235,6 +246,19 @@ public class ConnectFourGameComponentAgent : StateComponentAgent<ConnectFourGame
             return;
         }
 
+        // 桥路径下房间终态推进以平台结算事实为权威，而结算经平台 outbox 异步落定——
+        // 客户端制胜后立即「再来一局」时房间可能仍处 Playing/Settling 结算窗口。
+        // 先以桥视图刷新房间状态（与查询路径同款映射），避免结算窗口把合法重开误判为 Forbidden。
+        if (ConnectFourMatchBridge.IsBridgeEnabled && room.Status != RoomStatus.Settled)
+        {
+            var refreshResult = await ConnectFourMatchBridge.TryGetGameInfoAsync(roleId, room.RoomId, room.Round);
+            if (refreshResult.Handled && refreshResult.View != null)
+            {
+                await ConnectFourMatchBridge.ApplyRoomStateAsync(roomAgent, room, refreshResult.View);
+                room = await roomAgent.GetRoomAsync(request.RoomId);
+            }
+        }
+
         if (room.OwnerRoleId != roleId || room.Status != RoomStatus.Settled)
         {
             response.ErrorCode = (int)OperationStatusCode.Forbidden;
@@ -251,7 +275,8 @@ public class ConnectFourGameComponentAgent : StateComponentAgent<ConnectFourGame
             {
                 if (nextRoundResult.View == null)
                 {
-                    response.ErrorCode = -(int)OperationStatusCode.Unprocessable;
+                    // 桥失败错误码显式透传（平台 -1001 以下错误段，与开局路径同口径）。
+                    response.ErrorCode = nextRoundResult.ErrorCode;
                     response.GameInfo = null;
                     return;
                 }

@@ -91,6 +91,7 @@ public sealed class OnlineConnectFourGame : IOnlineMatchGame
             WinnerPlayerId = 0,
             IsDraw = false,
             MoveCount = 0,
+            MoveCounts = new Dictionary<long, int>(),
             Board = new int[Width * Height],
         };
 
@@ -102,6 +103,8 @@ public sealed class OnlineConnectFourGame : IOnlineMatchGame
                 {
                     continue;
                 }
+
+                state.MoveCounts[member.PlayerId] = 0;
 
                 if (state.CurrentPlayerId == 0)
                 {
@@ -154,6 +157,10 @@ public sealed class OnlineConnectFourGame : IOnlineMatchGame
         var seat = SeatOf(match, member.PlayerId);
         state.Board[row * Width + column] = seat;
         state.MoveCount += 1;
+
+        int memberMoveCount;
+        state.MoveCounts.TryGetValue(member.PlayerId, out memberMoveCount);
+        state.MoveCounts[member.PlayerId] = memberMoveCount + 1;
 
         var emittedEvents = new List<OnlineMatchServerEvent>
         {
@@ -244,7 +251,7 @@ public sealed class OnlineConnectFourGame : IOnlineMatchGame
         {
             Mode = match.Mode,
             Region = match.Region,
-            ParticipationRewardsSuppressed = state.MoveCount == 0,
+            ParticipationRewardsSuppressed = HasMemberWithoutMove(match, state),
             Entries = new List<OnlineMatchResultEntry>(),
         };
 
@@ -277,6 +284,38 @@ public sealed class OnlineConnectFourGame : IOnlineMatchGame
         }
 
         return result;
+    }
+
+    /// <summary>
+    /// 判定是否存在零落子成员（全程挂机——参与奖抑制条件）。
+    /// 按每玩家落子计数判定（总落子数在可结算局恒 ≥ 4，以总量判定会使抑制永不生效）；
+    /// 计数缺失按零落子处理（fail-safe：宁可少发奖，不可被挂机刷奖）。
+    /// </summary>
+    /// <param name="match">对局。</param>
+    /// <param name="state">玩法状态。</param>
+    /// <returns>存在零落子成员返回 <c>true</c>。</returns>
+    private static bool HasMemberWithoutMove(OnlineMatch match, OnlineConnectFourState state)
+    {
+        if (state.MoveCounts == null)
+        {
+            return true;
+        }
+
+        foreach (var member in match.Members)
+        {
+            if (member == null || member.State == OnlineMatchMemberState.Left || member.State == OnlineMatchMemberState.Kicked)
+            {
+                continue;
+            }
+
+            int memberMoveCount;
+            if (!state.MoveCounts.TryGetValue(member.PlayerId, out memberMoveCount) || memberMoveCount == 0)
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     /// <summary>
@@ -519,6 +558,9 @@ public sealed class OnlineConnectFourGame : IOnlineMatchGame
 
         /// <summary>总落子数。</summary>
         public int MoveCount { get; set; }
+
+        /// <summary>每玩家落子数（成员标识 → 落子计数；参与奖抑制按此判定，不按总落子数）。</summary>
+        public Dictionary<long, int> MoveCounts { get; set; }
 
         /// <summary>棋盘（行主序，0 = 空，1/2 = 座位号）。</summary>
         public int[] Board { get; set; }

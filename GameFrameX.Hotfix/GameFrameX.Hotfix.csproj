@@ -32,10 +32,6 @@
       <PackageReference Include="GameFrameX.SuperSocket.ClientEngine" Version="1.3.0" />
       <PackageReference Include="GameFrameX.Capability.Hosting.Abstractions" Version="2.0.0" />
       <PackageReference Include="GameFrameX.Capability.Online.Abstractions" Version="2.0.0" />
-      <PackageReference Include="GameFrameX.Capability.Online.Foundation" Version="2.0.0" />
-      <PackageReference Include="GameFrameX.Capability.Online.Match" Version="2.0.0" />
-      <PackageReference Include="GameFrameX.Capability.Online.Assets" Version="2.0.0" />
-      <PackageReference Include="GameFrameX.Capability.Online.Leaderboard" Version="2.0.0" />
       <PackageReference Include="GameFrameX.Network.Abstractions" Version="2.0.0" />
       <PackageReference Include="GameFrameX.Network.HTTP" Version="2.0.0" />
       <PackageReference Include="GameFrameX.Discovery" Version="2.0.0" />
