@@ -1,37 +1,6 @@
-// ==========================================================================================
-//  GameFrameX 组织及其衍生项目的版权、商标、专利及其他相关权利
-//  GameFrameX organization and its derivative projects' copyrights, trademarks, patents, and related rights
-//  均受中华人民共和国及相关国际法律法规保护。
-//  are protected by the laws of the People's Republic of China and relevant international regulations.
-//
-//  使用本项目须严格遵守相应法律法规及开源许可证之规定。
-//  Usage of this project must strictly comply with applicable laws, regulations, and open-source licenses.
-//
-//  本项目采用 MIT 许可证与 Apache License 2.0 双许可证分发，
-//  This project is dual-licensed under the MIT License and Apache License 2.0,
-//  完整许可证文本请参见源代码根目录下的 LICENSE 文件。
-//  please refer to the LICENSE file in the root directory of the source code for the full license text.
-//
-//  禁止利用本项目实施任何危害国家安全、破坏社会秩序、
-//  It is prohibited to use this project to engage in any activities that endanger national security, disrupt social order,
-//  侵犯他人合法权益等法律法规所禁止的行为！
-//  or infringe upon the legitimate rights and interests of others, as prohibited by laws and regulations!
-//  因基于本项目二次开发所产生的一切法律纠纷与责任，
-//  Any legal disputes and liabilities arising from secondary development based on this project
-//  本项目组织与贡献者概不承担。
-//  shall be borne solely by the developer; the project organization and contributors assume no responsibility.
-//
-//  GitHub 仓库：https://github.com/GameFrameX
-//  GitHub Repository: https://github.com/GameFrameX
-//  Gitee  仓库：https://gitee.com/GameFrameX
-//  Gitee Repository:  https://gitee.com/GameFrameX
-//  官方文档：https://gameframex.doc.alianblank.com/
-//  Official Documentation: https://gameframex.doc.alianblank.com/
-// ==========================================================================================
-
 using System;
 using System.Collections.Generic;
-using GameFrameX.Apps.Common.Session;
+using GameFrameX.Core.Session;
 using GameFrameX.Apps.Player.Mail;
 using GameFrameX.Apps.Player.Mail.Component;
 using GameFrameX.Apps.Player.Mail.Entity;
@@ -73,7 +42,7 @@ public class MailComponentAgent : StateComponentAgent<MailComponent, MailBoxStat
 
     private async Task SyncAsyncImpl()
     {
-        var (playerLevel, playerCreatedTime) = await GetPlayerFilterContext();
+        var (playerLevel, playerCreatedTime) = await GetPlayerFilterContextAsync();
         var serverId = GameServerConst.Game.Id;
         var state = OwnerComponent.State;
         var changedMailIds = new List<long>();
@@ -89,41 +58,10 @@ public class MailComponentAgent : StateComponentAgent<MailComponent, MailBoxStat
                 maxPublishedAt = campaign.PublishedAt;
             }
 
-            var key = MailCampaignRegistry.BuildKey(campaign.CampaignId, campaign.PublishVersion);
-            if (state.CreatedCampaignVersions.Contains(key))
+            if (TryInstantiateCampaign(state, campaign, serverId, playerLevel, playerCreatedTime, changedMailIds))
             {
-                continue; // 幂等（B5）
-            }
-
-            if (campaign.Status == MailCampaignStatus.Revoked)
-            {
-                // 撤回 Campaign 防重实例化（B5）：记 key 永久跳过。
-                state.CreatedCampaignVersions.Add(key);
                 changed = true;
-                continue;
             }
-
-            if (campaign.ChannelIds != null && campaign.ChannelIds.Count > 0)
-            {
-                // 渠道条件未补齐：不实例化也不记 key，待后续补齐后再判断（U1 §4.5）。
-                continue;
-            }
-
-            if (!MailCampaignFilter.Match(campaign, serverId, playerLevel, playerCreatedTime))
-            {
-                continue; // 命中失败：不记 key（本 since 游标推进后不再重评估）
-            }
-
-            var mail = Instantiate(campaign);
-            state.List.Add(mail);
-            state.CreatedCampaignVersions.Add(key);
-            if (mail.ReadStatus == ReadStatus.Unread)
-            {
-                state.UnreadCount++;
-            }
-
-            changedMailIds.Add(mail.MailId);
-            changed = true;
         }
 
         state.LastSyncCampaignTime = maxPublishedAt;
@@ -145,15 +83,57 @@ public class MailComponentAgent : StateComponentAgent<MailComponent, MailBoxStat
     }
 
     /// <summary>
+    /// 单个 Campaign 的懒创建判定（B5 幂等）：已实例化跳过；已撤回记 key 永久跳过；渠道未补齐 / 筛选命中失败不实例化也不记 key；
+    /// 命中则实例化入列并计入变更。返回是否产生状态变更。
+    /// </summary>
+    private bool TryInstantiateCampaign(MailBoxState state, MailCampaignState campaign, int serverId, long playerLevel, long playerCreatedTime, List<long> changedMailIds)
+    {
+        var key = MailCampaignRegistry.BuildKey(campaign.CampaignId, campaign.PublishVersion);
+        if (state.CreatedCampaignVersions.Contains(key))
+        {
+            return false; // 幂等（B5）
+        }
+
+        if (campaign.Status == MailCampaignStatus.Revoked)
+        {
+            // 撤回 Campaign 防重实例化（B5）：记 key 永久跳过。
+            state.CreatedCampaignVersions.Add(key);
+            return true;
+        }
+
+        if (campaign.ChannelIds != null && campaign.ChannelIds.Count > 0)
+        {
+            // 渠道条件未补齐：不实例化也不记 key，待后续补齐后再判断（U1 §4.5）。
+            return false;
+        }
+
+        if (!MailCampaignFilter.Match(campaign, serverId, playerLevel, playerCreatedTime))
+        {
+            return false; // 命中失败：不记 key（本 since 游标推进后不再重评估）
+        }
+
+        var mail = Instantiate(campaign);
+        state.List.Add(mail);
+        state.CreatedCampaignVersions.Add(key);
+        if (mail.ReadStatus == ReadStatus.Unread)
+        {
+            state.UnreadCount++;
+        }
+
+        changedMailIds.Add(mail.MailId);
+        return true;
+    }
+
+    /// <summary>
     /// 处理 <see cref="ReqMailList"/>：先懒同步，再分页返回邮件摘要（排除已删除）。
     /// </summary>
     [Service]
-    public virtual Task OnReqMailListAsync(INetWorkChannel netWorkChannel, ReqMailList request, RespMailList response)
+    public virtual Task OnReqMailListAsync(INetworkChannel networkChannel, ReqMailList request, RespMailList response)
     {
-        return OnReqMailListAsyncImpl(netWorkChannel, request, response);
+        return OnReqMailListAsyncImpl(networkChannel, request, response);
     }
 
-    private async Task OnReqMailListAsyncImpl(INetWorkChannel netWorkChannel, ReqMailList request, RespMailList response)
+    private async Task OnReqMailListAsyncImpl(INetworkChannel networkChannel, ReqMailList request, RespMailList response)
     {
         await SyncAsync();
 
@@ -187,12 +167,12 @@ public class MailComponentAgent : StateComponentAgent<MailComponent, MailBoxStat
     /// 处理 <see cref="ReqMailRead"/>：标记已读（读信幂等），返回完整文案与附件领取状态。
     /// </summary>
     [Service]
-    public virtual Task OnReqMailReadAsync(INetWorkChannel netWorkChannel, ReqMailRead request, RespMailRead response)
+    public virtual Task OnReqMailReadAsync(INetworkChannel networkChannel, ReqMailRead request, RespMailRead response)
     {
-        return OnReqMailReadAsyncImpl(netWorkChannel, request, response);
+        return OnReqMailReadAsyncImpl(networkChannel, request, response);
     }
 
-    private async Task OnReqMailReadAsyncImpl(INetWorkChannel netWorkChannel, ReqMailRead request, RespMailRead response)
+    private async Task OnReqMailReadAsyncImpl(INetworkChannel networkChannel, ReqMailRead request, RespMailRead response)
     {
         var state = OwnerComponent.State;
         var mail = TryFindMail(state, request.MailId);
@@ -246,12 +226,12 @@ public class MailComponentAgent : StateComponentAgent<MailComponent, MailBoxStat
     /// 处理 <see cref="ReqMailDelete"/>：U1 §4.8 删除算法（B2）。未领附件邮件拒绝删除。
     /// </summary>
     [Service]
-    public virtual Task OnReqMailDeleteAsync(INetWorkChannel netWorkChannel, ReqMailDelete request, RespMailDelete response)
+    public virtual Task OnReqMailDeleteAsync(INetworkChannel networkChannel, ReqMailDelete request, RespMailDelete response)
     {
-        return OnReqMailDeleteAsyncImpl(netWorkChannel, request, response);
+        return OnReqMailDeleteAsyncImpl(networkChannel, request, response);
     }
 
-    private async Task OnReqMailDeleteAsyncImpl(INetWorkChannel netWorkChannel, ReqMailDelete request, RespMailDelete response)
+    private async Task OnReqMailDeleteAsyncImpl(INetworkChannel networkChannel, ReqMailDelete request, RespMailDelete response)
     {
         var state = OwnerComponent.State;
         var mail = TryFindMail(state, request.MailId);
@@ -294,12 +274,12 @@ public class MailComponentAgent : StateComponentAgent<MailComponent, MailBoxStat
     /// </summary>
     /// <remarks>不触发 <see cref="SyncAsync"/>：领取作用于当前邮件箱快照，懒同步由列表 / 读信路径保证。幂等命中已领槽位时按成功回包，不重复发奖。</remarks>
     [Service]
-    public virtual Task OnReqMailClaimAttachmentAsync(INetWorkChannel netWorkChannel, ReqMailClaimAttachment request, RespMailClaimAttachment response)
+    public virtual Task OnReqMailClaimAttachmentAsync(INetworkChannel networkChannel, ReqMailClaimAttachment request, RespMailClaimAttachment response)
     {
-        return OnReqMailClaimAttachmentAsyncImpl(netWorkChannel, request, response);
+        return OnReqMailClaimAttachmentAsyncImpl(networkChannel, request, response);
     }
 
-    private async Task OnReqMailClaimAttachmentAsyncImpl(INetWorkChannel netWorkChannel, ReqMailClaimAttachment request, RespMailClaimAttachment response)
+    private async Task OnReqMailClaimAttachmentAsyncImpl(INetworkChannel networkChannel, ReqMailClaimAttachment request, RespMailClaimAttachment response)
     {
         var state = OwnerComponent.State;
         var prepare = MailAttachmentClaim.Prepare(state, request.MailId, request.SlotId);
@@ -362,12 +342,12 @@ public class MailComponentAgent : StateComponentAgent<MailComponent, MailBoxStat
     /// 处理 <see cref="ReqMailClaimAllAttachment"/>：一键领取当前邮件箱所有 <see cref="ClaimStatus.Claimable"/> 槽位。逐项独立判定，部分失败不影响其余项。
     /// </summary>
     [Service]
-    public virtual Task OnReqMailClaimAllAttachmentAsync(INetWorkChannel netWorkChannel, ReqMailClaimAllAttachment request, RespMailClaimAllAttachment response)
+    public virtual Task OnReqMailClaimAllAttachmentAsync(INetworkChannel networkChannel, ReqMailClaimAllAttachment request, RespMailClaimAllAttachment response)
     {
-        return OnReqMailClaimAllAttachmentAsyncImpl(netWorkChannel, request, response);
+        return OnReqMailClaimAllAttachmentAsyncImpl(networkChannel, request, response);
     }
 
-    private async Task OnReqMailClaimAllAttachmentAsyncImpl(INetWorkChannel netWorkChannel, ReqMailClaimAllAttachment request, RespMailClaimAllAttachment response)
+    private async Task OnReqMailClaimAllAttachmentAsyncImpl(INetworkChannel networkChannel, ReqMailClaimAllAttachment request, RespMailClaimAllAttachment response)
     {
         var state = OwnerComponent.State;
         var changedMailIds = new List<long>();
@@ -380,43 +360,7 @@ public class MailComponentAgent : StateComponentAgent<MailComponent, MailBoxStat
                 continue;
             }
 
-            foreach (var att in mail.Attachments)
-            {
-                if (att.ClaimStatus != ClaimStatus.Claimable)
-                {
-                    continue;
-                }
-
-                var grantResult = await GrantAttachmentAsync(mail, att);
-                var success = grantResult.AllSuccess;
-                if (success)
-                {
-                    MailAttachmentClaim.MarkClaimed(att, now);
-                }
-
-                mail.AttachmentStatus = MailAttachmentClaim.ComputeAttachmentStatus(mail);
-
-                response.Slots.Add(new MailClaimedSlot
-                {
-                    MailId = mail.MailId,
-                    SlotId = att.SlotId,
-                    RewardType = att.RewardType,
-                    ItemId = att.ItemId,
-                    Count = att.Amount,
-                    ClaimStatus = (int)att.ClaimStatus,
-                    Success = success,
-                });
-
-                if (success)
-                {
-                    response.ClaimedCount++;
-                }
-
-                if (!changedMailIds.Contains(mail.MailId))
-                {
-                    changedMailIds.Add(mail.MailId);
-                }
-            }
+            await ClaimMailAttachmentsAsync(mail, response, changedMailIds, now);
         }
 
         if (changedMailIds.Count > 0)
@@ -428,14 +372,59 @@ public class MailComponentAgent : StateComponentAgent<MailComponent, MailBoxStat
     }
 
     /// <summary>
+    /// 逐槽领取单封邮件全部 <see cref="ClaimStatus.Claimable"/> 附件（B6 幂等发放）。逐项独立判定，
+    /// 成功置 <see cref="ClaimStatus.Claimed"/>，失败保留可领供重试；同步维护 Slots / ClaimedCount / changedMailIds。
+    /// </summary>
+    private async Task ClaimMailAttachmentsAsync(MailState mail, RespMailClaimAllAttachment response, List<long> changedMailIds, long now)
+    {
+        foreach (var att in mail.Attachments)
+        {
+            if (att.ClaimStatus != ClaimStatus.Claimable)
+            {
+                continue;
+            }
+
+            var grantResult = await GrantAttachmentAsync(mail, att);
+            var success = grantResult.AllSuccess;
+            if (success)
+            {
+                MailAttachmentClaim.MarkClaimed(att, now);
+            }
+
+            mail.AttachmentStatus = MailAttachmentClaim.ComputeAttachmentStatus(mail);
+
+            response.Slots.Add(new MailClaimedSlot
+            {
+                MailId = mail.MailId,
+                SlotId = att.SlotId,
+                RewardType = att.RewardType,
+                ItemId = att.ItemId,
+                Count = att.Amount,
+                ClaimStatus = (int)att.ClaimStatus,
+                Success = success,
+            });
+
+            if (success)
+            {
+                response.ClaimedCount++;
+            }
+
+            if (!changedMailIds.Contains(mail.MailId))
+            {
+                changedMailIds.Add(mail.MailId);
+            }
+        }
+    }
+
+    /// <summary>
     /// 调用统一发放接口发放单个附件。幂等键 <c>RoleId:SourceType=Mail:SourceId:TraceId</c>，trace 为 <c>CampaignId:Version:MailId:SlotId</c> 四元组（B6）。
     /// </summary>
     private async Task<RewardGrantResult> GrantAttachmentAsync(MailState mail, MailAttachmentInstance att)
     {
-        var rewardAgent = await ActorManager.GetComponentAgent<RewardGrantComponentAgent>();
+        var rewardAgent = await ActorManager.GetComponentAgentAsync<RewardGrantComponentAgent>();
         return await rewardAgent.GrantAsync(new RewardGrantRequest
         {
-            RoleId = ActorId,
+            PlayerId = ActorId,
             SourceType = RewardSourceType.Mail,
             SourceId = "mail:" + mail.MailId + ":slot:" + att.SlotId,
             TraceId = MailAttachmentClaim.BuildTrace(mail.CampaignId, mail.CampaignVersion, mail.MailId, att.SlotId),
@@ -487,29 +476,7 @@ public class MailComponentAgent : StateComponentAgent<MailComponent, MailBoxStat
                 continue;
             }
 
-            var policy = ResolveExpirePolicy(mail);
-            switch (policy)
-            {
-                case ExpireAttachmentPolicy.DiscardUnclaimed:
-                    foreach (var att in mail.Attachments)
-                    {
-                        if (att.ClaimStatus == ClaimStatus.Claimable)
-                        {
-                            att.ClaimStatus = ClaimStatus.Discarded;
-                        }
-                    }
-
-                    break;
-                case ExpireAttachmentPolicy.KeepUnclaimed:
-                    // 保留待领取：附件仍可领，仅邮件视图过期。
-                    break;
-                case ExpireAttachmentPolicy.AutoClaim:
-                    // 预留：自动领取未领附件，需显式配置；本 change 不启用。
-                    break;
-            }
-
-            mail.MailStatus = MailStatus.Expired;
-            RecomputeAttachmentStatus(mail);
+            ExpireMail(mail);
             changedMailIds.Add(mail.MailId);
             changed = true;
         }
@@ -521,6 +488,38 @@ public class MailComponentAgent : StateComponentAgent<MailComponent, MailBoxStat
             await OwnerComponent.WriteStateAsync();
             await NotifyChangedAsync(changedMailIds);
         }
+    }
+
+    /// <summary>
+    /// 处理单封到期邮件（B4）：按 Campaign <c>ExpireAttachmentPolicy</c> 处理附件
+    /// （<see cref="ExpireAttachmentPolicy.DiscardUnclaimed"/> 作废未领 / <see cref="ExpireAttachmentPolicy.KeepUnclaimed"/> 保留待领 /
+    /// <see cref="ExpireAttachmentPolicy.AutoClaim"/> 预留未启用），随后迁移 <see cref="MailStatus.Expired"/> 终态并重算附件状态。
+    /// </summary>
+    private void ExpireMail(MailState mail)
+    {
+        var policy = ResolveExpirePolicy(mail);
+        switch (policy)
+        {
+            case ExpireAttachmentPolicy.DiscardUnclaimed:
+                foreach (var att in mail.Attachments)
+                {
+                    if (att.ClaimStatus == ClaimStatus.Claimable)
+                    {
+                        att.ClaimStatus = ClaimStatus.Discarded;
+                    }
+                }
+
+                break;
+            case ExpireAttachmentPolicy.KeepUnclaimed:
+                // 保留待领取：附件仍可领，仅邮件视图过期。
+                break;
+            case ExpireAttachmentPolicy.AutoClaim:
+                // 预留：自动领取未领附件，需显式配置；本 change 不启用。
+                break;
+        }
+
+        mail.MailStatus = MailStatus.Expired;
+        RecomputeAttachmentStatus(mail);
     }
 
     /// <summary>
@@ -556,7 +555,7 @@ public class MailComponentAgent : StateComponentAgent<MailComponent, MailBoxStat
             return;
         }
 
-        var channel = SessionManager.GetByRoleId(ActorId)?.WorkChannel;
+        var channel = PlayerSessionManager.Instance.GetByPlayerId(ActorId)?.WorkChannel;
         if (channel == null)
         {
             return;
@@ -573,9 +572,9 @@ public class MailComponentAgent : StateComponentAgent<MailComponent, MailBoxStat
     /// <summary>
     /// 读取玩家筛选上下文（等级、创建时间）。从同 Actor 的 <see cref="PlayerComponentAgent"/> 状态读取。
     /// </summary>
-    private async Task<(long level, long createdTime)> GetPlayerFilterContext()
+    private async Task<(long level, long createdTime)> GetPlayerFilterContextAsync()
     {
-        var playerAgent = await ActorManager.GetComponentAgent<PlayerComponentAgent>();
+        var playerAgent = await ActorManager.GetComponentAgentAsync<PlayerComponentAgent>();
         var playerState = playerAgent.OwnerComponent.State;
         return (playerState.Level, playerState.CreatedTime);
     }
@@ -639,37 +638,47 @@ public class MailComponentAgent : StateComponentAgent<MailComponent, MailBoxStat
                 continue; // 终态不动
             }
 
-            var hasUnclaimed = false;
-            foreach (var att in mail.Attachments)
-            {
-                if (att.ClaimStatus == ClaimStatus.Claimed)
-                {
-                    continue; // B3：已领不动
-                }
-
-                if (att.ClaimStatus == ClaimStatus.Claimable)
-                {
-                    att.ClaimStatus = ClaimStatus.Discarded;
-                    hasUnclaimed = true;
-                }
-            }
-
-            // 仍存在非已领附件（被作废）→ 终态 Revoked；全部已领则保持原状态（玩家可自行删除）。
-            if (hasUnclaimed || mail.Attachments.Count == 0)
-            {
-                // 无附件邮件撤回：保持原状态（不强制作废）。有作废附件则进入 Revoked 终态。
-                if (hasUnclaimed && mail.MailStatus != MailStatus.Revoked)
-                {
-                    mail.MailStatus = MailStatus.Revoked;
-                }
-            }
-
-            RecomputeAttachmentStatus(mail);
-            changedMailIds.Add(mail.MailId);
+            RevokeMail(mail, changedMailIds);
             changed = true;
         }
 
         return changed;
+    }
+
+    /// <summary>
+    /// 对单封命中撤回条件的邮件执行 B3 作废：已 <see cref="ClaimStatus.Claimed"/> 附件与资产不动；
+    /// 可领附件置 <see cref="ClaimStatus.Discarded"/>；有作废附件则进入 <see cref="MailStatus.Revoked"/> 终态，
+    /// 无附件 / 全部已领则保持原状态（不强制作废）。最后重算附件状态并记入变更列表。
+    /// </summary>
+    private static void RevokeMail(MailState mail, List<long> changedMailIds)
+    {
+        var hasUnclaimed = false;
+        foreach (var att in mail.Attachments)
+        {
+            if (att.ClaimStatus == ClaimStatus.Claimed)
+            {
+                continue; // B3：已领不动
+            }
+
+            if (att.ClaimStatus == ClaimStatus.Claimable)
+            {
+                att.ClaimStatus = ClaimStatus.Discarded;
+                hasUnclaimed = true;
+            }
+        }
+
+        // 仍存在非已领附件（被作废）→ 终态 Revoked；全部已领则保持原状态（玩家可自行删除）。
+        if (hasUnclaimed || mail.Attachments.Count == 0)
+        {
+            // 无附件邮件撤回：保持原状态（不强制作废）。有作废附件则进入 Revoked 终态。
+            if (hasUnclaimed && mail.MailStatus != MailStatus.Revoked)
+            {
+                mail.MailStatus = MailStatus.Revoked;
+            }
+        }
+
+        RecomputeAttachmentStatus(mail);
+        changedMailIds.Add(mail.MailId);
     }
 
     /// <summary>

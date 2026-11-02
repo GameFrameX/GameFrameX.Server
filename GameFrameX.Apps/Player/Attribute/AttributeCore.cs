@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using GameFrameX.Foundation.Localization.Core;
 
 namespace GameFrameX.Apps.Player.Attribute;
 
@@ -76,12 +77,14 @@ public static class AttributeCore
     {
         if (!IsFinalAttribute(finalAttribute))
         {
-            throw new ArgumentOutOfRangeException(nameof(finalAttribute), finalAttribute, "必须传入已知最终属性。");
+            // Localization: Apps.Attribute.UnknownFinalAttribute - 必须传入已知最终属性。
+            throw new ArgumentOutOfRangeException(nameof(finalAttribute), finalAttribute, LocalizationService.GetString(Localization.Keys.Apps.Attribute.UnknownFinalAttribute));
         }
 
         if (!IsSlotOffset((int)slotKind))
         {
-            throw new ArgumentOutOfRangeException(nameof(slotKind), slotKind, "必须传入已知属性数值槽。");
+            // Localization: Apps.Attribute.UnknownAttributeSlot - 必须传入已知属性数值槽。
+            throw new ArgumentOutOfRangeException(nameof(slotKind), slotKind, LocalizationService.GetString(Localization.Keys.Apps.Attribute.UnknownAttributeSlot));
         }
 
         return (AttributeType)((int)finalAttribute + (int)slotKind);

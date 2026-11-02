@@ -3,7 +3,7 @@
     <PropertyGroup>
         <TargetFramework>net10.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
-        <LangVersion>11</LangVersion>
+        
     </PropertyGroup>
 
     <PropertyGroup>
@@ -27,9 +27,23 @@
     </ItemGroup>
 
     <ItemGroup>
-      <PackageReference Include="GameFrameX.Core" Version="1.13.0" />
-      <PackageReference Include="GameFrameX.Hotfix.WrapperGenerator" Version="1.13.0" PrivateAssets="all" />
-      <PackageReference Include="GameFrameX.SuperSocket.ClientEngine" Version="1.2.0" />
+      <PackageReference Include="GameFrameX.Core" Version="2.0.0" />
+      <PackageReference Include="GameFrameX.Hotfix.WrapperGenerator" Version="2.0.0" PrivateAssets="all" />
+      <PackageReference Include="GameFrameX.SuperSocket.ClientEngine" Version="1.3.0" />
+      <PackageReference Include="GameFrameX.Capability.Hosting.Abstractions" Version="2.0.0" />
+      <PackageReference Include="GameFrameX.Capability.Online.Abstractions" Version="2.0.0" />
+      <PackageReference Include="GameFrameX.Capability.Online.Foundation" Version="2.0.0" />
+      <PackageReference Include="GameFrameX.Capability.Online.Match" Version="2.0.0" />
+      <PackageReference Include="GameFrameX.Capability.Online.Assets" Version="2.0.0" />
+      <PackageReference Include="GameFrameX.Capability.Online.Leaderboard" Version="2.0.0" />
+      <PackageReference Include="GameFrameX.Network.Abstractions" Version="2.0.0" />
+      <PackageReference Include="GameFrameX.Network.HTTP" Version="2.0.0" />
+      <PackageReference Include="GameFrameX.Discovery" Version="2.0.0" />
+      <PackageReference Include="GameFrameX.Utility" Version="2.0.0" />
+      <PackageReference Include="GameFrameX.Foundation.Localization" Version="5.0.0" />
+      <PackageReference Include="GameFrameX.Foundation.Http.Normalization" Version="5.0.0" />
+      <PackageReference Include="GameFrameX.Foundation.Json" Version="5.0.0" />
+      <PackageReference Include="Mapster" Version="10.0.13" />
     </ItemGroup>
 
     <!-- 暴露 internal 给测试工程：供 MailCampaignRegistryTests 调用 ResetForTest 隔离进程内 registry 状态（SelfCheck 工程移除后改由 xunit 承担自检）。 -->

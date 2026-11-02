@@ -33,11 +33,11 @@ namespace GameFrameX.Hotfix.Logic.Game.ConnectFour;
 [MessageMapping(typeof(ReqRestartConnectFourGame))]
 internal sealed class ReqRestartConnectFourGameHandler : GlobalRpcComponentHandler<ConnectFourGameComponentAgent, ReqRestartConnectFourGame, RespRestartConnectFourGame>
 {
-    protected override async Task ActionAsync(ReqRestartConnectFourGame request, RespRestartConnectFourGame response)
+    protected override async Task ActionAsync(ReqRestartConnectFourGame request, RespRestartConnectFourGame response, CancellationToken cancellationToken)
     {
         try
         {
-            var roleId = ConnectFourHandlerHelper.GetCurrentRoleId(NetWorkChannel);
+            var roleId = ConnectFourHandlerHelper.GetCurrentPlayerId(NetworkChannel);
             await ComponentAgent.OnRestartGameAsync(roleId, request, response);
         }
         catch (Exception e)

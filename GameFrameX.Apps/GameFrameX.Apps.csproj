@@ -18,7 +18,8 @@
     </ItemGroup>
 
     <ItemGroup>
-      <PackageReference Include="GameFrameX.Core" Version="1.13.0" />
-      <PackageReference Include="GameFrameX.Monitor" Version="1.13.0" />
+      <PackageReference Include="GameFrameX.Core" Version="2.0.0" />
+      <PackageReference Include="GameFrameX.Utility" Version="2.0.0" />
+      <PackageReference Include="GameFrameX.DataBase.Mongo" Version="2.0.0" />
     </ItemGroup>
 </Project>

@@ -65,36 +65,3 @@ public static class PlayerAttributeMutation
         return attributes;
     }
 }
-
-/// <summary>
-/// 属性写入后的最终属性变化判定。
-/// </summary>
-public sealed class AttributeChangeResult
-{
-    public AttributeType SourceAttributeType { get; }
-
-    public AttributeType FinalAttributeType { get; }
-
-    public long OldFinalValue { get; }
-
-    public long NewFinalValue { get; }
-
-    public bool StateChanged { get; }
-
-    public bool ShouldDispatch { get; }
-
-    public AttributeChangeResult(AttributeType sourceAttributeType, AttributeType finalAttributeType, long oldFinalValue, long newFinalValue, bool stateChanged, bool shouldDispatch)
-    {
-        SourceAttributeType = sourceAttributeType;
-        FinalAttributeType = finalAttributeType;
-        OldFinalValue = oldFinalValue;
-        NewFinalValue = newFinalValue;
-        StateChanged = stateChanged;
-        ShouldDispatch = shouldDispatch;
-    }
-
-    public static AttributeChangeResult NotChanged(AttributeType sourceAttributeType, long value)
-    {
-        return new AttributeChangeResult(sourceAttributeType, AttributeType.None, value, value, false, false);
-    }
-}

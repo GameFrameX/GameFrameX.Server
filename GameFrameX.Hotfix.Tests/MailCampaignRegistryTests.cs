@@ -1,33 +1,32 @@
 // ==========================================================================================
-//  GameFrameX 组织及其衍生项目的版权、商标、专利及其他相关权利
-//  GameFrameX organization and its derivative projects' copyrights, trademarks, patents, and related rights
-//  均受中华人民共和国及相关国际法律法规保护。
-//  are protected by the laws of the People's Republic of China and relevant international regulations.
-//
-//  使用本项目须严格遵守相应法律法规及开源许可证之规定。
-//  Usage of this project must strictly comply with applicable laws, regulations, and open-source licenses.
-//
-//  本项目采用 MIT 许可证与 Apache License 2.0 双许可证分发，
-//  This project is dual-licensed under the MIT License and Apache License 2.0,
-//  完整许可证文本请参见源代码根目录下的 LICENSE 文件。
-//  please refer to the LICENSE file in the root directory of the source code for the full license text.
-//
-//  禁止利用本项目实施任何危害国家安全、破坏社会秩序、
-//  It is prohibited to use this project to engage in any activities that endanger national security, disrupt social order,
-//  侵犯他人合法权益等法律法规所禁止的行为！
-//  or infringe upon the legitimate rights and interests of others, as prohibited by laws and regulations!
-//  因基于本项目二次开发所产生的一切法律纠纷与责任，
-//  Any legal disputes and liabilities arising from secondary development based on this project
-//  本项目组织与贡献者概不承担。
-//  shall be borne solely by the developer; the project organization and contributors assume no responsibility.
-//
-//  GitHub 仓库：https://github.com/GameFrameX
-//  GitHub Repository: https://github.com/GameFrameX
-//  Gitee  仓库：https://gitee.com/GameFrameX
-//  Gitee Repository:  https://gitee.com/GameFrameX
-//  官方文档：https://gameframex.doc.alianblank.com/
-//  Official Documentation: https://gameframex.doc.alianblank.com/
-// ==========================================================================================
+//   GameFrameX 组织及其衍生项目的版权、商标、专利及其他相关权利
+//   GameFrameX organization and its derivative projects' copyrights, trademarks, patents, and related rights
+//   均受中华人民共和国及相关国际法律法规保护。
+//   are protected by the laws of the People's Republic of China and relevant international regulations.
+//   使用本项目须严格遵守相应法律法规及开源许可证之规定。
+//   Usage of this project must strictly comply with applicable laws, regulations, and open-source licenses.
+//   本项目采用 Apache License 2.0 单协议分发，
+//   This project is licensed solely under the Apache License 2.0,
+//   完整许可证文本请参见源代码根目录下的 LICENSE 文件。
+//   please refer to the LICENSE file in the root directory of the source code for the full license text.
+//   禁止利用本项目实施任何危害国家安全、破坏社会秩序、
+//   It is prohibited to use this project to engage in any activities that endanger national security, disrupt social order,
+//   侵犯他人合法权益等法律法规所禁止的行为！
+//   or infringe upon the legitimate rights and interests of others, as prohibited by laws and regulations!
+//   因基于本项目二次开发所产生的一切法律纠纷与责任，
+//   Any legal disputes and liabilities arising from secondary development based on this project
+//   本项目组织与贡献者概不承担。
+//   shall be borne solely by the developer; the project organization and contributors assume no responsibility.
+//   GitHub 仓库：https://github.com/GameFrameX
+//   GitHub Repository: https://github.com/GameFrameX
+//   Gitee  仓库：https://gitee.com/GameFrameX
+//   Gitee Repository:  https://gitee.com/GameFrameX
+//   CNB  仓库：https://cnb.cool/GameFrameX
+//   CNB Repository:  https://cnb.cool/GameFrameX
+//   官方文档：https://gameframex.doc.alianblank.com/
+//   Official Documentation: https://gameframex.doc.alianblank.com/
+//  ==========================================================================================
+
 
 using System;
 using System.Collections.Generic;
@@ -39,11 +38,11 @@ using Xunit;
 namespace GameFrameX.Hotfix.Tests;
 
 /// <summary>
-/// 运营邮件 Campaign 注册表（<see cref="MailCampaignRegistry"/>）总体验收单测（GFX-135 / F2）。
+/// 运营邮件 Campaign 注册表（<see cref="MailCampaignRegistry"/>）总体验收单测。
 /// 覆盖校验 / 发布（B1 发布后不可修改）/ 撤回（B3 状态字段写入 + 重复撤回 CampaignAlreadyRevoked）/
 /// B5（撤回后同 CampaignId 拒绝再发布）/ 端到端 smoke（发布 → 查询 → 撤回 → 查询）/ 查询过滤。
 /// 本组用例把 e921348a 移除 SelfCheck 工程时一并删除、且未迁移到 xunit 的 Campaign 侧 self-check 场景移植回归，
-/// 与 <see cref="MailAttachmentClaimTests"/>（领取侧 B2/B3/B4/B6）合并满足 GFX-135 验收硬性覆盖。
+/// 与 <see cref="MailAttachmentClaimTests"/>（领取侧 B2/B3/B4/B6）合并覆盖验收硬性场景。
 /// 进程内 registry 为静态字典，每个用例开头 <see cref="MailCampaignRegistry.ResetForTest"/> 隔离全局状态。
 /// </summary>
 public class MailCampaignRegistryTests
@@ -202,14 +201,14 @@ public class MailCampaignRegistryTests
         Assert.Equal(1_700_020_500L, q2.RevokedAt);
         Assert.Equal("admin-revoke", q2.RevokeOperator);
 
-        // 5. QueryAll(status=Revoked) 过滤命中；重复撤回返回 CampaignAlreadyRevoked。
-        var revokedList = MailCampaignRegistry.QueryAll(status: MailCampaignStatus.Revoked);
+        // 5. QueryAll(Status=Revoked) 过滤命中；重复撤回返回 CampaignAlreadyRevoked。
+        var revokedList = MailCampaignRegistry.QueryAll(new MailCampaignQuery { Status = MailCampaignStatus.Revoked });
         Assert.Contains(revokedList, c => c.CampaignId == published.CampaignId);
         Assert.Equal(MailCampaignErrorCode.CampaignAlreadyRevoked,
             MailCampaignRegistry.Revoke(published.CampaignId, "admin-revoke", 1_700_020_600L));
     }
 
-    /// <summary>查询过滤：QueryAll() 返回全部；QueryAll(mailType) / QueryAll(serverId) 命中正确子集。</summary>
+    /// <summary>查询过滤：空载荷 QueryAll 返回全部；MailType / ServerId 载荷过滤命中正确子集。</summary>
     [Fact]
     public void QueryAll_Filters_By_MailType_And_ServerId()
     {
@@ -226,13 +225,13 @@ public class MailCampaignRegistryTests
         c2.MailType = MailType.Compensation;
         var p2 = MailCampaignRegistry.PublishOrUpdate(c2, "admin-test", 1_700_000_600L);
 
-        Assert.True(MailCampaignRegistry.QueryAll().Count >= 2);
+        Assert.True(MailCampaignRegistry.QueryAll(new MailCampaignQuery()).Count >= 2);
 
-        var filtered = MailCampaignRegistry.QueryAll(mailType: MailType.Operation);
+        var filtered = MailCampaignRegistry.QueryAll(new MailCampaignQuery { MailType = MailType.Operation });
         Assert.NotEmpty(filtered);
         Assert.All(filtered, c => Assert.Equal(MailType.Operation, c.MailType));
 
-        var byServer = MailCampaignRegistry.QueryAll(serverId: 100);
+        var byServer = MailCampaignRegistry.QueryAll(new MailCampaignQuery { ServerId = 100 });
         Assert.NotEmpty(byServer);
         Assert.All(byServer, c => Assert.Contains(100, c.ServerIds));
 

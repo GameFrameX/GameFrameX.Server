@@ -32,8 +32,8 @@
 using System;
 using ProtoBuf;
 using System.Collections.Generic;
-using GameFrameX.NetWork.Abstractions;
-using GameFrameX.NetWork.Messages;
+using GameFrameX.Network.Abstractions;
+using GameFrameX.Network.Messages;
 
 namespace GameFrameX.Proto.Proto
 {

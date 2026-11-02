@@ -1,35 +1,4 @@
-// ==========================================================================================
-//  GameFrameX 组织及其衍生项目的版权、商标、专利及其他相关权利
-//  GameFrameX organization and its derivative projects' copyrights, trademarks, patents, and related rights
-//  均受中华人民共和国及相关国际法律法规保护。
-//  are protected by the laws of the People's Republic of China and relevant international regulations.
-//
-//  使用本项目须严格遵守相应法律法规及开源许可证之规定。
-//  Usage of this project must strictly comply with applicable laws, regulations, and open-source licenses.
-//
-//  本项目采用 MIT 许可证与 Apache License 2.0 双许可证分发，
-//  This project is dual-licensed under the MIT License and Apache License 2.0,
-//  完整许可证文本请参见源代码根目录下的 LICENSE 文件。
-//  please refer to the LICENSE file in the root directory of the source code for the full license text.
-//
-//  禁止利用本项目实施任何危害国家安全、破坏社会秩序、
-//  It is prohibited to use this project to engage in any activities that endanger national security, disrupt social order,
-//  侵犯他人合法权益等法律法规所禁止的行为！
-//  or infringe upon the legitimate rights and interests of others, as prohibited by laws and regulations!
-//  因基于本项目二次开发所产生的一切法律纠纷与责任，
-//  Any legal disputes and liabilities arising from secondary development based on this project
-//  本项目组织与贡献者概不承担。
-//  shall be borne solely by the developer; the project organization and contributors assume no responsibility.
-//
-//  GitHub 仓库：https://github.com/GameFrameX
-//  GitHub Repository: https://github.com/GameFrameX
-//  Gitee  仓库：https://gitee.com/GameFrameX
-//  Gitee Repository:  https://gitee.com/GameFrameX
-//  官方文档：https://gameframex.doc.alianblank.com/
-//  Official Documentation: https://gameframex.doc.alianblank.com/
-// ==========================================================================================
-
-using GameFrameX.Apps.Common.Session;
+using GameFrameX.Core.Session;
 using GameFrameX.Apps.Player.Reward;
 using GameFrameX.Apps.Player.Reward.Component;
 using GameFrameX.Apps.Player.Reward.Entity;
@@ -102,49 +71,23 @@ public class RewardGrantComponentAgent : StateComponentAgent<RewardGrantComponen
         for (var i = 0; i < request.Rewards.Count; i++)
         {
             var reward = request.Rewards[i];
-            var itemResult = new RewardGrantItemResult
+            if (TryCollectNormalItem(reward, normalItemDic, out var failure))
             {
-                RewardType = reward.RewardType,
-                ItemId = reward.ItemId,
-                Count = reward.Count,
-            };
-
-            if (reward.RewardType == RewardType.NormalItem)
-            {
-                if (reward.Count <= 0)
-                {
-                    itemResult.Success = false;
-                    itemResult.ErrorCode = (int)OperationStatusCode.InvalidReward;
-                }
-                else if (!ConfigComponent.Instance.GetConfig<TbItemConfig>().TryGet(reward.ItemId, out _))
-                {
-                    itemResult.Success = false;
-                    itemResult.ErrorCode = (int)OperationStatusCode.NotFound;
-                }
-                else
-                {
-                    // 暂记待发放，稍后批量写背包。
-                    normalItemDic[reward.ItemId] = normalItemDic.TryGetValue(reward.ItemId, out var sum) ? sum + reward.Count : reward.Count;
-                    bagItemResultIndex.Add(i);
-                    continue;
-                }
+                // 暂记成功：结果延后由批量写背包回填。
+                bagItemResultIndex.Add(i);
             }
             else
             {
-                // 预留路由位：隐藏道具 / 月卡 / 终生卡 / VIP 点 / 权益一期不实现。
-                itemResult.Success = false;
-                itemResult.ErrorCode = (int)OperationStatusCode.Unsupported;
+                items.Add(failure);
             }
-
-            items.Add(itemResult);
         }
 
         // 普通道具批量写背包（在线推 notify、离线只持久化）。
         if (normalItemDic.Count > 0)
         {
-            var bagAgent = await ActorManager.GetComponentAgent<BagComponentAgent>();
-            var channel = SessionManager.GetByRoleId(request.RoleId)?.WorkChannel;
-            var bagState = await bagAgent.UpdateChanged(channel, normalItemDic);
+            var bagAgent = await ActorManager.GetComponentAgentAsync<BagComponentAgent>();
+            var channel = PlayerSessionManager.Instance.GetByPlayerId(request.PlayerId)?.WorkChannel;
+            var bagState = await bagAgent.UpdateChangedAsync(channel, normalItemDic);
             var bagFailed = bagState.IsNull();
 
             foreach (var idx in bagItemResultIndex)
@@ -172,11 +115,60 @@ public class RewardGrantComponentAgent : StateComponentAgent<RewardGrantComponen
     }
 
     /// <summary>
-    /// 构造幂等键 <c>RoleId:SourceType:SourceId:TraceId</c>。
+    /// 校验单个奖励项并暂记普通道具待发放数量。
+    /// </summary>
+    /// <param name="reward">待校验的奖励项。</param>
+    /// <param name="normalItemDic">普通道具累计表（ItemId → 发放总数），合法普通道具就地累加。</param>
+    /// <param name="failure">校验失败时的单项失败结果；合法暂记时为 <c>null</c>。</param>
+    /// <returns>合法普通道具已暂记待发放返回 <c>true</c>（结果延后由批量写背包决定）；其余返回 <c>false</c> 并经 <paramref name="failure"/> 给出失败原因。</returns>
+    private static bool TryCollectNormalItem(RewardItem reward, Dictionary<int, long> normalItemDic, out RewardGrantItemResult failure)
+    {
+        if (reward.RewardType != RewardType.NormalItem)
+        {
+            // 预留路由位：隐藏道具 / 月卡 / 终生卡 / VIP 点 / 权益一期不实现。
+            failure = BuildFailure(reward, OperationStatusCode.Unsupported);
+            return false;
+        }
+
+        if (reward.Count <= 0)
+        {
+            failure = BuildFailure(reward, OperationStatusCode.InvalidReward);
+            return false;
+        }
+
+        if (!ConfigComponent.Instance.GetConfig<TbItemConfig>().TryGet(reward.ItemId, out _))
+        {
+            failure = BuildFailure(reward, OperationStatusCode.NotFound);
+            return false;
+        }
+
+        // 暂记待发放，稍后批量写背包。
+        normalItemDic[reward.ItemId] = normalItemDic.TryGetValue(reward.ItemId, out var sum) ? sum + reward.Count : reward.Count;
+        failure = null;
+        return true;
+    }
+
+    /// <summary>
+    /// 按奖励项原样字段构造单项失败结果（<c>Success=false</c> + 指定错误码）。
+    /// </summary>
+    private static RewardGrantItemResult BuildFailure(RewardItem reward, OperationStatusCode errorCode)
+    {
+        return new RewardGrantItemResult
+        {
+            RewardType = reward.RewardType,
+            ItemId = reward.ItemId,
+            Count = reward.Count,
+            Success = false,
+            ErrorCode = (int)errorCode,
+        };
+    }
+
+    /// <summary>
+    /// 构造幂等键 <c>RoleId:SourceType:SourceId:TraceId</c>（键格式为持久化契约，勿随命名统一改动）。
     /// </summary>
     private static string BuildTraceKey(RewardGrantRequest request)
     {
-        return request.RoleId + ":" + (int)request.SourceType + ":" + request.SourceId + ":" + request.TraceId;
+        return request.PlayerId + ":" + (int)request.SourceType + ":" + request.SourceId + ":" + request.TraceId;
     }
 
     /// <summary>

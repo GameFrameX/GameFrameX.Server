@@ -1,40 +1,10 @@
-// ==========================================================================================
-//  GameFrameX 组织及其衍生项目的版权、商标、专利及其他相关权利
-//  GameFrameX organization and its derivative projects' copyrights, trademarks, patents, and related rights
-//  均受中华人民共和国及相关国际法律法规保护。
-//  are protected by the laws of the People's Republic of China and relevant international regulations.
-//
-//  使用本项目须严格遵守相应法律法规及开源许可证之规定。
-//  Usage of this project must strictly comply with applicable laws, regulations, and open-source licenses.
-//
-//  本项目采用 MIT 许可证与 Apache License 2.0 双许可证分发，
-//  This project is dual-licensed under the MIT License and Apache License 2.0,
-//  完整许可证文本请参见源代码根目录下的 LICENSE 文件。
-//  please refer to the LICENSE file in the root directory of the source code for the full license text.
-//
-//  禁止利用本项目实施任何危害国家安全、破坏社会秩序、
-//  It is prohibited to use this project to engage in any activities that endanger national security, disrupt social order,
-//  侵犯他人合法权益等法律法规所禁止的行为！
-//  or infringe upon the legitimate rights and interests of others, as prohibited by laws and regulations!
-//  因基于本项目二次开发所产生的一切法律纠纷与责任，
-//  Any legal disputes and liabilities arising from secondary development based on this project
-//  本项目组织与贡献者概不承担。
-//  shall be borne solely by the developer; the project organization and contributors assume no responsibility.
-//
-//  GitHub 仓库：https://github.com/GameFrameX
-//  GitHub Repository: https://github.com/GameFrameX
-//  Gitee  仓库：https://gitee.com/GameFrameX
-//  Gitee Repository:  https://gitee.com/GameFrameX
-//  官方文档：https://gameframex.doc.alianblank.com/
-//  Official Documentation: https://gameframex.doc.alianblank.com/
-// ==========================================================================================
-
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using GameFrameX.Apps.Player.Mail;
 using GameFrameX.Apps.Player.Mail.Entity;
+using GameFrameX.Foundation.Localization.Core;
 
 namespace GameFrameX.Hotfix.Logic.Player.Mail
 {
@@ -62,69 +32,118 @@ namespace GameFrameX.Hotfix.Logic.Player.Mail
         /// <param name="campaign">待校验的 Campaign 快照（<see cref="MailCampaignState.CampaignId"/> 可为 0，由发布接口分配）。</param>
         public static MailCampaignErrorCode Validate(MailCampaignState campaign)
         {
-            if (campaign == null)
+            if (campaign == null
+                || !HasValidTitles(campaign)
+                || !HasValidContents(campaign)
+                || !HasValidAttachments(campaign)
+                || !HasValidLevelRange(campaign)
+                || !HasValidTimestamps(campaign))
             {
                 return MailCampaignErrorCode.InvalidCampaignParameter;
             }
 
+            return MailCampaignErrorCode.Ok;
+        }
+
+        /// <summary>
+        /// 校验多语言标题：集合非空，且每条标题非空、Language 与 Text 均非空白。
+        /// </summary>
+        private static bool HasValidTitles(MailCampaignState campaign)
+        {
             if (campaign.Titles == null || campaign.Titles.Count == 0)
             {
-                return MailCampaignErrorCode.InvalidCampaignParameter;
+                return false;
             }
 
             foreach (var title in campaign.Titles)
             {
                 if (title == null || string.IsNullOrWhiteSpace(title.Language) || string.IsNullOrWhiteSpace(title.Text))
                 {
-                    return MailCampaignErrorCode.InvalidCampaignParameter;
+                    return false;
                 }
             }
 
-            if (campaign.Contents != null)
+            return true;
+        }
+
+        /// <summary>
+        /// 校验多语言正文：集合为 null 视为通过；否则每条正文非空且 Language 非空白。
+        /// </summary>
+        private static bool HasValidContents(MailCampaignState campaign)
+        {
+            if (campaign.Contents == null)
             {
-                foreach (var content in campaign.Contents)
-                {
-                    if (content == null || string.IsNullOrWhiteSpace(content.Language))
-                    {
-                        return MailCampaignErrorCode.InvalidCampaignParameter;
-                    }
-                }
+                return true;
             }
 
-            if (campaign.Attachments != null && campaign.Attachments.Count > 0)
+            foreach (var content in campaign.Contents)
             {
-                var slotSet = new HashSet<int>();
-                foreach (var attachment in campaign.Attachments)
+                if (content == null || string.IsNullOrWhiteSpace(content.Language))
                 {
-                    // 附件数量非正属于 Campaign 参数非法（奖励发放层的 InvalidReward 用于运行时发放失败，与此处校验区分）。
-                    if (attachment == null || attachment.Amount <= 0)
-                    {
-                        return MailCampaignErrorCode.InvalidCampaignParameter;
-                    }
-
-                    if (!slotSet.Add(attachment.SlotId))
-                    {
-                        return MailCampaignErrorCode.InvalidCampaignParameter;
-                    }
+                    return false;
                 }
             }
 
+            return true;
+        }
+
+        /// <summary>
+        /// 校验附件：集合为 null / 空视为通过；否则每条附件非空、数量为正，且 SlotId 不重复。
+        /// </summary>
+        private static bool HasValidAttachments(MailCampaignState campaign)
+        {
+            if (campaign.Attachments == null || campaign.Attachments.Count == 0)
+            {
+                return true;
+            }
+
+            var slotSet = new HashSet<int>();
+            foreach (var attachment in campaign.Attachments)
+            {
+                // 附件数量非正属于 Campaign 参数非法（奖励发放层的 InvalidReward 用于运行时发放失败，与此处校验区分）。
+                if (attachment == null || attachment.Amount <= 0)
+                {
+                    return false;
+                }
+
+                if (!slotSet.Add(attachment.SlotId))
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        /// <summary>
+        /// 校验等级区间：MinLevel / MaxLevel 非负；MaxLevel &gt; 0 时 MinLevel 不得超过 MaxLevel。
+        /// </summary>
+        private static bool HasValidLevelRange(MailCampaignState campaign)
+        {
             if (campaign.MinLevel < 0 || campaign.MaxLevel < 0)
             {
-                return MailCampaignErrorCode.InvalidCampaignParameter;
+                return false;
             }
 
             if (campaign.MaxLevel > 0 && campaign.MinLevel > campaign.MaxLevel)
             {
-                return MailCampaignErrorCode.InvalidCampaignParameter;
+                return false;
             }
 
+            return true;
+        }
+
+        /// <summary>
+        /// 校验时间戳：ExpireAt / PublishedAt / CreateTime 均非负。
+        /// </summary>
+        private static bool HasValidTimestamps(MailCampaignState campaign)
+        {
             if (campaign.ExpireAt < 0 || campaign.PublishedAt < 0 || campaign.CreateTime < 0)
             {
-                return MailCampaignErrorCode.InvalidCampaignParameter;
+                return false;
             }
 
-            return MailCampaignErrorCode.Ok;
+            return true;
         }
 
         /// <summary>
@@ -140,7 +159,8 @@ namespace GameFrameX.Hotfix.Logic.Player.Mail
             var code = Validate(campaign);
             if (code != MailCampaignErrorCode.Ok)
             {
-                throw new ArgumentException("Campaign 参数非法，code=" + code);
+                // Localization: Hotfix.MailCampaign.InvalidParameter - Campaign 参数非法，code={0}
+                throw new ArgumentException(LocalizationService.GetString(Localization.Keys.Hotfix.MailCampaignInvalidParameter, code));
             }
 
             if (campaign.CampaignId <= 0)
@@ -152,7 +172,8 @@ namespace GameFrameX.Hotfix.Logic.Player.Mail
             {
                 if (existing.Status == MailCampaignStatus.Published || existing.Status == MailCampaignStatus.Revoked)
                 {
-                    throw new InvalidOperationException("Campaign 已发布或已撤回，主体字段不可修改（B1）。CampaignId=" + campaign.CampaignId);
+                    // Localization: Hotfix.MailCampaign.PublishedOrRevokedImmutable - Campaign 已发布或已撤回，主体字段不可修改（B1）。CampaignId={0}
+                    throw new InvalidOperationException(LocalizationService.GetString(Localization.Keys.Hotfix.MailCampaignPublishedOrRevokedImmutable, campaign.CampaignId));
                 }
 
                 campaign.PublishVersion = existing.PublishVersion + 1;
@@ -243,60 +264,58 @@ namespace GameFrameX.Hotfix.Logic.Player.Mail
         }
 
         /// <summary>
-        /// 按过滤条件查询 Campaign 列表（Admin 查询发布状态）。所有过滤条件为 AND 关系，空 / 0 表示不限。
+        /// 按 <see cref="MailCampaignQuery"/> 过滤条件查询 Campaign 列表（Admin 查询发布状态）。所有过滤条件为 AND 关系，空 / 0 表示不限。
         /// </summary>
-        /// <param name="status">状态过滤；传 null 表示不限。</param>
-        /// <param name="mailType">类型过滤；传 null 表示不限。</param>
-        /// <param name="serverId">服务器 ID 过滤；≤ 0 表示不限。</param>
-        /// <param name="channelId">渠道 ID 过滤；≤ 0 表示不限。</param>
-        /// <param name="minLevel">最低等级过滤；≤ 0 表示不限。</param>
-        /// <param name="createdFromUnixSeconds">创建时间下限（含）；≤ 0 表示不限。</param>
-        /// <param name="createdToUnixSeconds">创建时间上限（含）；≤ 0 表示不限。</param>
-        /// <param name="limit">返回条数上限；≤ 0 表示返回全部。</param>
-        public static List<MailCampaignState> QueryAll(MailCampaignStatus? status = null, MailType? mailType = null, int serverId = 0, int channelId = 0, int minLevel = 0, long createdFromUnixSeconds = 0, long createdToUnixSeconds = 0, int limit = 0)
+        /// <param name="query">查询过滤条件载荷。</param>
+        public static List<MailCampaignState> QueryAll(MailCampaignQuery query)
         {
+            if (query == null)
+            {
+                throw new ArgumentNullException(nameof(query));
+            }
+
             IEnumerable<MailCampaignState> result = Campaigns.Values;
 
-            if (status.HasValue)
+            if (query.Status.HasValue)
             {
-                result = result.Where(c => c.Status == status.Value);
+                result = result.Where(c => c.Status == query.Status.Value);
             }
 
-            if (mailType.HasValue)
+            if (query.MailType.HasValue)
             {
-                result = result.Where(c => c.MailType == mailType.Value);
+                result = result.Where(c => c.MailType == query.MailType.Value);
             }
 
-            if (serverId > 0)
+            if (query.ServerId > 0)
             {
-                result = result.Where(c => c.ServerIds != null && c.ServerIds.Contains(serverId));
+                result = result.Where(c => c.ServerIds != null && c.ServerIds.Contains(query.ServerId));
             }
 
-            if (channelId > 0)
+            if (query.ChannelId > 0)
             {
-                result = result.Where(c => c.ChannelIds != null && c.ChannelIds.Contains(channelId));
+                result = result.Where(c => c.ChannelIds != null && c.ChannelIds.Contains(query.ChannelId));
             }
 
-            if (minLevel > 0)
+            if (query.MinLevel > 0)
             {
-                result = result.Where(c => c.MaxLevel == 0 || c.MaxLevel >= minLevel);
+                result = result.Where(c => c.MaxLevel == 0 || c.MaxLevel >= query.MinLevel);
             }
 
-            if (createdFromUnixSeconds > 0)
+            if (query.CreatedFromUnixSeconds > 0)
             {
-                result = result.Where(c => c.CreateTime >= createdFromUnixSeconds);
+                result = result.Where(c => c.CreateTime >= query.CreatedFromUnixSeconds);
             }
 
-            if (createdToUnixSeconds > 0)
+            if (query.CreatedToUnixSeconds > 0)
             {
-                result = result.Where(c => c.CreateTime <= createdToUnixSeconds);
+                result = result.Where(c => c.CreateTime <= query.CreatedToUnixSeconds);
             }
 
             result = result.OrderBy(c => c.CreateTime);
 
-            if (limit > 0)
+            if (query.Limit > 0)
             {
-                result = result.Take(limit);
+                result = result.Take(query.Limit);
             }
 
             return result.ToList();
@@ -312,7 +331,8 @@ namespace GameFrameX.Hotfix.Logic.Player.Mail
             var code = Validate(campaign);
             if (code != MailCampaignErrorCode.Ok)
             {
-                throw new ArgumentException("Campaign 参数非法，code=" + code);
+                // Localization: Hotfix.MailCampaign.InvalidParameter - Campaign 参数非法，code={0}
+                throw new ArgumentException(LocalizationService.GetString(Localization.Keys.Hotfix.MailCampaignInvalidParameter, code));
             }
 
             // 一期无角色 / 在线统计模块接入，估算命中返回 -1 表示「未知」。

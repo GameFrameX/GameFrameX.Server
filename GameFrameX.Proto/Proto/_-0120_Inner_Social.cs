@@ -32,8 +32,8 @@
 using System;
 using ProtoBuf;
 using System.Collections.Generic;
-using GameFrameX.NetWork.Abstractions;
-using GameFrameX.NetWork.Messages;
+using GameFrameX.Network.Abstractions;
+using GameFrameX.Network.Messages;
 
 namespace GameFrameX.Proto.Proto
 {
@@ -46,15 +46,23 @@ namespace GameFrameX.Proto.Proto
 	public sealed class ReqInnerFriendByAdd : MessageObject, IRequestMessage
 	{
 		/// <summary>
-		/// 玩家ID
+		/// 目标玩家ID
 		/// </summary>
 		[ProtoMember(1)]
-		[System.ComponentModel.Description("玩家ID")]
+		[System.ComponentModel.Description("目标玩家ID")]
 		public long PlayerId { get; set; }
+
+		/// <summary>
+		/// 源玩家ID（发起方，跨服场景区分关系归属）
+		/// </summary>
+		[ProtoMember(2)]
+		[System.ComponentModel.Description("源玩家ID（发起方，跨服场景区分关系归属）")]
+		public long SourcePlayerId { get; set; }
 
 		public override void Clear()
 		{
 			PlayerId = default;
+			SourcePlayerId = default;
 		}
 	}
 
@@ -118,15 +126,23 @@ namespace GameFrameX.Proto.Proto
 	public sealed class ReqInnerFriendByDelete : MessageObject, IRequestMessage
 	{
 		/// <summary>
-		/// 玩家ID
+		/// 目标玩家ID
 		/// </summary>
 		[ProtoMember(1)]
-		[System.ComponentModel.Description("玩家ID")]
+		[System.ComponentModel.Description("目标玩家ID")]
 		public long PlayerId { get; set; }
+
+		/// <summary>
+		/// 源玩家ID（发起方，跨服场景区分关系归属）
+		/// </summary>
+		[ProtoMember(2)]
+		[System.ComponentModel.Description("源玩家ID（发起方，跨服场景区分关系归属）")]
+		public long SourcePlayerId { get; set; }
 
 		public override void Clear()
 		{
 			PlayerId = default;
+			SourcePlayerId = default;
 		}
 	}
 
@@ -193,7 +209,7 @@ namespace GameFrameX.Proto.Proto
 		/// </summary>
 		[ProtoMember(1)]
 		[System.ComponentModel.Description("好友列表")]
-		public List<InnerFriendInfo> Friends { get; set; } = new List<InnerFriendInfo>();
+		public List<FriendInfo> Friends { get; set; } = new List<FriendInfo>();
 
 		/// <summary>
 		/// 返回的错误码

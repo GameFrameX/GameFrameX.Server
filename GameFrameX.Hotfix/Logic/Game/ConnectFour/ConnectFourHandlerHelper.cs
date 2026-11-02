@@ -34,8 +34,8 @@ namespace GameFrameX.Hotfix.Logic.Game.ConnectFour;
 
 internal static class ConnectFourHandlerHelper
 {
-    public static long GetCurrentRoleId(INetWorkChannel netWorkChannel)
+    public static long GetCurrentPlayerId(INetworkChannel networkChannel)
     {
-        return RoomHandlerHelper.GetCurrentRoleId(netWorkChannel);
+        return RoomHandlerHelper.GetCurrentPlayerId(networkChannel);
     }
 }

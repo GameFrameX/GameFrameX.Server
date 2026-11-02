@@ -30,7 +30,7 @@
 
 namespace GameFrameX.Apps.Game.ConnectFour.Entity;
 
-public sealed class ConnectFourGameListState : CacheState
+public sealed class ConnectFourGameListState : BaseCacheState
 {
     /// <summary>
     /// Key: 房间ID，Value: 四子棋玩法数据。

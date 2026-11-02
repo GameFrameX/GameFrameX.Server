@@ -28,7 +28,7 @@
 //  ==========================================================================================
 
 
-using GameFrameX.Apps.Common.Session;
+using GameFrameX.Core.Session;
 using GameFrameX.Apps.Game.ConnectFour.Component;
 using GameFrameX.Apps.Game.ConnectFour.Entity;
 using GameFrameX.Hotfix.Logic.Game.Room;
@@ -39,8 +39,8 @@ public class ConnectFourGameComponentAgent : StateComponentAgent<ConnectFourGame
 {
     public async Task OnReqGameInfoAsync(ReqConnectFourGameInfo request, RespConnectFourGameInfo response)
     {
-        var roomAgent = await ActorManager.GetComponentAgent<RoomComponentAgent>();
-        var room = await roomAgent.GetRoom(request.RoomId);
+        var roomAgent = await ActorManager.GetComponentAgentAsync<RoomComponentAgent>();
+        var room = await roomAgent.GetRoomAsync(request.RoomId);
         if (!CheckRoom(room, response))
         {
             return;
@@ -67,8 +67,8 @@ public class ConnectFourGameComponentAgent : StateComponentAgent<ConnectFourGame
             return;
         }
 
-        var roomAgent = await ActorManager.GetComponentAgent<RoomComponentAgent>();
-        var room = await roomAgent.GetRoom(request.RoomId);
+        var roomAgent = await ActorManager.GetComponentAgentAsync<RoomComponentAgent>();
+        var room = await roomAgent.GetRoomAsync(request.RoomId);
         if (!CheckRoom(room, response))
         {
             return;
@@ -117,18 +117,18 @@ public class ConnectFourGameComponentAgent : StateComponentAgent<ConnectFourGame
         {
             game.WinnerRoleId = roleId;
             game.CurrentPlayerId = 0;
-            await roomAgent.EnterSettling(room.RoomId);
+            await roomAgent.EnterSettlingAsync(room.RoomId);
             await OwnerComponent.WriteStateAsync();
-            await roomAgent.MarkSettled(room.RoomId);
+            await roomAgent.MarkSettledAsync(room.RoomId);
         }
         else if (ConnectFourBoardLogic.IsBoardFull(game.Board))
         {
             // 棋盘落满且无四连，判定平局。
             game.IsDraw = true;
             game.CurrentPlayerId = 0;
-            await roomAgent.EnterSettling(room.RoomId);
+            await roomAgent.EnterSettlingAsync(room.RoomId);
             await OwnerComponent.WriteStateAsync();
-            await roomAgent.MarkSettled(room.RoomId);
+            await roomAgent.MarkSettledAsync(room.RoomId);
         }
         else
         {
@@ -150,8 +150,8 @@ public class ConnectFourGameComponentAgent : StateComponentAgent<ConnectFourGame
             return;
         }
 
-        var roomAgent = await ActorManager.GetComponentAgent<RoomComponentAgent>();
-        var room = await roomAgent.GetRoom(request.RoomId);
+        var roomAgent = await ActorManager.GetComponentAgentAsync<RoomComponentAgent>();
+        var room = await roomAgent.GetRoomAsync(request.RoomId);
         if (!CheckRoom(room, response))
         {
             return;
@@ -164,7 +164,7 @@ public class ConnectFourGameComponentAgent : StateComponentAgent<ConnectFourGame
             return;
         }
 
-        var roomInfo = await roomAgent.RestartRoomGame(room.RoomId);
+        var roomInfo = await roomAgent.RestartRoomGameAsync(room.RoomId);
         if (roomInfo == null || roomInfo.Status != RoomStatus.Playing)
         {
             response.ErrorCode = (int)OperationStatusCode.Unprocessable;
@@ -293,7 +293,7 @@ public class ConnectFourGameComponentAgent : StateComponentAgent<ConnectFourGame
 
         foreach (var roleId in playerIds)
         {
-            var session = SessionManager.GetByRoleId(roleId);
+            var session = PlayerSessionManager.Instance.GetByPlayerId(roleId);
             if (session != null)
             {
                 await session.WriteAsync(notify);

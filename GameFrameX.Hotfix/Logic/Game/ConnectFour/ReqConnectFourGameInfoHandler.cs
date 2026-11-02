@@ -33,7 +33,7 @@ namespace GameFrameX.Hotfix.Logic.Game.ConnectFour;
 [MessageMapping(typeof(ReqConnectFourGameInfo))]
 internal sealed class ReqConnectFourGameInfoHandler : GlobalRpcComponentHandler<ConnectFourGameComponentAgent, ReqConnectFourGameInfo, RespConnectFourGameInfo>
 {
-    protected override async Task ActionAsync(ReqConnectFourGameInfo request, RespConnectFourGameInfo response)
+    protected override async Task ActionAsync(ReqConnectFourGameInfo request, RespConnectFourGameInfo response, CancellationToken cancellationToken)
     {
         try
         {
