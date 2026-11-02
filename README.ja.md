@@ -108,6 +108,8 @@ docker compose up -d mongodb
 
 その後、ビルドして出力ディレクトリから Launcher を起動します。
 
+> **NuGet ソースに関する注記（公開前）**：GameFrameX 2.0 パッケージはまだ nuget.org に公開されていません。そのためルートの `nuget.config` は `GameFrameX-Internal` ソースを同階層ディレクトリ `../LocalPackages`（内部検証フィード）に向けています。このフィードがない通常のクローンではリストアが `NU1301` で失敗します——GameFrameX 2.0.0 パッケージを同階層の `LocalPackages` フォルダーに置くか、このソースを独自のフィードに差し替えてください。nuget.org への公開はフレームリポジトリのバックログで追跡されています。
+
 ```bash
 git clone https://github.com/GameFrameX/Server_main.git
 cd Server_main
@@ -178,6 +180,9 @@ dotnet GameFrameX.Launcher.dll \
 | ヘルスチェック | `http://localhost:29090/health` | サービスのヘルス状態 |
 | メトリクス | `http://localhost:29090/metrics` | Prometheus メトリクス |
 | テスト API | `http://localhost:28080/game/api/test` | HTTP 接続テスト |
+| Online 管理 API | `http://localhost:28090/online/admin/{action}` | Online 能力管理面（`Configs/app_config.json` の `Online.EnableAdminApi` で既定有効） |
+
+> **セキュリティ注記**：Online 管理 API は現在**認証なし**で、既定では**全ネットワークインターフェース**（`0.0.0.0`、ポートは `OnlineAdminPort`）でリッスンします。信頼できる内部ネットワークのみで使用し、ファイアウォール／セキュリティグループで保護するか、信頼できないネットワークに公開する前に `Online.EnableAdminApi` を `false` に設定してください。
 
 ## プロジェクト構成
 
@@ -387,15 +392,15 @@ internal sealed class HeartBeatHandler
 
 ### イベント処理
 
-`[Event]` 属性を使用してイベント ID をバインドします。フレームワークが自動的に対応する ComponentAgent にディスパッチします。
+`[Event]` 属性を使用してイベント引数の型をバインドします。フレームワークが自動的に対応する ComponentAgent にディスパッチします。
 
 ```csharp
-[Event(EventId.PlayerLogin)]
-internal sealed class PlayerLoginEventHandler : EventListener<PlayerComponentAgent>
+[Event(typeof(OnRoleOnlineEventArgs))]
+internal sealed class PlayerOnlineEventListener : EventListener<PlayerComponentAgent>
 {
-    protected override Task HandleEvent(PlayerComponentAgent agent, GameEventArgs args)
+    protected override Task HandleEventAsync(PlayerComponentAgent agent, GameEventArgs gameEventArgs)
     {
-        return agent.OnLogin();
+        return Task.CompletedTask;
     }
 }
 ```

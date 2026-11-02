@@ -280,6 +280,8 @@ internal sealed class RuntimeCompositionRoot
 
         if (online.EnableAdminApi)
         {
+            // 启动告警：管理面当前无鉴权且监听所有网卡（非仅回环），开箱启用只应出现在受信任网络。
+            LogHelper.Warning(LocalizationService.GetString(Localization.Keys.Capability.Hosting.AdminApi.NoAuthAllInterfacesWarning, setting.OnlineAdminPort));
             options.UseAdminApi(adminOptions =>
             {
                 adminOptions.AdminPort = setting.OnlineAdminPort;

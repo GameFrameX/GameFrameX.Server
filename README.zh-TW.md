@@ -108,6 +108,8 @@ docker compose up -d mongodb
 
 再編譯並從輸出目錄啟動 Launcher：
 
+> **NuGet 來源說明（公開發布前）**：GameFrameX 2.0 套件尚未發布到 nuget.org。根目錄 `nuget.config` 因此配置了 `GameFrameX-Internal` 來源，指向同層目錄 `../LocalPackages`（內部驗證 feed）。缺少該 feed 的普通克隆還原會以 `NU1301` 失敗——請將 GameFrameX 2.0.0 套件放入同層 `LocalPackages` 目錄，或把該來源改指向你自己的 feed。nuget.org 發布事宜由框架倉 backlog 跟蹤。
+
 ```bash
 git clone https://github.com/GameFrameX/Server_main.git
 cd Server_main
@@ -178,6 +180,9 @@ dotnet GameFrameX.Launcher.dll \
 | 健康檢查 | `http://localhost:29090/health` | 服務健康狀態 |
 | 指標監控 | `http://localhost:29090/metrics` | Prometheus 指標 |
 | 測試介面 | `http://localhost:28080/game/api/test` | HTTP 連通性測試 |
+| Online 管理面 | `http://localhost:28090/online/admin/{action}` | Online 能力管理面（`Configs/app_config.json` 經 `Online.EnableAdminApi` 預設開啟） |
+
+> **安全說明**：Online 管理面當前**沒有鑑權**，且預設監聽**所有網卡**（`0.0.0.0`，連接埠取 `OnlineAdminPort`）。請僅保留在受信任的內網——用防火牆/安全群組加以限制，或在把伺服器暴露到不可信網路前將 `Online.EnableAdminApi` 設為 `false`。
 
 ## 專案結構
 
@@ -387,15 +392,15 @@ internal sealed class HeartBeatHandler
 
 ### 事件處理
 
-使用 `[Event]` 特性綁定事件 ID，框架自動分發給對應的 ComponentAgent。
+使用 `[Event]` 特性綁定事件參數類型，框架自動分發給對應的 ComponentAgent。
 
 ```csharp
-[Event(EventId.PlayerLogin)]
-internal sealed class PlayerLoginEventHandler : EventListener<PlayerComponentAgent>
+[Event(typeof(OnRoleOnlineEventArgs))]
+internal sealed class PlayerOnlineEventListener : EventListener<PlayerComponentAgent>
 {
-    protected override Task HandleEvent(PlayerComponentAgent agent, GameEventArgs args)
+    protected override Task HandleEventAsync(PlayerComponentAgent agent, GameEventArgs gameEventArgs)
     {
-        return agent.OnLogin();
+        return Task.CompletedTask;
     }
 }
 ```

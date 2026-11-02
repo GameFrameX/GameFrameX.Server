@@ -106,6 +106,8 @@ docker compose up -d mongodb
 
 Then build and run the launcher from the output directory:
 
+> **NuGet source note (pre-release)**: the GameFrameX 2.0 packages are not yet published on nuget.org. The root `nuget.config` therefore adds a `GameFrameX-Internal` source pointing at the sibling directory `../LocalPackages` (internal verification feed). A plain clone without that feed fails to restore with `NU1301` — either put the GameFrameX 2.0.0 packages into a sibling `LocalPackages` folder, or repoint that source to your own feed. Publication to nuget.org is tracked in the framework repo backlog.
+
 ```bash
 git clone https://github.com/GameFrameX/Server_main.git
 cd Server_main
@@ -176,6 +178,9 @@ dotnet GameFrameX.Launcher.dll \
 | Health Check | `http://localhost:29090/health` | Service health status |
 | Metrics | `http://localhost:29090/metrics` | Prometheus metrics |
 | Test API | `http://localhost:28080/game/api/test` | HTTP connectivity test |
+| Online Admin API | `http://localhost:28090/online/admin/{action}` | Online capability admin plane (enabled by default in `Configs/app_config.json` via `Online.EnableAdminApi`) |
+
+> **Security note**: the Online admin API currently has **no authentication** and listens on **all network interfaces** (`0.0.0.0`, port from `OnlineAdminPort`). Keep it on trusted internal networks only — protect it with a firewall / security group, or set `Online.EnableAdminApi` to `false` before exposing the server to an untrusted network.
 
 ## Project Structure
 
@@ -385,15 +390,15 @@ internal sealed class HeartBeatHandler
 
 ### Event Handling
 
-Use the `[Event]` attribute to bind event IDs. The framework automatically dispatches to the corresponding ComponentAgent.
+Use the `[Event]` attribute to bind the event argument type. The framework automatically dispatches to the corresponding ComponentAgent.
 
 ```csharp
-[Event(EventId.PlayerLogin)]
-internal sealed class PlayerLoginEventHandler : EventListener<PlayerComponentAgent>
+[Event(typeof(OnRoleOnlineEventArgs))]
+internal sealed class PlayerOnlineEventListener : EventListener<PlayerComponentAgent>
 {
-    protected override Task HandleEvent(PlayerComponentAgent agent, GameEventArgs args)
+    protected override Task HandleEventAsync(PlayerComponentAgent agent, GameEventArgs gameEventArgs)
     {
-        return agent.OnLogin();
+        return Task.CompletedTask;
     }
 }
 ```
