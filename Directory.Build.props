@@ -1,0 +1,6 @@
+<Project>
+  <PropertyGroup>
+    <!-- csharp-braces 构建期强制（~/.claude/rules/csharp-braces.md） -->
+    <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
+  </PropertyGroup>
+</Project>

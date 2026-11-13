@@ -1,0 +1,6 @@
+# csharp-braces：C# 控制流必须带大括号（~/.claude/rules/csharp-braces.md），构建期按错误处理
+root = true
+
+[*.cs]
+csharp_prefer_braces = true:error
+dotnet_diagnostic.IDE0011.severity = error
