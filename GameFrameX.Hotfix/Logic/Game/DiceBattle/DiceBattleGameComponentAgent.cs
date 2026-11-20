@@ -83,7 +83,12 @@ public class DiceBattleGameComponentAgent : StateComponentAgent<DiceBattleGameCo
         if (room.Status != RoomStatus.Playing || !room.PlayerIds.Contains(roleId))
         {
             response.ErrorCode = (int)OperationStatusCode.Forbidden;
-            response.GameInfo = BuildGameInfo(room, CanRevealDice(room.Status));
+            // 非成员不附带任何对局数据；成员收到与查询接口一致的揭示语义（已结算即揭示）。
+            if (room.PlayerIds.Contains(roleId))
+            {
+                response.GameInfo = BuildGameInfo(room, CanRevealDice(room.Status));
+            }
+
             return;
         }
 
@@ -129,9 +134,17 @@ public class DiceBattleGameComponentAgent : StateComponentAgent<DiceBattleGameCo
             return;
         }
 
+        if (!room.PlayerIds.Contains(roleId))
+        {
+            // 非成员请求直接拒绝，不附带任何对局数据。
+            response.ErrorCode = (int)OperationStatusCode.Forbidden;
+            return;
+        }
+
         if (room.OwnerRoleId != roleId || room.Status != RoomStatus.Settled)
         {
             response.ErrorCode = (int)OperationStatusCode.Forbidden;
+            // 成员收到与查询接口一致的揭示语义（已结算即揭示）。
             response.GameInfo = BuildGameInfo(room, CanRevealDice(room.Status));
             return;
         }
@@ -265,9 +278,19 @@ public class DiceBattleGameComponentAgent : StateComponentAgent<DiceBattleGameCo
         foreach (var roleId in playerIds)
         {
             var session = PlayerSessionManager.Instance.GetByPlayerId(roleId);
-            if (session != null)
+            if (session == null)
+            {
+                continue;
+            }
+
+            // 单个成员的通知发送失败只记日志，不中断结算与其余成员的通知。
+            try
             {
                 await session.WriteAsync(notify);
+            }
+            catch (Exception e)
+            {
+                LogHelper.Error(e);
             }
         }
     }

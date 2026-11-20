@@ -439,7 +439,8 @@ public class RoomComponentAgent : StateComponentAgent<RoomComponent, RoomListSta
     {
         minPlayerCount = requestMinPlayerCount > 0 ? requestMinPlayerCount : rule.MinPlayerCount;
         maxPlayerCount = requestMaxPlayerCount > 0 ? requestMaxPlayerCount : rule.MaxPlayerCount;
-        if (minPlayerCount <= 0 || maxPlayerCount <= 0 || minPlayerCount > maxPlayerCount)
+        // 显式人数只能收窄房型规则的区间（如骰子比大小 3-6 人），越界视为参数错误。
+        if (minPlayerCount < rule.MinPlayerCount || maxPlayerCount > rule.MaxPlayerCount || minPlayerCount > maxPlayerCount)
         {
             SetResponseErrorCode(response, (int)OperationStatusCode.ParamErr);
             return false;
@@ -596,9 +597,19 @@ public class RoomComponentAgent : StateComponentAgent<RoomComponent, RoomListSta
         foreach (var playerId in room.PlayerIds)
         {
             var session = PlayerSessionManager.Instance.GetByPlayerId(playerId);
-            if (session != null)
+            if (session == null)
+            {
+                continue;
+            }
+
+            // 单个成员的通知发送失败只记日志，不中断房间状态推进与其余成员的通知。
+            try
             {
                 await session.WriteAsync(notify);
+            }
+            catch (Exception e)
+            {
+                LogHelper.Error(e);
             }
         }
     }
