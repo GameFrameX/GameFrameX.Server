@@ -28,6 +28,8 @@
 //  ==========================================================================================
 
 
+using GameFrameX.Hotfix.Logic.Game.Room;
+
 namespace GameFrameX.Hotfix.Logic.Game.DiceBattle;
 
 [MessageMapping(typeof(ReqDiceBattleGameInfo))]
@@ -37,7 +39,8 @@ internal sealed class ReqDiceBattleGameInfoHandler : GlobalRpcComponentHandler<D
     {
         try
         {
-            await ComponentAgent.OnReqGameInfoAsync(request, response);
+            var roleId = RoomHandlerHelper.GetCurrentPlayerId(NetworkChannel);
+            await ComponentAgent.OnReqGameInfoAsync(roleId, request, response);
         }
         catch (Exception e)
         {

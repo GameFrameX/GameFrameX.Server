@@ -46,12 +46,19 @@ public class DiceBattleGameComponentAgent : StateComponentAgent<DiceBattleGameCo
     /// </summary>
     private const int DiceLowerBound = 1;
 
-    public async Task OnReqGameInfoAsync(ReqDiceBattleGameInfo request, RespDiceBattleGameInfo response)
+    public async Task OnReqGameInfoAsync(long roleId, ReqDiceBattleGameInfo request, RespDiceBattleGameInfo response)
     {
         var roomAgent = await ActorManager.GetComponentAgentAsync<RoomComponentAgent>();
         var room = await roomAgent.GetRoomAsync(request.RoomId);
         if (!CheckRoom(room, response))
         {
+            return;
+        }
+
+        // 成员校验：对局数据只对房间成员可见，任意登录角色不得仅凭 RoomId 窥探他人对局。
+        if (!room.PlayerIds.Contains(roleId))
+        {
+            response.ErrorCode = (int)OperationStatusCode.Forbidden;
             return;
         }
 
@@ -76,7 +83,7 @@ public class DiceBattleGameComponentAgent : StateComponentAgent<DiceBattleGameCo
         if (room.Status != RoomStatus.Playing || !room.PlayerIds.Contains(roleId))
         {
             response.ErrorCode = (int)OperationStatusCode.Forbidden;
-            response.GameInfo = BuildGameInfo(room, false);
+            response.GameInfo = BuildGameInfo(room, CanRevealDice(room.Status));
             return;
         }
 
@@ -183,7 +190,7 @@ public class DiceBattleGameComponentAgent : StateComponentAgent<DiceBattleGameCo
             return true;
         }
 
-        SetResponseErrorCode(response, (int)OperationStatusCode.Forbidden);
+        response.ErrorCode = (int)OperationStatusCode.Forbidden;
         return false;
     }
 
@@ -191,13 +198,13 @@ public class DiceBattleGameComponentAgent : StateComponentAgent<DiceBattleGameCo
     {
         if (room == null)
         {
-            SetResponseErrorCode(response, (int)OperationStatusCode.NotFound);
+            response.ErrorCode = (int)OperationStatusCode.NotFound;
             return false;
         }
 
         if (room.GameType != GameType.DiceBattle)
         {
-            SetResponseErrorCode(response, (int)OperationStatusCode.Forbidden);
+            response.ErrorCode = (int)OperationStatusCode.Forbidden;
             return false;
         }
 
@@ -246,15 +253,6 @@ public class DiceBattleGameComponentAgent : StateComponentAgent<DiceBattleGameCo
                 DiceValue = revealDice && game.DiceMap.TryGetValue(roleId, out var value) ? value : 0,
             }).ToList(),
         };
-    }
-
-    private static void SetResponseErrorCode(IResponseMessage response, int errorCode)
-    {
-        var propertyInfo = response.GetType().GetProperty(nameof(RespDiceBattleGameInfo.ErrorCode));
-        if (propertyInfo != null)
-        {
-            propertyInfo.SetValue(response, errorCode);
-        }
     }
 
     private static async Task NotifyGameChangedAsync(List<long> playerIds, DiceBattleGameInfo gameInfo)

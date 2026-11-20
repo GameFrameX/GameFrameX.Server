@@ -28,6 +28,8 @@
 //  ==========================================================================================
 
 
+using GameFrameX.Hotfix.Logic.Game.Room;
+
 namespace GameFrameX.Hotfix.Logic.Game.DiceBattle;
 
 [MessageMapping(typeof(ReqRollDiceBattle))]
@@ -37,7 +39,7 @@ internal sealed class ReqRollDiceBattleHandler : GlobalRpcComponentHandler<DiceB
     {
         try
         {
-            var roleId = DiceBattleHandlerHelper.GetCurrentPlayerId(NetworkChannel);
+            var roleId = RoomHandlerHelper.GetCurrentPlayerId(NetworkChannel);
             await ComponentAgent.OnRollDiceAsync(roleId, request, response);
         }
         catch (Exception e)
