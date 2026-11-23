@@ -1,0 +1,297 @@
+// ==========================================================================================
+//   GameFrameX 组织及其衍生项目的版权、商标、专利及其他相关权利
+//   GameFrameX organization and its derivative projects' copyrights, trademarks, patents, and related rights
+//   均受中华人民共和国及相关国际法律法规保护。
+//   are protected by the laws of the People's Republic of China and relevant international regulations.
+//   使用本项目须严格遵守相应法律法规与开源许可证之规定。
+//   Usage of this project must strictly comply with applicable laws, regulations, and open-source licenses.
+//   本项目采用 Apache License 2.0 单协议分发，
+//   This project is licensed solely under the Apache License 2.0,
+//   完整许可证文本请参见源代码根目录下的 LICENSE 文件。
+//   please refer to the LICENSE file in the root directory of the source code for the full license text.
+//   禁止利用本项目实施任何危害国家安全、破坏社会秩序、
+//   It is prohibited to use this project to engage in any activities that endanger national security, disrupt social order,
+//   侵犯他人合法权益等法律法规所禁止的行为！
+//   or infringe upon the legitimate rights and interests of others, as prohibited by laws and regulations!
+//   因基于本项目二次开发所产生的一切法律纠纷与责任，
+//   Any disputes and liabilities arising from secondary development based on this project
+//   本项目组织与贡献者概不承担。
+//   shall be borne solely by the developer; the project organization and contributors assume no responsibility.
+//   GitHub 仓库：https://github.com/GameFrameX
+//   GitHub Repository: https://github.com/GameFrameX
+//   Gitee  仓库：https://gitee.com/GameFrameX
+//   Gitee Repository:  https://gitee.com/GameFrameX
+//   CNB  仓库：https://cnb.cool/GameFrameX
+//   CNB Repository:   https://cnb.cool/GameFrameX
+//   官方文档：https://gameframex.doc.alianblank.com/
+//   Official Documentation: https://gameframex.doc.alianblank.com/
+//  ==========================================================================================
+
+using GameFrameX.Core.Session;
+using GameFrameX.Apps.Game.DiceBattle.Component;
+using GameFrameX.Apps.Game.DiceBattle.Entity;
+using GameFrameX.Hotfix.Logic.Game.Room;
+
+namespace GameFrameX.Hotfix.Logic.Game.DiceBattle;
+
+public class DiceBattleGameComponentAgent : StateComponentAgent<DiceBattleGameComponent, DiceBattleGameListState>
+{
+    /// <summary>
+    /// 骰子点数上界（Next 上界 exclusive），点数范围为 1-6。
+    /// </summary>
+    private const int DiceUpperBound = 7;
+
+    /// <summary>
+    /// 骰子点数下界（Next 下界 inclusive）。
+    /// </summary>
+    private const int DiceLowerBound = 1;
+
+    public async Task OnReqGameInfoAsync(long roleId, ReqDiceBattleGameInfo request, RespDiceBattleGameInfo response)
+    {
+        var roomAgent = await ActorManager.GetComponentAgentAsync<RoomComponentAgent>();
+        var room = await roomAgent.GetRoomAsync(request.RoomId);
+        if (!CheckRoom(room, response))
+        {
+            return;
+        }
+
+        // 成员校验：对局数据只对房间成员可见，任意登录角色不得仅凭 RoomId 窥探他人对局。
+        if (!room.PlayerIds.Contains(roleId))
+        {
+            response.ErrorCode = (int)OperationStatusCode.Forbidden;
+            return;
+        }
+
+        var game = GetOrCreateGame(room.RoomId, room.Round);
+        response.GameInfo = ToMessage(game, room.PlayerIds, CanRevealDice(room.Status));
+    }
+
+    public async Task OnRollDiceAsync(long roleId, ReqRollDiceBattle request, RespRollDiceBattle response)
+    {
+        if (!CheckRoleId(roleId, response))
+        {
+            return;
+        }
+
+        var roomAgent = await ActorManager.GetComponentAgentAsync<RoomComponentAgent>();
+        var room = await roomAgent.GetRoomAsync(request.RoomId);
+        if (!CheckRoom(room, response))
+        {
+            return;
+        }
+
+        if (room.Status != RoomStatus.Playing || !room.PlayerIds.Contains(roleId))
+        {
+            response.ErrorCode = (int)OperationStatusCode.Forbidden;
+            // 非成员不附带任何对局数据；成员收到与查询接口一致的揭示语义（已结算即揭示）。
+            if (room.PlayerIds.Contains(roleId))
+            {
+                response.GameInfo = BuildGameInfo(room, CanRevealDice(room.Status));
+            }
+
+            return;
+        }
+
+        var game = GetOrCreateGame(room.RoomId, room.Round);
+        if (game.DiceMap.ContainsKey(roleId))
+        {
+            response.ErrorCode = (int)OperationStatusCode.HasExist;
+            response.GameInfo = ToMessage(game, room.PlayerIds, false);
+            return;
+        }
+
+        // 服务器端生成骰子点数，玩家无法篡改。
+        game.DiceMap[roleId] = RandomHelper.Next(DiceLowerBound, DiceUpperBound);
+        var revealDice = false;
+        if (game.DiceMap.Count == room.PlayerIds.Count)
+        {
+            await roomAgent.EnterSettlingAsync(room.RoomId);
+            CalculateWinners(room.PlayerIds, game);
+            await OwnerComponent.WriteStateAsync();
+            await roomAgent.MarkSettledAsync(room.RoomId);
+            revealDice = true;
+        }
+        else
+        {
+            await OwnerComponent.WriteStateAsync();
+        }
+
+        response.GameInfo = ToMessage(game, room.PlayerIds, revealDice);
+        await NotifyGameChangedAsync(room.PlayerIds, response.GameInfo);
+    }
+
+    public async Task OnRestartGameAsync(long roleId, ReqRestartDiceBattle request, RespRestartDiceBattle response)
+    {
+        if (!CheckRoleId(roleId, response))
+        {
+            return;
+        }
+
+        var roomAgent = await ActorManager.GetComponentAgentAsync<RoomComponentAgent>();
+        var room = await roomAgent.GetRoomAsync(request.RoomId);
+        if (!CheckRoom(room, response))
+        {
+            return;
+        }
+
+        if (!room.PlayerIds.Contains(roleId))
+        {
+            // 非成员请求直接拒绝，不附带任何对局数据。
+            response.ErrorCode = (int)OperationStatusCode.Forbidden;
+            return;
+        }
+
+        if (room.OwnerRoleId != roleId || room.Status != RoomStatus.Settled)
+        {
+            response.ErrorCode = (int)OperationStatusCode.Forbidden;
+            // 成员收到与查询接口一致的揭示语义（已结算即揭示）。
+            response.GameInfo = BuildGameInfo(room, CanRevealDice(room.Status));
+            return;
+        }
+
+        var roomInfo = await roomAgent.RestartRoomGameAsync(room.RoomId);
+        if (roomInfo == null || roomInfo.Status != RoomStatus.Playing)
+        {
+            response.ErrorCode = (int)OperationStatusCode.Unprocessable;
+            response.GameInfo = BuildGameInfo(room, CanRevealDice(room.Status));
+            return;
+        }
+
+        var game = GetOrCreateGame(room.RoomId, room.Round);
+        game.DiceMap.Clear();
+        game.WinnerRoleIds.Clear();
+        game.MaxDiceValue = 0;
+        await OwnerComponent.WriteStateAsync();
+
+        response.GameInfo = ToMessage(game, room.PlayerIds, false);
+        await NotifyGameChangedAsync(room.PlayerIds, response.GameInfo);
+    }
+
+    private DiceBattleGameInfo BuildGameInfo(GameFrameX.Apps.Game.Room.Entity.RoomState room, bool revealDice)
+    {
+        var game = GetOrCreateGame(room.RoomId, room.Round);
+        return ToMessage(game, room.PlayerIds, revealDice);
+    }
+
+    private DiceBattleGameState GetOrCreateGame(long roomId, int round)
+    {
+        if (!State.Games.TryGetValue(roomId, out var game))
+        {
+            game = new DiceBattleGameState
+            {
+                RoomId = roomId,
+                Round = round,
+            };
+            State.Games[roomId] = game;
+        }
+
+        if (game.Round != round)
+        {
+            game.Round = round;
+            game.DiceMap.Clear();
+            game.WinnerRoleIds.Clear();
+            game.MaxDiceValue = 0;
+        }
+
+        return game;
+    }
+
+    private static bool CheckRoleId(long roleId, IResponseMessage response)
+    {
+        if (roleId > 0)
+        {
+            return true;
+        }
+
+        response.ErrorCode = (int)OperationStatusCode.Forbidden;
+        return false;
+    }
+
+    private static bool CheckRoom(GameFrameX.Apps.Game.Room.Entity.RoomState room, IResponseMessage response)
+    {
+        if (room == null)
+        {
+            response.ErrorCode = (int)OperationStatusCode.NotFound;
+            return false;
+        }
+
+        if (room.GameType != GameType.DiceBattle)
+        {
+            response.ErrorCode = (int)OperationStatusCode.Forbidden;
+            return false;
+        }
+
+        return true;
+    }
+
+    private static void CalculateWinners(List<long> playerIds, DiceBattleGameState game)
+    {
+        var max = 0;
+        foreach (var roleId in playerIds)
+        {
+            if (game.DiceMap.TryGetValue(roleId, out var value) && value > max)
+            {
+                max = value;
+            }
+        }
+
+        game.MaxDiceValue = max;
+        game.WinnerRoleIds.Clear();
+        foreach (var roleId in playerIds)
+        {
+            if (game.DiceMap.TryGetValue(roleId, out var value) && value == max)
+            {
+                game.WinnerRoleIds.Add(roleId);
+            }
+        }
+    }
+
+    private static bool CanRevealDice(RoomStatus roomStatus)
+    {
+        return roomStatus == RoomStatus.Settling || roomStatus == RoomStatus.Settled;
+    }
+
+    private static DiceBattleGameInfo ToMessage(DiceBattleGameState game, List<long> playerIds, bool revealDice)
+    {
+        return new DiceBattleGameInfo
+        {
+            RoomId = game.RoomId,
+            Round = game.Round,
+            WinnerRoleIds = revealDice ? new List<long>(game.WinnerRoleIds) : new List<long>(),
+            MaxDiceValue = revealDice ? game.MaxDiceValue : 0,
+            Players = playerIds.Select(roleId => new DiceBattlePlayerInfo
+            {
+                RoleId = roleId,
+                HasRolled = game.DiceMap.ContainsKey(roleId),
+                DiceValue = revealDice && game.DiceMap.TryGetValue(roleId, out var value) ? value : 0,
+            }).ToList(),
+        };
+    }
+
+    private static async Task NotifyGameChangedAsync(List<long> playerIds, DiceBattleGameInfo gameInfo)
+    {
+        var notify = new NotifyDiceBattleGameChanged
+        {
+            GameInfo = gameInfo,
+        };
+
+        foreach (var roleId in playerIds)
+        {
+            var session = PlayerSessionManager.Instance.GetByPlayerId(roleId);
+            if (session == null)
+            {
+                continue;
+            }
+
+            // 单个成员的通知发送失败只记日志，不中断结算与其余成员的通知。
+            try
+            {
+                await session.WriteAsync(notify);
+            }
+            catch (Exception e)
+            {
+                LogHelper.Error(e);
+            }
+        }
+    }
+}

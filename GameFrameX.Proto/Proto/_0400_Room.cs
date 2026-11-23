@@ -60,6 +60,12 @@ namespace GameFrameX.Proto.Proto
 		/// </summary>
 		[System.ComponentModel.Description("四子棋")]
 		ConnectFour = 2,
+
+		/// <summary>
+		/// 掷骰子比大小
+		/// </summary>
+		[System.ComponentModel.Description("掷骰子比大小")]
+		DiceBattle = 3,
 	}
 
 	/// <summary>

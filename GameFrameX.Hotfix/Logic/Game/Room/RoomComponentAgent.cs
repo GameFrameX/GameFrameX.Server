@@ -32,6 +32,13 @@ public class RoomComponentAgent : StateComponentAgent<RoomComponent, RoomListSta
             MaxPlayerCount = 2,
             DefaultNamePrefix = "四子棋房间",
         },
+        [GameType.DiceBattle] = new RoomRule
+        {
+            GameType = GameType.DiceBattle,
+            MinPlayerCount = 3,
+            MaxPlayerCount = 6,
+            DefaultNamePrefix = "掷骰子比大房间",
+        },
     };
 
     public override async Task<bool> ActiveAsync()
@@ -432,7 +439,8 @@ public class RoomComponentAgent : StateComponentAgent<RoomComponent, RoomListSta
     {
         minPlayerCount = requestMinPlayerCount > 0 ? requestMinPlayerCount : rule.MinPlayerCount;
         maxPlayerCount = requestMaxPlayerCount > 0 ? requestMaxPlayerCount : rule.MaxPlayerCount;
-        if (minPlayerCount <= 0 || maxPlayerCount <= 0 || minPlayerCount > maxPlayerCount)
+        // 显式人数只能收窄房型规则的区间（如骰子比大小 3-6 人），越界视为参数错误。
+        if (minPlayerCount < rule.MinPlayerCount || maxPlayerCount > rule.MaxPlayerCount || minPlayerCount > maxPlayerCount)
         {
             SetResponseErrorCode(response, (int)OperationStatusCode.ParamErr);
             return false;
@@ -559,10 +567,50 @@ public class RoomComponentAgent : StateComponentAgent<RoomComponent, RoomListSta
             Room = await ToMessageAsync(room),
         };
 
-        var sessions = PlayerSessionManager.Instance.GetList(session => session.PlayerId > 0);
-        foreach (var session in sessions)
+        // 大厅可见的变化（房间增删、人数变化）需广播给所有在线玩家，以刷新房间列表。
+        // 其余为房间内部玩法事件（开始/结算/重置等），仅通知房间内成员，避免全服广播噪音。
+        if (IsLobbyVisibleChange(changeType))
         {
-            await session.WriteAsync(notify);
+            var sessions = PlayerSessionManager.Instance.GetList(session => session.PlayerId > 0);
+            foreach (var session in sessions)
+            {
+                await session.WriteAsync(notify);
+            }
+        }
+        else
+        {
+            await NotifyRoomMembersAsync(room, notify);
+        }
+    }
+
+    private static bool IsLobbyVisibleChange(RoomChangeType changeType)
+    {
+        return changeType == RoomChangeType.Created ||
+               changeType == RoomChangeType.Joined ||
+               changeType == RoomChangeType.Left ||
+               changeType == RoomChangeType.Closed ||
+               changeType == RoomChangeType.Disbanded;
+    }
+
+    private static async Task NotifyRoomMembersAsync(RoomState room, NotifyRoomChanged notify)
+    {
+        foreach (var playerId in room.PlayerIds)
+        {
+            var session = PlayerSessionManager.Instance.GetByPlayerId(playerId);
+            if (session == null)
+            {
+                continue;
+            }
+
+            // 单个成员的通知发送失败只记日志，不中断房间状态推进与其余成员的通知。
+            try
+            {
+                await session.WriteAsync(notify);
+            }
+            catch (Exception e)
+            {
+                LogHelper.Error(e);
+            }
         }
     }
 
