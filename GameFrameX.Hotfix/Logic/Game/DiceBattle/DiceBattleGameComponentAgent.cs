@@ -257,11 +257,11 @@ public class DiceBattleGameComponentAgent : StateComponentAgent<DiceBattleGameCo
         {
             RoomId = game.RoomId,
             Round = game.Round,
-            WinnerRoleIds = revealDice ? new List<long>(game.WinnerRoleIds) : new List<long>(),
+            WinnerPlayerIds = revealDice ? new List<long>(game.WinnerRoleIds) : new List<long>(),
             MaxDiceValue = revealDice ? game.MaxDiceValue : 0,
             Players = playerIds.Select(roleId => new DiceBattlePlayerInfo
             {
-                RoleId = roleId,
+                PlayerId = roleId,
                 HasRolled = game.DiceMap.ContainsKey(roleId),
                 DiceValue = revealDice && game.DiceMap.TryGetValue(roleId, out var value) ? value : 0,
             }).ToList(),
