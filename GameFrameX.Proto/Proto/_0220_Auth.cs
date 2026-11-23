@@ -312,7 +312,7 @@ namespace GameFrameX.Proto.Proto
 	/// </summary>
 	[ProtoContract]
 	[System.ComponentModel.Description("会话恢复成员快照项")]
-	public sealed class SessionResumeMemberInfo : MessageObject
+	public sealed class SessionResumeMemberInfo
 	{
 		/// <summary>
 		/// 玩家ID
@@ -327,12 +327,6 @@ namespace GameFrameX.Proto.Proto
 		[ProtoMember(2)]
 		[System.ComponentModel.Description("成员状态（OnlineMatchMemberState：0=Joined 1=Ready 2=Playing 3=Disconnected 4=Left 5=Kicked）")]
 		public int State { get; set; }
-
-		public override void Clear()
-		{
-			PlayerId = default;
-			State = default;
-		}
 	}
 
 	/// <summary>
@@ -443,12 +437,10 @@ namespace GameFrameX.Proto.Proto
 		public string Instruction { get; set; }
 
 		/// <summary>
-		/// 对局业务结果码（0 = 无对局失败；非 0 为 Online 显式段负值，如超窗 / 已结束 / 已离局）。
-		/// 与 RPC 层 ErrorCode 解耦：恢复流程成功时 ErrorCode = 0，对局结果仅经本字段传达，
-		/// 客户端始终能读取 NewSessionToken。
+		/// 对局业务结果码（0 = 无对局失败；非 0 为 Online 显式段负值）。与 RPC 层 ErrorCode 解耦：恢复流程成功时 ErrorCode = 0 且 NewSessionToken 必达
 		/// </summary>
 		[ProtoMember(11)]
-		[System.ComponentModel.Description("对局业务结果码（0 = 无对局失败；非 0 为 Online 显式段负值）。与 RPC 层 ErrorCode 解耦，恢复流程成功时 ErrorCode = 0 且 NewSessionToken 必达")]
+		[System.ComponentModel.Description("对局业务结果码（0 = 无对局失败；非 0 为 Online 显式段负值）。与 RPC 层 ErrorCode 解耦：恢复流程成功时 ErrorCode = 0 且 NewSessionToken 必达")]
 		public int MatchResultCode { get; set; }
 
 		/// <summary>
@@ -469,9 +461,9 @@ namespace GameFrameX.Proto.Proto
 			DeltaAvailable = default;
 			Members.Clear();
 			GameState = default;
-		Instruction = default;
-		MatchResultCode = default;
-		ErrorCode = default;
+			Instruction = default;
+			MatchResultCode = default;
+			ErrorCode = default;
 		}
 	}
 
